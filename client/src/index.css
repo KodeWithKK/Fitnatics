@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* line-height: 1.5; */
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.overflow-y-auto {
+  --scrollbar-color-thumb: transparent;
+  --scrollbar-color-track: transparent;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 8px;
+  overflow-x: hidden;
+}
+
+.overflow-y-auto:hover {
+  --scrollbar-color-thumb: rgba(21, 21, 25, 0.8);
+}
+
+.hide-scroll-thumb {
+  --scrollbar-width: none;
+  --scrollbar-width-legacy: 0;
+}
+
+/* Legacy browsers with `::-webkit-scrollbar-*` support */
+@supports selector(::-webkit-scrollbar) {
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color-thumb);
+    border-radius: 100vw;
+  }
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: var(--scrollbar-color-track);
+  }
+  .overflow-y-auto::-webkit-scrollbar {
+    max-width: var(--scrollbar-width-legacy);
+    max-height: var(--scrollbar-width-legacy);
+  }
+}
+
+/* Modern browsers with `scrollbar-*` support */
+@supports not selector(::-webkit-scrollbar) {
+  .overflow-y-auto {
+    scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+    scrollbar-width: var(--scrollbar-width);
+  }
+}
