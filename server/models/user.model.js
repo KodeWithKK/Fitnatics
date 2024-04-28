@@ -6,7 +6,6 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
     },
     email: {
@@ -20,8 +19,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    phone: {
-      type: String,
+    accountSetupRequired: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
+    phoneno: {
+      type: Number,
       trim: true,
     },
     avatar: {
@@ -29,7 +33,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      required: true,
+      lowercase: true,
     },
     clientDataId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -49,7 +53,7 @@ const userSchema = mongoose.Schema(
 
 // check before saving up the content
 userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
+  if (!this.accountSetupRequired && this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();

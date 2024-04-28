@@ -1,5 +1,21 @@
 import mongoose from "mongoose";
 
+const gymCoordinatesObjectSchema = new mongoose.Schema(
+  {
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const trainerPaymentsHistoryObjectSchema = new mongoose.Schema(
   {
     trainerId: {
@@ -55,14 +71,13 @@ const adminDataSchema = new mongoose.Schema(
     gymLogo: {
       type: String,
     },
-    gymIpAddress: {
-      type: String,
-    },
     gymLocation: {
       type: String,
     },
+    gymCoordinates: gymCoordinatesObjectSchema,
     gymStartedSince: {
       type: Date,
+      required: true,
     },
     trainerPaymentsHistory: [trainerPaymentsHistoryObjectSchema],
     memberships: [membershipsObjectSchema],

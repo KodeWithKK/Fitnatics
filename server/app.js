@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import path from "path";
-// import homeRouter from "./routes/home.routes.js";
-// import authRouter from "./routes/user.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import userRouter from "./routes/user.routes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+app.use(express.static("./public"));
 app.use(cookieParser());
 dotenv.config({ path: "./.env" });
 
@@ -21,12 +21,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get("/", (req, res) => {
-  res.status(200).json({ data: "API is Working" });
-});
-
-// app.use("/", homeRouter);
-// app.use("/u", authRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 // Centralized error-handling middleware
 // app.use((err, req, res, next) => {
