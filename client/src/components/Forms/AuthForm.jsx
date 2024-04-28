@@ -1,48 +1,9 @@
 import React from "react";
 import HomePosterImg from "../../images/Home Poster.jpg";
+import FormInput from "./FormInput";
 import { GoogleIcon, FacebookIcon, TwitterIcon } from "./Icons";
-import { useNavigate } from "react-router-dom";
 
-import { GlobalContext } from "../../App";
-
-const AuthForm = () => {
-  const [formData, setFormData] = React.useState({});
-
-  const navigate = useNavigate();
-  const { setUserData } = React.useContext(GlobalContext);
-
-  const handleInput = React.useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      const nextFormData = { ...formData, [name]: value };
-      setFormData(nextFormData);
-    },
-    [formData]
-  );
-
-  const formSubmitHandle = React.useCallback(
-    async (e) => {
-      e.preventDefault();
-
-      await fetch("http://localhost:8000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          const user = result.data.user;
-          setUserData(user);
-          if (user.accountSetupRequired) {
-            navigate("/setup-account");
-          }
-        });
-    },
-    [formData, navigate, setUserData]
-  );
-
+const AuthForm = ({ handleFormSubmit, handleInput }) => {
   return (
     <div className="flex bg-gray-950 h-screen overflow-hidden">
       <img
@@ -53,7 +14,7 @@ const AuthForm = () => {
       <div className="flex w-[50%] px-[6%] py-10 overflow-y-auto">
         <form
           className="my-auto w-full h-fit space-y-8 text-gray-200"
-          onSubmit={formSubmitHandle}
+          onSubmit={handleFormSubmit}
         >
           <h1 className="font-bold text-brand text-4xl text-center tracking-wide uppercase">
             Fitnatics
@@ -100,20 +61,6 @@ const AuthForm = () => {
               onChange={handleInput}
               required={true}
             />
-
-            {/* <input
-              id="signup-remember-me"
-              name="rememberMe"
-              className="rounded-full bg-gray-950 border-gray-700"
-              type="checkbox"
-              onChange={handleCheckbox}
-            />
-            <label
-              className="text-gray-400 text-[15px] mb-0.5 ml-2 select-none"
-              htmlFor="signup-remember-me"
-            >
-              Remember Me
-            </label> */}
           </div>
 
           <div>
@@ -132,24 +79,5 @@ const AuthForm = () => {
     </div>
   );
 };
-
-function FormInput({ label, type, ...delegated }) {
-  return (
-    <>
-      <label
-        className="block text-gray-400 text-[15px] mb-0.5 select-none"
-        htmlFor={`auth-${label.toLowerCase()}`}
-      >
-        {label}
-      </label>
-      <input
-        id={`auth-${label.toLowerCase()}`}
-        className={`w-full rounded-md bg-gray-950 border-gray-600/[.6] mb-4 placeholder:text-gray-400/[.4]`}
-        type={type}
-        {...delegated}
-      />
-    </>
-  );
-}
 
 export default AuthForm;

@@ -3,7 +3,7 @@ import SideBar from "../Sidebar/SideBar";
 import ClientDashboard from "../Dashboard/Client/Dashboard";
 import AdminDashboard from "../Dashboard/Admin/Dashboard";
 
-const Home = () => {
+const MainDisplay = () => {
   const [userRole, setUserRole] = React.useState("client");
 
   return (
@@ -17,4 +17,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MainDisplay;

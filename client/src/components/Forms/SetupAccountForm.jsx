@@ -1,25 +1,9 @@
 import React from "react";
 import AvatarImage from "./AvatarImage";
-import { GlobalContext } from "../../App";
+import FormInput from "./FormInput";
 
-const SetupAccountForm = () => {
-  const { userData } = React.useContext(GlobalContext);
-  const [formData, setFormData] = React.useState({
-    role: "member",
-    email: userData.email,
-    password: userData.password,
-  });
-
+const SetupAccountForm = ({ formData, handleInput }) => {
   const avatarRef = React.useRef();
-
-  const handleInput = React.useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      const nextFormData = { ...formData, [name]: value };
-      setFormData(nextFormData);
-    },
-    [formData]
-  );
 
   const handleAvatarInput = React.useCallback(() => {
     avatarRef.current.click();
@@ -117,24 +101,5 @@ const SetupAccountForm = () => {
     </div>
   );
 };
-
-function FormInput({ label, type, ...delegated }) {
-  return (
-    <>
-      <label
-        className="block text-gray-400 text-[15px] mb-0.5 select-none"
-        htmlFor={`auth-${label.toLowerCase().split(" ")[0]}`}
-      >
-        {label}
-      </label>
-      <input
-        id={`auth-${label.toLowerCase().split(" ")[0]}`}
-        className={`w-full rounded-md bg-gray-950 border-gray-600/[.6] mb-4 placeholder:text-gray-400/[.4]`}
-        type={type}
-        {...delegated}
-      />
-    </>
-  );
-}
 
 export default SetupAccountForm;

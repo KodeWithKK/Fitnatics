@@ -1,9 +1,7 @@
 import React from "react";
-import Home from "./components/Home/Home";
-import AuthForm from "./components/AuthForm/AuthForm";
-import SetupAccountForm from "./components/SetupAccountForm/SetupAccountForm";
+import AuthHome from "./components/Home/AuthHome";
+import MainDisplay from "./components/Home/MainDisplay";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
 
 export const GlobalContext = React.createContext();
 
@@ -20,9 +18,8 @@ function App() {
     <GlobalContext.Provider value={value}>
       <Router>
         <Routes>
-          <Route path="/" element={<AuthForm />} />
-          <Route path="/setup-account" element={<SetupAccountForm />} />
-          <Route path="/:nav" element={<Home />} />
+          <Route path="/" element={<AuthHome />} />
+          <Route path="/:nav" element={<MainDisplay />} />
         </Routes>
       </Router>
     </GlobalContext.Provider>
