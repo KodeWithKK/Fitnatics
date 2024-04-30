@@ -67,7 +67,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           />
           <FormInput
             label="Phone No"
-            type="text"
+            type="number"
             name="phoneno"
             onChange={handleInput}
             required={true}
