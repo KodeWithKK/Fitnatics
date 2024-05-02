@@ -1,13 +1,14 @@
 import React from "react";
 import AuthForm from "../Forms/AuthForm";
 import SetupAccountForm from "../Forms/SetupAccountForm";
+import SetupAccountForm2 from "../Forms/SetupAccountForm2";
 import OtpForm from "../Forms/OtpForm";
 import { GlobalContext } from "../../App";
 
 const AuthHome = () => {
   const [formData, setFormData] = React.useState({ role: "member" });
-  const [displayType, setDisplayType] = React.useState("otp");
-  // display type: root, otp, setup-account
+  const [displayType, setDisplayType] = React.useState("setup-account-2");
+  // display type: root, otp, setup-account, setup-account-2
 
   const { setUserData } = React.useContext(GlobalContext);
 
@@ -56,6 +57,10 @@ const AuthHome = () => {
 
       {displayType === "setup-account" && (
         <SetupAccountForm formData={formData} handleInput={handleInput} />
+      )}
+
+      {displayType === "setup-account-2" && (
+        <SetupAccountForm2 formData={formData} handleInput={handleInput} />
       )}
     </>
   );

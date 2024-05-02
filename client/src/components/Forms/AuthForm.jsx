@@ -1,7 +1,7 @@
 import React from "react";
 import HomePosterImg from "../../images/Home Poster.jpg";
-import FormInput from "./FormInput";
-import { GoogleIcon, FacebookIcon, TwitterIcon } from "./Icons";
+import FormInput from "./atoms/FormInput";
+import { GoogleIcon, FacebookIcon, TwitterIcon } from "./atoms/Icons";
 
 const AuthForm = ({ handleFormSubmit, handleInput }) => {
   return (

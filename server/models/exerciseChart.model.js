@@ -36,11 +36,11 @@ const exerciseChartSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: ["Beginner", "Intermediate", "Advanced"],
-      required: true;
+      required: true,
     },
     weight: {
       type: Number,
-      required: true
+      required: true,
     },
     data: [exerciseDaySchema],
   },

@@ -1,10 +1,29 @@
 import React from "react";
+import StepsTracker from "./atoms/StepsTracker";
 
 const OtpForm = ({ formData }) => {
+  const [otpTimeLeft, setOtpTimeLeft] = React.useState({ min: 14, sec: 59 });
   const inputRefs = React.useRef([]);
 
+  React.useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const nextOtpTimeLeft = { ...otpTimeLeft };
+
+      if (nextOtpTimeLeft.sec !== 0) {
+        nextOtpTimeLeft.sec--;
+      } else {
+        nextOtpTimeLeft.min--;
+        nextOtpTimeLeft.sec = 59;
+      }
+
+      setOtpTimeLeft(nextOtpTimeLeft);
+    }, 1000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [otpTimeLeft]);
+
   const handleOnChange = React.useCallback((e, idx) => {
-    e.target.value = e.target.value.slice(-1);
+    e.target.value = e.target.value.slice(0, 1);
 
     if (e.target.value && idx < 6 - 1) {
       inputRefs.current[idx + 1].focus();
@@ -27,12 +46,14 @@ const OtpForm = ({ formData }) => {
 
   return (
     <div className="bg-gray-950 h-screen py-8 px-[6%] overflow-y-auto">
-      <a
-        className="block font-bold text-brand text-4xl text-center tracking-wide uppercase mb-6"
-        href="/"
-      >
-        Fitnatics
-      </a>
+      <div className="text-center mb-6">
+        <a
+          className="font-bold text-brand text-4xl tracking-wide uppercase "
+          href="/"
+        >
+          Fitnatics
+        </a>
+      </div>
 
       <StepsTracker totalSteps={4} currentStep={2} />
 
@@ -51,18 +72,30 @@ const OtpForm = ({ formData }) => {
           </p>
         </div>
 
-        <div className="flex justify-between gap-2">
-          {[...Array(6)].map((_, i) => (
-            <input
-              key={`input-${i}`}
-              ref={(el) => inputRefs.current.push(el)}
-              type="number"
-              maxLength={1}
-              onChange={(e) => handleOnChange(e, i)}
-              onKeyUp={(e) => handleBackspace(e, i)}
-              className="w-14 h-14 rounded-md bg-transparent border-2 border-gray-800 text-center text-2xl"
-            />
-          ))}
+        <div>
+          <div className="flex justify-between gap-2">
+            {[...Array(6)].map((_, i) => (
+              <input
+                key={`input-${i}`}
+                ref={(el) => inputRefs.current.push(el)}
+                type="number"
+                maxLength={1}
+                onChange={(e) => handleOnChange(e, i)}
+                onKeyUp={(e) => handleBackspace(e, i)}
+                className="w-14 h-14 rounded-md bg-transparent border-2 border-gray-800 text-center text-2xl"
+              />
+            ))}
+          </div>
+          <div className="flex justify-between text-gray-500 text-sm mt-4">
+            <span>{`${otpTimeLeft.min
+              .toString()
+              .padStart(2, 0)}:${otpTimeLeft.sec
+              .toString()
+              .padStart(2, 0)}`}</span>
+            <a href="#" className="underline underline-offset-4">
+              Resend Code
+            </a>
+          </div>
         </div>
 
         <div>
@@ -74,30 +107,5 @@ const OtpForm = ({ formData }) => {
     </div>
   );
 };
-
-function StepsTracker({ totalSteps, currentStep }) {
-  return (
-    <div className="flex justify-center items-center mb-6">
-      {[...Array(totalSteps)].map((_, i) => (
-        <React.Fragment key={`step-${i}`}>
-          <div
-            className={`grid place-items-center w-6 h-6 ${
-              i < currentStep ? "bg-brand/[.9]" : "bg-gray-200/[.9]"
-            } font-semibold text-gray-950 rounded-full select-none`}
-          >
-            {i + 1}
-          </div>
-          {i !== totalSteps - 1 && (
-            <div
-              className={`h-1 w-4 ${
-                i < currentStep - 1 ? "bg-brand/[.4]" : "bg-gray-200/[.4]"
-              }`}
-            ></div>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
 
 export default OtpForm;

@@ -1,16 +1,9 @@
 import React from "react";
 import StepsTracker from "./atoms/StepsTracker";
-import AvatarImage from "./atoms/AvatarImage";
 import FormInput from "./atoms/FormInput";
 import FormSelect from "./atoms/FormSelect";
 
-const SetupAccountForm = ({ formData, handleInput }) => {
-  const avatarRef = React.useRef();
-
-  const handleAvatarInput = React.useCallback(() => {
-    avatarRef.current.click();
-  }, []);
-
+const SetupAccountForm2 = ({ formData, handleInput }) => {
   const formSubmitHandle = React.useCallback(
     (e) => {
       e.preventDefault();
@@ -30,7 +23,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
         </a>
       </div>
 
-      <StepsTracker totalSteps={4} currentStep={3} />
+      <StepsTracker totalSteps={4} currentStep={4} />
 
       <form
         className="mx-auto max-w-[586px] h-fit px-[6%] py-8 space-y-8 text-gray-200 border-2 border-dashed border-gray-900 rounded-md"
@@ -41,14 +34,17 @@ const SetupAccountForm = ({ formData, handleInput }) => {
         </h1>
 
         <div>
-          <AvatarImage
-            ref={avatarRef}
-            className="w-[152px] h-[152px] mx-auto mb-8 bg-gray-600 border border-gray-600"
-            onClick={handleAvatarInput}
-          />
-
+          <FormSelect
+            label="Workout Type"
+            currentValue={"beginner"}
+            handleChange={handleInput}
+          >
+            <option value="begineer">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </FormSelect>
           <FormInput
-            label="Name"
+            label="Body Weight"
             type="text"
             name="name"
             onChange={handleInput}
@@ -56,38 +52,13 @@ const SetupAccountForm = ({ formData, handleInput }) => {
             spellCheck={false}
           />
           <FormInput
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInput}
-            required={true}
-          />
-          <FormInput
-            label="Password"
+            label="Diet Goals"
             type="password"
             name="password"
             value={formData.password}
             onChange={handleInput}
             required={true}
           />
-          <FormInput
-            label="Phone No"
-            type="number"
-            name="phoneno"
-            onChange={handleInput}
-            required={true}
-            spellCheck={false}
-          />
-
-          <FormSelect
-            label="Role"
-            currentValue={formData.role}
-            handleChange={handleInput}
-          >
-            <option value="member">Member</option>
-            <option value="trainer">Trainer</option>
-          </FormSelect>
         </div>
 
         <div>
@@ -100,4 +71,4 @@ const SetupAccountForm = ({ formData, handleInput }) => {
   );
 };
 
-export default SetupAccountForm;
+export default SetupAccountForm2;

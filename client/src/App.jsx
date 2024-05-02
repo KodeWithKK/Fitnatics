@@ -1,6 +1,7 @@
 import React from "react";
 import AuthHome from "./components/Home/AuthHome";
 import MainDisplay from "./components/Home/MainDisplay";
+import ToastStack from "./components/ToastStack/ToastStack";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export const GlobalContext = React.createContext();
@@ -16,6 +17,8 @@ function App() {
 
   return (
     <GlobalContext.Provider value={value}>
+      <ToastStack />
+
       <Router>
         <Routes>
           <Route path="/" element={<AuthHome />} />
