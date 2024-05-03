@@ -3,16 +3,16 @@ import NavItem from "./NavItem";
 
 const SideBar = () => {
   return (
-    <div className="w-[248px] bg-gray-900/[.75] h-screen">
+    <div className="bg-gray-900/[.75] w-[248px] h-screen">
       {/* LOGO */}
-      <div className="text-center mt-[30px] mb-[30px] px-[10%]">
+      <div className="mt-[30px] mb-[30px] px-[10%] text-center">
         <h1 className="font-bold text-[30px] text-brand uppercase tracking-wide">
           Fitnatics
         </h1>
       </div>
 
       {/* NAV-ITEMS */}
-      <div className="px-[9%] space-y-[2px]">
+      <div className="space-y-[2px] px-[9%]">
         <NavItem isActive={true} type="dashboard">
           Dashboard
         </NavItem>

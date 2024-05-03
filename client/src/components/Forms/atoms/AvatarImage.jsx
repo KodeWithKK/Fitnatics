@@ -8,11 +8,11 @@ function AvatarImage({ className, ...delegated }, ref) {
     >
       <input
         ref={ref}
-        className="h-full w-full hidden"
+        className="hidden w-full h-full"
         type="file"
         accept=".png, .jpg, .jpeg"
       />
-      <AvatarIcon className="scale-[1.05] h-full w-full border" />
+      <AvatarIcon className="border w-full h-full scale-[1.05]" />
     </div>
   );
 }

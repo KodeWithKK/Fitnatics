@@ -7,9 +7,9 @@ const MainDisplay = () => {
   const [userRole, setUserRole] = React.useState("client");
 
   return (
-    <div className="flex bg-gray-950 text-gray-200 font-sans">
+    <div className="flex bg-gray-950 font-sans text-gray-200">
       <SideBar />
-      <div className="bg-gray-950 h-screen flex-1 flex overflow-hidden">
+      <div className="flex flex-1 bg-gray-950 h-screen overflow-hidden">
         {userRole === "client" && <ClientDashboard />}
         {userRole === "admin" && <AdminDashboard />}
       </div>

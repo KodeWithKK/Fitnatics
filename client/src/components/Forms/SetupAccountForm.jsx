@@ -20,10 +20,10 @@ const SetupAccountForm = ({ formData, handleInput }) => {
   );
 
   return (
-    <div className="bg-gray-950 h-screen py-8 px-[6%] overflow-y-auto">
-      <div className="text-center mb-6">
+    <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
+      <div className="mb-6 text-center">
         <a
-          className="font-bold text-brand text-4xl tracking-wide uppercase "
+          className="font-bold text-4xl text-brand uppercase tracking-wide"
           href="/"
         >
           Fitnatics
@@ -33,17 +33,17 @@ const SetupAccountForm = ({ formData, handleInput }) => {
       <StepsTracker totalSteps={4} currentStep={3} />
 
       <form
-        className="mx-auto max-w-[586px] h-fit px-[6%] py-8 space-y-8 text-gray-200 border-2 border-dashed border-gray-900 rounded-md"
+        className="space-y-8 border-2 border-gray-900 mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
         onSubmit={formSubmitHandle}
       >
-        <h1 className="font-bold text-gray-200 text-2xl text-center">
+        <h1 className="font-bold text-2xl text-center text-gray-200">
           Setup your Account
         </h1>
 
         <div>
           <AvatarImage
             ref={avatarRef}
-            className="w-[152px] h-[152px] mx-auto mb-8 bg-gray-600 border border-gray-600"
+            className="border-gray-600 bg-gray-600 mx-auto mb-8 border w-[152px] h-[152px]"
             onClick={handleAvatarInput}
           />
 
@@ -91,7 +91,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
         </div>
 
         <div>
-          <button className="w-full bg-brand/[0.75] p-2.5 font-semibold rounded-md">
+          <button className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold">
             Next
           </button>
         </div>

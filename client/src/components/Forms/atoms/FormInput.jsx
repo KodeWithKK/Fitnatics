@@ -6,7 +6,7 @@ const FormInput = ({ label, type, ...delegated }) => {
   return (
     <>
       <label
-        className="block text-gray-400 text-[15px] mb-0.5 select-none"
+        className="block mb-0.5 text-[15px] text-gray-400 select-none"
         htmlFor={id}
       >
         {label}

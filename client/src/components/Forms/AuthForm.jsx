@@ -7,42 +7,42 @@ const AuthForm = ({ handleFormSubmit, handleInput }) => {
   return (
     <div className="flex bg-gray-950 h-screen overflow-hidden">
       <img
-        className="w-[50%] object-cover rounded-r-lg"
+        className="rounded-r-lg w-[50%] object-cover"
         src={HomePosterImg}
         alt="brand-poster-image"
       />
-      <div className="flex w-[50%] px-[6%] py-10 overflow-y-auto">
+      <div className="flex px-[6%] py-10 w-[50%] overflow-y-auto">
         <form
-          className="my-auto w-full h-fit space-y-8 text-gray-200"
+          className="space-y-8 my-auto w-full h-fit text-gray-200"
           onSubmit={handleFormSubmit}
         >
-          <h1 className="font-bold text-brand text-4xl text-center tracking-wide uppercase">
+          <h1 className="font-bold text-4xl text-brand text-center uppercase tracking-wide">
             Fitnatics
           </h1>
 
           <div>
-            <h5 className="text-sm text-gray-400 mb-3">
+            <h5 className="mb-3 text-gray-400 text-sm">
               Continue with Google, Facebook or Twitter
             </h5>
 
-            <div className="flex w-full h-12 rounded-md select-none">
-              <div className="flex items-center px-3 w-full border-2 border-gray-700/[.6] rounded-l-md cursor-pointer hover:bg-gray-900">
-                <GoogleIcon className="h-6 mr-2" />
+            <div className="flex rounded-md w-full h-12 select-none">
+              <div className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-l-md w-full cursor-pointer">
+                <GoogleIcon className="mr-2 h-6" />
                 <span>Google</span>
               </div>
-              <div className="flex items-center px-3 w-full border-2 border-x-0 border-gray-700/[.6] cursor-pointer hover:bg-gray-900">
-                <FacebookIcon className="h-6 mr-2" />
+              <div className="flex items-center border-2 border-gray-700/[.6] border-x-0 hover:bg-gray-900 px-3 w-full cursor-pointer">
+                <FacebookIcon className="mr-2 h-6" />
                 <span>Facebook</span>
               </div>
-              <div className="flex items-center px-3 w-full border-2 border-gray-700/[.6] rounded-r-md cursor-pointer hover:bg-gray-900">
-                <TwitterIcon className="h-6 mr-2" />
+              <div className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-r-md w-full cursor-pointer">
+                <TwitterIcon className="mr-2 h-6" />
                 <span>Twitter</span>
               </div>
             </div>
 
-            <hr className="mt-3 border-gray-800/[0.8]" />
+            <hr className="border-gray-800/[0.8] mt-3" />
 
-            <h5 className="text-sm text-gray-400 mt-8 mb-5">
+            <h5 className="mt-8 mb-5 text-gray-400 text-sm">
               Or Continue with Email...
             </h5>
 
@@ -64,13 +64,13 @@ const AuthForm = ({ handleFormSubmit, handleInput }) => {
           </div>
 
           <div>
-            <div className="text-sm text-gray-400 mb-3 text-pretty">
+            <div className="mb-3 text-gray-400 text-pretty text-sm">
               By continuing, you agree to Fitnatics&apos;s{" "}
-              <span className="cursor-pointer underline">Terms of Use</span> and{" "}
-              <span className="cursor-pointer underline">Privacy Policy</span>
+              <span className="underline cursor-pointer">Terms of Use</span> and{" "}
+              <span className="underline cursor-pointer">Privacy Policy</span>
             </div>
 
-            <button className="w-full bg-brand/[0.75] p-2.5 font-semibold rounded-md">
+            <button className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold">
               Continue with email
             </button>
           </div>

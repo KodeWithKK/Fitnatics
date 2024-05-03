@@ -64,4 +64,32 @@ function TwitterIcon(props) {
   );
 }
 
-export { GoogleIcon, FacebookIcon, TwitterIcon };
+function CheckIcon(props) {
+  return (
+    <svg
+      viewBox="418 168.5 22 17"
+      style={{
+        WebkitPrintColorAdjust: ":exact",
+      }}
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M421 177.611l4.923 4.889 11.077-11"
+        strokeLinejoin="round"
+        className=""
+      />
+      <g fill="none" strokeLinejoin="round" className="strokes">
+        <path
+          d="M421 177.611l4.923 4.889 11.077-11"
+          fillOpacity="none"
+          strokeWidth={2.5}
+          stroke="currentColor"
+          className=""
+        />
+      </g>
+    </svg>
+  );
+}
+
+export { GoogleIcon, FacebookIcon, TwitterIcon, CheckIcon };

@@ -45,10 +45,10 @@ const OtpForm = ({ formData }) => {
   );
 
   return (
-    <div className="bg-gray-950 h-screen py-8 px-[6%] overflow-y-auto">
-      <div className="text-center mb-6">
+    <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
+      <div className="mb-6 text-center">
         <a
-          className="font-bold text-brand text-4xl tracking-wide uppercase "
+          className="font-bold text-4xl text-brand uppercase tracking-wide"
           href="/"
         >
           Fitnatics
@@ -58,10 +58,10 @@ const OtpForm = ({ formData }) => {
       <StepsTracker totalSteps={4} currentStep={2} />
 
       <form
-        className="mx-auto max-w-[586px] h-fit px-[6%] py-8 space-y-8 text-gray-200 border-2 border-dashed border-gray-900 rounded-md"
+        className="space-y-8 border-2 border-gray-900 mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
         onSubmit={formSubmitHandle}
       >
-        <h1 className="font-bold text-gray-200 text-2xl text-center">
+        <h1 className="font-bold text-2xl text-center text-gray-200">
           OTP Verification
         </h1>
 
@@ -82,11 +82,11 @@ const OtpForm = ({ formData }) => {
                 maxLength={1}
                 onChange={(e) => handleOnChange(e, i)}
                 onKeyUp={(e) => handleBackspace(e, i)}
-                className="w-14 h-14 rounded-md bg-transparent border-2 border-gray-800 text-center text-2xl"
+                className="border-2 border-gray-800 bg-transparent rounded-md w-14 h-14 text-2xl text-center"
               />
             ))}
           </div>
-          <div className="flex justify-between text-gray-500 text-sm mt-4">
+          <div className="flex justify-between mt-4 text-gray-500 text-sm">
             <span>{`${otpTimeLeft.min
               .toString()
               .padStart(2, 0)}:${otpTimeLeft.sec
@@ -99,7 +99,7 @@ const OtpForm = ({ formData }) => {
         </div>
 
         <div>
-          <button className="w-full bg-brand/[0.75] p-2.5 font-semibold rounded-md">
+          <button className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold">
             Verify OTP
           </button>
         </div>

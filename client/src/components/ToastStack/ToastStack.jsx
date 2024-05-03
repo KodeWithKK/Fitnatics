@@ -9,7 +9,7 @@ import {
 
 const ToastStack = () => {
   return (
-    <div className="hidden fixed space-y-1 right-4 bottom-4">
+    <div className="right-4 bottom-4 fixed space-y-1 hidden">
       <Toast
         type="success"
         title="Success Message"
@@ -51,9 +51,9 @@ function Toast({ type, title, message }) {
         </div>
         <div className="flex-1">
           <h2 className="font-semibold text-gray-100">{title}</h2>
-          <p className="text-pretty text-sm text-gray-400">{message}</p>
+          <p className="text-gray-400 text-pretty text-sm">{message}</p>
         </div>
-        <button className="grid place-items-center w-10 h-10 rounded-md text-gray-50/[.25] hover:bg-gray-100/[.07]">
+        <button className="place-items-center grid hover:bg-gray-100/[.07] rounded-md w-10 h-10 text-gray-50/[.25]">
           <CloseIcon className="w-3.5 h-3.5" />
         </button>
       </div>
