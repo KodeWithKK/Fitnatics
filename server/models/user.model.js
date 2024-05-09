@@ -53,7 +53,7 @@ const userSchema = mongoose.Schema(
 
 // check before saving up the content
 userSchema.pre("save", async function (next) {
-  if (!this.accountSetupRequired && this.isModified("password")) {
+  if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();

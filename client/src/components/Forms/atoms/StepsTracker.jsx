@@ -1,8 +1,8 @@
 import React from "react";
 
-function StepsTracker({ totalSteps, currentStep }) {
+function StepsTracker({ totalSteps, currentStep, className }) {
   return (
-    <div className="flex justify-center items-center mb-6">
+    <div className={`flex justify-center items-center mb-8 ${className}`}>
       {[...Array(totalSteps)].map((_, i) => (
         <React.Fragment key={`step-${i}`}>
           <div

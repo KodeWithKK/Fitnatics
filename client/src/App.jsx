@@ -2,22 +2,17 @@ import React from "react";
 import AuthHome from "./components/Home/AuthHome";
 import MainDisplay from "./components/Home/MainDisplay";
 import ToastStack from "./components/ToastStack/ToastStack";
+import Modal from "./components/Modal/Modal";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-export const GlobalContext = React.createContext();
+import { GlobalContext } from "./context/GlobalContextProvider";
 
 function App() {
-  const [userData, setUserData] = React.useState({});
-  const value = React.useMemo(() => {
-    return {
-      userData,
-      setUserData,
-    };
-  }, [userData]);
+  const { toasts, removeToast } = React.useContext(GlobalContext);
 
   return (
-    <GlobalContext.Provider value={value}>
-      <ToastStack />
+    <div>
+      <ToastStack toasts={toasts} removeToast={removeToast} />
+      {/* <Modal /> */}
 
       <Router>
         <Routes>
@@ -25,7 +20,7 @@ function App() {
           <Route path="/:nav" element={<MainDisplay />} />
         </Routes>
       </Router>
-    </GlobalContext.Provider>
+    </div>
   );
 }
 

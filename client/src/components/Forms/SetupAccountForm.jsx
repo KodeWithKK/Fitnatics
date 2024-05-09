@@ -44,7 +44,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           <AvatarImage
             ref={avatarRef}
             className="border-gray-600 bg-gray-600 mx-auto mb-8 border w-[152px] h-[152px]"
-            onClick={handleAvatarInput}
+            handleAvatarInput={handleAvatarInput}
           />
 
           <FormInput
@@ -56,24 +56,16 @@ const SetupAccountForm = ({ formData, handleInput }) => {
             spellCheck={false}
           />
           <FormInput
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInput}
-            required={true}
-          />
-          <FormInput
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInput}
-            required={true}
-          />
-          <FormInput
             label="Phone No"
             type="number"
+            name="phoneno"
+            onChange={handleInput}
+            required={true}
+            spellCheck={false}
+          />
+          <FormInput
+            label="Height"
+            type="text"
             name="phoneno"
             onChange={handleInput}
             required={true}

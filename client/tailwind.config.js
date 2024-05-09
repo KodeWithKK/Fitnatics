@@ -3,7 +3,6 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false,
   mode: "jit",
   theme: {
     extend: {
@@ -80,7 +79,7 @@ export default {
         },
       },
       keyframes: {
-        icon_enlarge: {
+        iconEnlarge: {
           from: {
             height: "20px",
           },
@@ -88,9 +87,20 @@ export default {
             height: "40px",
           },
         },
+        fadeLeftSlide: {
+          from: {
+            transform: "translateX(100%)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateX(0)",
+            opacity: 1,
+          },
+        },
       },
       animation: {
-        icon_enlarge: "icon_enlarge 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        iconEnlarge: "iconEnlarge 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        fadeLeftSlide: "fadeLeftSlide 0.4s ease-out",
       },
     },
   },

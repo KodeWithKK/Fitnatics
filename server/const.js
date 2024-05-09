@@ -1,1 +1,1 @@
-export const DB_NAME = "FitnessPal";
+export const DB_NAME = "Fitnatics";

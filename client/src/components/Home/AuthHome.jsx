@@ -3,14 +3,18 @@ import AuthForm from "../Forms/AuthForm";
 import SetupAccountForm from "../Forms/SetupAccountForm";
 import PricingForm from "../Forms/PricingForm";
 import OtpForm from "../Forms/OtpForm";
-import { GlobalContext } from "../../App";
+import { makeOTPRequest } from "../../api/api";
+import { GlobalContext } from "../../context/GlobalContextProvider";
 
 const AuthHome = () => {
-  const [formData, setFormData] = React.useState({ role: "member" });
-  const [displayType, setDisplayType] = React.useState("pricing");
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: "",
+    role: "member",
+  });
+  const [otpGeneratedAt, setOtpGeneratedAt] = React.useState(new Date());
+  const [display, setDisplay] = React.useState("root");
   // display type: root, otp, setup-account, pricing
-
-  const { setUserData } = React.useContext(GlobalContext);
 
   const handleInput = React.useCallback(
     (event) => {
@@ -21,7 +25,16 @@ const AuthHome = () => {
     [formData]
   );
 
-  const handleFormSubmit = React.useCallback(
+  const { addToast } = React.useContext(GlobalContext);
+
+  const resendOTPHandler = React.useCallback(() => {
+    makeOTPRequest(formData?.email, formData?.password);
+    const nextOtpGeneratedAt = new Date();
+    setOtpGeneratedAt(nextOtpGeneratedAt);
+    addToast("info", "OTP Resended!", "A new OTP is sent to your email");
+  }, [formData, addToast]);
+
+  const rootFormSubmitHandler = React.useCallback(
     async (e) => {
       e.preventDefault();
 
@@ -33,33 +46,50 @@ const AuthHome = () => {
         body: JSON.stringify(formData),
       })
         .then((res) => res.json())
-        .then((result) => {
-          const user = result.data.user;
-          setUserData(user);
-          if (user.accountSetupRequired) {
-            setDisplayType("setup-account");
+        .then(async (result) => {
+          if (result.success) {
+            if (result.data?.accountSetupRequired) {
+              setDisplay("setup-account");
+            }
+          } else {
+            const error = result.message.error;
+
+            if (error?.title == "User doesn't exist!") {
+              await makeOTPRequest(formData?.email, formData?.password);
+              const nextOtpGeneratedAt = new Date();
+              setOtpGeneratedAt(nextOtpGeneratedAt);
+              setDisplay("otp");
+            }
           }
         });
     },
-    [formData, setUserData]
+    [formData]
   );
 
   return (
     <>
-      {displayType === "root" && (
+      {display === "root" && (
         <AuthForm
+          formData={formData}
           handleInput={handleInput}
-          handleFormSubmit={handleFormSubmit}
+          formSubmitHandler={rootFormSubmitHandler}
         />
       )}
 
-      {displayType === "otp" && <OtpForm formData={formData} />}
+      {display === "otp" && (
+        <OtpForm
+          formData={formData}
+          otpGeneratedAt={otpGeneratedAt}
+          setDisplay={setDisplay}
+          resendOTPHandler={resendOTPHandler}
+        />
+      )}
 
-      {displayType === "setup-account" && (
+      {display === "setup-account" && (
         <SetupAccountForm formData={formData} handleInput={handleInput} />
       )}
 
-      {displayType === "pricing" && <PricingForm formData={formData} />}
+      {display === "pricing" && <PricingForm formData={formData} />}
     </>
   );
 };

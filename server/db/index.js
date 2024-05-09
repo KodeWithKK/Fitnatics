@@ -9,6 +9,7 @@ const connectDB = async () => {
     console.log(
       `\nMongoDB Connected !! DB HOST: ${connectionInstance.connection.host}`
     );
+    // console.log(process.env.GMAIL_APP_PASSWORD);
   } catch (error) {
     console.log("MongoDB CONNECTION FAILED: ", error);
     process.exit(1); // its a method of node

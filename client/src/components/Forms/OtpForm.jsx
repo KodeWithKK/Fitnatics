@@ -1,47 +1,72 @@
 import React from "react";
 import StepsTracker from "./atoms/StepsTracker";
+import OtpTimer from "./atoms/OtpTimer";
+import { verifyOTP } from "../../api/api";
 
-const OtpForm = ({ formData }) => {
-  const [otpTimeLeft, setOtpTimeLeft] = React.useState({ min: 14, sec: 59 });
+const OtpForm = ({
+  formData,
+  otpGeneratedAt,
+  resendOTPHandler,
+  setDisplay,
+}) => {
+  const [otp, setOtp] = React.useState(Array(6).fill(""));
   const inputRefs = React.useRef([]);
 
-  React.useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      const nextOtpTimeLeft = { ...otpTimeLeft };
-
-      if (nextOtpTimeLeft.sec !== 0) {
-        nextOtpTimeLeft.sec--;
-      } else {
-        nextOtpTimeLeft.min--;
-        nextOtpTimeLeft.sec = 59;
-      }
-
-      setOtpTimeLeft(nextOtpTimeLeft);
-    }, 1000);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [otpTimeLeft]);
-
-  const handleOnChange = React.useCallback((e, idx) => {
-    e.target.value = e.target.value.slice(0, 1);
-
-    if (e.target.value && idx < 6 - 1) {
-      inputRefs.current[idx + 1].focus();
-    }
-  }, []);
-
-  const handleBackspace = React.useCallback((e, idx) => {
-    if (e.key === "Backspace" && idx > 0) {
-      inputRefs.current[idx - 1].focus();
-    }
-  }, []);
-
   const formSubmitHandle = React.useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      console.log(formData);
+
+      const isOTPCorrect = await verifyOTP(
+        formData?.email,
+        formData?.password,
+        otp.join("")
+      );
+
+      if (isOTPCorrect) {
+        setDisplay("setup-account");
+      }
     },
-    [formData]
+    [formData, otp, setDisplay]
+  );
+
+  const handleChange = React.useCallback(
+    (e, idx) => {
+      const value = e.target.value;
+      e.target.value = value.slice(0, 1);
+
+      const nextOtp = [...otp];
+      nextOtp[idx] = value;
+      setOtp(nextOtp);
+
+      if (e.target.value && idx < 6 - 1) {
+        inputRefs.current[idx + 1].focus();
+      }
+    },
+    [otp]
+  );
+
+  const handleBackspace = React.useCallback(
+    (e, idx) => {
+      if (e.key === "Backspace") {
+        const value = e.target.value;
+        const nextOtp = [...otp];
+        nextOtp[idx] = value;
+        setOtp(nextOtp);
+
+        if (idx > 0) inputRefs.current[idx - 1].focus();
+      }
+    },
+    [otp]
+  );
+
+  const handleEnter = React.useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        formSubmitHandle();
+      }
+    },
+    [formSubmitHandle]
   );
 
   return (
@@ -58,21 +83,27 @@ const OtpForm = ({ formData }) => {
       <StepsTracker totalSteps={4} currentStep={2} />
 
       <form
-        className="space-y-8 border-2 border-gray-900 mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
+        className="space-y-6 border-2 border-gray-800/[.5] mx-auto px-12 py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
         onSubmit={formSubmitHandle}
       >
         <h1 className="font-bold text-2xl text-center text-gray-200">
-          OTP Verification
+          Account Verification
         </h1>
 
         <div>
-          <p className="text-gray-500 text-sm">
-            Please enter the OTP (One Time Password) sent to your email to
-            complete the user verification.
+          <p className="text-gray-500 text-pretty text-sm">
+            Please enter the OTP (One Time Password) sent to your email{" ("}
+            {formData.email.split("@")[0].length > 4
+              ? formData.email.split("@")[0].substring(0, 4) +
+                "***@" +
+                formData.email.split("@")[1]
+              : formData.email}
+            {") "}
+            to complete the user verification.
           </p>
         </div>
 
-        <div>
+        <div className="py-2">
           <div className="flex justify-between gap-2">
             {[...Array(6)].map((_, i) => (
               <input
@@ -80,26 +111,41 @@ const OtpForm = ({ formData }) => {
                 ref={(el) => inputRefs.current.push(el)}
                 type="number"
                 maxLength={1}
-                onChange={(e) => handleOnChange(e, i)}
+                onChange={(e) => handleChange(e, i)}
                 onKeyUp={(e) => handleBackspace(e, i)}
-                className="border-2 border-gray-800 bg-transparent rounded-md w-14 h-14 text-2xl text-center"
+                onKeyPress={handleEnter}
+                className="border-2 border-gray-800/[.85] bg-transparent rounded-md w-14 h-14 text-2xl text-center focus:ring-offset-brand focus:ring-brand focus:border-brand"
               />
             ))}
           </div>
           <div className="flex justify-between mt-4 text-gray-500 text-sm">
-            <span>{`${otpTimeLeft.min
-              .toString()
-              .padStart(2, 0)}:${otpTimeLeft.sec
-              .toString()
-              .padStart(2, 0)}`}</span>
-            <a href="#" className="underline underline-offset-4">
+            <OtpTimer otpGeneratedAt={otpGeneratedAt} />
+            <button
+              className="underline underline-offset-4"
+              onClick={(e) => {
+                e.preventDefault();
+                resendOTPHandler();
+              }}
+            >
               Resend Code
-            </a>
+            </button>
           </div>
         </div>
 
-        <div>
-          <button className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold">
+        <div className="flex gap-3">
+          <button
+            className="bg-gray-800/[0.8] p-2.5 rounded-md w-full font-semibold"
+            onClick={(e) => {
+              e.preventDefault();
+              setDisplay("root");
+            }}
+          >
+            Go Back
+          </button>
+          <button
+            type="submit"
+            className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold"
+          >
             Verify OTP
           </button>
         </div>

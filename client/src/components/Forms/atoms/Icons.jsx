@@ -92,4 +92,52 @@ function CheckIcon(props) {
   );
 }
 
-export { GoogleIcon, FacebookIcon, TwitterIcon, CheckIcon };
+function SvgComponent(props) {
+  return (
+    <svg
+      width={36.776}
+      xmlns="http://www.w3.org/2000/svg"
+      height={46.957}
+      viewBox="257.808 252.325 36.776 46.957"
+      style={{
+        WebkitPrintColorAdjust: ":exact",
+      }}
+      fill="none"
+      {...props}
+    >
+      <g xmlSpace="preserve" fill="#000">
+        <path
+          d="M291.776 299.282a2.79 2.79 0 01-1.547-.467l-31.166-20.674a2.806 2.806 0 010-4.675l31.166-20.674a2.805 2.805 0 013.101 4.675l-27.643 18.337 27.643 18.336a2.805 2.805 0 01-1.554 5.142z"
+          className=""
+        />
+        <path
+          d="M291.776 299.282a2.805 2.805 0 001.554-5.142l-10.277-6.817v6.732l7.176 4.76a2.79 2.79 0 001.547.467zM290.229 252.792l-7.176 4.76v6.732l10.277-6.817a2.805 2.805 0 00-3.101-4.675z"
+          className=""
+        />
+      </g>
+    </svg>
+  );
+}
+
+function LeftArrowIcon(props) {
+  return (
+    <svg
+      viewBox="233 278 9 16"
+      style={{
+        WebkitPrintColorAdjust: ":exact",
+      }}
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M241.707 278.293a.999.999 0 010 1.414L235.414 286l6.293 6.293a.999.999 0 11-1.414 1.414l-7-7a.997.997 0 010-1.414l7-7a.999.999 0 011.414 0z"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        fill="currentColor"
+        className=""
+      />
+    </svg>
+  );
+}
+
+export { GoogleIcon, FacebookIcon, TwitterIcon, CheckIcon, LeftArrowIcon };
