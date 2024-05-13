@@ -1,9 +1,10 @@
 import React from "react";
+import * as yup from "yup";
 import AuthForm from "../Forms/AuthForm";
 import SetupAccountForm from "../Forms/SetupAccountForm";
 import PricingForm from "../Forms/PricingForm";
 import OtpForm from "../Forms/OtpForm";
-import { makeOTPRequest } from "../../api/api";
+import { makeLocalLoginRequest, makeOTPRequest } from "../../api/api";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 
 const AuthHome = () => {
@@ -16,6 +17,8 @@ const AuthHome = () => {
   const [display, setDisplay] = React.useState("root");
   // display type: root, otp, setup-account, pricing
 
+  const { addToast } = React.useContext(GlobalContext);
+
   const handleInput = React.useCallback(
     (event) => {
       const { name, value } = event.target;
@@ -25,10 +28,9 @@ const AuthHome = () => {
     [formData]
   );
 
-  const { addToast } = React.useContext(GlobalContext);
-
   const resendOTPHandler = React.useCallback(() => {
-    makeOTPRequest(formData?.email, formData?.password);
+    const data = { email: formData?.email, password: formData?.password };
+    makeOTPRequest(data);
     const nextOtpGeneratedAt = new Date();
     setOtpGeneratedAt(nextOtpGeneratedAt);
     addToast("info", "OTP Resended!", "A new OTP is sent to your email");
@@ -38,32 +40,41 @@ const AuthHome = () => {
     async (e) => {
       e.preventDefault();
 
-      await fetch("http://localhost:8000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then(async (result) => {
-          if (result.success) {
-            if (result.data?.accountSetupRequired) {
-              setDisplay("setup-account");
-            }
-          } else {
-            const error = result.message.error;
+      const loginData = {
+        email: formData?.email,
+        password: formData?.password,
+      };
 
-            if (error?.title == "User doesn't exist!") {
-              await makeOTPRequest(formData?.email, formData?.password);
-              const nextOtpGeneratedAt = new Date();
-              setOtpGeneratedAt(nextOtpGeneratedAt);
-              setDisplay("otp");
-            }
+      const isValid = await rootFormSchema.isValid(loginData);
+
+      if (!isValid) {
+        addToast(
+          "error",
+          "Enter valid form data",
+          "Enter valid form data to continue with email"
+        );
+      } else {
+        const { data, error } = await makeLocalLoginRequest(loginData);
+
+        if (data) {
+          if (data?.accountSetupRequired) {
+            setDisplay("setup-account");
           }
-        });
+        }
+
+        if (error) {
+          if (error?.title == "User doesn't exist!") {
+            await makeOTPRequest(data);
+            const nextOtpGeneratedAt = new Date();
+            setOtpGeneratedAt(nextOtpGeneratedAt);
+            setDisplay("otp");
+          } else {
+            addToast("error", error.title, error.message);
+          }
+        }
+      }
     },
-    [formData]
+    [formData, addToast]
   );
 
   return (
@@ -93,5 +104,10 @@ const AuthHome = () => {
     </>
   );
 };
+
+const rootFormSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).required(),
+});
 
 export default AuthHome;

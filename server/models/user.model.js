@@ -4,20 +4,34 @@ import bcrypt from "bcryptjs";
 
 const userSchema = mongoose.Schema(
   {
+    provider: {
+      type: String,
+      trim: true,
+      required: true,
+      enum: ["local", "google", "facebook", "twitter"],
+    },
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true, // don't include if it's not defined or set to null
+    },
+    facebookId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
     name: {
       type: String,
       trim: true,
     },
     email: {
       type: String,
-      required: true,
       trim: true,
       lowercase: true,
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     accountSetupRequired: {
       type: Boolean,
@@ -39,7 +53,7 @@ const userSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "ClientData",
     },
-    traineDataId: {
+    trainerDataId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "TrainerData",
     },

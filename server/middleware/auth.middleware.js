@@ -1,7 +1,7 @@
+import jwt from "jsonwebtoken";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken";
-import { User } from "../models/users.model.js";
+import { User } from "../models/user.model.js";
 
 export const verifyJWT = asyncHandler(async (req, res, next) => {
   const accessToken =
@@ -9,9 +9,18 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
     req.header("Authorization")?.replace("Bearer ", "");
 
   if (!accessToken) {
-    return res
-      .status(401)
-      .json(new ApiResponse(401, {}, "Unauthorized request"));
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: {
+            title: "Unauthorized request!",
+            message: "Kindly login again to generate required credentials",
+          },
+        }
+      )
+    );
   }
 
   // getting the user id
@@ -31,9 +40,19 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
       const refreshToken = req.cookies?.refreshToken;
 
       if (!refreshToken) {
-        return res
-          .status(401)
-          .json(new ApiResponse(401, {}, "User Session has Expired!"));
+        return res.status(401).json(
+          new ApiResponse(
+            401,
+            {},
+            {
+              error: {
+                title: "Session Expired!",
+                message:
+                  "Your session for this account has expired. Please login again",
+              },
+            }
+          )
+        );
       }
 
       // decoding refresh token
@@ -46,29 +65,66 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         decodedUserId = decodedRefreshToken?._id;
         isNewAccessTokenGenerated = true;
       } catch (error) {
-        return res
-          .status(401)
-          .json(new ApiResponse(401, {}, "User Session has Expired!"));
+        return res.status(401).json(
+          new ApiResponse(
+            401,
+            {},
+            {
+              error: {
+                title: "Session Expired!",
+                message:
+                  "Your session for this account has expired. Please login again",
+              },
+            }
+          )
+        );
       }
     } else {
-      return res
-        .status(401)
-        .json(new ApiResponse(401, {}, "Unauthorized request"));
+      return res.status(401).json(
+        new ApiResponse(
+          401,
+          {},
+          {
+            error: {
+              title: "Unauthorized request!",
+              message: "Kindly login again to generate required credentials",
+            },
+          }
+        )
+      );
     }
   }
 
   if (!decodedUserId) {
-    return res
-      .status(401)
-      .json(new ApiResponse(401, {}, "Unauthorized request"));
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: {
+            title: "Unauthorized request!",
+            message: "Kindly login again to generate required credentials",
+          },
+        }
+      )
+    );
   }
 
   const user = await User.findById(decodedUserId).select("-password");
 
   if (!user) {
-    return res
-      .status(401)
-      .json(new ApiResponse(401, {}, "Invalid Access token"));
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: {
+            title: "Unauthorized request!",
+            message: "Kindly login again to generate required credentials",
+          },
+        }
+      )
+    );
   }
 
   if (newAccessTokenRequired) {

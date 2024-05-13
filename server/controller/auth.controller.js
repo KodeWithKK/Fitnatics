@@ -5,10 +5,10 @@ import { User } from "../models/user.model.js";
 import { Otp } from "../models/otp.model.js";
 import crypto from "crypto";
 
-const loginHandler = asyncHandler(async (req, res) => {
+const localLoginHandler = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  if ([email, password].some((field) => field === undefined)) {
+  if (!email) {
     return res.status(400).json(
       new ApiResponse(
         400,
@@ -24,6 +24,36 @@ const loginHandler = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email })?.select("-_id -__v");
+
+  if (user && user.provider !== "local") {
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: {
+            title: "User already exist!",
+            message: `An account with this email already created with ${user.provider}`,
+          },
+        }
+      )
+    );
+  }
+
+  if (!password) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "All Fields Required!",
+            message: "Please provide both email and password",
+          },
+        }
+      )
+    );
+  }
 
   if (!user) {
     return res.status(400).json(
@@ -58,15 +88,24 @@ const loginHandler = asyncHandler(async (req, res) => {
   }
 
   if (user.accountSetupRequired) {
-    return res
-      .status(200)
-      .json(new ApiResponse(200, { accountSetupRequired: true }, "User Found"));
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        { accountSetupRequired: true },
+        {
+          info: {
+            title: "User found",
+            message: "User found but account setup required!",
+          },
+        }
+      )
+    );
   }
 
   return res.status(200).json(new ApiResponse(200, {}, "User Found"));
 });
 
-const generateAccountVerificationOtpHandler = asyncHandler(async (req, res) => {
+const generateOTPHandler = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if ([email, password].some((record) => record == undefined)) {
@@ -134,7 +173,7 @@ const generateAccountVerificationOtpHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "OTP sent to your email"));
 });
 
-const verifyAccountVerificationOtpHandler = asyncHandler(async (req, res) => {
+const verifyOTPHandler = asyncHandler(async (req, res) => {
   const { email, password, otp } = req.body;
 
   if ([email, password].some((record) => record == undefined)) {
@@ -207,6 +246,39 @@ const verifyAccountVerificationOtpHandler = asyncHandler(async (req, res) => {
   return res.status(202).json(new ApiResponse(202, {}, "OTP is Valid"));
 });
 
+const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
+  const { accessToken, refreshToken } = req?.user;
+
+  if (!accessToken || !refreshToken) {
+    return res
+      .status(400)
+      .json(
+        new ApiResponse(
+          400,
+          {},
+          {
+            error: {
+              title: "Something went wrong!",
+              message: "Something went wrong while generating the tokens",
+            },
+          }
+        )
+      )
+      .cookie("authStatus", "failed");
+  }
+
+  const options = {
+    httpOnly: true, // cannot be accessed via client-side scripts
+    secure: true, // will only be sent over HTTPS
+  };
+
+  return res
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .clearCookie("connect.sid")
+    .redirect("http://localhost:5173");
+});
+
 const gettingStarted = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -215,8 +287,9 @@ const gettingStarted = asyncHandler(async (req, res) => {
 });
 
 export {
-  loginHandler,
-  generateAccountVerificationOtpHandler,
-  verifyAccountVerificationOtpHandler,
+  localLoginHandler,
+  generateOTPHandler,
+  verifyOTPHandler,
+  strategyJWTAuthCookieHandler,
   gettingStarted,
 };

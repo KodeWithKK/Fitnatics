@@ -59,16 +59,6 @@ const OtpForm = ({
     [otp]
   );
 
-  const handleEnter = React.useCallback(
-    (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        formSubmitHandle();
-      }
-    },
-    [formSubmitHandle]
-  );
-
   return (
     <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
       <div className="mb-6 text-center">
@@ -113,7 +103,6 @@ const OtpForm = ({
                 maxLength={1}
                 onChange={(e) => handleChange(e, i)}
                 onKeyUp={(e) => handleBackspace(e, i)}
-                onKeyPress={handleEnter}
                 className="border-2 border-gray-800/[.85] bg-transparent rounded-md w-14 h-14 text-2xl text-center focus:ring-offset-brand focus:ring-brand focus:border-brand"
               />
             ))}
@@ -121,11 +110,9 @@ const OtpForm = ({
           <div className="flex justify-between mt-4 text-gray-500 text-sm">
             <OtpTimer otpGeneratedAt={otpGeneratedAt} />
             <button
+              type="button"
               className="underline underline-offset-4"
-              onClick={(e) => {
-                e.preventDefault();
-                resendOTPHandler();
-              }}
+              onClick={resendOTPHandler}
             >
               Resend Code
             </button>
@@ -134,11 +121,9 @@ const OtpForm = ({
 
         <div className="flex gap-3">
           <button
+            type="button"
             className="bg-gray-800/[0.8] p-2.5 rounded-md w-full font-semibold"
-            onClick={(e) => {
-              e.preventDefault();
-              setDisplay("root");
-            }}
+            onClick={() => setDisplay("root")}
           >
             Go Back
           </button>

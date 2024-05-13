@@ -29,10 +29,10 @@ function Toast({ type, title, message, removeToast }) {
 
   return (
     <div
-      className={`rounded-md bg-gray-950/[.85] border select-none animate-fadeLeftSlide ${colors.toastBorder}`}
+      className={`rounded-md bg-gray-950/[.9] border select-none animate-fadeLeftSlide ${colors.toastBorder}`}
     >
       <div
-        className={`${colors.toastBg} flex items-center gap-3 w-[312px] p-2`}
+        className={`${colors.toastBg} flex items-center gap-2 w-[312px] p-2`}
       >
         <div
           className={`grid place-items-center w-10 h-10 ${colors.toastIconBg} rounded-full`}
@@ -40,7 +40,9 @@ function Toast({ type, title, message, removeToast }) {
           <Icon className="w-6 h-6" />
         </div>
         <div className="flex-1">
-          <h2 className="font-semibold text-[16px] text-gray-100">{title}</h2>
+          <h2 className="mb-1 font-semibold text-[16px] text-gray-100">
+            {title}
+          </h2>
           <p className="text-gray-400 text-sm">{message}</p>
         </div>
         <button

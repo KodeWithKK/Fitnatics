@@ -1,7 +1,8 @@
 import React from "react";
 import HomePosterImg from "../../images/Home Poster.jpg";
 import FormInput from "./atoms/FormInput";
-import { GoogleIcon, FacebookIcon, TwitterIcon } from "./atoms/Icons";
+import { FacebookIcon, TwitterIcon } from "./atoms/Icons";
+import GoogleAuthButton from "./atoms/GoogleAuthButton";
 
 const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
   const [displayImage, setDisplayImage] = React.useState(() => {
@@ -54,15 +55,18 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
             </h5>
 
             <div className="flex rounded-md w-full h-12 select-none">
-              <button className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-l-md w-full">
-                <GoogleIcon className="mr-2 h-6" />
-                <span>Google</span>
-              </button>
-              <button className="flex items-center border-2 border-gray-700/[.6] border-x-0 hover:bg-gray-900 px-3 w-full">
+              <GoogleAuthButton />
+              <button
+                type="button"
+                className="flex items-center border-2 border-gray-700/[.6] border-x-0 hover:bg-gray-900 px-3 w-full"
+              >
                 <FacebookIcon className="mr-2 h-6" />
                 <span>Facebook</span>
               </button>
-              <button className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-r-md w-full">
+              <button
+                type="button"
+                className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-r-md w-full"
+              >
                 <TwitterIcon className="mr-2 h-6" />
                 <span>Twitter</span>
               </button>
@@ -76,7 +80,7 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
 
             <FormInput
               label="Email"
-              type="text"
+              type="email"
               name="email"
               value={formData.email}
               onChange={handleInput}
