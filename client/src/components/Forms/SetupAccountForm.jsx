@@ -1,8 +1,8 @@
 import React from "react";
-import StepsTracker from "./atoms/StepsTracker";
 import AvatarImage from "./atoms/AvatarImage";
 import FormInput from "./atoms/FormInput";
 import FormSelect from "./atoms/FormSelect";
+import { HorizontalDivider } from "./atoms/Icons";
 
 const SetupAccountForm = ({ formData, handleInput }) => {
   const avatarRef = React.useRef();
@@ -21,26 +21,28 @@ const SetupAccountForm = ({ formData, handleInput }) => {
 
   return (
     <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
-      <div className="mb-6 text-center">
+      <div className="text-center">
         <a
-          className="font-bold text-4xl text-brand uppercase tracking-wide"
+          className="font-bold text-[35px] text-brand uppercase tracking-wide"
           href="/"
         >
           Fitnatics
         </a>
       </div>
 
-      <StepsTracker totalSteps={4} currentStep={3} />
+      <div className="flex justify-center mt-4 mb-6 text-gray-600">
+        <HorizontalDivider className="w-12 h-3" />
+      </div>
 
       <form
-        className="space-y-8 border-2 border-gray-900 mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
+        className="space-y-10 border-2 border-gray-800/[.5] mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
         onSubmit={formSubmitHandle}
       >
-        <h1 className="font-bold text-2xl text-center text-gray-200">
+        <h1 className="font-bold text-3xl text-center text-gray-200">
           Setup your Account
         </h1>
 
-        <div>
+        <div className="">
           <AvatarImage
             ref={avatarRef}
             className="border-gray-600 bg-gray-600 mx-auto mb-8 border w-[152px] h-[152px]"
@@ -48,7 +50,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           />
 
           <FormInput
-            label="Name"
+            label="Name*"
             type="text"
             name="name"
             onChange={handleInput}
@@ -56,7 +58,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
             spellCheck={false}
           />
           <FormInput
-            label="Phone No"
+            label="Phone No*"
             type="number"
             name="phoneno"
             onChange={handleInput}
@@ -64,7 +66,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
             spellCheck={false}
           />
           <FormInput
-            label="Height"
+            label="Height*"
             type="text"
             name="phoneno"
             onChange={handleInput}
@@ -73,7 +75,8 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           />
 
           <FormSelect
-            label="Role"
+            label="Role*"
+            name="role"
             currentValue={formData.role}
             handleChange={handleInput}
           >
@@ -82,8 +85,17 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           </FormSelect>
         </div>
 
-        <div>
-          <button className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold">
+        <div className="flex gap-3">
+          <button
+            type="button"
+            className="bg-gray-800/[0.8] p-2.5 rounded-md w-full font-semibold"
+          >
+            Go Home
+          </button>
+          <button
+            type="submit"
+            className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold"
+          >
             Next
           </button>
         </div>

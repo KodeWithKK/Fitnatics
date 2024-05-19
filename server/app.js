@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
+import { ApiResponse } from "./utils/ApiResponse.js";
 
 const app = express();
 app.use(express.json({ limit: "16kb" }));
@@ -47,15 +48,34 @@ app.use("/api/v1/user", userRouter);
 // Centralized error-handling middleware
 app.use((err, req, res, next) => {
   if (process.env.NODE_ENV == "production") {
-    return res.status(500).json({
-      error: {
-        title: "Internal Server Error",
-        message: "Something went wrong",
-      },
-    });
+    return res.status(500).json(
+      new ApiResponse(
+        500,
+        {},
+        {
+          error: {
+            title: "Internal Server Error!",
+            message: "Something went wrong",
+          },
+        }
+      )
+    );
   }
 
-  return res.status(500).json({ error: "Internal Server Error", message: err });
+  console.log(err);
+
+  return res.status(500).json(
+    new ApiResponse(
+      500,
+      {},
+      {
+        error: {
+          title: "Internal Server Error!",
+          message: err?.message ?? "Something went wrong",
+        },
+      }
+    )
+  );
 });
 
 export { app };

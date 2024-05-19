@@ -32,28 +32,30 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
         alt="brand-poster-image"
       />
       <div
-        className={`flex px-[6%] py-10 overflow-y-auto ${
+        className={`flex px-[6%] py-6 overflow-y-auto ${
           !displayImage ? "max-w-[668px] w-full mx-auto" : "w-[50%]"
         }`}
       >
         <form
-          className="space-y-8 my-auto w-full h-fit text-gray-200"
+          className="space-y-6 my-auto w-full h-fit text-gray-200"
           onSubmit={formSubmitHandler}
         >
-          <div className="mb-6 text-center">
+          <div className="mb-4 text-center">
             <a
-              className="font-bold text-4xl text-brand uppercase tracking-wide"
+              className="font-bold text-[35px] text-brand uppercase tracking-wide"
               href="/"
             >
               Fitnatics
             </a>
           </div>
 
+          {/* FORM INNER CONTENT */}
           <div>
             <h5 className="mb-3 text-gray-400 text-sm">
               Continue with Google, Facebook or Twitter
             </h5>
 
+            {/* OTHER AUTH BUTTONS */}
             <div className="flex rounded-md w-full h-12 select-none">
               <GoogleAuthButton />
               <button
@@ -72,44 +74,58 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
               </button>
             </div>
 
-            <hr className="border-gray-800/[0.8] mt-3" />
+            <hr className="border-gray-800/[0.8] mt-2 w-full" />
 
-            <h5 className="mt-8 mb-5 text-gray-400 text-sm">
+            <h5 className="my-4 w-full text-gray-400 text-left text-sm">
               Or Continue with Email...
             </h5>
 
-            <FormInput
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInput}
-              required={true}
-            />
+            {/* FORM INPUTS */}
+            <div>
+              <FormInput
+                label="Email*"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInput}
+                required={true}
+                spellCheck={false}
+              />
 
-            <FormInput
-              label="Password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInput}
-              required={true}
-            />
+              <FormInput
+                label="Password*"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInput}
+                required={true}
+              />
+              <button
+                type="button"
+                className="text-[14px] text-gray-400 underline underline-offset-[3px]"
+              >
+                Forgot Password
+              </button>
+            </div>
           </div>
 
           <div>
-            <div className="mb-3 text-gray-400 text-pretty text-sm">
-              By continuing, you agree to Fitnatics&apos;s{" "}
-              <span className="underline cursor-pointer">Terms of Use</span> and{" "}
-              <span className="underline cursor-pointer">Privacy Policy</span>
-            </div>
-
             <button
               type="submit"
               className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold"
             >
               Continue with email
             </button>
+            <div className="mt-3 text-gray-400 text-pretty text-xs">
+              By continuing, you agree to Fitnatics&apos;s{" "}
+              <button type="button" className="underline">
+                Terms of Service
+              </button>{" "}
+              and{" "}
+              <button type="button" className="underline">
+                Privacy Policy
+              </button>
+            </div>
           </div>
         </form>
       </div>

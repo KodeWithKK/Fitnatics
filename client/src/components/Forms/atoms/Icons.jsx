@@ -74,18 +74,13 @@ function CheckIcon(props) {
       fill="none"
       {...props}
     >
-      <path
-        d="M421 177.611l4.923 4.889 11.077-11"
-        strokeLinejoin="round"
-        className=""
-      />
+      <path d="M421 177.611l4.923 4.889 11.077-11" strokeLinejoin="round" />
       <g fill="none" strokeLinejoin="round" className="strokes">
         <path
           d="M421 177.611l4.923 4.889 11.077-11"
           fillOpacity="none"
           strokeWidth={2.5}
           stroke="currentColor"
-          className=""
         />
       </g>
     </svg>
@@ -106,14 +101,8 @@ function SvgComponent(props) {
       {...props}
     >
       <g xmlSpace="preserve" fill="#000">
-        <path
-          d="M291.776 299.282a2.79 2.79 0 01-1.547-.467l-31.166-20.674a2.806 2.806 0 010-4.675l31.166-20.674a2.805 2.805 0 013.101 4.675l-27.643 18.337 27.643 18.336a2.805 2.805 0 01-1.554 5.142z"
-          className=""
-        />
-        <path
-          d="M291.776 299.282a2.805 2.805 0 001.554-5.142l-10.277-6.817v6.732l7.176 4.76a2.79 2.79 0 001.547.467zM290.229 252.792l-7.176 4.76v6.732l10.277-6.817a2.805 2.805 0 00-3.101-4.675z"
-          className=""
-        />
+        <path d="M291.776 299.282a2.79 2.79 0 01-1.547-.467l-31.166-20.674a2.806 2.806 0 010-4.675l31.166-20.674a2.805 2.805 0 013.101 4.675l-27.643 18.337 27.643 18.336a2.805 2.805 0 01-1.554 5.142z" />
+        <path d="M291.776 299.282a2.805 2.805 0 001.554-5.142l-10.277-6.817v6.732l7.176 4.76a2.79 2.79 0 001.547.467zM290.229 252.792l-7.176 4.76v6.732l10.277-6.817a2.805 2.805 0 00-3.101-4.675z" />
       </g>
     </svg>
   );
@@ -134,10 +123,74 @@ function LeftArrowIcon(props) {
         fillRule="evenodd"
         clipRule="evenodd"
         fill="currentColor"
-        className=""
       />
     </svg>
   );
 }
 
-export { GoogleIcon, FacebookIcon, TwitterIcon, CheckIcon, LeftArrowIcon };
+import * as React from "react";
+
+function HorizontalDivider(props) {
+  return (
+    <svg
+      viewBox="408 231 23 3"
+      style={{
+        WebkitPrintColorAdjust: ":exact",
+      }}
+      fill="none"
+      {...props}
+    >
+      <ellipse
+        cx={429.5}
+        cy={232.5}
+        rx={1.5}
+        ry={1.5}
+        transform="rotate(180 429.5 232.5)"
+        fill="currentColor"
+      />
+      <ellipse
+        cx={424.5}
+        cy={232.5}
+        rx={1.5}
+        ry={1.5}
+        transform="rotate(180 424.5 232.5)"
+        fill="currentColor"
+      />
+      <ellipse
+        cx={419.5}
+        cy={232.5}
+        rx={1.5}
+        ry={1.5}
+        transform="rotate(180 419.5 232.5)"
+        fill="currentColor"
+      />
+      <ellipse
+        cx={414.5}
+        cy={232.5}
+        rx={1.5}
+        ry={1.5}
+        transform="rotate(180 414.5 232.5)"
+        fill="currentColor"
+      />
+      <ellipse
+        cx={409.5}
+        cy={232.5}
+        rx={1.5}
+        ry={1.5}
+        transform="rotate(180 409.5 232.5)"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export default SvgComponent;
+
+export {
+  GoogleIcon,
+  FacebookIcon,
+  TwitterIcon,
+  CheckIcon,
+  LeftArrowIcon,
+  HorizontalDivider,
+};

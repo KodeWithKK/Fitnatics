@@ -199,7 +199,22 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
         {
           error: {
             title: "OTP not Found!",
-            message: "Kindly provide the OTP!",
+            message: "Kindly provide the OTP for verification",
+          },
+        }
+      )
+    );
+  }
+
+  if (otp.length !== 6) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "6 Digit OTP Required!",
+            message: "A 6 digit OTP is required for verification",
           },
         }
       )
@@ -215,8 +230,8 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
         {},
         {
           error: {
-            title: "Unauthorized OTP verification Request",
-            message: "No otp found with this email and password",
+            title: "Unauthorized Request!",
+            message: "No OTP is found with this email and password",
           },
         }
       )
@@ -230,9 +245,9 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
         {},
         {
           error: {
-            title: "Invalid OTP",
+            title: "Incorrect OTP!",
             message:
-              "Entered OTP is not valid try again or click on resend code.",
+              "Entered OTP is incorrect. Try again or click on resend code.",
           },
         }
       )
@@ -241,9 +256,26 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
 
   await otpDoc.deleteOne();
 
-  await User.create({ email, password, accountSetupRequired: true });
+  const user = await User.create({
+    provider: "local",
+    email,
+    password,
+    accountSetupRequired: true,
+  });
 
-  return res.status(202).json(new ApiResponse(202, {}, "OTP is Valid"));
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  const accessToken = await user.generateAccessToken();
+  const refreshToken = await user.generateRefreshToken();
+
+  return res
+    .status(202)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(new ApiResponse(202, {}, "OTP is Valid"));
 });
 
 const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {

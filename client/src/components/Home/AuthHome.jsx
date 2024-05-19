@@ -1,11 +1,12 @@
 import React from "react";
 import * as yup from "yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { makePostRequest } from "../../api/api";
+import { GlobalContext } from "../../context/GlobalContextProvider";
 import AuthForm from "../Forms/AuthForm";
 import SetupAccountForm from "../Forms/SetupAccountForm";
 import PricingForm from "../Forms/PricingForm";
 import OtpForm from "../Forms/OtpForm";
-import { makeLocalLoginRequest, makeOTPRequest } from "../../api/api";
-import { GlobalContext } from "../../context/GlobalContextProvider";
 
 const AuthHome = () => {
   const [formData, setFormData] = React.useState({
@@ -15,9 +16,41 @@ const AuthHome = () => {
   });
   const [otpGeneratedAt, setOtpGeneratedAt] = React.useState(new Date());
   const [display, setDisplay] = React.useState("root");
-  // display type: root, otp, setup-account, pricing
+  // root || otp || setup-account || pricing
 
   const { addToast } = React.useContext(GlobalContext);
+  const queryClient = useQueryClient();
+
+  const userData = React.useMemo(() => {
+    return queryClient.getQueryState(["user"])?.data;
+  }, [queryClient]);
+
+  React.useEffect(() => {
+    console.log(userData);
+    if (userData) {
+      setDisplay("setup-account");
+    }
+  }, [userData]);
+
+  const { mutate: generateOTP } = useMutation({
+    mutationFn: async () => {
+      const data = await makePostRequest(
+        "http://localhost:8000/api/v1/auth/generate-otp",
+        {
+          email: formData?.email,
+          password: formData?.password,
+        }
+      );
+      return data;
+    },
+    onSuccess: () => {
+      const nextOtpGeneratedAt = new Date();
+      setOtpGeneratedAt(nextOtpGeneratedAt);
+    },
+    onError: (error) => {
+      addToast("error", error?.title, error?.message);
+    },
+  });
 
   const handleInput = React.useCallback(
     (event) => {
@@ -29,12 +62,9 @@ const AuthHome = () => {
   );
 
   const resendOTPHandler = React.useCallback(() => {
-    const data = { email: formData?.email, password: formData?.password };
-    makeOTPRequest(data);
-    const nextOtpGeneratedAt = new Date();
-    setOtpGeneratedAt(nextOtpGeneratedAt);
+    generateOTP();
     addToast("info", "OTP Resended!", "A new OTP is sent to your email");
-  }, [formData, addToast]);
+  }, [generateOTP, addToast]);
 
   const rootFormSubmitHandler = React.useCallback(
     async (e) => {
@@ -54,27 +84,23 @@ const AuthHome = () => {
           "Enter valid form data to continue with email"
         );
       } else {
-        const { data, error } = await makeLocalLoginRequest(loginData);
-
-        if (data) {
-          if (data?.accountSetupRequired) {
-            setDisplay("setup-account");
-          }
-        }
-
-        if (error) {
-          if (error?.title == "User doesn't exist!") {
-            await makeOTPRequest(data);
-            const nextOtpGeneratedAt = new Date();
-            setOtpGeneratedAt(nextOtpGeneratedAt);
+        try {
+          await makePostRequest(
+            "http://localhost:8000/api/v1/auth/login-local",
+            loginData
+          );
+          setDisplay("setup-account");
+        } catch (err) {
+          if (err?.title == "User doesn't exist!") {
+            await generateOTP();
             setDisplay("otp");
           } else {
-            addToast("error", error.title, error.message);
+            addToast("error", err.title, err.message);
           }
         }
       }
     },
-    [formData, addToast]
+    [formData, addToast, generateOTP]
   );
 
   return (

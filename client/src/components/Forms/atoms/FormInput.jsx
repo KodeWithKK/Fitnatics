@@ -72,13 +72,13 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
       </label>
       <input
         id={id}
-        className={`w-full rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-400/[.4]`}
+        className={`w-full text-[15px] rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-400/[.4]`}
         name={name}
         type={type}
         onChange={changeHandler}
         {...delegated}
       />
-      <p className="mt-1 mb-4 text-red-400/[.8] text-sm">{errorMessage}</p>
+      <p className="mt-1 mb-3 text-red-400/[.8] text-sm">{errorMessage}</p>
     </>
   );
 };

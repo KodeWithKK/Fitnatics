@@ -36,7 +36,7 @@ function AvatarImage({ className, handleAvatarInput }, ref) {
         </div>
 
         <div
-          className="top-[102px] -right-1 absolute bg-gray-800 p-3 rounded-full cursor-pointer"
+          className="top-[102px] -right-1.5 absolute bg-gray-800 p-2.5 rounded-full cursor-pointer"
           onClick={handleAvatarInput}
         >
           <PlusIcon className="w-5 h-5" />

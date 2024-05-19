@@ -10,6 +10,36 @@ export default {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
         icon: ["Righteous", ...defaultTheme.fontFamily.sans],
       },
+      keyframes: {
+        iconEnlarge: {
+          from: {
+            height: "20px",
+          },
+          to: {
+            height: "40px",
+          },
+        },
+        fadeLeftSlide: {
+          from: {
+            transform: "translateX(100%)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateX(0)",
+            opacity: 1,
+          },
+        },
+        spin: {
+          to: {
+            transform: "rotate(1turn)",
+          },
+        },
+      },
+      animation: {
+        iconEnlarge: "iconEnlarge 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        fadeLeftSlide: "fadeLeftSlide 0.4s ease-out",
+        loadingIcon: "spin 1s linear infinite",
+      },
       colors: {
         brand: "hsl(216deg 100% 54%)",
         gray: {
@@ -77,30 +107,6 @@ export default {
           900: "#00596B",
           950: "#00404D",
         },
-      },
-      keyframes: {
-        iconEnlarge: {
-          from: {
-            height: "20px",
-          },
-          to: {
-            height: "40px",
-          },
-        },
-        fadeLeftSlide: {
-          from: {
-            transform: "translateX(100%)",
-            opacity: 0,
-          },
-          to: {
-            transform: "translateX(0)",
-            opacity: 1,
-          },
-        },
-      },
-      animation: {
-        iconEnlarge: "iconEnlarge 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
-        fadeLeftSlide: "fadeLeftSlide 0.4s ease-out",
       },
     },
   },
