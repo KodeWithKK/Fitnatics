@@ -20,7 +20,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
   );
 
   return (
-    <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
+    <div className="px-[6%] py-8 h-screen overflow-y-auto">
       <div className="text-center">
         <a
           className="font-bold text-[35px] text-brand uppercase tracking-wide"

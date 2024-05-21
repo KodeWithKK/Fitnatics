@@ -13,7 +13,7 @@ const FormSelect = ({
   return (
     <>
       <label
-        className="block mb-0.5 text-[15px] text-gray-400 select-none"
+        className="block mb-0.5 text-[15px] text-gray-500 select-none"
         htmlFor={id}
       >
         {label}
@@ -21,7 +21,7 @@ const FormSelect = ({
       <select
         id={id}
         name="role"
-        className={`w-full rounded-md bg-gray-950 border-gray-600/[.6] mb-4 focus:border-brand focus:ring-brand placeholder:text-gray-400/[.4] ${className}`}
+        className={`w-full rounded-md bg-gray-950 border-gray-600/[.6] mb-4 focus:border-brand focus:ring-brand placeholder:text-gray-500/[.4] ${className}`}
         value={currentValue}
         onChange={handleChange}
         {...delegated}

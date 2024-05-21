@@ -1,8 +1,9 @@
 import React from "react";
 import HomePosterImg from "../../images/Home Poster.jpg";
 import FormInput from "./atoms/FormInput";
-import { FacebookIcon, TwitterIcon } from "./atoms/Icons";
-import GoogleAuthButton from "./atoms/GoogleAuthButton";
+import GoogleAuthButton from "./atoms/AuthButtons/GoogleAuthButton";
+import FacebookAuthButton from "./atoms/AuthButtons/FacebookAuthButton";
+import TwitterAuthButton from "./atoms/AuthButtons/TwitterAuthButton";
 
 const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
   const [displayImage, setDisplayImage] = React.useState(() => {
@@ -23,7 +24,7 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
   }, []);
 
   return (
-    <div className="flex bg-gray-950 h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden">
       <img
         className={`rounded-r-lg w-[50%] object-cover ${
           !displayImage && "hidden"
@@ -51,34 +52,22 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
 
           {/* FORM INNER CONTENT */}
           <div>
-            <h5 className="mb-3 text-gray-400 text-sm">
+            <p className="mb-3 text-gray-500 text-sm">
               Continue with Google, Facebook or Twitter
-            </h5>
+            </p>
 
             {/* OTHER AUTH BUTTONS */}
             <div className="flex rounded-md w-full h-12 select-none">
               <GoogleAuthButton />
-              <button
-                type="button"
-                className="flex items-center border-2 border-gray-700/[.6] border-x-0 hover:bg-gray-900 px-3 w-full"
-              >
-                <FacebookIcon className="mr-2 h-6" />
-                <span>Facebook</span>
-              </button>
-              <button
-                type="button"
-                className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-r-md w-full"
-              >
-                <TwitterIcon className="mr-2 h-6" />
-                <span>Twitter</span>
-              </button>
+              <FacebookAuthButton />
+              <TwitterAuthButton />
             </div>
 
             <hr className="border-gray-800/[0.8] mt-2 w-full" />
 
-            <h5 className="my-4 w-full text-gray-400 text-left text-sm">
+            <p className="my-4 w-full text-gray-500 text-left text-sm">
               Or Continue with Email...
-            </h5>
+            </p>
 
             {/* FORM INPUTS */}
             <div>
@@ -102,7 +91,7 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
               />
               <button
                 type="button"
-                className="text-[14px] text-gray-400 underline underline-offset-[3px]"
+                className="text-[14px] text-gray-500 underline underline-offset-[3px]"
               >
                 Forgot Password
               </button>
@@ -116,7 +105,7 @@ const AuthForm = ({ formData, formSubmitHandler, handleInput }) => {
             >
               Continue with email
             </button>
-            <div className="mt-3 text-gray-400 text-pretty text-xs">
+            <div className="mt-3 text-gray-500 text-pretty text-xs">
               By continuing, you agree to Fitnatics&apos;s{" "}
               <button type="button" className="underline">
                 Terms of Service

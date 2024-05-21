@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoadingScreen = () => {
   return (
     <div className="place-items-center grid bg-gray-950 w-full h-screen">

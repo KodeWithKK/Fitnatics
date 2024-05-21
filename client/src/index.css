@@ -18,6 +18,59 @@
   box-sizing: border-box;
 }
 
+/* CUSTOM TAGS */
+
+h1 {
+  font-size: 47.78px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 39.81px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 33.18px;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 27.65px;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 23.04px;
+  font-weight: 700;
+}
+
+h6 {
+  font-size: 19.2px;
+  font-weight: 700;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p,
+a,
+strong {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* CUSTOM SCROLLBAR */
+
 .overflow-y-auto {
   --scrollbar-color-thumb: transparent;
   --scrollbar-color-track: transparent;
@@ -56,12 +109,4 @@
     scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
     scrollbar-width: var(--scrollbar-width);
   }
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
 }

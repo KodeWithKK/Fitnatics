@@ -65,14 +65,14 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
   return (
     <>
       <label
-        className="block mb-0.5 text-[15px] text-gray-400 select-none"
+        className="block mb-0.5 text-[15px] text-gray-500 select-none"
         htmlFor={id}
       >
         {label}
       </label>
       <input
         id={id}
-        className={`w-full text-[15px] rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-400/[.4]`}
+        className={`w-full text-[15px] rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-500/[.4]`}
         name={name}
         type={type}
         onChange={changeHandler}

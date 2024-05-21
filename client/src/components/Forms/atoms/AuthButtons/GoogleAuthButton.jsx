@@ -1,5 +1,4 @@
-import React from "react";
-import { GoogleIcon } from "./Icons";
+import { GoogleIcon } from "../Icons";
 
 const GoogleAuthButton = () => {
   const loginwithgoogle = async () => {
@@ -9,7 +8,7 @@ const GoogleAuthButton = () => {
   return (
     <button
       type="button"
-      className="flex items-center border-2 border-gray-700/[.6] hover:bg-gray-900 px-3 rounded-l-md w-full"
+      className="flex items-center border-2 border-gray-800 hover:bg-gray-800/[.3] px-3 rounded-l-md w-full"
       onClick={loginwithgoogle}
     >
       <GoogleIcon className="mr-2 h-6" />

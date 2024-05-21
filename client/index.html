@@ -8,12 +8,75 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
   </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .kk_loader-root {
+      font-family: Poppins, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+      display: grid;
+      place-items: center;
+      background-color: #0a0b0c;
+    }
+
+    .kk_loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      height: 100dvh;
+      height: 100vh;
+      color: #dbdbdb;
+    }
+
+    .kk_loader-icon {
+      width: 48px;
+      height: 48px;
+      display: block;
+      filter: drop-shadow(hsl(214.4, 100%, 54.2%) 0px 0px 5px);
+      animation: kk_spin 1s linear infinite;
+    }
+
+    @keyframes kk_spin {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  </style>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="kk_loader-root">
+        <div class="kk_loader-container">
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="kk_loader-icon"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M20 5.416c8.054 0 14.583 6.529 14.583 14.583a14.52 14.52 0 01-2.319 7.894 1.25 1.25 0 11-2.1-1.355A12.02 12.02 0 0032.083 20c0-6.673-5.41-12.083-12.084-12.083a1.25 1.25 0 010-2.5zm-8.733 24.74a1.25 1.25 0 011.743-.297 12.084 12.084 0 0013.032.604 1.25 1.25 0 111.25 2.166 14.584 14.584 0 01-15.727-.73 1.25 1.25 0 01-.298-1.742zm-3.35-9.935a1.25 1.25 0 10-2.5.044c.042 2.45.702 4.858 1.954 7.026a1.25 1.25 0 102.165-1.25 12.022 12.022 0 01-1.62-5.82z"
+              fill="hsl(216deg 100% 54%)"
+            ></path>
+          </svg>
+
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

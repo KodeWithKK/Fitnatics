@@ -4,7 +4,7 @@ import ClientDashboard from "../Dashboard/Client/Dashboard";
 import AdminDashboard from "../Dashboard/Admin/Dashboard";
 
 const MainDisplay = () => {
-  const [userRole, setUserRole] = React.useState("client");
+  const [userRole, setUserRole] = React.useState("admin");
 
   return (
     <div className="flex bg-gray-950 font-sans text-gray-200">
