@@ -7,6 +7,13 @@ import {
   CloseIcon,
 } from "./Icons";
 
+const demoToast = {
+  id: "1001",
+  type: "info",
+  title: "Something went wrong!",
+  message: "Something went wrong while generating the tokens",
+};
+
 const ToastStack = ({ toasts, removeToast }) => {
   return (
     <div className="right-4 bottom-4 fixed space-y-3">
@@ -19,6 +26,34 @@ const ToastStack = ({ toasts, removeToast }) => {
           removeToast={() => removeToast(toast.id)}
         />
       ))}
+
+      {/* <Toast
+        type={"info"}
+        title={"OTP Resended!"}
+        message={"A new OTP is sent to your email"}
+        removeToast={() => removeToast(demoToast.id)}
+      />
+
+      <Toast
+        type={"warning"}
+        title={demoToast.title}
+        message={demoToast.message}
+        removeToast={() => removeToast(demoToast.id)}
+      />
+
+      <Toast
+        type={"error"}
+        title={"6 Digit OTP Required!"}
+        message={"A 6 digit OTP is required for authentication"}
+        removeToast={() => removeToast(demoToast.id)}
+      />
+
+      <Toast
+        type={"success"}
+        title={"Account Created!"}
+        message={demoToast.message}
+        removeToast={() => removeToast(demoToast.id)}
+      /> */}
     </div>
   );
 };
@@ -29,22 +64,30 @@ function Toast({ type, title, message, removeToast }) {
 
   return (
     <div
-      className={`rounded-md bg-gray-950/[.9] border select-none animate-fadeLeftSlide ${colors.toastBorder}`}
+      className={`rounded-md bg-gray-975/[.9] border select-none animate-fadeLeftSlide ${colors.toastBorder}`}
     >
+      {/* INNER CONTAINER */}
       <div
-        className={`${colors.toastBg} flex items-center gap-2 w-[312px] p-2`}
+        className={`${colors.toastBg} flex items-center gap-3 w-[333px] p-2 px-2.5`}
       >
+        {/* ICON */}
         <div
           className={`grid place-items-center w-10 h-10 ${colors.toastIconBg} rounded-full`}
         >
           <Icon className="w-6 h-6" />
         </div>
+
+        {/* MAIN CONTENT */}
         <div className="flex-1">
-          <h2 className="mb-1 font-semibold text-[16px] text-gray-100">
+          <h2 className="mb-1 font-semibold text-[16px] text-gray-200">
             {title}
           </h2>
-          <p className="text-gray-400 text-sm">{message}</p>
+          <p className={`${colors.textColor} text-[15px] leading-[1.4]`}>
+            {message}
+          </p>
         </div>
+
+        {/* CLOSE BUTTON */}
         <button
           className="place-items-center grid hover:bg-gray-100/[.07] rounded-md w-10 h-10 text-gray-50/[.25]"
           onClick={removeToast}
@@ -65,29 +108,33 @@ const IconMap = {
 
 // READ MORE about PurgeCSS error: https://v2.tailwindcss.com/docs/optimizing-for-production
 function getColors(type) {
-  if (type === "success") {
+  if (type === "error") {
     return {
-      toastBorder: `border-green-900`,
-      toastBg: `bg-green-900/[.1]`,
-      toastIconBg: `bg-green-700`,
+      toastBorder: `border-red-500`,
+      toastBg: `bg-red-800/[.1]`,
+      toastIconBg: `bg-red-500`,
+      textColor: `text-[#938b8a]`,
     };
-  } else if (type === "info") {
+  } else if (type === "success") {
     return {
-      toastBorder: `border-blue-900`,
-      toastBg: `bg-blue-900/[.1]`,
-      toastIconBg: `bg-blue-700`,
+      toastBorder: `border-green-500/[.7]`,
+      toastBg: `bg-green-800/[0.1]`,
+      toastIconBg: `bg-green-500/[.7]`,
+      textColor: `text-[#858e89]`,
     };
   } else if (type === "warning") {
     return {
-      toastBorder: `border-yellow-900`,
-      toastBg: `bg-yellow-900/[.1]`,
-      toastIconBg: `bg-yellow-700`,
+      toastBorder: `border-yellow-500/[.7]`,
+      toastBg: `bg-yellow-800/[.1]`,
+      toastIconBg: `bg-yellow-500/[.7]`,
+      textColor: `text-[#989690]`,
     };
-  } else if (type === "error") {
+  } else if (type === "info") {
     return {
-      toastBorder: `border-red-900`,
-      toastBg: `bg-red-900/[.1]`,
-      toastIconBg: `bg-red-700`,
+      toastBorder: `border-blue-500`,
+      toastBg: `bg-blue-800/[0.1]`,
+      toastIconBg: `bg-blue-500`,
+      textColor: `text-[#909398]`,
     };
   }
 }

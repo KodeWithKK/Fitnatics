@@ -80,7 +80,7 @@ const AuthHome = () => {
       if (!isValid) {
         addToast(
           "error",
-          "Enter valid form data",
+          "Invalid form data!",
           "Enter valid form data to continue with email"
         );
       } else {

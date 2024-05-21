@@ -78,7 +78,7 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
         onChange={changeHandler}
         {...delegated}
       />
-      <p className="mt-1 mb-3 text-red-400/[.8] text-sm">{errorMessage}</p>
+      <p className="mt-1 mb-3 text-red-300/[.8] text-sm">{errorMessage}</p>
     </>
   );
 };
