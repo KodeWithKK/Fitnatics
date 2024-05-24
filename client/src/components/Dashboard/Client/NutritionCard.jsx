@@ -1,4 +1,9 @@
-import { CaloriesIcon, ProteinIcon, CarbsIcon, FatIcon } from "../../../Icons";
+import {
+  CaloriesIcon,
+  ProteinIcon,
+  CarbsIcon,
+  FatIcon,
+} from "../../../icons/Icons";
 
 const NutritionCard = ({ type, goal, goalAchived }) => {
   const Icon = data[type].Icon;
@@ -8,23 +13,23 @@ const NutritionCard = ({ type, goal, goalAchived }) => {
   };
 
   return (
-    <div className="w-[168px] bg-gray-900/[.8] rounded-md px-4 py-5">
+    <div className="bg-gray-900/[.8] px-4 py-5 rounded-md w-[168px]">
       <div className="flex justify-between">
-        <div className="rounded-full w-[64px] p-[15px] bg-gray-800/[.6]">
+        <div className="bg-gray-800/[.6] p-[15px] rounded-full w-[64px]">
           <Icon />
         </div>
         <div className="text-right">
           <h3 className="font-semibold text-sm">{goal}</h3>
-          <p className="text-xs text-gray-400">{data[type].unit}</p>
+          <p className="text-gray-400 text-xs">{data[type].unit}</p>
         </div>
       </div>
-      <h3 className="font-semibold mt-2.5 mb-6">{data[type].text}</h3>
-      <div className="h-2 w-full bg-gray-800 rounded">
+      <h3 className="mt-2.5 mb-6 font-semibold">{data[type].text}</h3>
+      <div className="bg-gray-800 rounded w-full h-2">
         <div
           className={`h-2 bg-gray-700 rounded relative`}
           style={progressBarStyle}
         >
-          <span className="absolute right-0 bottom-2.5 font-semibold text-xs text-gray-500">
+          <span className="right-0 bottom-2.5 absolute font-semibold text-gray-500 text-xs">
             {goalAchived}%
           </span>
         </div>

@@ -12,7 +12,7 @@ import {
   BlogsOutlineIcon,
   AnnouncementSolidIcon,
   AnnouncementOutlineIcon,
-} from "../../Icons";
+} from "../../icons/Icons";
 
 function NavItem({ isActive, type, children }) {
   const Icon = isActive ? IconMap[`${type}-solid`] : IconMap[`${type}-outline`];

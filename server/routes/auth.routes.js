@@ -1,13 +1,14 @@
 import passport from "passport";
 import { Router } from "express";
 import { upload } from "./../middleware/multer.middleware.js";
+import { verifyJWT } from "./../middleware/auth.middleware.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 import {
-  gettingStarted,
   localLoginHandler,
   generateOTPHandler,
   verifyOTPHandler,
+  logoutHandler,
   strategyJWTAuthCookieHandler,
 } from "./../controller/auth.controller.js";
 
@@ -45,7 +46,6 @@ function uploadMiddleware(req, res, next) {
 const router = Router();
 
 // Local Auth Routes
-router.route("/getting-started").post(uploadMiddleware, gettingStarted);
 router.route("/login-local").post(localLoginHandler);
 router.route("/generate-otp").post(generateOTPHandler);
 router.route("/verify-otp").post(verifyOTPHandler);
@@ -61,5 +61,8 @@ router
     passport.authenticate("google", { session: false }),
     strategyJWTAuthCookieHandler
   );
+
+// Secured Routes
+router.route("/logout").post(verifyJWT, logoutHandler);
 
 export default router;

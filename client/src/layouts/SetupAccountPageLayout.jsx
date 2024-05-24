@@ -1,8 +1,12 @@
+import { useLogoutUser } from "@hooks/useLogoutUser";
+
 const SetupAccountLayout = ({ children }) => {
+  const { logoutUser } = useLogoutUser();
+
   return (
-    <div className="px-[6%] py-6 h-screen overflow-y-auto">
+    <div className="px-[6%] py-4 h-screen overflow-y-auto">
       {/* NAVBAR */}
-      <div className="flex justify-between items-center border-gray-700 bg-gray-950 px-4 py-1 border rounded-md">
+      <nav className="flex justify-between items-center gap-4 border-gray-900 bg-gray-950 px-4 py-1 border rounded-md">
         <a
           className="font-bold text-[28px] text-brand uppercase tracking-wide"
           href="/"
@@ -12,13 +16,15 @@ const SetupAccountLayout = ({ children }) => {
 
         <p className="text-gray-100">
           Already a member?{" "}
-          <button type="button" className="text-blue-500">
+          <button type="button" className="text-blue-500" onClick={logoutUser}>
             Login
           </button>
         </p>
-      </div>
+      </nav>
 
-      <div className="mt-2.5 rounded-md h-[calc(100vh-113px)]">{children}</div>
+      <div className="mt-2 h-[calc(100vh-95px)] overflow-hidden">
+        {children}
+      </div>
 
       {/* <form
         className="space-y-10 border-2 border-gray-800/[.5] mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"

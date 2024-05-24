@@ -5,10 +5,10 @@ const useFetchUserData = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const data = await makeGetRequest(
+      const res = await makeGetRequest(
         "http://localhost:8000/api/v1/user/get-user-data"
       );
-      return data;
+      return res;
     },
     retry: false,
     refetchOnWindowFocus: false,

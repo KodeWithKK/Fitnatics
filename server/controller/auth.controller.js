@@ -23,7 +23,7 @@ const localLoginHandler = asyncHandler(async (req, res) => {
     );
   }
 
-  const user = await User.findOne({ email })?.select("-_id -__v");
+  const user = await User.findOne({ email });
 
   if (user && user.provider !== "local") {
     return res.status(401).json(
@@ -87,22 +87,19 @@ const localLoginHandler = asyncHandler(async (req, res) => {
     );
   }
 
-  if (user.accountSetupRequired) {
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        { accountSetupRequired: true },
-        {
-          info: {
-            title: "User found",
-            message: "User found but account setup required!",
-          },
-        }
-      )
-    );
-  }
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
 
-  return res.status(200).json(new ApiResponse(200, {}, "User Found"));
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(new ApiResponse(200, {}, "User Found"));
 });
 
 const generateOTPHandler = asyncHandler(async (req, res) => {
@@ -278,6 +275,19 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(202, {}, "OTP is Valid"));
 });
 
+const logoutHandler = (req, res) => {
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(200, {}, "User logged Out Successfully"));
+};
+
 const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken } = req?.user;
 
@@ -311,17 +321,10 @@ const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
     .redirect("http://localhost:5173");
 });
 
-const gettingStarted = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
-
-  return res.status(200).json(new ApiResponse(200, {}));
-});
-
 export {
   localLoginHandler,
   generateOTPHandler,
   verifyOTPHandler,
+  logoutHandler,
   strategyJWTAuthCookieHandler,
-  gettingStarted,
 };

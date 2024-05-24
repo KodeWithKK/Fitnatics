@@ -2,7 +2,6 @@ import axios from "axios";
 
 async function makeGetRequest(url, formData = {}) {
   let data, error;
-
   await axios
     .get(url, {
       data: formData,
