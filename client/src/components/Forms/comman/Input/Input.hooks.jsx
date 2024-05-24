@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useCallback } from "react";
 import * as yup from "yup";
 
 yup.setLocale({
@@ -8,13 +8,12 @@ yup.setLocale({
   },
 });
 
-const FormInput = ({ label, type, name, onChange, ...delegated }) => {
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const id = React.useId();
+function useInputHooks({ type, onInput, name }) {
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const changeHandler = React.useCallback(
+  const inputHandler = useCallback(
     async (e) => {
-      onChange(e);
+      onInput(e);
       const value = e.target.value;
       let errorMessage = null;
 
@@ -24,6 +23,13 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
 
         if (!isValid) {
           errorMessage = "Enter a valid text";
+        }
+      } else if (type === "number") {
+        const schema = yup.string().matches(/^[0-9]+$/);
+        const isValid = await schema.isValid(value);
+
+        if (!isValid) {
+          errorMessage = "Enter a valid number";
         }
       } else if (type === "email") {
         const schema = yup.string().email();
@@ -39,17 +45,21 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
         if (!isValid) {
           errorMessage = "Password must contain at least 8 characters";
         }
-      } else if (type === "number" && name === "phoneno") {
-        const schema = yup
-          .number()
-          .positive()
-          .integer()
-          .min(1000000000)
-          .max(9999999999);
+      }
+
+      if (name === "phoneno") {
+        const schema = yup.string().matches(/^[0-9]{10}$/);
         const isValid = await schema.isValid(value);
 
         if (!isValid) {
-          errorMessage = "A 10 digit number is required";
+          errorMessage = "A valid 10 digit number is required";
+        }
+      } else if (name === "otp") {
+        const schema = yup.string().matches(/^[0-9]{6}$/);
+        const isValid = await schema.isValid(value);
+
+        if (!isValid) {
+          errorMessage = "A valid 6 digit OTP is required";
         }
       }
 
@@ -59,28 +69,10 @@ const FormInput = ({ label, type, name, onChange, ...delegated }) => {
         setErrorMessage("");
       }
     },
-    [type, name, onChange]
+    [type, name, onInput]
   );
 
-  return (
-    <>
-      <label
-        className="block mb-0.5 text-[15px] text-gray-500 select-none"
-        htmlFor={id}
-      >
-        {label}
-      </label>
-      <input
-        id={id}
-        className={`w-full text-[15px] rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-500/[.4]`}
-        name={name}
-        type={type}
-        onChange={changeHandler}
-        {...delegated}
-      />
-      <p className="mt-1 mb-3 text-red-300/[.8] text-sm">{errorMessage}</p>
-    </>
-  );
-};
+  return { errorMessage, inputHandler };
+}
 
-export default FormInput;
+export { useInputHooks };

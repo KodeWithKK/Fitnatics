@@ -1,28 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { GlobalContext } from "./context/GlobalContextProvider";
-import { makeGetRequest } from "./api/api";
-import AuthHome from "./components/Home/AuthHome";
+import { GlobalContext } from "@context/GlobalContextProvider";
+import { useFetchUserData } from "@hooks/useFetchUserData";
+import ToastStackLayout from "@/layouts/ToastStackLayout";
+import AuthPage from "@pages/AuthPage/AuthPage";
+import MainAppPage from "@pages/MainAppPage/MainAppPage";
+import SetupAccountPage from "@pages/SetupAccountPage/SetupAccountPage";
 // import SetupAccountForm from "./components/Forms/SetupAccountForm";
-import MainDisplay from "./components/Home/MainDisplay";
-import ToastStack from "./components/ToastStack/ToastStack";
-// import Modal from "./components/Modal/Modal";
 
 function App() {
   const { toasts, removeToast } = React.useContext(GlobalContext);
-
-  const { isLoading, data: userData } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const data = await makeGetRequest(
-        "http://localhost:8000/api/v1/user/get-user-data"
-      );
-      return data;
-    },
-    retry: false,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading, userData } = useFetchUserData();
 
   if (isLoading) {
     return null;
@@ -30,13 +18,15 @@ function App() {
 
   return (
     <div className="bg-gray-975 font-normal font-sans text-base text-gray-100 leading-[1.6]">
-      <ToastStack toasts={toasts} removeToast={removeToast} />
-      {/* <Modal /> */}
+      <ToastStackLayout toasts={toasts} removeToast={removeToast} />
 
       <Router>
         <Routes>
-          <Route path="/" element={<AuthHome />} />
-          <Route path="/:nav" element={<MainDisplay />} />
+          <Route
+            path="/"
+            element={userData ? <SetupAccountPage /> : <AuthPage />}
+          />
+          <Route path="/:nav" element={<MainAppPage />} />
         </Routes>
       </Router>
     </div>

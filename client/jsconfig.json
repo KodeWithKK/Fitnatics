@@ -1,0 +1,18 @@
+// for configuring it with VSCode intelliSense to recognize absolute import paths
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@*": ["*"]
+      // "@api/*": ["api/*"],
+      // "@components/*": ["components/*"],
+      // "@context/*": ["context/*"],
+      // "@data/*": ["data/*"],
+      // "@hooks/*": ["hooks/*"],
+      // "@images/*": ["images/*"],
+      // "@layouts/*": ["layouts/*"],
+      // "@page/*": ["page/*"]
+    }
+  },
+  "include": ["./src"]
+}

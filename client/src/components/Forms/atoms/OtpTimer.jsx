@@ -1,6 +1,8 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 function getTimeLeft(otpGeneratedAt) {
+  if (!otpGeneratedAt) return null;
+
   const currTime = new Date();
   const otpExpiredAt = new Date(otpGeneratedAt).setMinutes(
     otpGeneratedAt.getMinutes() + 15
@@ -21,24 +23,30 @@ function getTimeLeft(otpGeneratedAt) {
   }
 }
 
-const OtpTimer = ({ otpGeneratedAt }) => {
-  const [validityTimeLeft, setValidityTimeLeft] = React.useState(
-    getTimeLeft(otpGeneratedAt)
-  );
+const OtpTimer = ({ otpGeneratedAt, ...delegated }) => {
+  const [validityTimeLeft, setValidityTimeLeft] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    setValidityTimeLeft(null);
+  }, [otpGeneratedAt]);
+
+  useEffect(() => {
     const intervalId = window.setInterval(() => {
       const nextValidityTimeLeft = getTimeLeft(otpGeneratedAt);
       setValidityTimeLeft(nextValidityTimeLeft);
     }, 1000);
 
     return () => window.clearInterval(intervalId);
-  }, [otpGeneratedAt]);
+  }, [otpGeneratedAt, validityTimeLeft]);
+
+  if (!otpGeneratedAt || !validityTimeLeft) {
+    return <span {...delegated}>‒‒:‒‒</span>;
+  }
 
   return (
-    <span>{`${validityTimeLeft.min
+    <span {...delegated}>{`${validityTimeLeft?.min
       .toString()
-      .padStart(2, 0)}:${validityTimeLeft.sec
+      .padStart(2, 0)}:${validityTimeLeft?.sec
       .toString()
       .padStart(2, 0)}`}</span>
   );

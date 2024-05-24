@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormSelect = ({
+const Select = ({
   label,
   currentValue,
   handleChange,
@@ -32,4 +32,4 @@ const FormSelect = ({
   );
 };
 
-export default FormSelect;
+export default Select;

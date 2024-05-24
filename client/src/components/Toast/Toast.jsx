@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   CheckIcon,
   ErrorIcon,
@@ -6,57 +7,6 @@ import {
   InfoIcon,
   CloseIcon,
 } from "./Icons";
-
-const demoToast = {
-  id: "1001",
-  type: "info",
-  title: "Something went wrong!",
-  message: "Something went wrong while generating the tokens",
-};
-
-const ToastStack = ({ toasts, removeToast }) => {
-  return (
-    <div className="right-4 bottom-4 fixed space-y-3">
-      {toasts?.map((toast) => (
-        <Toast
-          key={toast.id}
-          type={toast.type}
-          title={toast.title}
-          message={toast.message}
-          removeToast={() => removeToast(toast.id)}
-        />
-      ))}
-
-      {/* <Toast
-        type={"info"}
-        title={"OTP Resended!"}
-        message={"A new OTP is sent to your email"}
-        removeToast={() => removeToast(demoToast.id)}
-      />
-
-      <Toast
-        type={"warning"}
-        title={demoToast.title}
-        message={demoToast.message}
-        removeToast={() => removeToast(demoToast.id)}
-      />
-
-      <Toast
-        type={"error"}
-        title={"6 Digit OTP Required!"}
-        message={"A 6 digit OTP is required for authentication"}
-        removeToast={() => removeToast(demoToast.id)}
-      />
-
-      <Toast
-        type={"success"}
-        title={"Account Created!"}
-        message={demoToast.message}
-        removeToast={() => removeToast(demoToast.id)}
-      /> */}
-    </div>
-  );
-};
 
 function Toast({ type, title, message, removeToast }) {
   const Icon = React.useMemo(() => IconMap[type], [type]);
@@ -79,10 +29,10 @@ function Toast({ type, title, message, removeToast }) {
 
         {/* MAIN CONTENT */}
         <div className="flex-1">
-          <h2 className="mb-1 font-semibold text-[16px] text-gray-200">
+          <h2 className={`mb-1 font-semibold text-[16px] ${colors.titleColor}`}>
             {title}
           </h2>
-          <p className={`${colors.textColor} text-[15px] leading-[1.4]`}>
+          <p className={`${colors.mssgColor} text-[15px] leading-[1.4]`}>
             {message}
           </p>
         </div>
@@ -113,30 +63,34 @@ function getColors(type) {
       toastBorder: `border-red-500`,
       toastBg: `bg-red-800/[.1]`,
       toastIconBg: `bg-red-500`,
-      textColor: `text-[#938b8a]`,
+      mssgColor: `text-red-50/[.75]`,
+      titleColor: `text-red-500`,
     };
   } else if (type === "success") {
     return {
-      toastBorder: `border-green-500/[.7]`,
+      toastBorder: `border-green-600`,
       toastBg: `bg-green-800/[0.1]`,
-      toastIconBg: `bg-green-500/[.7]`,
-      textColor: `text-[#858e89]`,
+      toastIconBg: `bg-green-600`,
+      mssgColor: `text-green-50/[.75]`,
+      titleColor: `text-green-600`,
     };
   } else if (type === "warning") {
     return {
-      toastBorder: `border-yellow-500/[.7]`,
+      toastBorder: `border-yellow-500`,
       toastBg: `bg-yellow-800/[.1]`,
-      toastIconBg: `bg-yellow-500/[.7]`,
-      textColor: `text-[#989690]`,
+      toastIconBg: `bg-yellow-500`,
+      mssgColor: `text-yellow-50/[.75]`,
+      titleColor: `text-yellow-500`,
     };
   } else if (type === "info") {
     return {
       toastBorder: `border-blue-500`,
       toastBg: `bg-blue-800/[0.1]`,
       toastIconBg: `bg-blue-500`,
-      textColor: `text-[#909398]`,
+      mssgColor: `text-blue-50/[.75]`,
+      titleColor: `text-blue-500`,
     };
   }
 }
 
-export default ToastStack;
+export default Toast;
