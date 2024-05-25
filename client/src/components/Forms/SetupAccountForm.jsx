@@ -1,7 +1,7 @@
 import React from "react";
 import AvatarImage from "./atoms/AvatarImage";
-import Input from "./comman/Input/Input";
-import Select from "./comman/Select/Select";
+import Input from "@components/comman/Input/Input";
+// import Select from "@components/comman/Select/Select";
 import { HorizontalDivider } from "./atoms/Icons";
 
 const SetupAccountForm = ({ formData, handleInput }) => {
@@ -74,7 +74,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
             spellCheck={false}
           />
 
-          <Select
+          {/* <Select
             label="Role*"
             name="role"
             currentValue={formData.role}
@@ -82,7 +82,7 @@ const SetupAccountForm = ({ formData, handleInput }) => {
           >
             <option value="member">Member</option>
             <option value="trainer">Trainer</option>
-          </Select>
+          </Select> */}
         </div>
 
         <div className="flex gap-3">

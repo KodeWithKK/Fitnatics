@@ -1,6 +1,6 @@
 import React from "react";
-import { makePostRequest } from "../../api/api";
-import { GlobalContext } from "../../context/GlobalContextProvider";
+import { makePostRequest } from "@api/api";
+import { GlobalContext } from "@context/GlobalContextProvider";
 import OtpTimer from "./atoms/OtpTimer";
 
 const OtpForm = ({

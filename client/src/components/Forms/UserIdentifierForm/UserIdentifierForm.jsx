@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { MemberIcon, TrainerIcon } from "./Icons";
 
-const UserIdentifierForm = ({ setRole, setDisplayStep }) => {
-  const [selectedType, setSelectedType] = useState("member");
-
+const UserIdentifierForm = ({ role, setRole, setDisplayStep }) => {
   return (
     <div className="border-gray-800 px-6 py-5 border border-dashed rounded-md w-[382px]">
       <h5 className="text-center text-gray-200">Account Type</h5>
@@ -13,22 +10,24 @@ const UserIdentifierForm = ({ setRole, setDisplayStep }) => {
       <div className="flex gap-3 my-5">
         <button
           type="button"
-          className={`flex flex-1 items-center gap-2 border-gray-700 bg-gray-950 p-2 border rounded-md ${
-            selectedType === "member" &&
-            "border-0 outline outline-[3px] outline-brand bg-blue-900/[.5]"
+          className={`flex flex-1 items-center gap-2 border-gray-700 p-2 border rounded-md ${
+            role === "member"
+              ? "border-0 outline outline-[3px] outline-brand bg-blue-900/[.5]"
+              : "bg-gray-950"
           }`}
-          onClick={() => setSelectedType("member")}
+          onClick={() => setRole("member")}
         >
           <MemberIcon className="w-10 h-10" />
           Member
         </button>
         <button
           type="button"
-          className={`flex flex-1 items-center gap-2 border-gray-700 bg-gray-950 p-2 border rounded-md ${
-            selectedType === "trainer" &&
-            "border-0 outline outline-[3px] outline-brand bg-blue-900/[.5]"
+          className={`flex flex-1 items-center gap-2 border-gray-700 p-2 border rounded-md ${
+            role === "trainer"
+              ? "border-0 outline outline-[3px] outline-brand bg-blue-900/[.5]"
+              : "bg-gray-950"
           }`}
-          onClick={() => setSelectedType("trainer")}
+          onClick={() => setRole("trainer")}
         >
           <TrainerIcon className="p-1 w-10 h-10" />
           Trainer
@@ -38,10 +37,7 @@ const UserIdentifierForm = ({ setRole, setDisplayStep }) => {
       <button
         type="button"
         className="bg-brand/[.75] mt-2 py-3 rounded-md w-full"
-        onClick={() => {
-          setRole(selectedType);
-          setDisplayStep(2);
-        }}
+        onClick={() => setDisplayStep(2)}
       >
         Continue
       </button>

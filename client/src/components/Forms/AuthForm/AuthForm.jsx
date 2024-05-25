@@ -1,7 +1,7 @@
-import Input from "../comman/Input/Input";
-import GoogleAuthButton from "../atoms/AuthButtons/GoogleAuthButton";
-import FacebookAuthButton from "../atoms/AuthButtons/FacebookAuthButton";
-import TwitterAuthButton from "../atoms/AuthButtons/TwitterAuthButton";
+import Input from "@components/comman/Input/Input";
+import GoogleAuthButton from "./GoogleAuthButton";
+import FacebookAuthButton from "./FacebookAuthButton";
+import TwitterAuthButton from "./TwitterAuthButton";
 import { useAuthFormHooks } from "./AuthForm.hooks";
 
 const AuthForm = () => {

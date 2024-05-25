@@ -7,12 +7,9 @@ const SetupAccountLayout = ({ children }) => {
     <div className="px-[6%] py-4 h-screen overflow-y-auto">
       {/* NAVBAR */}
       <nav className="flex justify-between items-center gap-4 border-gray-900 bg-gray-950 px-4 py-1 border rounded-md">
-        <a
-          className="font-bold text-[28px] text-brand uppercase tracking-wide"
-          href="/"
-        >
+        <h3 className="font-bold text-[28px] text-brand uppercase tracking-wide">
           Fitnatics
-        </a>
+        </h3>
 
         <p className="text-gray-100">
           Already a member?{" "}

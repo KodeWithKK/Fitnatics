@@ -44,6 +44,7 @@ export default {
       colors: {
         brand: "#1271ED",
         gray: {
+          DEFAULT: "#7C848C",
           50: "#EEEEEE",
           100: "#E8EAED",
           200: "#C3CCD3",
@@ -58,7 +59,7 @@ export default {
           975: "#0A0B0C",
         },
         red: {
-          DEFAULT: "#DC5A56",
+          DEFAULT: "#CF302B",
           50: "#F5CDCC",
           100: "#F1BDBB",
           200: "#EA9C9A",
@@ -72,7 +73,7 @@ export default {
           950: "#000000",
         },
         yellow: {
-          DEFAULT: "#F0A156",
+          DEFAULT: "#EB8422",
           50: "#FCEAD9",
           100: "#FAE0C6",
           200: "#F7CBA1",
@@ -86,7 +87,7 @@ export default {
           950: "#100901",
         },
         green: {
-          DEFAULT: "#64D885",
+          DEFAULT: "#37CD62",
           50: "#D6F5DF",
           100: "#C6F1D2",
           200: "#A5E8B8",

@@ -1,57 +1,3 @@
-function HorizontalDivider(props) {
-  return (
-    <svg
-      viewBox="408 231 23 3"
-      style={{
-        WebkitPrintColorAdjust: ":exact",
-      }}
-      fill="none"
-      {...props}
-    >
-      <ellipse
-        cx={429.5}
-        cy={232.5}
-        rx={1.5}
-        ry={1.5}
-        transform="rotate(180 429.5 232.5)"
-        fill="currentColor"
-      />
-      <ellipse
-        cx={424.5}
-        cy={232.5}
-        rx={1.5}
-        ry={1.5}
-        transform="rotate(180 424.5 232.5)"
-        fill="currentColor"
-      />
-      <ellipse
-        cx={419.5}
-        cy={232.5}
-        rx={1.5}
-        ry={1.5}
-        transform="rotate(180 419.5 232.5)"
-        fill="currentColor"
-      />
-      <ellipse
-        cx={414.5}
-        cy={232.5}
-        rx={1.5}
-        ry={1.5}
-        transform="rotate(180 414.5 232.5)"
-        fill="currentColor"
-      />
-      <ellipse
-        cx={409.5}
-        cy={232.5}
-        rx={1.5}
-        ry={1.5}
-        transform="rotate(180 409.5 232.5)"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 function DashboardSolidIcon(props) {
   return (
     <svg
@@ -573,7 +519,6 @@ function ExpenceIcon(props) {
 }
 
 export {
-  HorizontalDivider,
   DashboardSolidIcon,
   DashboardOutlineIcon,
   TrainerIcon,

@@ -7,7 +7,12 @@ import {
   EyeIcon,
   EyeSlashIcon,
   OtpIcon,
-} from "./Icons";
+  MemberIcon,
+  PhoneIcon,
+  DOBIcon,
+  HeightIcon,
+  WeightIcon,
+} from "../Icons";
 
 const Input = ({
   type,
@@ -15,6 +20,7 @@ const Input = ({
   onInput,
   disabled,
   otpGeneratedAt,
+  className,
   ...delegated
 }) => {
   const Icon = useMemo(() => IconMap[name], [name]);
@@ -29,11 +35,13 @@ const Input = ({
   return (
     <div className="relative">
       <input
-        className={`w-full text-[15px] pl-[38px] rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-700 disabled:cursor-not-allowed ${
+        className={`w-full text-[15px]  rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-700 disabled:cursor-not-allowed ${
           errorMessage
             ? "focus:border-red-400 focus:ring-red-400 border-red-400"
             : "focus:border-brand focus:ring-brand"
-        } ${name === "password" && "pr-[42px]"} ${disabled && "opacity-35"}`}
+        } ${Icon && "pl-[38px]"} ${name === "password" && "pr-[42px]"} ${
+          disabled && "opacity-35"
+        } ${className}`}
         name={name}
         type={inputType}
         onInput={inputHandler}
@@ -92,6 +100,11 @@ const IconMap = {
   email: EmailIcon,
   password: PasswordIcon,
   otp: OtpIcon,
+  name: MemberIcon,
+  phoneno: PhoneIcon,
+  dob: DOBIcon,
+  height: HeightIcon,
+  weight: WeightIcon,
 };
 
 export default Input;
