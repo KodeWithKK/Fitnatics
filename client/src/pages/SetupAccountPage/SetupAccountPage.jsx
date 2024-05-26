@@ -4,7 +4,7 @@ import UserIdentifierForm from "@components/Forms/UserIdentifierForm/UserIdentif
 import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout";
 import PersonalDetailForm from "@components/Forms/PersonalDetailForm/PersonalDetailForm";
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
-import PaymentForm from "@components/Forms/PaymentForm/PaymentForm";
+import MembershipForm from "@components/Forms/MembershipForm/MembershipForm";
 
 const SetupAccountPage = () => {
   const [displayStep, setDisplayStep] = useState(1);
@@ -33,7 +33,9 @@ const SetupAccountPage = () => {
           {displayStep === 3 && (
             <SelectGymForm setDisplayStep={setDisplayStep} />
           )}
-          {displayStep === 4 && <PaymentForm setDisplayStep={setDisplayStep} />}
+          {displayStep === 4 && (
+            <MembershipForm setDisplayStep={setDisplayStep} />
+          )}
         </SetupAccountFormLayout>
       )}
     </SetupAccountLayout>

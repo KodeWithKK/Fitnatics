@@ -44,9 +44,13 @@ const Select = ({ name, placeholder, borderColor, children }) => {
         <button
           type="button"
           name={name}
-          className={`relative flex text-[15px] justify-between items-center border-gray-600/[.6] bg-gray-950 p-2 mb-3 border rounded-md text-left w-full ${borderColor} ${
+          className={`relative flex text-[15px] justify-between items-center bg-gray-950 p-2 mb-3 rounded-md border text-left w-full ${borderColor} ${
             Icon && "pl-[38px]"
-          } ${!isCollapsed && "ring-[1px] ring-brand border-brand"}`}
+          } ${
+            !isCollapsed
+              ? "ring-[2px] ring-brand border-brand"
+              : " border-gray-600/[.6]"
+          }`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {Icon && (

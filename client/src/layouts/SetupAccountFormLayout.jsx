@@ -10,7 +10,7 @@ const SetupAccountFormLayout = ({ displayStep, setDisplayStep, children }) => {
   );
 };
 
-const navItems = ["Personal Details", "Select Gym", "Payment"];
+const navItems = ["Personal Details", "Gym Selection", "Membership"];
 
 function SideNavbar({ currStep, setDisplayStep }) {
   return (

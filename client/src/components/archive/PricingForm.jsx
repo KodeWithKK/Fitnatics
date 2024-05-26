@@ -1,5 +1,4 @@
 import React from "react";
-import StepsTracker from "./atoms/StepsTracker";
 import { CheckIcon, LeftArrowIcon } from "./atoms/Icons";
 
 const totalDisplayedCards = 3;
@@ -9,17 +8,6 @@ const PricingForm = ({ formData }) => {
 
   return (
     <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
-      <div className="mb-6 text-center">
-        <a
-          className="font-bold text-4xl text-brand uppercase tracking-wide"
-          href="/"
-        >
-          Fitnatics
-        </a>
-      </div>
-
-      <StepsTracker totalSteps={4} currentStep={4} />
-
       {/* CARDS CONTAINER */}
       <div className="flex justify-center items-center gap-5 pt-4">
         <button
