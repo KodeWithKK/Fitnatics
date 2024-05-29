@@ -1,44 +1,49 @@
-import { useState } from "react";
-import SetupAccountLayout from "@layouts/SetupAccountPageLayout";
+import SetupAccountPageLayout from "@layouts/SetupAccountPageLayout";
 import UserIdentifierForm from "@components/Forms/UserIdentifierForm/UserIdentifierForm";
 import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout";
 import PersonalDetailForm from "@components/Forms/PersonalDetailForm/PersonalDetailForm";
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
 import MembershipForm from "@components/Forms/MembershipForm/MembershipForm";
+import useSetupAccountPagehooks from "./SetupAccountPage.hooks";
 
 const SetupAccountPage = () => {
-  const [displayStep, setDisplayStep] = useState(1);
-  const [role, setRole] = useState("member");
+  const { step, role, data, setStep, setRole, addData } =
+    useSetupAccountPagehooks();
 
   return (
-    <SetupAccountLayout>
-      {displayStep === 1 && (
+    <SetupAccountPageLayout>
+      {step === 1 && (
         <div className="place-items-center grid -mt-8 h-full">
-          <UserIdentifierForm
-            role={role}
-            setRole={setRole}
-            setDisplayStep={setDisplayStep}
-          />
+          <UserIdentifierForm role={role} setRole={setRole} setStep={setStep} />
         </div>
       )}
 
-      {2 <= displayStep && displayStep <= 4 && (
-        <SetupAccountFormLayout
-          displayStep={displayStep}
-          setDisplayStep={setDisplayStep}
-        >
-          {displayStep === 2 && (
-            <PersonalDetailForm setDisplayStep={setDisplayStep} />
+      {2 <= step && step <= 4 && (
+        <SetupAccountFormLayout step={step} setStep={setStep}>
+          {step === 2 && (
+            <PersonalDetailForm
+              setStep={setStep}
+              data={data[role]}
+              addData={addData}
+            />
           )}
-          {displayStep === 3 && (
-            <SelectGymForm setDisplayStep={setDisplayStep} />
+          {step === 3 && (
+            <SelectGymForm
+              setStep={setStep}
+              data={data[role]}
+              addData={addData}
+            />
           )}
-          {displayStep === 4 && (
-            <MembershipForm setDisplayStep={setDisplayStep} />
+          {step === 4 && (
+            <MembershipForm
+              setStep={setStep}
+              data={data[role]}
+              addData={addData}
+            />
           )}
         </SetupAccountFormLayout>
       )}
-    </SetupAccountLayout>
+    </SetupAccountPageLayout>
   );
 };
 

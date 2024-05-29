@@ -1,6 +1,8 @@
-import { useState, useMemo } from "react";
-import { useInputHooks } from "./Input.hooks";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import OtpTimer from "@components/Forms/atoms/OtpTimer";
+import Select from "../Select/Select";
+import RAside from "./RAside";
+
 import {
   EmailIcon,
   PasswordIcon,
@@ -14,27 +16,62 @@ import {
   WeightIcon,
 } from "../Icons";
 
+const IconMap = {
+  email: EmailIcon,
+  password: PasswordIcon,
+  otp: OtpIcon,
+  name: MemberIcon,
+  phoneno: PhoneIcon,
+  dob: DOBIcon,
+  height: HeightIcon,
+  weight: WeightIcon,
+};
+
 const Input = ({
   type,
   name,
-  onInput,
   disabled,
   otpGeneratedAt,
+  onInput,
+  checkError,
   className,
+  children,
   ...delegated
 }) => {
   const Icon = useMemo(() => IconMap[name], [name]);
   const [inputType, setInputType] = useState(type);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const { errorMessage, inputHandler } = useInputHooks({
-    type,
-    onInput,
-    name,
-  });
+  const inputRef = useRef();
+  const childRef = useRef();
+
+  useEffect(() => {
+    const width = window
+      .getComputedStyle(childRef.current)
+      .getPropertyValue("width");
+
+    inputRef.current.style.paddingRight = `calc(${width} + 8px)`;
+  }, []);
+
+  const inputHandler = useCallback(
+    async (e) => {
+      onInput(e);
+      const value = e.target.value;
+
+      if (value.length === 0) {
+        setErrorMessage(null);
+      } else {
+        const errorMessage = (await checkError(value)).errorMessage;
+        setErrorMessage(errorMessage);
+      }
+    },
+    [onInput, checkError]
+  );
 
   return (
     <div className="relative">
       <input
+        ref={inputRef}
         className={`w-full text-[15px]  rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-700 disabled:cursor-not-allowed ${
           errorMessage
             ? "focus:border-red-400 focus:ring-red-400 border-red-400"
@@ -88,6 +125,10 @@ const Input = ({
         />
       )}
 
+      <div ref={childRef} className="top-px right-px absolute w-fit h-[40px]">
+        {children}
+      </div>
+
       {/* STRANGE ERROR FIX: https://github.com/tailwindlabs/tailwindcss/discussions/10758?sort=new */}
       <p className="mt-1 mb-3 text-[#ee625d] text-sm transform-gpu">
         {errorMessage}
@@ -96,15 +137,7 @@ const Input = ({
   );
 };
 
-const IconMap = {
-  email: EmailIcon,
-  password: PasswordIcon,
-  otp: OtpIcon,
-  name: MemberIcon,
-  phoneno: PhoneIcon,
-  dob: DOBIcon,
-  height: HeightIcon,
-  weight: WeightIcon,
-};
+Input.Select = Select;
+Input.RAside = RAside;
 
 export default Input;

@@ -1,7 +1,7 @@
-const SetupAccountFormLayout = ({ displayStep, setDisplayStep, children }) => {
+const SetupAccountFormLayout = ({ step, setStep, children }) => {
   return (
     <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
-      <SideNavbar currStep={displayStep - 1} setDisplayStep={setDisplayStep} />
+      <SideNavbar currStep={step - 1} setStep={setStep} />
 
       <div className="border-gray-900 bg-gray-900/[.55] border-l rounded-md w-full overflow-y-auto">
         {children}
@@ -12,7 +12,7 @@ const SetupAccountFormLayout = ({ displayStep, setDisplayStep, children }) => {
 
 const navItems = ["Personal Details", "Gym Selection", "Membership"];
 
-function SideNavbar({ currStep, setDisplayStep }) {
+function SideNavbar({ currStep, setStep }) {
   return (
     <aside className="px-4 w-[396px]">
       <div className="mt-4 pb-2 text-center nb-1">
@@ -36,7 +36,7 @@ function SideNavbar({ currStep, setDisplayStep }) {
               key={window.crypto.randomUUID()}
               type="button"
               className="relative py-1.5 text-left"
-              onClick={() => setDisplayStep(idx + 2)}
+              onClick={() => setStep(idx + 2)}
             >
               <span
                 className={`${currStep === idx + 1 && "text-brand"} ${

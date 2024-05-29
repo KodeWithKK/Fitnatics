@@ -2,7 +2,7 @@ import { CheckIcon } from "../atoms/Icons";
 
 function PriceCard({ duration, orginalPrice, dicountedPrice }) {
   return (
-    <div className="border-[3px] border-gray-800 p-4 rounded-md w-[306px] select-none shrink-0">
+    <div className="border-gray-900 bg-gray-950 p-4 border rounded-md w-[306px] select-none shrink-0">
       {/* HEADER */}
       <div className="flex justify-between">
         <div className="text-center">
@@ -32,7 +32,10 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
         </div>
       </div>
 
-      <button className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full">
+      <button
+        type="button"
+        className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full select-none"
+      >
         Buy Now
       </button>
       <hr className="border-gray-800" />

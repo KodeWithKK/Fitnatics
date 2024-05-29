@@ -1,56 +1,75 @@
-import { useMemo, createContext, useContext, useState, useEffect } from "react";
-import {
-  GenderIcon,
-  MaleIcon,
-  FemaleIcon,
-  BeginnerIcon,
-  IntermediateIcon,
-  AdvancedIcon,
-  ExperienceIcon,
-} from "../Icons";
+import { useMemo, createContext, useState, useCallback } from "react";
+import { GenderIcon, ExperienceIcon } from "../Icons";
 
-const SelectContext = createContext();
+import Options from "./Options";
+import Option from "./Option";
+
+export const SelectContext = createContext();
 
 const IconMap = {
   gender: GenderIcon,
-  male: MaleIcon,
-  female: FemaleIcon,
-  beginner: BeginnerIcon,
-  intermediate: IntermediateIcon,
-  advanced: AdvancedIcon,
   workoutExperience: ExperienceIcon,
 };
 
-const Select = ({ name, placeholder, borderColor, children }) => {
+const Select = ({
+  name,
+  placeholder,
+  commonClass,
+  selectClass,
+  OptionsClass,
+  OptionClass,
+  value,
+  onChange,
+  children,
+}) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [nameValueMap, setNameValueMap] = useState({});
-  const [selectedValue, setSelectedValue] = useState("");
+  const [valueTextMap, setValueTextMap] = useState({});
+  const [selectedValue, setSelectedValue] = useState(value ?? "");
 
   const Icon = useMemo(() => IconMap[name], [name]);
 
-  const value = useMemo(() => {
+  const onClickHandler = useCallback(
+    (value) => {
+      onChange && onChange({ name, value });
+      setSelectedValue(value);
+      setIsCollapsed(true);
+    },
+    [name, onChange]
+  );
+
+  const memoValue = useMemo(() => {
     return {
       selectedValue,
-      borderColor,
+      isCollapsed,
+      commonClass,
+      OptionsClass,
+      OptionClass,
       setSelectedValue,
-      setNameValueMap,
-      setIsCollapsed,
+      setValueTextMap,
+      onClickHandler,
     };
-  }, [borderColor, selectedValue]);
+  }, [
+    commonClass,
+    OptionsClass,
+    OptionClass,
+    isCollapsed,
+    selectedValue,
+    onClickHandler,
+  ]);
 
   return (
-    <SelectContext.Provider value={value}>
+    <SelectContext.Provider value={memoValue}>
       <div className="relative">
         <button
           type="button"
           name={name}
-          className={`relative flex text-[15px] justify-between items-center bg-gray-950 p-2 mb-3 rounded-md border text-left w-full ${borderColor} ${
+          className={`relative flex text-[15px] justify-between items-center p-2 mb-3 rounded-md border text-left w-full bg-gray-950 ${
             Icon && "pl-[38px]"
           } ${
             !isCollapsed
               ? "ring-[2px] ring-brand border-brand"
-              : " border-gray-600/[.6]"
-          }`}
+              : "border-gray-600/[.6]"
+          } ${commonClass ?? ""} ${selectClass ?? ""}`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {Icon && (
@@ -64,8 +83,8 @@ const Select = ({ name, placeholder, borderColor, children }) => {
               {placeholder ?? "Select Option"}
             </span>
           ) : (
-            <span className={"text-gray-100"}>
-              {nameValueMap[selectedValue]}
+            <span className={"text-gray-100 pr-2"}>
+              {valueTextMap[selectedValue]}
             </span>
           )}
 
@@ -74,55 +93,9 @@ const Select = ({ name, placeholder, borderColor, children }) => {
           />
         </button>
 
-        {!isCollapsed && <Options>{children}</Options>}
+        {<Options>{children}</Options>}
       </div>
     </SelectContext.Provider>
-  );
-};
-
-const Options = ({ children }) => {
-  const { borderColor } = useContext(SelectContext);
-
-  return (
-    <div
-      className={`z-10 absolute border-gray-600/[.6] bg-gray-950 -mt-1 border rounded-md w-full ${borderColor}`}
-    >
-      {children}
-    </div>
-  );
-};
-
-const Option = ({ value, children }) => {
-  const Icon = useMemo(() => IconMap[value], [value]);
-  const { borderColor, setNameValueMap, setSelectedValue, setIsCollapsed } =
-    useContext(SelectContext);
-
-  useEffect(() => {
-    setNameValueMap((prevValue) => {
-      const nextValue = { ...prevValue, [value]: children };
-      return nextValue;
-    });
-  }, [setNameValueMap, value, children]);
-
-  return (
-    <button
-      type="button"
-      className={`relative border-gray-600/[.6] last:border-0 hover:bg-gray-800/[.75] px-2 py-1.5 border-b first:rounded-t-md last:rounded-b-md w-full text-[15px] text-left ${borderColor} ${
-        Icon && "pl-[38px]"
-      }`}
-      onClick={() => {
-        setSelectedValue(value);
-        setIsCollapsed(true);
-      }}
-    >
-      {Icon && (
-        <Icon
-          className={`top-[7px] left-2 absolute w-[22px] h-[22px] text-gray-500`}
-        />
-      )}
-
-      <span>{children}</span>
-    </button>
   );
 };
 

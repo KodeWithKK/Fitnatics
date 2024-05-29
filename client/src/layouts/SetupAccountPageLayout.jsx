@@ -1,6 +1,6 @@
 import { useLogoutUser } from "@hooks/useLogoutUser";
 
-const SetupAccountLayout = ({ children }) => {
+const SetupAccountPageLayout = ({ children }) => {
   const { logoutUser } = useLogoutUser();
 
   return (
@@ -50,4 +50,4 @@ const SetupAccountLayout = ({ children }) => {
   );
 };
 
-export default SetupAccountLayout;
+export default SetupAccountPageLayout;

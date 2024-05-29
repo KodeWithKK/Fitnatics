@@ -1,6 +1,6 @@
 import { MemberIcon, TrainerIcon } from "./Icons";
 
-const UserIdentifierForm = ({ role, setRole, setDisplayStep }) => {
+const UserIdentifierForm = ({ role, setRole, setStep }) => {
   return (
     <div className="border-gray-800 px-6 py-5 border border-dashed rounded-md w-[382px]">
       <h5 className="text-center text-gray-200">Account Type</h5>
@@ -37,7 +37,7 @@ const UserIdentifierForm = ({ role, setRole, setDisplayStep }) => {
       <button
         type="button"
         className="bg-brand/[.75] mt-2 py-3 rounded-md w-full"
-        onClick={() => setDisplayStep(2)}
+        onClick={() => setStep(2)}
       >
         Continue
       </button>

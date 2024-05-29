@@ -1,8 +1,14 @@
-import * as yup from "yup";
 import { useState, useCallback, useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { makePostRequest } from "@api/api";
 import { useMutation } from "@tanstack/react-query";
+
+import {
+  checkEmail,
+  checkPassword,
+  checkOTP,
+  isLoginDataValid,
+} from "./errorCheckers";
 
 function useAuthFormHooks() {
   const [displayType, setDisplayType] = useState("login");
@@ -26,14 +32,13 @@ function useAuthFormHooks() {
 
   const { isPending: isOtpReqPending, mutate: generateOTP } = useMutation({
     mutationFn: async () => {
-      const data = await makePostRequest(
+      return await makePostRequest(
         "http://localhost:8000/api/v1/auth/generate-otp",
         {
           email: formData?.email,
           password: formData?.password,
         }
       );
-      return data;
     },
     onSuccess: () => {
       const nextOtpGeneratedAt = new Date();
@@ -53,23 +58,22 @@ function useAuthFormHooks() {
   const { isPending: isLoginReqPending, mutate: loginSubmitHandler } =
     useMutation({
       mutationFn: async () => {
-        const loginData = {
-          email: formData?.email,
-          password: formData?.password,
-        };
+        const isValid = await isLoginDataValid(formData);
 
-        const isValid = await loginFormSchema.isValid(loginData);
+        console.log(isValid);
 
         if (!isValid) {
-          addToast(
-            "error",
-            "Invalid form data!",
-            "Enter valid form data to continue with email"
-          );
+          throw {
+            title: "Invalid form data!",
+            message: "Enter valid form data to continue with email",
+          };
         } else {
           await makePostRequest(
             "http://localhost:8000/api/v1/auth/login-local",
-            loginData
+            {
+              email: formData?.email,
+              password: formData?.password,
+            }
           );
         }
       },
@@ -120,6 +124,9 @@ function useAuthFormHooks() {
     displayType,
     formData,
     otpGeneratedAt,
+    checkEmail,
+    checkPassword,
+    checkOTP,
     isRequestPending:
       isOtpReqPending || isLoginReqPending || isOTPVerifcationReqPending,
     submitHandler:
@@ -128,10 +135,5 @@ function useAuthFormHooks() {
     resendOTPHandler,
   };
 }
-
-const loginFormSchema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).required(),
-});
 
 export { useAuthFormHooks };

@@ -3,19 +3,17 @@ import React from "react";
 export const GlobalContext = React.createContext();
 
 function GlobalContextProvider({ children }) {
-  const [userData, setUserData] = React.useState({});
   const [toasts, setToasts] = React.useState([]);
 
-  const addToast = React.useCallback(
-    (type, title, message) => {
-      const nextToast = [
-        ...toasts,
+  const addToast = React.useCallback((type, title, message) => {
+    setToasts((prevToasts) => {
+      // Access the current state with prevToasts
+      return [
+        ...prevToasts,
         { id: window.crypto.randomUUID(), type, title, message },
       ];
-      setToasts(nextToast);
-    },
-    [toasts]
-  );
+    });
+  }, []);
 
   const removeToast = React.useCallback(
     (id) => {
@@ -27,13 +25,11 @@ function GlobalContextProvider({ children }) {
 
   const value = React.useMemo(() => {
     return {
-      userData,
-      setUserData,
       toasts,
       addToast,
       removeToast,
     };
-  }, [userData, toasts, addToast, removeToast]);
+  }, [toasts, addToast, removeToast]);
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

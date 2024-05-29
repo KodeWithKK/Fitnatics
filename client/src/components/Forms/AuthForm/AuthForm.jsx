@@ -1,7 +1,7 @@
 import Input from "@components/comman/Input/Input";
-import GoogleAuthButton from "./GoogleAuthButton";
-import FacebookAuthButton from "./FacebookAuthButton";
-import TwitterAuthButton from "./TwitterAuthButton";
+import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
+import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";
+import TwitterAuthButton from "./AuthButtons/TwitterAuthButton";
 import { useAuthFormHooks } from "./AuthForm.hooks";
 
 const AuthForm = () => {
@@ -10,6 +10,9 @@ const AuthForm = () => {
     formData,
     otpGeneratedAt,
     isRequestPending,
+    checkEmail,
+    checkPassword,
+    checkOTP,
     submitHandler,
     handleInput,
     resendOTPHandler,
@@ -59,6 +62,7 @@ const AuthForm = () => {
             placeholder="Email"
             value={formData.email}
             onInput={handleInput}
+            checkError={checkEmail}
             required={true}
             spellCheck={false}
             disabled={isRequestPending || displayType === "signup"}
@@ -70,6 +74,7 @@ const AuthForm = () => {
             placeholder="Password"
             value={formData.password}
             onInput={handleInput}
+            checkError={checkPassword}
             required={true}
             spellCheck={false}
             disabled={isRequestPending || displayType === "signup"}
@@ -82,6 +87,7 @@ const AuthForm = () => {
               placeholder="OTP"
               value={formData.otp}
               onInput={handleInput}
+              checkError={checkOTP}
               otpGeneratedAt={otpGeneratedAt}
               required={true}
             />
