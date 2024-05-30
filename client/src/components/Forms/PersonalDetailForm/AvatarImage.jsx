@@ -1,14 +1,16 @@
 import React from "react";
 
-function AvatarImage({ name, height, width, url, onChange }) {
-  const [file, setFile] = React.useState(url ?? "");
+function AvatarImage({ name, height, width, file, onChange }) {
+  const [inputFile, setInputFile] = React.useState(file ?? "");
   const avatarRef = React.useRef();
+
+  const fileURL = inputFile && URL.createObjectURL(inputFile);
 
   const handleChange = React.useCallback(
     (e) => {
-      const nextFile = URL.createObjectURL(e.target.files[0]);
+      const nextFile = e.target.files[0];
       onChange({ name, value: nextFile });
-      setFile(nextFile);
+      setInputFile(nextFile);
     },
     [name, onChange]
   );
@@ -33,13 +35,15 @@ function AvatarImage({ name, height, width, url, onChange }) {
           onChange={handleChange}
         />
 
-        {file && (
+        {fileURL && (
           <img
-            src={file}
+            src={fileURL}
             className="w-full h-full object-center object-cover"
           />
         )}
-        {!file && <AvatarIcon className="border w-full h-full scale-[1.05]" />}
+        {!fileURL && (
+          <AvatarIcon className="border w-full h-full scale-[1.05]" />
+        )}
       </div>
 
       <div

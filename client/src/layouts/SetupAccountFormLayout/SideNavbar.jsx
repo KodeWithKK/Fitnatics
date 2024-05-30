@@ -1,14 +1,4 @@
-const SetupAccountFormLayout = ({ step, setStep, children }) => {
-  return (
-    <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
-      <SideNavbar currStep={step - 1} setStep={setStep} />
-
-      <div className="border-gray-900 bg-gray-900/[.55] border-l rounded-md w-full overflow-y-auto">
-        {children}
-      </div>
-    </div>
-  );
-};
+import ActiveNavitemIndicator from "./ActiveNavitemIndicator";
 
 const navItems = ["Personal Details", "Gym Selection", "Membership"];
 
@@ -53,13 +43,4 @@ function SideNavbar({ currStep, setStep }) {
   );
 }
 
-function ActiveNavitemIndicator({ currStep }) {
-  return (
-    <div
-      className={`top-0 absolute w-full bg-blue-500 transition-all duration-700 rounded-full`}
-      style={{ height: `calc(100% / 3 * ${currStep})` }}
-    ></div>
-  );
-}
-
-export default SetupAccountFormLayout;
+export default SideNavbar;

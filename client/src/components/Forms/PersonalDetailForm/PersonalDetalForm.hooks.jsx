@@ -9,7 +9,7 @@ import {
 } from "./errorCheckers";
 import { GlobalContext } from "@context/GlobalContextProvider";
 
-const usePersonalDetailFormHooks = ({ setStep, data, addData }) => {
+const usePersonalDetailFormHooks = ({ data, addData }) => {
   const [formData, setFormData] = useState({ ...data });
   const { addToast } = useContext(GlobalContext);
 
@@ -30,9 +30,7 @@ const usePersonalDetailFormHooks = ({ setStep, data, addData }) => {
     [formData]
   );
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
+  const submitHandler = async (moveNextStep) => {
     if (!formData?.avatar) {
       addToast(
         "warning",
@@ -52,8 +50,9 @@ const usePersonalDetailFormHooks = ({ setStep, data, addData }) => {
     }
 
     if (formData?.avatar && (await isFormDataValid(formData))) {
+      console.log(formData);
       addData({ value: formData });
-      setStep(3);
+      moveNextStep();
     }
   };
 

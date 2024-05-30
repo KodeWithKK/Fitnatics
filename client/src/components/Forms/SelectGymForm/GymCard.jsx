@@ -12,7 +12,7 @@ const GymCard = ({
     <div
       className={`bg-gray-950 p-3 rounded-md max-w-[292px] outline oultine-2 border ${
         selected
-          ? "outline-brand drop-shadow-[0_0px_4px_#1271ed] border-gray-900/[0]"
+          ? "outline-brand  drop-shadow-[0_0px_2px_#1271ed] border-gray-900/[0]"
           : "outline-brand/[0] border-gray-900"
       }`}
     >

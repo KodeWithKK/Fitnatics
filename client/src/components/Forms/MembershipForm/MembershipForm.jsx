@@ -1,16 +1,17 @@
-import React from "react";
-import PriceCard from "./PriceCard";
+import { useState } from "react";
 import { LeftArrowIcon } from "../atoms/Icons";
+import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout/SetupAccountFormLayout";
+import PriceCard from "./PriceCard";
 
 const totalDisplayedCards = 2;
 const cardWidth = 306;
 
-const MembershipForm = ({ setStep }) => {
-  const [activeIndex, setActiveIndex] = React.useState(1);
+const MembershipForm = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <form className="place-items-center grid h-full">
-      <div className="inline-flex flex-col items-end">
+    <SetupAccountFormLayout.Form stepTitle="Step 03 - Select a membership plan">
+      <div className="place-items-center grid h-full">
         <div className="inline-flex justify-center items-center gap-5">
           <button
             type="button"
@@ -74,16 +75,8 @@ const MembershipForm = ({ setStep }) => {
             <LeftArrowIcon className="-mr-1 h-6 text-gray-500/[.8] rotate-180" />
           </button>
         </div>
-
-        <button
-          type="button"
-          className="bg-gray-800 mt-4 mr-[73px] px-4 rounded-md h-[36px] select-none"
-          onClick={() => setStep(3)}
-        >
-          Back
-        </button>
       </div>
-    </form>
+    </SetupAccountFormLayout.Form>
   );
 };
 
