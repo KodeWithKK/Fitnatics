@@ -1,15 +1,8 @@
 import { useMemo, createContext, useState, useCallback } from "react";
-import { GenderIcon, ExperienceIcon } from "../Icons";
-
 import Options from "./Options";
 import Option from "./Option";
 
 export const SelectContext = createContext();
-
-const IconMap = {
-  gender: GenderIcon,
-  workoutExperience: ExperienceIcon,
-};
 
 const Select = ({
   name,
@@ -19,14 +12,13 @@ const Select = ({
   OptionsClass,
   OptionClass,
   value,
+  Icon,
   onChange,
   children,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [valueTextMap, setValueTextMap] = useState({});
   const [selectedValue, setSelectedValue] = useState(value ?? "");
-
-  const Icon = useMemo(() => IconMap[name], [name]);
 
   const onClickHandler = useCallback(
     (value) => {

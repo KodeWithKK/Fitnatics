@@ -1,36 +1,15 @@
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import OtpTimer from "@components/Forms/atoms/OtpTimer";
 import Select from "../Select/Select";
 import RAside from "./RAside";
 
-import {
-  EmailIcon,
-  PasswordIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  OtpIcon,
-  MemberIcon,
-  PhoneIcon,
-  DOBIcon,
-  HeightIcon,
-  WeightIcon,
-} from "../Icons";
-
-const IconMap = {
-  email: EmailIcon,
-  password: PasswordIcon,
-  otp: OtpIcon,
-  name: MemberIcon,
-  phoneno: PhoneIcon,
-  dob: DOBIcon,
-  height: HeightIcon,
-  weight: WeightIcon,
-};
+import { EyeIcon, EyeSlashIcon } from "./Icons";
 
 const Input = ({
   type,
   name,
   disabled,
+  Icon,
   otpGeneratedAt,
   onInput,
   checkError,
@@ -38,7 +17,6 @@ const Input = ({
   children,
   ...delegated
 }) => {
-  const Icon = useMemo(() => IconMap[name], [name]);
   const [inputType, setInputType] = useState(type);
   const [errorMessage, setErrorMessage] = useState(null);
 

@@ -4,6 +4,8 @@ import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";
 import TwitterAuthButton from "./AuthButtons/TwitterAuthButton";
 import { useAuthFormHooks } from "./AuthForm.hooks";
 
+import { EmailIcon, PasswordIcon, OtpIcon } from "./Icons";
+
 const AuthForm = () => {
   const {
     displayType,
@@ -59,6 +61,7 @@ const AuthForm = () => {
           <Input
             type="email"
             name="email"
+            Icon={EmailIcon}
             placeholder="Email"
             value={formData.email}
             onInput={handleInput}
@@ -71,6 +74,7 @@ const AuthForm = () => {
           <Input
             type="password"
             name="password"
+            Icon={PasswordIcon}
             placeholder="Password"
             value={formData.password}
             onInput={handleInput}
@@ -84,6 +88,7 @@ const AuthForm = () => {
             <Input
               type="number"
               name="otp"
+              Icon={OtpIcon}
               placeholder="OTP"
               value={formData.otp}
               onInput={handleInput}

@@ -1,9 +1,9 @@
 import SetupAccountPageLayout from "@layouts/SetupAccountPageLayout";
 import UserIdentifierForm from "@components/Forms/UserIdentifierForm/UserIdentifierForm";
-import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout/SetupAccountFormLayout";
-import PersonalDetailForm from "@components/Forms/PersonalDetailForm/PersonalDetailForm";
+import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
+import MemberPersonalDetailForm from "@components/Forms/PersonalDetailForm/MemberPersonalDetailForm";
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
-import MembershipForm from "@components/Forms/MembershipForm/MembershipForm";
+import PricingForm from "@components/Forms/PricingForm/PricingForm";
 import useSetupAccountPagehooks from "./SetupAccountPage.hooks";
 
 const SetupAccountPage = () => {
@@ -19,13 +19,13 @@ const SetupAccountPage = () => {
       )}
 
       {2 <= step && step <= 4 && (
-        <SetupAccountFormLayout step={step} setStep={setStep}>
+        <GettingStartedLayout step={step} setStep={setStep}>
           {step === 2 && (
-            <PersonalDetailForm data={data[role]} addData={addData} />
+            <MemberPersonalDetailForm data={data[role]} addData={addData} />
           )}
           {step === 3 && <SelectGymForm data={data[role]} addData={addData} />}
-          {step === 4 && <MembershipForm data={data[role]} addData={addData} />}
-        </SetupAccountFormLayout>
+          {step === 4 && <PricingForm data={data[role]} addData={addData} />}
+        </GettingStartedLayout>
       )}
     </SetupAccountPageLayout>
   );

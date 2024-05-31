@@ -1,8 +1,8 @@
 import { useCallback, useContext } from "react";
-import { SetupAccountFormContext } from "./SetupAccountFormLayout";
+import { GettingStartedContext } from "./GettingStartedLayout";
 
 const Form = ({ onSubmit, stepTitle, children }) => {
-  const { step, setStep } = useContext(SetupAccountFormContext);
+  const { step, setStep } = useContext(GettingStartedContext);
 
   const backButtonHandler = useCallback(() => {
     setStep((prevStep) => {

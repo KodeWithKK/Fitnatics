@@ -2,9 +2,9 @@ import { createContext, useMemo } from "react";
 import SideNavbar from "./SideNavbar";
 import Form from "./Form";
 
-export const SetupAccountFormContext = createContext();
+export const GettingStartedContext = createContext();
 
-const SetupAccountFormLayout = ({ step, setStep, children }) => {
+const GettingStartedLayout = ({ step, setStep, children }) => {
   const value = useMemo(() => {
     return {
       step,
@@ -13,7 +13,7 @@ const SetupAccountFormLayout = ({ step, setStep, children }) => {
   }, [step, setStep]);
 
   return (
-    <SetupAccountFormContext.Provider value={value}>
+    <GettingStartedContext.Provider value={value}>
       <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
         <SideNavbar currStep={step - 1} setStep={setStep} />
 
@@ -21,10 +21,10 @@ const SetupAccountFormLayout = ({ step, setStep, children }) => {
           {children}
         </div>
       </div>
-    </SetupAccountFormContext.Provider>
+    </GettingStartedContext.Provider>
   );
 };
 
-SetupAccountFormLayout.Form = Form;
+GettingStartedLayout.Form = Form;
 
-export default SetupAccountFormLayout;
+export default GettingStartedLayout;

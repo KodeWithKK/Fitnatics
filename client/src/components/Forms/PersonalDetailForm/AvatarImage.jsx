@@ -1,21 +1,23 @@
-import React from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 function AvatarImage({ name, height, width, file, onChange }) {
-  const [inputFile, setInputFile] = React.useState(file ?? "");
-  const avatarRef = React.useRef();
+  const [fileURL, setFileURL] = useState(null);
+  const avatarRef = useRef();
 
-  const fileURL = inputFile && URL.createObjectURL(inputFile);
+  useEffect(() => {
+    const url = file && URL.createObjectURL(file);
+    url && setFileURL(url);
+  }, [file]);
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (e) => {
       const nextFile = e.target.files[0];
       onChange({ name, value: nextFile });
-      setInputFile(nextFile);
     },
     [name, onChange]
   );
 
-  const handleAvatarInput = React.useCallback(() => {
+  const handleAvatarInput = useCallback(() => {
     avatarRef.current.click();
   }, []);
 

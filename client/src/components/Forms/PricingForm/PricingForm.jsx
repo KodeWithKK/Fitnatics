@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { LeftArrowIcon } from "../atoms/Icons";
-import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout/SetupAccountFormLayout";
+import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
 import PriceCard from "./PriceCard";
 
 const totalDisplayedCards = 2;
 const cardWidth = 306;
 
-const MembershipForm = () => {
+const PricingForm = () => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <SetupAccountFormLayout.Form stepTitle="Step 03 - Select a membership plan">
+    <GettingStartedLayout.Form stepTitle="Step 03 - Select a membership plan">
       <div className="place-items-center grid h-full">
         <div className="inline-flex justify-center items-center gap-5">
           <button
@@ -76,8 +76,8 @@ const MembershipForm = () => {
           </button>
         </div>
       </div>
-    </SetupAccountFormLayout.Form>
+    </GettingStartedLayout.Form>
   );
 };
 
-export default MembershipForm;
+export default PricingForm;

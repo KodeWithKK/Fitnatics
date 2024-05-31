@@ -1,24 +1,7 @@
-import { useMemo, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { SelectContext } from "./Select";
 
-import {
-  MaleIcon,
-  FemaleIcon,
-  BeginnerIcon,
-  IntermediateIcon,
-  AdvancedIcon,
-} from "../Icons";
-
-const IconMap = {
-  male: MaleIcon,
-  female: FemaleIcon,
-  beginner: BeginnerIcon,
-  intermediate: IntermediateIcon,
-  advanced: AdvancedIcon,
-};
-
-const Option = ({ value, children }) => {
-  const Icon = useMemo(() => IconMap[value], [value]);
+const Option = ({ value, Icon, children }) => {
   const { commonClass, OptionClass, setValueTextMap, onClickHandler } =
     useContext(SelectContext);
 

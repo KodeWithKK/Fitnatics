@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext } from "react";
+import { useState, useCallback, useContext, useEffect } from "react";
 import {
   checkName,
   checkPhoneNo,
@@ -6,11 +6,14 @@ import {
   checkHeight,
   checkWeight,
   isFormDataValid,
-} from "./errorCheckers";
+} from "./memberErrorCheckers";
 import { GlobalContext } from "@context/GlobalContextProvider";
+import { useQueryClient } from "@tanstack/react-query";
 
-const usePersonalDetailFormHooks = ({ data, addData }) => {
+const useMemberPersonalDetailFormHooks = ({ data, addData }) => {
   const [formData, setFormData] = useState({ ...data });
+  const queryClient = useQueryClient();
+
   const { addToast } = useContext(GlobalContext);
 
   const handleInput = useCallback(
@@ -56,6 +59,24 @@ const usePersonalDetailFormHooks = ({ data, addData }) => {
     }
   };
 
+  useEffect(() => {
+    const user = queryClient.getQueryData(["user"]);
+
+    if (user && !formData?.avatar) {
+      (async () => {
+        try {
+          const response = await fetch(user?.avatar);
+          const blob = await response.blob();
+          const filename = `user-profile-${window.crypto.randomUUID()}`;
+          const file = new File([blob], filename, { type: blob.type });
+          handleOnChange({ name: "avatar", value: file });
+        } catch (err) {
+          console.log(err.message);
+        }
+      })();
+    }
+  }, [queryClient, formData, handleOnChange]);
+
   return {
     formData,
     checkName,
@@ -69,4 +90,4 @@ const usePersonalDetailFormHooks = ({ data, addData }) => {
   };
 };
 
-export { usePersonalDetailFormHooks };
+export { useMemberPersonalDetailFormHooks };

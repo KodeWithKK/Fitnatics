@@ -1,10 +1,25 @@
 import AvatarImage from "./AvatarImage";
 import Input from "@components/comman/Input/Input";
 import Select from "@components/comman/Select/Select";
-import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout/SetupAccountFormLayout";
-import { usePersonalDetailFormHooks } from "./PersonalDetalForm.hooks";
+import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
+import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";
 
-const PersonalDetailForm = ({ data, addData }) => {
+import {
+  MemberIcon,
+  PhoneIcon,
+  DOBIcon,
+  GenderIcon,
+  MaleIcon,
+  FemaleIcon,
+  HeightIcon,
+  WeightIcon,
+  ExperienceIcon,
+  BeginnerIcon,
+  IntermediateIcon,
+  AdvancedIcon,
+} from "./Icons";
+
+const MemberPersonalDetailForm = ({ data, addData }) => {
   const {
     formData,
     checkName,
@@ -15,10 +30,10 @@ const PersonalDetailForm = ({ data, addData }) => {
     handleInput,
     handleOnChange,
     submitHandler,
-  } = usePersonalDetailFormHooks({ data, addData });
+  } = useMemberPersonalDetailFormHooks({ data, addData });
 
   return (
-    <SetupAccountFormLayout.Form
+    <GettingStartedLayout.Form
       onSubmit={submitHandler}
       stepTitle="Step 01 - Enter your personal details"
     >
@@ -37,6 +52,7 @@ const PersonalDetailForm = ({ data, addData }) => {
           <Input
             type="text"
             name="name"
+            Icon={MemberIcon}
             spellCheck="false"
             placeholder="Name"
             className={"border-gray-900"}
@@ -48,6 +64,7 @@ const PersonalDetailForm = ({ data, addData }) => {
           <Input
             type="number"
             name="phoneno"
+            Icon={PhoneIcon}
             spellCheck="false"
             placeholder="Phone Number"
             className={"border-gray-900"}
@@ -59,6 +76,7 @@ const PersonalDetailForm = ({ data, addData }) => {
           <Input
             type="text"
             name="dob"
+            Icon={DOBIcon}
             spellCheck="false"
             placeholder="DOB (DD/MM/YYYY)"
             className={"border-gray-900"}
@@ -74,15 +92,21 @@ const PersonalDetailForm = ({ data, addData }) => {
             placeholder={"Select Gender"}
             onChange={handleOnChange}
             value={formData?.gender ?? ""}
+            Icon={GenderIcon}
           >
-            <Select.Option value="male">Male</Select.Option>
-            <Select.Option value="female">Female</Select.Option>
+            <Select.Option value="male" Icon={MaleIcon}>
+              Male
+            </Select.Option>
+            <Select.Option value="female" Icon={FemaleIcon}>
+              Female
+            </Select.Option>
           </Select>
 
           <div className="flex gap-2">
             <Input
               type="number"
               name="height"
+              Icon={HeightIcon}
               spellCheck="false"
               placeholder="Height"
               className={"border-gray-900"}
@@ -97,6 +121,7 @@ const PersonalDetailForm = ({ data, addData }) => {
             <Input
               type="number"
               name="weight"
+              Icon={WeightIcon}
               spellCheck="false"
               placeholder="Weight"
               className={"border-gray-900"}
@@ -115,15 +140,22 @@ const PersonalDetailForm = ({ data, addData }) => {
             placeholder={"Select Workout Experience"}
             onChange={handleOnChange}
             value={formData?.workoutExperience ?? ""}
+            Icon={ExperienceIcon}
           >
-            <Select.Option value="beginner">Beginner</Select.Option>
-            <Select.Option value="intermediate">Intermediate</Select.Option>
-            <Select.Option value="advanced">Advanced</Select.Option>
+            <Select.Option value="beginner" Icon={BeginnerIcon}>
+              Beginner
+            </Select.Option>
+            <Select.Option value="intermediate" Icon={IntermediateIcon}>
+              Intermediate
+            </Select.Option>
+            <Select.Option value="advanced" Icon={AdvancedIcon}>
+              Advanced
+            </Select.Option>
           </Select>
         </div>
       </div>
-    </SetupAccountFormLayout.Form>
+    </GettingStartedLayout.Form>
   );
 };
 
-export default PersonalDetailForm;
+export default MemberPersonalDetailForm;

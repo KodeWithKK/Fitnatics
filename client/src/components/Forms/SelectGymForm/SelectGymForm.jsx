@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import GymCard from "./GymCard";
-import SetupAccountFormLayout from "@layouts/SetupAccountFormLayout/SetupAccountFormLayout";
+import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
 
 const SelectGymForm = ({ data, addData }) => {
   const [selectedGym, setSelectedGym] = useState(data?.gymLocation ?? "");
   const { addToast } = useContext(GlobalContext);
 
   return (
-    <SetupAccountFormLayout.Form
+    <GettingStartedLayout.Form
       onSubmit={(moveNextStep) => {
         if (selectedGym) {
           addData({ name: "gymLocation", value: selectedGym });
@@ -41,7 +41,7 @@ const SelectGymForm = ({ data, addData }) => {
           setSelectedGym={setSelectedGym}
         />
       </div>
-    </SetupAccountFormLayout.Form>
+    </GettingStartedLayout.Form>
   );
 };
 
