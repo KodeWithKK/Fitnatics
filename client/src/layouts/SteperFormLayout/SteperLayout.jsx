@@ -2,9 +2,9 @@ import { createContext, useMemo } from "react";
 import SideNavbar from "./SideNavbar";
 import Form from "./Form";
 
-export const GettingStartedContext = createContext();
+export const SteperLayoutContext = createContext();
 
-const GettingStartedLayout = ({ step, setStep, children }) => {
+const SteperLayout = ({ step, setStep, children }) => {
   const value = useMemo(() => {
     return {
       step,
@@ -13,7 +13,7 @@ const GettingStartedLayout = ({ step, setStep, children }) => {
   }, [step, setStep]);
 
   return (
-    <GettingStartedContext.Provider value={value}>
+    <SteperLayoutContext.Provider value={value}>
       <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
         <SideNavbar currStep={step - 1} setStep={setStep} />
 
@@ -21,10 +21,10 @@ const GettingStartedLayout = ({ step, setStep, children }) => {
           {children}
         </div>
       </div>
-    </GettingStartedContext.Provider>
+    </SteperLayoutContext.Provider>
   );
 };
 
-GettingStartedLayout.Form = Form;
+SteperLayout.Form = Form;
 
-export default GettingStartedLayout;
+export default SteperLayout;

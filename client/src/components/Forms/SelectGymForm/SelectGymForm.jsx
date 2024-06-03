@@ -1,17 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import GymCard from "./GymCard";
-import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
+import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 
-const SelectGymForm = ({ data, addData }) => {
-  const [selectedGym, setSelectedGym] = useState(data?.gymLocation ?? "");
+const SelectGymForm = ({ selectedGym, setSelectedGym }) => {
   const { addToast } = useContext(GlobalContext);
 
   return (
-    <GettingStartedLayout.Form
+    <SteperLayout.Form
       onSubmit={(moveNextStep) => {
         if (selectedGym) {
-          addData({ name: "gymLocation", value: selectedGym });
           moveNextStep();
         } else {
           addToast(
@@ -41,7 +39,7 @@ const SelectGymForm = ({ data, addData }) => {
           setSelectedGym={setSelectedGym}
         />
       </div>
-    </GettingStartedLayout.Form>
+    </SteperLayout.Form>
   );
 };
 

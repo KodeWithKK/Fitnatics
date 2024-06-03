@@ -22,6 +22,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+const NODE_ENV = process.env.NODE_ENV;
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -29,8 +31,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true, // Set to 'true' in production,
-      sameSite: "Strict",
+      secure: NODE_ENV === "dev" ? false : true,
+      sameSite: NODE_ENV === "dev" ? false : true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
     },
   })
@@ -41,6 +43,16 @@ app.use(passport.session());
 
 // importing strategies
 import "./services/google.strategy.js";
+import "./services/facebook.strategy.js";
+import "./services/twitter.strategy.js";
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
@@ -61,8 +73,6 @@ app.use((err, req, res, next) => {
       )
     );
   }
-
-  console.log(err);
 
   return res.status(500).json(
     new ApiResponse(

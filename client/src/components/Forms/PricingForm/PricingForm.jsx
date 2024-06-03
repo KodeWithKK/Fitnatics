@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LeftArrowIcon } from "../atoms/Icons";
-import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
+import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import PriceCard from "./PriceCard";
 
 const totalDisplayedCards = 2;
@@ -10,7 +10,7 @@ const PricingForm = () => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <GettingStartedLayout.Form stepTitle="Step 03 - Select a membership plan">
+    <SteperLayout.Form stepTitle="Step 03 - Select a membership plan">
       <div className="place-items-center grid h-full">
         <div className="inline-flex justify-center items-center gap-5">
           <button
@@ -76,7 +76,7 @@ const PricingForm = () => {
           </button>
         </div>
       </div>
-    </GettingStartedLayout.Form>
+    </SteperLayout.Form>
   );
 };
 

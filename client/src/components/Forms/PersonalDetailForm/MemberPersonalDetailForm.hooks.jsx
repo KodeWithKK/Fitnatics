@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import {
   checkName,
   checkPhoneNo,
@@ -6,12 +6,11 @@ import {
   checkHeight,
   checkWeight,
   isFormDataValid,
-} from "./memberErrorCheckers";
+} from "./memberValidators";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useQueryClient } from "@tanstack/react-query";
 
-const useMemberPersonalDetailFormHooks = ({ data, addData }) => {
-  const [formData, setFormData] = useState({ ...data });
+const useMemberPersonalDetailFormHooks = ({ formData, setFormData }) => {
   const queryClient = useQueryClient();
 
   const { addToast } = useContext(GlobalContext);
@@ -22,7 +21,7 @@ const useMemberPersonalDetailFormHooks = ({ data, addData }) => {
       const nextFormData = { ...formData, [name]: value };
       setFormData(nextFormData);
     },
-    [formData]
+    [formData, setFormData]
   );
 
   const handleOnChange = useCallback(
@@ -30,7 +29,7 @@ const useMemberPersonalDetailFormHooks = ({ data, addData }) => {
       const nextFormData = { ...formData, [name]: value };
       setFormData(nextFormData);
     },
-    [formData]
+    [formData, setFormData]
   );
 
   const submitHandler = async (moveNextStep) => {
@@ -54,31 +53,31 @@ const useMemberPersonalDetailFormHooks = ({ data, addData }) => {
 
     if (formData?.avatar && (await isFormDataValid(formData))) {
       console.log(formData);
-      addData({ value: formData });
       moveNextStep();
     }
   };
 
   useEffect(() => {
-    const user = queryClient.getQueryData(["user"]);
+    if (!formData?.avatar) {
+      const user = queryClient.getQueryData(["user"]);
 
-    if (user && !formData?.avatar) {
-      (async () => {
-        try {
-          const response = await fetch(user?.avatar);
-          const blob = await response.blob();
-          const filename = `user-profile-${window.crypto.randomUUID()}`;
-          const file = new File([blob], filename, { type: blob.type });
-          handleOnChange({ name: "avatar", value: file });
-        } catch (err) {
-          console.log(err.message);
-        }
-      })();
+      if (user && user?.avatar) {
+        (async () => {
+          try {
+            const response = await fetch(user?.avatar);
+            const blob = await response.blob();
+            const filename = `user-profile-${window.crypto.randomUUID()}.jpg`;
+            const file = new File([blob], filename, { type: blob.type });
+            handleOnChange({ name: "avatar", value: file });
+          } catch (err) {
+            console.log(err.message);
+          }
+        })();
+      }
     }
   }, [queryClient, formData, handleOnChange]);
 
   return {
-    formData,
     checkName,
     checkPhoneNo,
     checkDOB,

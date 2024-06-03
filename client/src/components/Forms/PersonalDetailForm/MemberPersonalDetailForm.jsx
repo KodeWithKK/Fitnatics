@@ -1,7 +1,7 @@
 import AvatarImage from "./AvatarImage";
 import Input from "@components/comman/Input/Input";
 import Select from "@components/comman/Select/Select";
-import GettingStartedLayout from "@layouts/GettingStartedLayout/GettingStartedLayout";
+import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";
 
 import {
@@ -19,9 +19,8 @@ import {
   AdvancedIcon,
 } from "./Icons";
 
-const MemberPersonalDetailForm = ({ data, addData }) => {
+const MemberPersonalDetailForm = ({ formData, setFormData }) => {
   const {
-    formData,
     checkName,
     checkPhoneNo,
     checkDOB,
@@ -30,10 +29,10 @@ const MemberPersonalDetailForm = ({ data, addData }) => {
     handleInput,
     handleOnChange,
     submitHandler,
-  } = useMemberPersonalDetailFormHooks({ data, addData });
+  } = useMemberPersonalDetailFormHooks({ formData, setFormData });
 
   return (
-    <GettingStartedLayout.Form
+    <SteperLayout.Form
       onSubmit={submitHandler}
       stepTitle="Step 01 - Enter your personal details"
     >
@@ -154,7 +153,7 @@ const MemberPersonalDetailForm = ({ data, addData }) => {
           </Select>
         </div>
       </div>
-    </GettingStartedLayout.Form>
+    </SteperLayout.Form>
   );
 };
 

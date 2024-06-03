@@ -5,8 +5,7 @@ import { useFetchUserData } from "@hooks/useFetchUserData";
 import ToastStackLayout from "@/layouts/ToastStackLayout";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
-import SetupAccountPage from "@pages/SetupAccountPage/SetupAccountPage";
-// import SetupAccountForm from "./components/Forms/SetupAccountForm";
+import GettingStartedPage from "@pages/GettingStartedPage/GettingStartedPage";
 
 function App() {
   const { toasts, removeToast } = React.useContext(GlobalContext);
@@ -24,7 +23,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={userData ? <SetupAccountPage /> : <AuthPage />}
+            element={userData ? <GettingStartedPage /> : <AuthPage />}
           />
           <Route path="/:nav" element={<MainAppPage />} />
         </Routes>

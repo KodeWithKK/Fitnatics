@@ -8,7 +8,7 @@ import {
   checkPassword,
   checkOTP,
   isLoginDataValid,
-} from "./errorCheckers";
+} from "./validators";
 
 function useAuthFormHooks() {
   const [displayType, setDisplayType] = useState("login");

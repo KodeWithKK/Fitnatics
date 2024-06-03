@@ -62,6 +62,26 @@ router
     strategyJWTAuthCookieHandler
   );
 
+// Facebook Auth Routes
+router.route("/login-facebook").get(passport.authenticate("facebook"));
+
+router
+  .route("/login-facebook/callback")
+  .get(
+    passport.authenticate("facebook", { session: false }),
+    strategyJWTAuthCookieHandler
+  );
+
+// Twitter Auth Routes
+router.route("/login-twitter").get(passport.authenticate("twitter"));
+
+router
+  .route("/login-twitter/callback")
+  .get(
+    passport.authenticate("twitter", { session: false }),
+    strategyJWTAuthCookieHandler
+  );
+
 // Secured Routes
 router.route("/logout").post(verifyJWT, logoutHandler);
 

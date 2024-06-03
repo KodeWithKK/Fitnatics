@@ -318,7 +318,7 @@ const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .clearCookie("connect.sid")
-    .redirect("http://localhost:5173");
+    .redirect("http://localhost:5173/");
 });
 
 export {

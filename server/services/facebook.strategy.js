@@ -1,29 +1,25 @@
 import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as FacebookStrategy } from "passport-facebook";
 import { User } from "../models/user.model.js";
 
 passport.use(
-  new GoogleStrategy(
+  new FacebookStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/api/v1/auth/login-google/callback",
-      scope: ["profile", "email"],
-      passReqToCallback: true,
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
+      callbackURL: "http://localhost:8000/api/v1/auth/login-facebook/callback",
+      profileFields: ["id", "displayName", "picture.type(large)", "email"],
     },
     async function (req, accessToken, refreshToken, profile, done) {
       try {
-        let user = await User.findOne({ googleId: profile.id });
+        let user = await User.findOne({ facebookId: profile.id });
 
         if (!user) {
           user = new User({
-            provider: "google",
-            googleId: profile.id,
+            provider: "facebook",
+            facebookId: profile.id,
             name: profile.displayName,
-            email: profile.emails[0].value,
-            avatar: profile?.photos
-              ?.at(0)
-              ?.value.replace(/s[0-9]+-c/, "s400-c"),
+            avatar: profile.photos?.at(0)?.value,
             accountSetupRequired: true,
           });
 
