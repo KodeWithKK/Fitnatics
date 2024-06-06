@@ -1,91 +1,91 @@
-import { useCallback, useContext, useEffect } from "react";
-import {
-  checkName,
-  checkPhoneNo,
-  checkDOB,
-  checkHeight,
-  checkWeight,
-  isFormDataValid,
-} from "./memberValidators";
-import { GlobalContext } from "@context/GlobalContextProvider";
+import { useState, useEffect, useContext, useMemo, useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { memberPersonalDetailSchema } from "./memberValidators";
 import { useQueryClient } from "@tanstack/react-query";
+import { GlobalContext } from "@context/GlobalContextProvider";
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { getFileFromUrl } from "@utils/getFileFromUrl";
 
-const useMemberPersonalDetailFormHooks = ({ formData, setFormData }) => {
-  const queryClient = useQueryClient();
-
+const useMemberPersonalDetailFormHooks = ({
+  memberPersonalData,
+  setMemberPersonalData,
+}) => {
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const { setStep } = useContext(GettingStartedContext);
   const { addToast } = useContext(GlobalContext);
 
-  const handleInput = useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      const nextFormData = { ...formData, [name]: value };
-      setFormData(nextFormData);
-    },
-    [formData, setFormData]
-  );
-
-  const handleOnChange = useCallback(
-    ({ name, value }) => {
-      const nextFormData = { ...formData, [name]: value };
-      setFormData(nextFormData);
-    },
-    [formData, setFormData]
-  );
-
-  const submitHandler = async (moveNextStep) => {
-    if (!formData?.avatar) {
-      addToast(
-        "warning",
-        "Profile Picture Required!",
-        "Profile picture is required to proceed the next step"
-      );
-      return;
-    }
-
-    if (!(await isFormDataValid(formData))) {
-      addToast(
-        "error",
-        "Invalid Form Data!",
-        "Enter valid form data to proceed the next step"
-      );
-      return;
-    }
-
-    if (formData?.avatar && (await isFormDataValid(formData))) {
-      console.log(formData);
-      moveNextStep();
-    }
-  };
+  const queryClient = useQueryClient();
+  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
   useEffect(() => {
-    if (!formData?.avatar) {
-      const user = queryClient.getQueryData(["user"]);
-
-      if (user && user?.avatar) {
-        (async () => {
-          try {
-            const response = await fetch(user?.avatar);
-            const blob = await response.blob();
-            const filename = `user-profile-${window.crypto.randomUUID()}.jpg`;
-            const file = new File([blob], filename, { type: blob.type });
-            handleOnChange({ name: "avatar", value: file });
-          } catch (err) {
-            console.log(err.message);
-          }
-        })();
-      }
+    if (user?.email) {
+      setIsEmailVerified(true);
     }
-  }, [queryClient, formData, handleOnChange]);
+  }, [user]);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(memberPersonalDetailSchema),
+    mode: "onChange",
+    defaultValues: async () => {
+      const data = { ...memberPersonalData };
+      data.avatar = data?.avatar ?? (await getFileFromUrl(user?.avatar)) ?? "";
+      data.name = data?.name ?? user?.name ?? "";
+      data.email = data?.email ?? user?.email ?? "";
+
+      Object.keys(data).forEach((key) => {
+        data[key] ??= "";
+      });
+
+      return data;
+    },
+  });
+
+  const onSuccess = useCallback(
+    (formData) => {
+      setMemberPersonalData(formData);
+      setStep((prevStep) => ++prevStep);
+    },
+    [setMemberPersonalData, setStep]
+  );
+
+  const onError = useCallback(
+    (error) => {
+      console.log(error);
+      if (error?.gender?.message || error?.workoutExperience?.message) {
+        addToast(
+          "error",
+          "All Fields are Required!",
+          "All Fields are Required to proceed the next step"
+        );
+      } else if (error?.avatar) {
+        addToast(
+          "warning",
+          "Profile Picture Required!",
+          "Profile picture is required to proceed the next step"
+        );
+      } else {
+        addToast(
+          "error",
+          "Invalid Form Data!",
+          "Enter valid form data to proceed the next step"
+        );
+      }
+    },
+    [addToast]
+  );
 
   return {
-    checkName,
-    checkPhoneNo,
-    checkDOB,
-    checkHeight,
-    checkWeight,
-    handleInput,
-    handleOnChange,
-    submitHandler,
+    isEmailVerified,
+    errors,
+    control,
+    register,
+    handleSubmit: handleSubmit(onSuccess, onError),
   };
 };
 

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 
-function AvatarImage({ name, height, width, file, onChange }) {
+function AvatarImage({ height, width, file, onChange }) {
   const [fileURL, setFileURL] = useState(null);
   const avatarRef = useRef();
 
@@ -12,9 +12,9 @@ function AvatarImage({ name, height, width, file, onChange }) {
   const handleChange = useCallback(
     (e) => {
       const nextFile = e.target.files[0];
-      onChange({ name, value: nextFile });
+      onChange(nextFile);
     },
-    [name, onChange]
+    [onChange]
   );
 
   const handleAvatarInput = useCallback(() => {
@@ -29,7 +29,6 @@ function AvatarImage({ name, height, width, file, onChange }) {
         onClick={handleAvatarInput}
       >
         <input
-          name={name}
           ref={avatarRef}
           className="hidden w-full h-full"
           type="file"

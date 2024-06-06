@@ -1,11 +1,14 @@
 import AvatarImage from "./AvatarImage";
-import Input from "@components/comman/Input/Input";
-import Select from "@components/comman/Select/Select";
+import Input from "@components/_comman/Input/Input";
+import Select from "@components/_comman/Select/Select";
+import ErrorMessage from "../_comman/ErrorMessage";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";
+import { Controller } from "react-hook-form";
 
 import {
   MemberIcon,
+  EmailIcon,
   PhoneIcon,
   DOBIcon,
   GenderIcon,
@@ -19,138 +22,180 @@ import {
   AdvancedIcon,
 } from "./Icons";
 
-const MemberPersonalDetailForm = ({ formData, setFormData }) => {
-  const {
-    checkName,
-    checkPhoneNo,
-    checkDOB,
-    checkHeight,
-    checkWeight,
-    handleInput,
-    handleOnChange,
-    submitHandler,
-  } = useMemberPersonalDetailFormHooks({ formData, setFormData });
+const MemberPersonalDetailForm = ({
+  memberPersonalData,
+  setMemberPersonalData,
+}) => {
+  const { isEmailVerified, errors, control, register, handleSubmit } =
+    useMemberPersonalDetailFormHooks({
+      memberPersonalData,
+      setMemberPersonalData,
+    });
 
   return (
     <SteperLayout.Form
-      onSubmit={submitHandler}
+      onSubmit={handleSubmit}
       stepTitle="Step 01 - Enter your personal details"
     >
       <div className="mx-auto p-6 pb-2 max-w-[516px]">
         <div className="flex justify-center mb-4">
-          <AvatarImage
+          <Controller
             name="avatar"
-            width="172px"
-            height="172px"
-            file={formData?.avatar ?? ""}
-            onChange={handleOnChange}
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <AvatarImage
+                file={field.value}
+                onChange={field.onChange}
+                width="172px"
+                height="172px"
+              />
+            )}
           />
         </div>
 
         <div>
           <Input
             type="text"
-            name="name"
+            {...register("name")}
             Icon={MemberIcon}
             spellCheck="false"
             placeholder="Name"
             className={"border-gray-900"}
-            onInput={handleInput}
-            checkError={checkName}
-            value={formData?.name ?? ""}
+            hasError={errors?.name?.message}
             required={true}
           />
+
+          <ErrorMessage>{errors?.name?.message}</ErrorMessage>
+
+          <Input
+            type="email"
+            {...register("email")}
+            Icon={EmailIcon}
+            spellCheck="false"
+            placeholder="Email"
+            className={"border-gray-900"}
+            disabled={isEmailVerified}
+            hasError={errors?.email?.message}
+            required={true}
+          />
+
+          <ErrorMessage>{errors?.email?.message}</ErrorMessage>
+
           <Input
             type="number"
-            name="phoneno"
+            {...register("phoneno")}
             Icon={PhoneIcon}
             spellCheck="false"
             placeholder="Phone Number"
             className={"border-gray-900"}
-            onInput={handleInput}
-            checkError={checkPhoneNo}
-            value={formData?.phoneno ?? ""}
+            hasError={errors?.phoneno?.message}
             required={true}
           />
+
+          <ErrorMessage>{errors?.phoneno?.message}</ErrorMessage>
+
           <Input
             type="text"
-            name="dob"
+            {...register("dob")}
             Icon={DOBIcon}
             spellCheck="false"
             placeholder="DOB (DD/MM/YYYY)"
             className={"border-gray-900"}
-            onInput={handleInput}
-            checkError={checkDOB}
-            value={formData?.dob ?? ""}
+            hasError={errors?.dob?.message}
             required={true}
           />
 
-          <Select
+          <ErrorMessage>{errors?.dob?.message}</ErrorMessage>
+
+          <Controller
             name="gender"
-            commonClass="border-gray-900"
-            placeholder={"Select Gender"}
-            onChange={handleOnChange}
-            value={formData?.gender ?? ""}
-            Icon={GenderIcon}
-          >
-            <Select.Option value="male" Icon={MaleIcon}>
-              Male
-            </Select.Option>
-            <Select.Option value="female" Icon={FemaleIcon}>
-              Female
-            </Select.Option>
-          </Select>
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <Select
+                value={field.value}
+                onChange={field.onChange}
+                Icon={GenderIcon}
+                commonClass="border-gray-900"
+                placeholder={"Select Gender"}
+              >
+                <Select.Option Icon={MaleIcon} value="male" label="Male" />
+                <Select.Option
+                  Icon={FemaleIcon}
+                  value="female"
+                  label="Female"
+                />
+              </Select>
+            )}
+          />
 
           <div className="flex gap-2">
-            <Input
-              type="number"
-              name="height"
-              Icon={HeightIcon}
-              spellCheck="false"
-              placeholder="Height"
-              className={"border-gray-900"}
-              onInput={handleInput}
-              checkError={checkHeight}
-              value={formData?.height ?? ""}
-              required={true}
-            >
-              <Input.RAside>cm</Input.RAside>
-            </Input>
+            <div>
+              <Input
+                type="number"
+                {...register("height")}
+                Icon={HeightIcon}
+                spellCheck="false"
+                placeholder="Height"
+                className={"border-gray-900"}
+                hasError={errors?.height?.message}
+                required={true}
+              >
+                <Input.RAside>cm</Input.RAside>
+              </Input>
 
-            <Input
-              type="number"
-              name="weight"
-              Icon={WeightIcon}
-              spellCheck="false"
-              placeholder="Weight"
-              className={"border-gray-900"}
-              onInput={handleInput}
-              checkError={checkWeight}
-              value={formData?.weight ?? ""}
-              required={true}
-            >
-              <Input.RAside>Kg</Input.RAside>
-            </Input>
+              <ErrorMessage>{errors?.height?.message}</ErrorMessage>
+            </div>
+
+            <div>
+              <Input
+                type="number"
+                {...register("weight")}
+                Icon={WeightIcon}
+                spellCheck="false"
+                placeholder="Weight"
+                className={"border-gray-900"}
+                hasError={errors?.weight?.message}
+                required={true}
+              >
+                <Input.RAside>Kg</Input.RAside>
+              </Input>
+
+              <ErrorMessage>{errors?.weight?.message}</ErrorMessage>
+            </div>
           </div>
 
-          <Select
+          <Controller
             name="workoutExperience"
-            commonClass="border-gray-900"
-            placeholder={"Select Workout Experience"}
-            onChange={handleOnChange}
-            value={formData?.workoutExperience ?? ""}
-            Icon={ExperienceIcon}
-          >
-            <Select.Option value="beginner" Icon={BeginnerIcon}>
-              Beginner
-            </Select.Option>
-            <Select.Option value="intermediate" Icon={IntermediateIcon}>
-              Intermediate
-            </Select.Option>
-            <Select.Option value="advanced" Icon={AdvancedIcon}>
-              Advanced
-            </Select.Option>
-          </Select>
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <Select
+                value={field.value}
+                onChange={field.onChange}
+                Icon={ExperienceIcon}
+                commonClass="border-gray-900"
+                placeholder={"Select Workout Experience"}
+              >
+                <Select.Option
+                  Icon={BeginnerIcon}
+                  value="beginner"
+                  label="Beginner"
+                />
+                <Select.Option
+                  Icon={IntermediateIcon}
+                  value="intermediate"
+                  label="Intermediate"
+                />
+                <Select.Option
+                  Icon={AdvancedIcon}
+                  value="advanced"
+                  label="Advanced"
+                />
+              </Select>
+            )}
+          />
         </div>
       </div>
     </SteperLayout.Form>

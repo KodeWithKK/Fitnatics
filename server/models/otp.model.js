@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+// Used with:
+
+// signup-user-verification
+// strategy-email-verification
+// forget-password
+
 const otpSchema = new mongoose.Schema(
   {
     email: {
@@ -9,7 +15,6 @@ const otpSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     otp: {
       type: String,

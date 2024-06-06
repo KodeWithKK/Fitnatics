@@ -1,16 +1,16 @@
 import { useContext, useEffect } from "react";
 import { SelectContext } from "./Select";
 
-const Option = ({ value, Icon, children }) => {
-  const { commonClass, OptionClass, setValueTextMap, onClickHandler } =
+const Option = ({ Icon, value, label }) => {
+  const { commonClass, OptionClass, setValueLabelMap, onClickHandler } =
     useContext(SelectContext);
 
   useEffect(() => {
-    setValueTextMap((prevValue) => {
-      const nextValue = { ...prevValue, [value]: children };
+    setValueLabelMap((prevValue) => {
+      const nextValue = { ...prevValue, [value]: label };
       return nextValue;
     });
-  }, [value, children, setValueTextMap]);
+  }, [value, label, setValueLabelMap]);
 
   return (
     <button
@@ -26,7 +26,7 @@ const Option = ({ value, Icon, children }) => {
         />
       )}
 
-      <span>{children}</span>
+      <span>{label}</span>
     </button>
   );
 };

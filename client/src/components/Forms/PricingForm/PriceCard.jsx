@@ -1,4 +1,4 @@
-import { CheckIcon } from "../atoms/Icons";
+import { CheckIcon } from "./Icons";
 
 function PriceCard({ duration, orginalPrice, dicountedPrice }) {
   return (

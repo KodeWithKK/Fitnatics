@@ -1,8 +1,4 @@
-import ActiveNavitemIndicator from "./ActiveNavitemIndicator";
-
-const navItems = ["Personal Details", "Gym Selection", "Membership"];
-
-function SideNavbar({ currStep, setStep }) {
+function SideNavbar({ currStep, setStep, navItems }) {
   return (
     <aside className="px-4 w-[396px]">
       <div className="mt-4 pb-2 text-center nb-1">
@@ -16,7 +12,10 @@ function SideNavbar({ currStep, setStep }) {
 
       <div className="flex gap-4 mt-[22px] h-fit">
         <div className="relative bg-gray-800 rounded-full w-[3px]">
-          <ActiveNavitemIndicator currStep={currStep} />
+          <ActiveNavitemIndicator
+            currStep={currStep}
+            totalSteps={navItems.length}
+          />
         </div>
 
         {/* FORM NAV BUTTONS */}
@@ -25,7 +24,7 @@ function SideNavbar({ currStep, setStep }) {
             <button
               key={window.crypto.randomUUID()}
               type="button"
-              className="relative py-1.5 text-left"
+              className="relative py-[4px] text-[15px] text-left"
               onClick={() => setStep(idx + 2)}
             >
               <span
@@ -40,6 +39,15 @@ function SideNavbar({ currStep, setStep }) {
         </div>
       </div>
     </aside>
+  );
+}
+
+function ActiveNavitemIndicator({ currStep, totalSteps }) {
+  return (
+    <div
+      className={`top-0 absolute w-full bg-blue-500 transition-all duration-700 rounded-full`}
+      style={{ height: `calc(100% / ${totalSteps} * ${currStep})` }}
+    ></div>
   );
 }
 

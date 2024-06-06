@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LeftArrowIcon } from "../atoms/Icons";
+import { LeftMoveIcon } from "./Icons";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import PriceCard from "./PriceCard";
 
@@ -10,7 +10,12 @@ const PricingForm = () => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <SteperLayout.Form stepTitle="Step 03 - Select a membership plan">
+    <SteperLayout.Form
+      stepTitle="Step 03 - Select a membership plan"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       <div className="place-items-center grid h-full">
         <div className="inline-flex justify-center items-center gap-5">
           <button
@@ -21,7 +26,7 @@ const PricingForm = () => {
             onClick={() => setActiveIndex(activeIndex - 1)}
             disabled={activeIndex <= 0}
           >
-            <LeftArrowIcon className="-ml-1 h-6 text-gray-500/[.8]" />
+            <LeftMoveIcon className="-ml-1 h-6 text-gray-500/[.8]" />
           </button>
           <div
             className={`overflow-hidden`}
@@ -72,7 +77,7 @@ const PricingForm = () => {
             onClick={() => setActiveIndex(activeIndex + 1)}
             disabled={activeIndex >= 5 - totalDisplayedCards}
           >
-            <LeftArrowIcon className="-mr-1 h-6 text-gray-500/[.8] rotate-180" />
+            <LeftMoveIcon className="-mr-1 h-6 text-gray-500/[.8] rotate-180" />
           </button>
         </div>
       </div>

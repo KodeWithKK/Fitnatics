@@ -1,25 +1,29 @@
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import GymCard from "./GymCard";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 
 const SelectGymForm = ({ selectedGym, setSelectedGym }) => {
   const { addToast } = useContext(GlobalContext);
+  const { setStep } = useContext(GettingStartedContext);
 
   return (
     <SteperLayout.Form
-      onSubmit={(moveNextStep) => {
-        if (selectedGym) {
-          moveNextStep();
-        } else {
+      stepTitle="Step 02 - Select a Gym"
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        if (!selectedGym) {
           addToast(
             "warning",
             "Select a Gym!",
             "Select a gym to proceed to the next step"
           );
+        } else {
+          setStep((prevStep) => ++prevStep);
         }
       }}
-      stepTitle="Step 02 - Select a Gym"
     >
       <div className="flex justify-center items-center gap-3 p-6 h-full">
         <GymCard

@@ -32,7 +32,7 @@ const localLoginHandler = asyncHandler(async (req, res) => {
         {},
         {
           error: {
-            title: "User already exist!",
+            title: "User already exists!",
             message: `An account with this email already created with ${user.provider}`,
           },
         }
@@ -153,7 +153,7 @@ const generateOTPHandler = asyncHandler(async (req, res) => {
   const mailOptions = {
     from: "kodewithkk@gmail.com",
     to: email,
-    subject: "Hello from Fitnatics",
+    subject: "OTP for user Verifcation!",
     text: `Your OTP for user verification is ${otp.otp}.`,
   };
 
@@ -289,7 +289,13 @@ const logoutHandler = (req, res) => {
 };
 
 const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
-  const { accessToken, refreshToken } = req?.user;
+  const { accessToken, refreshToken, error } = req?.user;
+
+  if (error) {
+    return res
+      .status(400)
+      .redirect("http://localhost:5173/error/account-already-exists");
+  }
 
   if (!accessToken || !refreshToken) {
     return res
@@ -306,7 +312,9 @@ const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
           }
         )
       )
-      .cookie("authStatus", "failed");
+      .cookie("authStatus", "failed")
+      .clearCookie("connect.sid")
+      .redirect("http://localhost:5173/");
   }
 
   const options = {
@@ -321,10 +329,78 @@ const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
     .redirect("http://localhost:5173/");
 });
 
+const strategEmailVerficationHandler = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "Email Required!",
+            message: "Please provide email generate OTP!",
+          },
+        }
+      )
+    );
+  }
+
+  await Otp.deleteOne({ email });
+
+  const otp = await Otp.create({
+    email,
+    otp: crypto
+      .randomInt(0, 10 ** 6)
+      .toString()
+      .padStart(6, "0"),
+  });
+
+  if (!otp) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "OTP Generation Failed!",
+            message: "Something went wrong while generating the otp",
+          },
+        }
+      )
+    );
+  }
+
+  setTimeout(async () => {
+    await Otp.deleteOne({ _id: otp?._id });
+  }, 15 * 60 * 1000);
+
+  const mailOptions = {
+    from: "Fitnatics",
+    to: email,
+    subject: "OTP for email Verifcation!",
+    text: `Your OTP for email verification is ${otp.otp}.`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email: ", error);
+    } else {
+      console.log("Email sent: ", info.response);
+    }
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "OTP sent to your email"));
+});
+
 export {
   localLoginHandler,
   generateOTPHandler,
   verifyOTPHandler,
   logoutHandler,
   strategyJWTAuthCookieHandler,
+  strategEmailVerficationHandler,
 };

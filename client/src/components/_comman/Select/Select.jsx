@@ -17,37 +17,26 @@ const Select = ({
   children,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [valueTextMap, setValueTextMap] = useState({});
-  const [selectedValue, setSelectedValue] = useState(value ?? "");
+  const [valueLabelMap, setValueLabelMap] = useState({});
 
   const onClickHandler = useCallback(
     (value) => {
-      onChange && onChange({ name, value });
-      setSelectedValue(value);
+      onChange && onChange(value);
       setIsCollapsed(true);
     },
-    [name, onChange]
+    [onChange]
   );
 
   const memoValue = useMemo(() => {
     return {
-      selectedValue,
       isCollapsed,
       commonClass,
       OptionsClass,
       OptionClass,
-      setSelectedValue,
-      setValueTextMap,
+      setValueLabelMap,
       onClickHandler,
     };
-  }, [
-    commonClass,
-    OptionsClass,
-    OptionClass,
-    isCollapsed,
-    selectedValue,
-    onClickHandler,
-  ]);
+  }, [isCollapsed, commonClass, OptionsClass, OptionClass, onClickHandler]);
 
   return (
     <SelectContext.Provider value={memoValue}>
@@ -70,14 +59,12 @@ const Select = ({
             />
           )}
 
-          {!selectedValue ? (
+          {!value ? (
             <span className={"text-gray-700"}>
               {placeholder ?? "Select Option"}
             </span>
           ) : (
-            <span className={"text-gray-100 pr-2"}>
-              {valueTextMap[selectedValue]}
-            </span>
+            <span className={"text-gray-100 pr-2"}>{valueLabelMap[value]}</span>
           )}
 
           <DownArrow

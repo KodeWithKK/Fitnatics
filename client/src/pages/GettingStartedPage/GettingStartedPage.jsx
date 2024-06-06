@@ -1,3 +1,4 @@
+import { useMemo, createContext } from "react";
 import GettingStartedPageLayout from "@layouts/GettingStartedPageLayout";
 import UserIdentifierForm from "@components/Forms/UserIdentifierForm/UserIdentifierForm";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
@@ -5,6 +6,8 @@ import MemberPersonalDetailForm from "@components/Forms/PersonalDetailForm/Membe
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
 import PricingForm from "@components/Forms/PricingForm/PricingForm";
 import useGettingStartedPagehooks from "./GettingStartedPage.hooks";
+
+export const GettingStartedContext = createContext();
 
 const GettingStartedPage = () => {
   const {
@@ -18,32 +21,45 @@ const GettingStartedPage = () => {
     setMemberSelectedGym,
   } = useGettingStartedPagehooks();
 
-  return (
-    <GettingStartedPageLayout>
-      {step === 1 && (
-        <div className="place-items-center grid -mt-8 h-full">
-          <UserIdentifierForm role={role} setRole={setRole} setStep={setStep} />
-        </div>
-      )}
+  const value = useMemo(() => {
+    return {
+      step,
+      setStep,
+    };
+  }, [step, setStep]);
 
-      {2 <= step && step <= 4 && (
-        <SteperLayout step={step} setStep={setStep}>
-          {step === 2 && (
-            <MemberPersonalDetailForm
-              formData={memberPersonalData}
-              setFormData={setMemberPersonalData}
+  return (
+    <GettingStartedContext.Provider value={value}>
+      <GettingStartedPageLayout>
+        {step === 1 && (
+          <div className="place-items-center grid -mt-8 h-full">
+            <UserIdentifierForm
+              role={role}
+              setRole={setRole}
+              setStep={setStep}
             />
-          )}
-          {step === 3 && (
-            <SelectGymForm
-              selectedGym={memberSelectedGym}
-              setSelectedGym={setMemberSelectedGym}
-            />
-          )}
-          {step === 4 && <PricingForm />}
-        </SteperLayout>
-      )}
-    </GettingStartedPageLayout>
+          </div>
+        )}
+
+        {2 <= step && step <= 4 && (
+          <SteperLayout step={step} setStep={setStep}>
+            {step === 2 && (
+              <MemberPersonalDetailForm
+                memberPersonalData={memberPersonalData}
+                setMemberPersonalData={setMemberPersonalData}
+              />
+            )}
+            {step === 3 && (
+              <SelectGymForm
+                selectedGym={memberSelectedGym}
+                setSelectedGym={setMemberSelectedGym}
+              />
+            )}
+            {step === 4 && <PricingForm />}
+          </SteperLayout>
+        )}
+      </GettingStartedPageLayout>
+    </GettingStartedContext.Provider>
   );
 };
 

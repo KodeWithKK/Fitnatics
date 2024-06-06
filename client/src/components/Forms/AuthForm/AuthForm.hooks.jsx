@@ -1,34 +1,27 @@
 import { useState, useCallback, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema, signupSchema } from "./validators";
+import { useMutation } from "@tanstack/react-query";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { makePostRequest } from "@api/api";
-import { useMutation } from "@tanstack/react-query";
-
-import {
-  checkEmail,
-  checkPassword,
-  checkOTP,
-  isLoginDataValid,
-} from "./validators";
 
 function useAuthFormHooks() {
   const [displayType, setDisplayType] = useState("login");
   const [otpGeneratedAt, setOtpGeneratedAt] = useState(null);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    otp: "",
-  });
-
   const { addToast } = useContext(GlobalContext);
 
-  const handleInput = useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      const nextFormData = { ...formData, [name]: value };
-      setFormData(nextFormData);
-    },
-    [formData]
-  );
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(displayType === "login" ? loginSchema : signupSchema),
+    mode: "onChange",
+  });
+
+  const formData = watch();
 
   const { isPending: isOtpReqPending, mutate: generateOTP } = useMutation({
     mutationFn: async () => {
@@ -55,27 +48,21 @@ function useAuthFormHooks() {
     addToast("info", "OTP Resended!", "A new OTP is sent to your email");
   }, [generateOTP, addToast]);
 
-  const { isPending: isLoginReqPending, mutate: loginSubmitHandler } =
+  const onLoginValidationError = () => {
+    addToast(
+      "error",
+      "Invalid form data!",
+      "Enter valid form data to continue with email"
+    );
+  };
+
+  const { isPending: isLoginReqPending, mutate: onLoginValidationSuccess } =
     useMutation({
       mutationFn: async () => {
-        const isValid = await isLoginDataValid(formData);
-
-        console.log(isValid);
-
-        if (!isValid) {
-          throw {
-            title: "Invalid form data!",
-            message: "Enter valid form data to continue with email",
-          };
-        } else {
-          await makePostRequest(
-            "http://localhost:8000/api/v1/auth/login-local",
-            {
-              email: formData?.email,
-              password: formData?.password,
-            }
-          );
-        }
+        await makePostRequest("http://localhost:8000/api/v1/auth/login-local", {
+          email: formData?.email,
+          password: formData?.password,
+        });
       },
       onSuccess: () => {
         window.location.href = "/";
@@ -90,48 +77,51 @@ function useAuthFormHooks() {
       },
     });
 
-  const { isPending: isOTPVerifcationReqPending, mutate: signupSubmitHandler } =
-    useMutation({
-      mutationFn: async () => {
-        const otp = formData.otp;
+  const onSignupValidationError = () => {
+    addToast(
+      "error",
+      "6 Digit OTP Required!",
+      "A 6 digit OTP is required for authentication"
+    );
+  };
 
-        if (otp.length != 6) {
-          addToast(
-            "error",
-            "6 Digit OTP Required!",
-            "A 6 digit OTP is required for authentication"
-          );
-        } else {
-          await makePostRequest(
-            "http://localhost:8000/api/v1/auth/verify-otp",
-            {
-              email: formData?.email,
-              password: formData?.password,
-              otp,
-            }
-          );
-        }
-      },
-      onSuccess: () => {
-        window.location.href = "/";
-      },
-      onError: async (error) => {
-        addToast("error", error?.title, error?.message);
-      },
-    });
+  const {
+    isPending: isOTPSignupReqPending,
+    mutate: onSignupValidationSuccess,
+  } = useMutation({
+    mutationFn: async () => {
+      await makePostRequest("http://localhost:8000/api/v1/auth/verify-otp", {
+        email: formData.email,
+        password: formData.password,
+        otp: formData.otp,
+      });
+    },
+    onSuccess: () => {
+      window.location.href = "/";
+    },
+    onError: async (error) => {
+      addToast("error", error?.title, error?.message);
+    },
+  });
+
+  const isRequestPending =
+    isOtpReqPending || isLoginReqPending || isOTPSignupReqPending;
+
+  const onSubmit =
+    displayType == "login"
+      ? onLoginValidationSuccess
+      : onSignupValidationSuccess;
+
+  const onError =
+    displayType == "login" ? onLoginValidationError : onSignupValidationError;
 
   return {
     displayType,
-    formData,
     otpGeneratedAt,
-    checkEmail,
-    checkPassword,
-    checkOTP,
-    isRequestPending:
-      isOtpReqPending || isLoginReqPending || isOTPVerifcationReqPending,
-    submitHandler:
-      displayType == "login" ? loginSubmitHandler : signupSubmitHandler,
-    handleInput,
+    isRequestPending,
+    errors,
+    register,
+    handleSubmit: handleSubmit(onSubmit, onError),
     resendOTPHandler,
   };
 }

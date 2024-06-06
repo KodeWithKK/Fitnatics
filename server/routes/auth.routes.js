@@ -10,6 +10,7 @@ import {
   verifyOTPHandler,
   logoutHandler,
   strategyJWTAuthCookieHandler,
+  strategEmailVerficationHandler,
 } from "./../controller/auth.controller.js";
 
 function uploadMiddleware(req, res, next) {
@@ -84,5 +85,6 @@ router
 
 // Secured Routes
 router.route("/logout").post(verifyJWT, logoutHandler);
+router.route("/verify-email").post(verifyJWT, strategEmailVerficationHandler);
 
 export default router;

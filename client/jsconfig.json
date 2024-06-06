@@ -1,5 +1,5 @@
-// for configuring it with VSCode intelliSense to recognize absolute import paths
 {
+  // for configuring it with VSCode intelliSense to recognize absolute import paths
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {

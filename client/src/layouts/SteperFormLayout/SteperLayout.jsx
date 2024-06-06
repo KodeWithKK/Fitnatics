@@ -1,27 +1,33 @@
-import { createContext, useMemo } from "react";
+import { useState, useMemo, useContext, useEffect } from "react";
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import SideNavbar from "./SideNavbar";
 import Form from "./Form";
+import { useQueryClient } from "@tanstack/react-query";
 
-export const SteperLayoutContext = createContext();
+const memberNavItems = ["Personal Details", "Select a Gym", "Choose Plan"];
 
-const SteperLayout = ({ step, setStep, children }) => {
-  const value = useMemo(() => {
-    return {
-      step,
-      setStep,
-    };
-  }, [step, setStep]);
+const SteperLayout = ({ children }) => {
+  const [navItems, setNavItems] = useState([...memberNavItems]);
+  const { step, setStep } = useContext(GettingStartedContext);
+  const queryClient = useQueryClient();
+  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
+
+  useEffect(() => {
+    if (user?.email) {
+      setNavItems((prevNavItems) =>
+        prevNavItems.filter((item) => item !== "Verify Email")
+      );
+    }
+  }, [user]);
 
   return (
-    <SteperLayoutContext.Provider value={value}>
-      <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
-        <SideNavbar currStep={step - 1} setStep={setStep} />
+    <div className="flex border-gray-900 bg-gray-950 border rounded-md h-full">
+      <SideNavbar currStep={step - 1} setStep={setStep} navItems={navItems} />
 
-        <div className="border-gray-900 bg-gray-900/[.55] border-l rounded-md w-full h-full">
-          {children}
-        </div>
+      <div className="border-gray-900 bg-gray-900/[.55] border-l rounded-md w-full h-full">
+        {children}
       </div>
-    </SteperLayoutContext.Provider>
+    </div>
   );
 };
 

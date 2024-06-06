@@ -1,4 +1,6 @@
-import Input from "@components/comman/Input/Input";
+import Input from "@components/_comman/Input/Input";
+import ErrorMessage from "../_comman/ErrorMessage";
+import OtpTimer from "./OtpTimer";
 import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
 import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";
 import TwitterAuthButton from "./AuthButtons/TwitterAuthButton";
@@ -9,24 +11,18 @@ import { EmailIcon, PasswordIcon, OtpIcon } from "./Icons";
 const AuthForm = () => {
   const {
     displayType,
-    formData,
     otpGeneratedAt,
     isRequestPending,
-    checkEmail,
-    checkPassword,
-    checkOTP,
-    submitHandler,
-    handleInput,
+    errors,
+    register,
+    handleSubmit,
     resendOTPHandler,
   } = useAuthFormHooks();
 
   return (
     <form
       className="space-y-6 my-auto w-full h-fit text-gray-200"
-      onSubmit={(e) => {
-        e.preventDefault();
-        submitHandler();
-      }}
+      onSubmit={handleSubmit}
     >
       <h2 className="mb-4 text-center">
         <a className="font-bold text-brand uppercase tracking-wide" href="/">
@@ -60,43 +56,46 @@ const AuthForm = () => {
         <div>
           <Input
             type="email"
-            name="email"
+            {...register("email")}
             Icon={EmailIcon}
             placeholder="Email"
-            value={formData.email}
-            onInput={handleInput}
-            checkError={checkEmail}
-            required={true}
             spellCheck={false}
+            required={true}
+            hasError={errors?.email?.message}
             disabled={isRequestPending || displayType === "signup"}
           />
 
+          <ErrorMessage>{errors?.email?.message}</ErrorMessage>
+
           <Input
             type="password"
-            name="password"
+            {...register("password")}
             Icon={PasswordIcon}
             placeholder="Password"
-            value={formData.password}
-            onInput={handleInput}
-            checkError={checkPassword}
-            required={true}
             spellCheck={false}
+            required={true}
+            hasError={errors?.password?.message}
             disabled={isRequestPending || displayType === "signup"}
           />
+
+          <ErrorMessage>{errors?.password?.message}</ErrorMessage>
 
           {displayType === "signup" && (
             <Input
               type="number"
-              name="otp"
+              {...register("otp")}
               Icon={OtpIcon}
               placeholder="OTP"
-              value={formData.otp}
-              onInput={handleInput}
-              checkError={checkOTP}
-              otpGeneratedAt={otpGeneratedAt}
               required={true}
-            />
+              hasError={errors?.otp?.message}
+            >
+              <Input.RAside variant="transparent">
+                <OtpTimer otpGeneratedAt={otpGeneratedAt} />
+              </Input.RAside>
+            </Input>
           )}
+
+          <ErrorMessage>{errors?.otp?.message}</ErrorMessage>
 
           <div className="flex justify-between text-[14px] text-gray-500">
             <button type="button" className="underline underline-offset-[3px]">

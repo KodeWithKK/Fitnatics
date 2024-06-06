@@ -20,6 +20,11 @@ const userSchema = mongoose.Schema(
       unique: true,
       sparse: true,
     },
+    twitterId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
     name: {
       type: String,
       trim: true,
@@ -28,6 +33,7 @@ const userSchema = mongoose.Schema(
       type: String,
       trim: true,
       lowercase: true,
+      sparse: true,
       unique: true,
     },
     password: {

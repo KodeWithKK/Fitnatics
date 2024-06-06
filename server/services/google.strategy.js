@@ -13,26 +13,45 @@ passport.use(
     },
     async function (req, accessToken, refreshToken, profile, done) {
       try {
-        let user = await User.findOne({ googleId: profile.id });
+        let googleUser = await User.findOne({ googleId: profile.id });
+        let otherUser = await User.findOne({
+          email: profile.emails?.at(0)?.value,
+        });
 
-        if (!user) {
-          user = new User({
+        let error, accessToken, refreshToken;
+
+        if (!googleUser && otherUser) {
+          error = {
+            title: "User already exists!",
+            message: `An account with this email already created with ${
+              otherUser.provider == "local"
+                ? "email and password"
+                : otherUser.provider
+            }`,
+          };
+        }
+
+        if (!googleUser && !otherUser) {
+          googleUser = new User({
             provider: "google",
             googleId: profile.id,
             name: profile.displayName,
-            email: profile.emails[0].value,
+            email: profile.emails?.at(0)?.value,
             avatar: profile?.photos
               ?.at(0)
               ?.value.replace(/s[0-9]+-c/, "s400-c"),
             accountSetupRequired: true,
           });
 
-          await user.save();
+          await googleUser.save();
         }
 
-        const accessToken = user.generateAccessToken();
-        const refreshToken = user.generateRefreshToken();
-        return done(null, { accessToken, refreshToken });
+        if (googleUser) {
+          accessToken = googleUser.generateAccessToken();
+          refreshToken = googleUser.generateRefreshToken();
+        }
+
+        return done(null, { accessToken, refreshToken, error });
       } catch (error) {
         return done(error, null);
       }
