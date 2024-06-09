@@ -4,13 +4,16 @@ import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedP
 import GymCard from "./GymCard";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 
-const SelectGymForm = ({ selectedGym, setSelectedGym }) => {
+const SelectGymForm = () => {
   const { addToast } = useContext(GlobalContext);
-  const { setStep } = useContext(GettingStartedContext);
+  const {
+    setStep,
+    memberSelectedGym: selectedGym,
+    setMemberSelectedGym: setSelectedGym,
+  } = useContext(GettingStartedContext);
 
   return (
     <SteperLayout.Form
-      stepTitle="Step 02 - Select a Gym"
       onSubmit={(e) => {
         e.preventDefault();
 

@@ -5,6 +5,7 @@ import ErrorMessage from "../_comman/ErrorMessage";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";
 import { Controller } from "react-hook-form";
+import { fromStatus } from "./memberValidators";
 
 import {
   MemberIcon,
@@ -22,20 +23,16 @@ import {
   AdvancedIcon,
 } from "./Icons";
 
-const MemberPersonalDetailForm = ({
-  memberPersonalData,
-  setMemberPersonalData,
-}) => {
-  const { isEmailVerified, errors, control, register, handleSubmit } =
-    useMemberPersonalDetailFormHooks({
-      memberPersonalData,
-      setMemberPersonalData,
-    });
+const MemberPersonalDetailForm = () => {
+  const { errors, control, isEmailVerified, register, handleSubmit } =
+    useMemberPersonalDetailFormHooks();
 
   return (
     <SteperLayout.Form
       onSubmit={handleSubmit}
-      stepTitle="Step 01 - Enter your personal details"
+      onSubmitButtonClick={() => {
+        fromStatus.isSubmitting = true;
+      }}
     >
       <div className="mx-auto p-6 pb-2 max-w-[516px]">
         <div className="flex justify-center mb-4">
@@ -70,13 +67,21 @@ const MemberPersonalDetailForm = ({
 
           <Input
             type="email"
-            {...register("email")}
+            {...register("email", {
+              onBlur: () => {
+                fromStatus.onChange = null;
+                fromStatus.isSubmitting = false;
+              },
+            })}
             Icon={EmailIcon}
             spellCheck="false"
             placeholder="Email"
             className={"border-gray-900"}
-            disabled={isEmailVerified}
             hasError={errors?.email?.message}
+            disabled={isEmailVerified}
+            onInput={() => {
+              fromStatus.onChange = "email";
+            }}
             required={true}
           />
 

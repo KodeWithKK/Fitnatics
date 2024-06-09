@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo, useCallback } from "react";
+import { useContext, useMemo, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { memberPersonalDetailSchema } from "./memberValidators";
@@ -6,29 +6,27 @@ import { useQueryClient } from "@tanstack/react-query";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import { getFileFromUrl } from "@utils/getFileFromUrl";
+import { fromStatus } from "./memberValidators";
 
-const useMemberPersonalDetailFormHooks = ({
-  memberPersonalData,
-  setMemberPersonalData,
-}) => {
-  const [isEmailVerified, setIsEmailVerified] = useState(false);
-  const { setStep } = useContext(GettingStartedContext);
+const useMemberPersonalDetailFormHooks = () => {
+  const {
+    setStep,
+    isEmailVerified,
+    setIsFormRequestPending,
+    memberPersonalData,
+    setMemberPersonalData,
+  } = useContext(GettingStartedContext);
+
   const { addToast } = useContext(GlobalContext);
 
   const queryClient = useQueryClient();
   const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
-  useEffect(() => {
-    if (user?.email) {
-      setIsEmailVerified(true);
-    }
-  }, [user]);
-
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(memberPersonalDetailSchema),
     mode: "onChange",
@@ -46,18 +44,36 @@ const useMemberPersonalDetailFormHooks = ({
     },
   });
 
+  useEffect(() => {
+    if (isSubmitting) setIsFormRequestPending(true);
+  }, [isSubmitting, setIsFormRequestPending]);
+
   const onSuccess = useCallback(
-    (formData) => {
+    async (formData) => {
+      setIsFormRequestPending(false);
+      fromStatus.isSubmitting = false;
       setMemberPersonalData(formData);
       setStep((prevStep) => ++prevStep);
     },
-    [setMemberPersonalData, setStep]
+    [setStep, setMemberPersonalData, setIsFormRequestPending]
   );
 
   const onError = useCallback(
     (error) => {
-      console.log(error);
-      if (error?.gender?.message || error?.workoutExperience?.message) {
+      fromStatus.isSubmitting = false;
+      setIsFormRequestPending(false);
+
+      const errorValues = Object.values(error);
+      let hasOneOfError = false;
+
+      for (const errorValue of errorValues) {
+        if (errorValue.type === "oneOf") {
+          hasOneOfError = true;
+          break;
+        }
+      }
+
+      if (hasOneOfError) {
         addToast(
           "error",
           "All Fields are Required!",
@@ -77,15 +93,15 @@ const useMemberPersonalDetailFormHooks = ({
         );
       }
     },
-    [addToast]
+    [addToast, setIsFormRequestPending]
   );
 
   return {
-    isEmailVerified,
     errors,
     control,
-    register,
+    isEmailVerified,
     handleSubmit: handleSubmit(onSuccess, onError),
+    register,
   };
 };
 

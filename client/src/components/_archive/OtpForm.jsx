@@ -1,5 +1,5 @@
 import React from "react";
-import { makePostRequest } from "@api/api";
+import { makePostRequest } from "@api/apiClient";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import OtpTimer from "./atoms/OtpTimer";
 

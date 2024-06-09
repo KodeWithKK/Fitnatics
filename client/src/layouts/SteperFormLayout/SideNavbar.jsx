@@ -1,4 +1,10 @@
-function SideNavbar({ currStep, setStep, navItems }) {
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { useContext } from "react";
+
+function SideNavbar() {
+  const { step, setStep, navItems } = useContext(GettingStartedContext);
+  const currStep = step - 1;
+
   return (
     <aside className="px-4 w-[396px]">
       <div className="mt-4 pb-2 text-center nb-1">
@@ -20,7 +26,7 @@ function SideNavbar({ currStep, setStep, navItems }) {
 
         {/* FORM NAV BUTTONS */}
         <div className="flex flex-col">
-          {navItems.map((name, idx) => (
+          {navItems.map(({ title }, idx) => (
             <button
               key={window.crypto.randomUUID()}
               type="button"
@@ -32,7 +38,7 @@ function SideNavbar({ currStep, setStep, navItems }) {
                   currStep > idx + 1 && "text-brand opacity-60"
                 } ${currStep < idx + 1 && "text-gray-600 "}`}
               >
-                {name}
+                {title}
               </span>
             </button>
           ))}

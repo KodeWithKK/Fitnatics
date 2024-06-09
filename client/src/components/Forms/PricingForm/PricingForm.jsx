@@ -6,12 +6,12 @@ import PriceCard from "./PriceCard";
 const totalDisplayedCards = 2;
 const cardWidth = 306;
 
-const PricingForm = () => {
+const PricingForm = ({ stepDescription }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
     <SteperLayout.Form
-      stepTitle="Step 03 - Select a membership plan"
+      stepDescription={stepDescription}
       onSubmit={(e) => {
         e.preventDefault();
       }}

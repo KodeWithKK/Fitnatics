@@ -102,7 +102,7 @@ const localLoginHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "User Found"));
 });
 
-const generateOTPHandler = asyncHandler(async (req, res) => {
+const userGenerateOTPHandler = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if ([email, password].some((record) => record == undefined)) {
@@ -153,8 +153,8 @@ const generateOTPHandler = asyncHandler(async (req, res) => {
   const mailOptions = {
     from: "kodewithkk@gmail.com",
     to: email,
-    subject: "OTP for user Verifcation!",
-    text: `Your OTP for user verification is ${otp.otp}.`,
+    subject: "OTP for account Verifcation!",
+    text: `${otp.otp} is your OTP for your account verification.`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -329,7 +329,7 @@ const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
     .redirect("http://localhost:5173/");
 });
 
-const strategEmailVerficationHandler = asyncHandler(async (req, res) => {
+const emailGenerateOTPHandler = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -341,6 +341,23 @@ const strategEmailVerficationHandler = asyncHandler(async (req, res) => {
           error: {
             title: "Email Required!",
             message: "Please provide email generate OTP!",
+          },
+        }
+      )
+    );
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "Email already exists!",
+            message: "A user with this email already exists",
           },
         }
       )
@@ -380,7 +397,7 @@ const strategEmailVerficationHandler = asyncHandler(async (req, res) => {
     from: "Fitnatics",
     to: email,
     subject: "OTP for email Verifcation!",
-    text: `Your OTP for email verification is ${otp.otp}.`,
+    text: `${otp.otp} is your OTP for email verification.`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -396,11 +413,112 @@ const strategEmailVerficationHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "OTP sent to your email"));
 });
 
+const emailVerifyOTPHandler = asyncHandler(async (req, res) => {
+  const { email, otp } = req.query;
+  console.log({ email, otp });
+
+  if (!email) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "Email Required!",
+            message: "Email not found for OTP verification!",
+          },
+        }
+      )
+    );
+  }
+
+  if (!otp) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "OTP Required!",
+            message: "OTP not found for OTP verification!",
+          },
+        }
+      )
+    );
+  }
+
+  const otpDoc = await Otp.findOne({ email });
+
+  if (!otpDoc) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "OTP not found!",
+            message:
+              "OTP not found for this email, click on Resend Code to generate a new one.",
+          },
+        }
+      )
+    );
+  }
+
+  if (otpDoc?.otp !== otp) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        {},
+        {
+          error: {
+            title: "Incorrect OTP!",
+            message: "Entered OTP is not correct",
+          },
+        }
+      )
+    );
+  }
+
+  return res.status(200).json(new ApiResponse(200, {}));
+});
+
+const checkEmailAvailability = asyncHandler(async (req, res) => {
+  const { email } = req.query;
+
+  if (!email) {
+    return res.status(400).json(
+      new ApiResponse(
+        400,
+        { isEmailAvailable: false },
+        {
+          error: {
+            title: "Email Required!",
+            message: "Email is required to to check its availability",
+          },
+        }
+      )
+    );
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    return res
+      .status(200)
+      .json(new ApiResponse(200, { isEmailAvailable: false }));
+  }
+
+  return res.status(200).json(new ApiResponse(200, { isEmailAvailable: true }));
+});
+
 export {
   localLoginHandler,
-  generateOTPHandler,
+  userGenerateOTPHandler,
   verifyOTPHandler,
   logoutHandler,
   strategyJWTAuthCookieHandler,
-  strategEmailVerficationHandler,
+  emailGenerateOTPHandler,
+  emailVerifyOTPHandler,
+  checkEmailAvailability,
 };

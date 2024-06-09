@@ -6,11 +6,13 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 import {
   localLoginHandler,
-  generateOTPHandler,
+  userGenerateOTPHandler,
   verifyOTPHandler,
   logoutHandler,
   strategyJWTAuthCookieHandler,
-  strategEmailVerficationHandler,
+  emailGenerateOTPHandler,
+  emailVerifyOTPHandler,
+  checkEmailAvailability,
 } from "./../controller/auth.controller.js";
 
 function uploadMiddleware(req, res, next) {
@@ -48,7 +50,7 @@ const router = Router();
 
 // Local Auth Routes
 router.route("/login-local").post(localLoginHandler);
-router.route("/generate-otp").post(generateOTPHandler);
+router.route("/generate-otp").post(userGenerateOTPHandler);
 router.route("/verify-otp").post(verifyOTPHandler);
 
 // Google Auth Routes
@@ -85,6 +87,10 @@ router
 
 // Secured Routes
 router.route("/logout").post(verifyJWT, logoutHandler);
-router.route("/verify-email").post(verifyJWT, strategEmailVerficationHandler);
+router.route("/strategy-verify-email").post(verifyJWT, emailGenerateOTPHandler);
+router.route("/strategy-verify-email").get(verifyJWT, emailVerifyOTPHandler);
+router
+  .route("/check-email-availability")
+  .get(verifyJWT, checkEmailAvailability);
 
 export default router;

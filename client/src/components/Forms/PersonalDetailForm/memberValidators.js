@@ -1,5 +1,26 @@
 import * as yup from "yup";
 import { convertToDate, calculateAge } from "@utils/dateUtils";
+import apiClient from "@api/apiClient";
+import debounce from "lodash.debounce";
+
+const fromStatus = { onChange: null, isSubmitting: false };
+
+async function checkEmailAvailability(email) {
+  try {
+    const data = await apiClient.get(
+      "http://localhost:8000/api/v1/auth/check-email-availability",
+      { email }
+    );
+    return data?.isEmailAvailable;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+const debouncedCheckEmailAvailability = debounce((email, resolve, reject) => {
+  checkEmailAvailability(email).then(resolve).catch(reject);
+}, 300);
 
 const memberPersonalDetailSchema = yup
   .object()
@@ -21,7 +42,22 @@ const memberPersonalDetailSchema = yup
     email: yup
       .string()
       .email("Enter a valid email")
-      .required("Email is Required"),
+      .required("Email is Required")
+      .test("EmailNotAvailable", "Email is already taken", async (value) => {
+        // console.log(fromStatus);
+
+        if (fromStatus.onChange === "email" || fromStatus.isSubmitting) {
+          const emailSchema = yup.string().email().required();
+          const isEmailValid = await emailSchema.isValid(value);
+
+          if (isEmailValid) {
+            return new Promise((resolve, reject) => {
+              debouncedCheckEmailAvailability(value, resolve, reject);
+            });
+          }
+        }
+        return true;
+      }),
 
     phoneno: yup
       .string()
@@ -77,4 +113,4 @@ const memberPersonalDetailSchema = yup
   })
   .required();
 
-export { memberPersonalDetailSchema };
+export { memberPersonalDetailSchema, fromStatus };

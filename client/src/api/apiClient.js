@@ -1,11 +1,16 @@
 import axios from "axios";
+import MyError from "@utils/MyError";
 
+// access through req.query
 async function makeGetRequest(url, formData = {}) {
   let data, error;
   await axios
     .get(url, {
-      data: formData,
+      params: formData,
       withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
     .then(
       (res) => {
@@ -18,7 +23,10 @@ async function makeGetRequest(url, formData = {}) {
     );
 
   if (data) return data;
-  throw error;
+  throw new MyError(
+    error?.title ?? "Internal Server!",
+    error?.message ?? "Something went wrong while making the API Request"
+  );
 }
 
 async function makePostRequest(url, formData = {}) {
@@ -39,7 +47,15 @@ async function makePostRequest(url, formData = {}) {
     );
 
   if (data) return data;
-  throw error;
+  throw new MyError(
+    error?.title ?? "Internal Server!",
+    error?.message ?? "Something went wrong while making the API Request"
+  );
 }
 
-export { makeGetRequest, makePostRequest };
+const apiClient = {
+  get: makeGetRequest,
+  post: makePostRequest,
+};
+
+export default apiClient;

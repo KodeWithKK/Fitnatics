@@ -1,11 +1,17 @@
+import { useContext } from "react";
 import { MemberIcon, TrainerIcon } from "./Icons";
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 
-const UserIdentifierForm = ({ role, setRole, setStep }) => {
+const UserIdentifierForm = () => {
+  const { role, setRole, setStep } = useContext(GettingStartedContext);
+
   return (
     <div className="border-gray-800 px-6 py-5 border border-dashed rounded-md w-[382px]">
-      <h5 className="text-center text-gray-200">Account Type</h5>
+      <h3 className="font-bold text-[23px] text-center text-gray-200">
+        Account Type
+      </h3>
       <p className="my-2.5 text-gray-500 text-pretty">
-        logoutUser Select the type of account you want to join us with
+        Select the type you would like to join us in Fitnatics!
       </p>
       <div className="flex gap-3 my-5">
         <button

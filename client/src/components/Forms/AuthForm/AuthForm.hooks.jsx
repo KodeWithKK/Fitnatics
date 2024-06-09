@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, signupSchema } from "./validators";
 import { useMutation } from "@tanstack/react-query";
 import { GlobalContext } from "@context/GlobalContextProvider";
-import { makePostRequest } from "@api/api";
+import apiClient from "@api/apiClient";
 
 function useAuthFormHooks() {
   const [displayType, setDisplayType] = useState("login");
@@ -25,13 +25,16 @@ function useAuthFormHooks() {
 
   const { isPending: isOtpReqPending, mutate: generateOTP } = useMutation({
     mutationFn: async () => {
-      return await makePostRequest(
+      return await apiClient.post(
         "http://localhost:8000/api/v1/auth/generate-otp",
         {
           email: formData?.email,
           password: formData?.password,
         }
       );
+    },
+    onMutate: () => {
+      setOtpGeneratedAt(null);
     },
     onSuccess: () => {
       const nextOtpGeneratedAt = new Date();
@@ -59,7 +62,7 @@ function useAuthFormHooks() {
   const { isPending: isLoginReqPending, mutate: onLoginValidationSuccess } =
     useMutation({
       mutationFn: async () => {
-        await makePostRequest("http://localhost:8000/api/v1/auth/login-local", {
+        await apiClient.post("http://localhost:8000/api/v1/auth/login-local", {
           email: formData?.email,
           password: formData?.password,
         });
@@ -90,7 +93,7 @@ function useAuthFormHooks() {
     mutate: onSignupValidationSuccess,
   } = useMutation({
     mutationFn: async () => {
-      await makePostRequest("http://localhost:8000/api/v1/auth/verify-otp", {
+      await apiClient.post("http://localhost:8000/api/v1/auth/verify-otp", {
         email: formData.email,
         password: formData.password,
         otp: formData.otp,
