@@ -1,10 +1,8 @@
 import { useCallback, useContext, useMemo } from "react";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 
-const Form = ({ onSubmit, onSubmitButtonClick, children }) => {
-  const { step, setStep, isFormRequestPending, navItems } = useContext(
-    GettingStartedContext
-  );
+const Form = ({ onSubmit, onSubmitButtonClick, isSubmitting, children }) => {
+  const { step, setStep, navItems } = useContext(GettingStartedContext);
 
   const backButtonHandler = useCallback(() => {
     setStep((prevStep) => {
@@ -40,9 +38,9 @@ const Form = ({ onSubmit, onSubmitButtonClick, children }) => {
               type="submit"
               className="bg-brand px-4 py-2 rounded-md w-[70.58px]"
               onClick={onSubmitButtonClick}
-              disabled={isFormRequestPending}
+              disabled={isSubmitting}
             >
-              {isFormRequestPending ? "..." : "Next"}
+              {isSubmitting ? "..." : "Next"}
             </button>
           )}
         </div>

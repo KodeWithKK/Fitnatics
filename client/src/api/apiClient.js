@@ -24,7 +24,7 @@ async function makeGetRequest(url, formData = {}) {
 
   if (data) return data;
   throw new MyError(
-    error?.title ?? "Internal Server!",
+    error?.title ?? "Internal Server Error!",
     error?.message ?? "Something went wrong while making the API Request"
   );
 }
@@ -48,7 +48,7 @@ async function makePostRequest(url, formData = {}) {
 
   if (data) return data;
   throw new MyError(
-    error?.title ?? "Internal Server!",
+    error?.title ?? "Internal Server Error!",
     error?.message ?? "Something went wrong while making the API Request"
   );
 }

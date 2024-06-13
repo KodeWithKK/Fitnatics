@@ -288,7 +288,7 @@ const logoutHandler = (req, res) => {
     .json(new ApiResponse(200, {}, "User logged Out Successfully"));
 };
 
-const strategyJWTAuthCookieHandler = asyncHandler(async (req, res) => {
+const strategyCallbackHandler = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken, error } = req?.user;
 
   if (error) {
@@ -415,7 +415,7 @@ const emailGenerateOTPHandler = asyncHandler(async (req, res) => {
 
 const emailVerifyOTPHandler = asyncHandler(async (req, res) => {
   const { email, otp } = req.query;
-  console.log({ email, otp });
+  const user = req.user;
 
   if (!email) {
     return res.status(400).json(
@@ -480,6 +480,9 @@ const emailVerifyOTPHandler = asyncHandler(async (req, res) => {
     );
   }
 
+  user.email = email;
+  await user.save();
+
   return res.status(200).json(new ApiResponse(200, {}));
 });
 
@@ -517,7 +520,7 @@ export {
   userGenerateOTPHandler,
   verifyOTPHandler,
   logoutHandler,
-  strategyJWTAuthCookieHandler,
+  strategyCallbackHandler,
   emailGenerateOTPHandler,
   emailVerifyOTPHandler,
   checkEmailAvailability,

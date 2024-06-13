@@ -9,7 +9,7 @@ import {
   userGenerateOTPHandler,
   verifyOTPHandler,
   logoutHandler,
-  strategyJWTAuthCookieHandler,
+  strategyCallbackHandler,
   emailGenerateOTPHandler,
   emailVerifyOTPHandler,
   checkEmailAvailability,
@@ -62,7 +62,7 @@ router
   .route("/login-google/callback")
   .get(
     passport.authenticate("google", { session: false }),
-    strategyJWTAuthCookieHandler
+    strategyCallbackHandler
   );
 
 // Facebook Auth Routes
@@ -72,7 +72,7 @@ router
   .route("/login-facebook/callback")
   .get(
     passport.authenticate("facebook", { session: false }),
-    strategyJWTAuthCookieHandler
+    strategyCallbackHandler
   );
 
 // Twitter Auth Routes
@@ -82,7 +82,7 @@ router
   .route("/login-twitter/callback")
   .get(
     passport.authenticate("twitter", { session: false }),
-    strategyJWTAuthCookieHandler
+    strategyCallbackHandler
   );
 
 // Secured Routes

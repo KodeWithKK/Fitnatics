@@ -35,11 +35,24 @@ export default {
             transform: "rotate(1turn)",
           },
         },
+        loadingImage: {
+          from: {
+            transform: "translateX(-100%)",
+            rotate: "45deg",
+            opacity: "40%",
+          },
+          to: {
+            transform: "translateX(100%)",
+            rotate: "45deg",
+            opacity: "100%",
+          },
+        },
       },
       animation: {
         iconEnlarge: "iconEnlarge 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
         fadeLeftSlide: "fadeLeftSlide 0.4s ease-out",
         loadingIcon: "spin 1s linear infinite",
+        loadingImage: "loadingImage 1.4s infinite ease",
       },
       colors: {
         brand: "#1271ED",

@@ -7,15 +7,18 @@ import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import { getFileFromUrl } from "@utils/getFileFromUrl";
 import { fromStatus } from "./memberValidators";
+import useEmailVerification from "@hooks/useEmailVerification";
 
 const useMemberPersonalDetailFormHooks = () => {
   const {
     setStep,
     isEmailVerified,
-    setIsFormRequestPending,
     memberPersonalData,
     setMemberPersonalData,
+    setOtpGeneratedAt,
   } = useContext(GettingStartedContext);
+
+  const { generateOTP } = useEmailVerification({ setOtpGeneratedAt });
 
   const { addToast } = useContext(GlobalContext);
 
@@ -44,24 +47,39 @@ const useMemberPersonalDetailFormHooks = () => {
     },
   });
 
+  // useEffect(() => {}, [isSubmitting, setIsFormRequestPending]);
+
   useEffect(() => {
-    if (isSubmitting) setIsFormRequestPending(true);
-  }, [isSubmitting, setIsFormRequestPending]);
+    isEmailVerified && fromStatus.verifiedFields.push("email");
+  }, [isEmailVerified]);
 
   const onSuccess = useCallback(
     async (formData) => {
-      setIsFormRequestPending(false);
-      fromStatus.isSubmitting = false;
-      setMemberPersonalData(formData);
-      setStep((prevStep) => ++prevStep);
+      if (!isEmailVerified) {
+        await generateOTP(
+          { email: formData?.email },
+          {
+            onSuccess: () => {
+              setMemberPersonalData(formData);
+              setStep((prevStep) => ++prevStep);
+              fromStatus.verifiedFields.push("email");
+            },
+          }
+        );
+        // setIsFormRequestPending(false);
+        fromStatus.isSubmitting = false;
+      } else {
+        // setIsFormRequestPending(false);
+        fromStatus.isSubmitting = false;
+        setStep((prevStep) => ++prevStep);
+      }
     },
-    [setStep, setMemberPersonalData, setIsFormRequestPending]
+    [isEmailVerified, setMemberPersonalData, setStep, generateOTP]
   );
 
   const onError = useCallback(
     (error) => {
       fromStatus.isSubmitting = false;
-      setIsFormRequestPending(false);
 
       const errorValues = Object.values(error);
       let hasOneOfError = false;
@@ -93,13 +111,14 @@ const useMemberPersonalDetailFormHooks = () => {
         );
       }
     },
-    [addToast, setIsFormRequestPending]
+    [addToast]
   );
 
   return {
     errors,
     control,
     isEmailVerified,
+    isSubmitting,
     handleSubmit: handleSubmit(onSuccess, onError),
     register,
   };

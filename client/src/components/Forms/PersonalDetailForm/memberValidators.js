@@ -3,7 +3,7 @@ import { convertToDate, calculateAge } from "@utils/dateUtils";
 import apiClient from "@api/apiClient";
 import debounce from "lodash.debounce";
 
-const fromStatus = { onChange: null, isSubmitting: false };
+const fromStatus = { onChange: null, isSubmitting: false, verifiedFields: [] };
 
 async function checkEmailAvailability(email) {
   try {
@@ -43,21 +43,28 @@ const memberPersonalDetailSchema = yup
       .string()
       .email("Enter a valid email")
       .required("Email is Required")
-      .test("EmailNotAvailable", "Email is already taken", async (value) => {
-        // console.log(fromStatus);
+      .test(
+        "EmailNotAvailable",
+        "This email is already linked to an account",
+        async (value) => {
+          // console.log(fromStatus);
 
-        if (fromStatus.onChange === "email" || fromStatus.isSubmitting) {
-          const emailSchema = yup.string().email().required();
-          const isEmailValid = await emailSchema.isValid(value);
+          if (
+            !fromStatus.verifiedFields.includes("email") &&
+            (fromStatus.onChange === "email" || fromStatus.isSubmitting)
+          ) {
+            const emailSchema = yup.string().email().required();
+            const isEmailValid = await emailSchema.isValid(value);
 
-          if (isEmailValid) {
-            return new Promise((resolve, reject) => {
-              debouncedCheckEmailAvailability(value, resolve, reject);
-            });
+            if (isEmailValid) {
+              return new Promise((resolve, reject) => {
+                debouncedCheckEmailAvailability(value, resolve, reject);
+              });
+            }
           }
+          return true;
         }
-        return true;
-      }),
+      ),
 
     phoneno: yup
       .string()

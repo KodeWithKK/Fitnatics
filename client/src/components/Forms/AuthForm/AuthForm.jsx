@@ -25,7 +25,10 @@ const AuthForm = () => {
       onSubmit={handleSubmit}
     >
       <h2 className="mb-4 text-center">
-        <a className="font-bold text-brand uppercase tracking-wide" href="/">
+        <a
+          className="font-bold text-[35px] text-brand uppercase tracking-wide"
+          href="/"
+        >
           Fitnatics
         </a>
       </h2>

@@ -24,12 +24,19 @@ import {
 } from "./Icons";
 
 const MemberPersonalDetailForm = () => {
-  const { errors, control, isEmailVerified, register, handleSubmit } =
-    useMemberPersonalDetailFormHooks();
+  const {
+    errors,
+    control,
+    isEmailVerified,
+    isSubmitting,
+    register,
+    handleSubmit,
+  } = useMemberPersonalDetailFormHooks();
 
   return (
     <SteperLayout.Form
       onSubmit={handleSubmit}
+      isSubmitting={isSubmitting}
       onSubmitButtonClick={() => {
         fromStatus.isSubmitting = true;
       }}

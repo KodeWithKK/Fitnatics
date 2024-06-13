@@ -28,8 +28,6 @@ passport.use(
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
 
-        console.log(profile);
-
         return done(null, { accessToken, refreshToken });
       } catch (error) {
         return done(error, null);

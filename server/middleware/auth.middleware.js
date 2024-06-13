@@ -110,7 +110,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
     );
   }
 
-  const user = await User.findById(decodedUserId).select("-password");
+  const user = await User.findById(decodedUserId);
 
   if (!user) {
     return res.status(401).json(

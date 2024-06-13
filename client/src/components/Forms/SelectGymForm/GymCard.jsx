@@ -1,4 +1,5 @@
 import { LocationIcon, ContactIcon } from "./Icons";
+import Image from "@components/_comman/Image/Image";
 
 const GymCard = ({
   gymCity,
@@ -10,16 +11,22 @@ const GymCard = ({
 }) => {
   return (
     <div
-      className={`bg-gray-950 p-3 rounded-md max-w-[292px] outline oultine-2 border ${
+      className={`bg-gray-950 p-3 rounded-md outline oultine-2 border ${
         selected
           ? "outline-brand  drop-shadow-[0_0px_2px_#1271ed] border-gray-900/[0]"
           : "outline-brand/[0] border-gray-900"
       }`}
     >
-      <img src={imgSrc} className="rounded-md" alt="Noida Gym Image" />
+      <Image
+        src={imgSrc}
+        className="rounded-md"
+        alt="Noida Gym Image"
+        width={"266px"}
+        height={"266px"}
+      />
 
-      <div className="flex justify-between gap-2 mt-2">
-        <h5 className="font-semibold">{gymCity}</h5>
+      <div className="flex justify-between items-center gap-2 mt-2">
+        <h3 className="font-semibold">{gymCity}</h3>
         <button
           type="button"
           className={`px-4 rounded-md h-[36px] ${

@@ -3,6 +3,7 @@ import GettingStartedPageLayout from "@layouts/GettingStartedPageLayout";
 import UserIdentifierForm from "@components/Forms/UserIdentifierForm/UserIdentifierForm";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import MemberPersonalDetailForm from "@components/Forms/PersonalDetailForm/MemberPersonalDetailForm";
+import VerifyEmailForm from "@components/Forms/VerifyEmailForm/VerifyEmailForm";
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
 import PricingForm from "@components/Forms/PricingForm/PricingForm";
 import useGettingStartedPagehooks from "./GettingStartedPage.hooks";
@@ -14,6 +15,7 @@ const GettingStartedPage = () => {
     step,
     role,
     navItems,
+    isEmailVerifiedInitially,
     isEmailVerified,
     otpGeneratedAt,
     isFormRequestPending,
@@ -23,7 +25,6 @@ const GettingStartedPage = () => {
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setIsFormRequestPending,
     setMemberPersonalData,
     setMemberSelectedGym,
   } = useGettingStartedPagehooks();
@@ -41,7 +42,6 @@ const GettingStartedPage = () => {
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setIsFormRequestPending,
     setMemberPersonalData,
     setMemberSelectedGym,
   };
@@ -56,11 +56,20 @@ const GettingStartedPage = () => {
         )}
 
         {/* MEMBERS WHOSE WERE ARE VERIFIED */}
-        {step >= 2 && role === "member" && (
+        {step >= 2 && role === "member" && isEmailVerifiedInitially && (
           <SteperLayout>
             {step === 2 && <MemberPersonalDetailForm />}
             {step === 3 && <SelectGymForm />}
             {step === 4 && <PricingForm />}
+          </SteperLayout>
+        )}
+
+        {step >= 2 && role === "member" && !isEmailVerifiedInitially && (
+          <SteperLayout>
+            {step === 2 && <MemberPersonalDetailForm />}
+            {step === 3 && <VerifyEmailForm />}
+            {step === 4 && <SelectGymForm />}
+            {step === 5 && <PricingForm />}
           </SteperLayout>
         )}
 

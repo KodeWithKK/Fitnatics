@@ -108,10 +108,23 @@ function useVerifyEmailFormHooks() {
     }
   }, [addToast, email, otp, setIsEmailVerified, verifyOTP]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isEmailVerified) {
+      setStep((prev) => ++prev);
+    } else {
+      addToast(
+        "warning",
+        "Email Verification Required!",
+        "Verify your email to proceed to the next step"
+      );
+    }
+  };
+
   return {
     otp,
     email,
-    setStep,
     inputRefs,
     isEmailVerified,
     otpGeneratedAt,
@@ -120,6 +133,7 @@ function useVerifyEmailFormHooks() {
     handleBackspace,
     resendOTPHandler,
     verifyOTPHandler,
+    handleSubmit,
   };
 }
 
