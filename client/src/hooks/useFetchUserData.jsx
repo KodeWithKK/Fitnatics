@@ -1,7 +1,11 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useEffect, useContext } from "react";
+import { GlobalContext } from "@context/GlobalContextProvider";
 import apiClient from "@api/apiClient";
 
 const useFetchUserData = () => {
+  const { addRefetchFn } = useContext(GlobalContext);
+
   const {
     isLoading,
     data: userData,
@@ -10,7 +14,7 @@ const useFetchUserData = () => {
     queryKey: ["user"],
     queryFn: async () => {
       const res = await apiClient.get(
-        "http://localhost:8000/api/v1/user/get-user-data"
+        import.meta.env.VITE_BACKEND_API_BASE + "/user/get-user-data"
       );
       return res;
     },
@@ -19,6 +23,9 @@ const useFetchUserData = () => {
     placeholderData: keepPreviousData,
   });
 
+  useEffect(() => {
+    addRefetchFn({ name: "user", fn: refetchUser });
+  }, [addRefetchFn, refetchUser]);
   return { isLoading, userData, refetchUser };
 };
 

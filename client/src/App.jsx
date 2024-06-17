@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useFetchUserData } from "@hooks/useFetchUserData";
 import ToastStackLayout from "@/layouts/ToastStackLayout";
@@ -24,7 +29,23 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={userData ? <GettingStartedPage /> : <AuthPage />}
+            element={
+              userData ? (
+                userData.accountSetupRequired ? (
+                  <Navigate to="/getting-started" replace />
+                ) : (
+                  <Navigate to="/dashboard" replace />
+                )
+              ) : (
+                <AuthPage />
+              )
+            }
+          />
+          <Route
+            path="/getting-started"
+            element={
+              userData ? <GettingStartedPage /> : <Navigate to="/" replace />
+            }
           />
           <Route path="/:nav" element={<MainAppPage />} />
           <Route

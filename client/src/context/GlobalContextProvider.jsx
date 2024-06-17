@@ -1,11 +1,13 @@
-import React from "react";
+import { useState, useCallback, useMemo, createContext } from "react";
 
-export const GlobalContext = React.createContext();
+export const GlobalContext = createContext();
 
 function GlobalContextProvider({ children }) {
-  const [toasts, setToasts] = React.useState([]);
+  const [toasts, setToasts] = useState([]);
+  const [refetchFns, setRefetchFns] = useState({});
+  const [isRazorpayScriptLoaded, setIsRazorpayScriptLoaded] = useState(false);
 
-  const addToast = React.useCallback((type, title, message) => {
+  const addToast = useCallback((type, title, message) => {
     setToasts((prevToasts) => {
       // Access the current state with prevToasts
       return [
@@ -15,7 +17,7 @@ function GlobalContextProvider({ children }) {
     });
   }, []);
 
-  const removeToast = React.useCallback(
+  const removeToast = useCallback(
     (id) => {
       const nextToast = toasts.filter((toast) => toast.id !== id);
       setToasts(nextToast);
@@ -23,13 +25,31 @@ function GlobalContextProvider({ children }) {
     [toasts]
   );
 
-  const value = React.useMemo(() => {
+  const addRefetchFn = useCallback(({ name, fn }) => {
+    setRefetchFns((prevFns) => {
+      const nextFns = { ...prevFns, [name]: fn };
+      return nextFns;
+    });
+  }, []);
+
+  const value = useMemo(() => {
     return {
       toasts,
+      refetch: refetchFns,
+      isRazorpayScriptLoaded,
       addToast,
       removeToast,
+      addRefetchFn,
+      setIsRazorpayScriptLoaded,
     };
-  }, [toasts, addToast, removeToast]);
+  }, [
+    toasts,
+    refetchFns,
+    isRazorpayScriptLoaded,
+    addToast,
+    removeToast,
+    addRefetchFn,
+  ]);
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

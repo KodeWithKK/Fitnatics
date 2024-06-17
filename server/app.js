@@ -5,6 +5,9 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
+import paymentRouter from "./routes/payment.routes.js";
+import getDataRouter from "./routes/getData.routes.js";
+import addDataRouter from "./routes/addData.routes.js";
 import { ApiResponse } from "./utils/ApiResponse.js";
 
 const app = express();
@@ -56,24 +59,16 @@ passport.deserializeUser((user, done) => {
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/payment", paymentRouter);
+app.use("/api/v1/get-data", getDataRouter);
+
+/* DEVELOPMENT ROUTES */
+if (process.env.NODE_ENV === "dev") {
+  app.use("/api/v1/add-data", addDataRouter);
+}
 
 // Centralized error-handling middleware
 app.use((err, req, res, next) => {
-  if (process.env.NODE_ENV == "production") {
-    return res.status(500).json(
-      new ApiResponse(
-        500,
-        {},
-        {
-          error: {
-            title: "Internal Server Error!",
-            message: "Something went wrong",
-          },
-        }
-      )
-    );
-  }
-
   return res.status(500).json(
     new ApiResponse(
       500,
@@ -81,7 +76,10 @@ app.use((err, req, res, next) => {
       {
         error: {
           title: "Internal Server Error!",
-          message: err?.message ?? "Something went wrong",
+          message:
+            process.env.NODE_ENV == "dev"
+              ? err?.message ?? "Something went wrong"
+              : "Something went wrong",
         },
       }
     )

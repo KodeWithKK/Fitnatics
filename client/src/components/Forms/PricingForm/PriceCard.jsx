@@ -1,6 +1,23 @@
+import RenderRazorpay from "@components/RenderRazorpay/RenderRazorpay";
 import { CheckIcon } from "./Icons";
+import { usePriceCardHooks } from "./PriceCard.hooks";
 
-function PriceCard({ duration, orginalPrice, dicountedPrice }) {
+function PriceCard({
+  planId,
+  type,
+  duration,
+  orginalPrice,
+  dicountedPrice,
+  features,
+}) {
+  const {
+    isPending,
+    orderData,
+    displayRazorpay,
+    handleBuyButtonClick,
+    setDisplayRazorpay,
+  } = usePriceCardHooks({ planId, type });
+
   return (
     <div className="border-gray-900 bg-gray-950 p-4 border rounded-md w-[306px] select-none shrink-0">
       {/* HEADER */}
@@ -35,9 +52,21 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
       <button
         type="button"
         className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full select-none"
+        onClick={handleBuyButtonClick}
       >
         Buy Now
       </button>
+
+      {!isPending && displayRazorpay && (
+        <RenderRazorpay
+          orderId={orderData.orderId}
+          productName={orderData.productName}
+          amount={orderData.amount}
+          currency={orderData.currency}
+          setDisplayRazorpay={setDisplayRazorpay}
+        />
+      )}
+
       <hr className="border-gray-800" />
 
       {/* FEATURES */}
@@ -45,7 +74,7 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
         <p className="font-semibold uppercase">Features</p>
 
         <div className="space-y-1 mt-1 text-[15px]">
-          {features[duration].map((feature, i) => (
+          {features.map((feature, i) => (
             <p
               key={i}
               className="flex items-center gap-1.5 text-[14px] text-gray-400"
@@ -61,36 +90,5 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
     </div>
   );
 }
-
-const features = {
-  1: ["Unlimited 24/7 Access", "Unlimted Free Weights"],
-  3: [
-    "Get Free 1 month extension",
-    "Unlimited 24/7 Access",
-    "Unlimted Free Weights",
-  ],
-  6: [
-    "Get Free 1.5 month extension",
-    "Get Free active wear",
-    "Unlimited 24/7 Access",
-    "Unlimted Free Weights",
-  ],
-  12: [
-    "Get Free 2 month extension",
-    "Get 1 month subscription freeze",
-    "Get 10% off on supplements",
-    "Get Free active wear",
-    "Unlimited 24/7 Access",
-    "Unlimted Free Weights",
-  ],
-  24: [
-    "Get Free 4 month extension",
-    "Get 2 month subscription freeze",
-    "Get 15% off on supplements",
-    "Get Free active wear",
-    "Unlimited 24/7 Access",
-    "Unlimted Free Weights",
-  ],
-};
 
 export default PriceCard;

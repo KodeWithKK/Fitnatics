@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "duration": 1,
+      "orgPrice": 1599,
+      "currPrice": 1199,
+      "features": ["Unlimited 24/7 Access", "Unlimted Free Weights"]
+    },
+    {
+      "duration": 3,
+      "orgPrice": 3499,
+      "currPrice": 3199,
+      "features": [
+        "Get Free 1 month extension",
+        "Unlimited 24/7 Access",
+        "Unlimted Free Weights"
+      ]
+    },
+    {
+      "duration": 6,
+      "orgPrice": 4499,
+      "currPrice": 4299,
+      "features": [
+        "Get Free 1.5 month extension",
+        "Get Free active wear",
+        "Unlimited 24/7 Access",
+        "Unlimted Free Weights"
+      ]
+    },
+    {
+      "duration": 12,
+      "orgPrice": 5999,
+      "currPrice": 5699,
+      "features": [
+        "Get Free 2 month extension",
+        "Get 1 month subscription freeze",
+        "Get 10% off on supplements",
+        "Get Free active wear",
+        "Unlimited 24/7 Access",
+        "Unlimted Free Weights"
+      ]
+    },
+    {
+      "duration": 24,
+      "orgPrice": 9999,
+      "currPrice": 9499,
+      "features": [
+        "Get Free 4 month extension",
+        "Get 2 month subscription freeze",
+        "Get 15% off on supplements",
+        "Get Free active wear",
+        "Unlimited 24/7 Access",
+        "Unlimted Free Weights"
+      ]
+    }
+  ]
+}

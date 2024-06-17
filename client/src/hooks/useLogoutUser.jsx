@@ -8,7 +8,9 @@ const useLogoutUser = () => {
 
   const { mutate: logoutUser, isPending } = useMutation({
     mutationFn: async () => {
-      return await apiClient.post("http://localhost:8000/api/v1/auth/logout");
+      return await apiClient.post(
+        import.meta.env.VITE_BACKEND_API_BASE + "/auth/logout"
+      );
     },
     onSuccess: () => {
       window.location.href = "/";

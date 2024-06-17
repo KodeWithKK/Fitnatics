@@ -10,7 +10,7 @@ function useEmailVerification({ setOtpGeneratedAt }) {
     useMutation({
       mutationFn: async ({ email }) => {
         await apiClient.post(
-          "http://localhost:8000/api/v1/auth/strategy-verify-email",
+          import.meta.env.VITE_BACKEND_API_BASE + "/auth/strategy-verify-email",
           { email }
         );
       },
@@ -32,7 +32,7 @@ function useEmailVerification({ setOtpGeneratedAt }) {
     useMutation({
       mutationFn: async ({ email, otp }) => {
         return await apiClient.get(
-          "http://localhost:8000/api/v1/auth/strategy-verify-email",
+          import.meta.env.VITE_BACKEND_API_BASE + "/auth/strategy-verify-email",
           { email, otp }
         );
       },

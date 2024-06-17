@@ -6,7 +6,7 @@ import MemberPersonalDetailForm from "@components/Forms/PersonalDetailForm/Membe
 import VerifyEmailForm from "@components/Forms/VerifyEmailForm/VerifyEmailForm";
 import SelectGymForm from "@components/Forms/SelectGymForm/SelectGymForm";
 import PricingForm from "@components/Forms/PricingForm/PricingForm";
-import useGettingStartedPagehooks from "./GettingStartedPage.hooks";
+import useGettingStartedPageHooks from "./GettingStartedPage.hooks";
 
 export const GettingStartedContext = createContext();
 
@@ -15,6 +15,8 @@ const GettingStartedPage = () => {
     step,
     role,
     navItems,
+    isLoading,
+    membershipPlans,
     isEmailVerifiedInitially,
     isEmailVerified,
     otpGeneratedAt,
@@ -27,12 +29,13 @@ const GettingStartedPage = () => {
     setOtpGeneratedAt,
     setMemberPersonalData,
     setMemberSelectedGym,
-  } = useGettingStartedPagehooks();
+  } = useGettingStartedPageHooks();
 
   const value = {
     step,
     role,
     navItems,
+    membershipPlans,
     isEmailVerified,
     otpGeneratedAt,
     isFormRequestPending,
@@ -45,6 +48,10 @@ const GettingStartedPage = () => {
     setMemberPersonalData,
     setMemberSelectedGym,
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <GettingStartedContext.Provider value={value}>

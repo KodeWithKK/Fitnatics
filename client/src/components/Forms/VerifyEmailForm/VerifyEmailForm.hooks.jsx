@@ -4,7 +4,7 @@ import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedP
 import { useRef, useState, useCallback, useContext, useMemo } from "react";
 
 function useVerifyEmailFormHooks() {
-  const { addToast } = useContext(GlobalContext);
+  const { addToast, refetch } = useContext(GlobalContext);
   const {
     setStep,
     memberPersonalData,
@@ -100,6 +100,7 @@ function useVerifyEmailFormHooks() {
         {
           onSuccess: () => {
             setIsEmailVerified(true);
+            refetch.user();
             addToast("success", "Email is Verified!", "Entered OTP is Correct");
           },
         }
