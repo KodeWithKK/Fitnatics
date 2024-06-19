@@ -26,7 +26,7 @@ function useAuthFormHooks() {
   const { isPending: isOtpReqPending, mutate: generateOTP } = useMutation({
     mutationFn: async () => {
       return await apiClient.post(
-        "http://localhost:8000/api/v1/auth/generate-otp",
+        import.meta.env.VITE_BACKEND_API_BASE + "/auth/generate-otp",
         {
           email: formData?.email,
           password: formData?.password,
@@ -62,10 +62,13 @@ function useAuthFormHooks() {
   const { isPending: isLoginReqPending, mutate: onLoginValidationSuccess } =
     useMutation({
       mutationFn: async () => {
-        await apiClient.post("http://localhost:8000/api/v1/auth/login-local", {
-          email: formData?.email,
-          password: formData?.password,
-        });
+        await apiClient.post(
+          import.meta.env.VITE_BACKEND_API_BASE + "/auth/login-local",
+          {
+            email: formData?.email,
+            password: formData?.password,
+          }
+        );
       },
       onSuccess: () => {
         window.location.href = "/";
@@ -93,11 +96,14 @@ function useAuthFormHooks() {
     mutate: onSignupValidationSuccess,
   } = useMutation({
     mutationFn: async () => {
-      await apiClient.post("http://localhost:8000/api/v1/auth/verify-otp", {
-        email: formData.email,
-        password: formData.password,
-        otp: formData.otp,
-      });
+      await apiClient.post(
+        import.meta.env.VITE_BACKEND_API_BASE + "/auth/verify-otp",
+        {
+          email: formData.email,
+          password: formData.password,
+          otp: formData.otp,
+        }
+      );
     },
     onSuccess: () => {
       window.location.href = "/";

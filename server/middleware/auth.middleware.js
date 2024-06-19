@@ -63,7 +63,6 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         );
 
         decodedUserId = decodedRefreshToken?._id;
-        isNewAccessTokenGenerated = true;
       } catch (error) {
         return res.status(401).json(
           new ApiResponse(

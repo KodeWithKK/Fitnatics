@@ -8,6 +8,7 @@ import userRouter from "./routes/user.routes.js";
 import paymentRouter from "./routes/payment.routes.js";
 import getDataRouter from "./routes/getData.routes.js";
 import addDataRouter from "./routes/addData.routes.js";
+import testRouter from "./routes/test.routes.js";
 import { ApiResponse } from "./utils/ApiResponse.js";
 
 const app = express();
@@ -65,6 +66,7 @@ app.use("/api/v1/get-data", getDataRouter);
 /* DEVELOPMENT ROUTES */
 if (process.env.NODE_ENV === "dev") {
   app.use("/api/v1/add-data", addDataRouter);
+  app.use("/api/v1/test", testRouter);
 }
 
 // Centralized error-handling middleware

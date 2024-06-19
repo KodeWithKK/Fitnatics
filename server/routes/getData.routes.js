@@ -5,6 +5,12 @@ import { getMembershipPlansDataHandler } from "../controller/getData.contoller.j
 
 const router = Router();
 
-router.route("/membership-plans").get(verifyJWT, getMembershipPlansDataHandler);
+if (process.env.NODE_ENV === "dev") {
+  router.route("/membership-plans").get(getMembershipPlansDataHandler);
+} else {
+  router
+    .route("/membership-plans")
+    .get(verifyJWT, getMembershipPlansDataHandler);
+}
 
 export default router;

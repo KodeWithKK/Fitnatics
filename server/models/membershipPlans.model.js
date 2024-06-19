@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 
 const membershipPlanSchema = new mongoose.Schema(
   {
-    planId: {
-      type: String,
-      unique: true,
-      required: true,
-    },
     duration: {
       type: Number,
       required: true,
@@ -37,7 +32,7 @@ const membershipPlanSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: "MEMBERSHIP-PLAN",
+      default: "Membership Plan",
       required: true,
     },
     features: {
@@ -51,6 +46,6 @@ const membershipPlanSchema = new mongoose.Schema(
 );
 
 export const MembershipPlan = mongoose.model(
-  "MembershipPlan",
+  "Membership Plan",
   membershipPlanSchema
 );

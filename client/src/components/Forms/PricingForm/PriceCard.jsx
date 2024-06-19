@@ -1,22 +1,18 @@
-import RenderRazorpay from "@components/RenderRazorpay/RenderRazorpay";
 import { CheckIcon } from "./Icons";
-import { usePriceCardHooks } from "./PriceCard.hooks";
+import useMakePayment from "@hooks/useMakePayment";
 
 function PriceCard({
-  planId,
-  type,
+  productId,
+  type: productType,
   duration,
   orginalPrice,
   dicountedPrice,
   features,
 }) {
-  const {
-    isPending,
-    orderData,
-    displayRazorpay,
-    handleBuyButtonClick,
-    setDisplayRazorpay,
-  } = usePriceCardHooks({ planId, type });
+  const { buyButtonHandler } = useMakePayment({
+    productId,
+    productType,
+  });
 
   return (
     <div className="border-gray-900 bg-gray-950 p-4 border rounded-md w-[306px] select-none shrink-0">
@@ -52,20 +48,10 @@ function PriceCard({
       <button
         type="button"
         className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full select-none"
-        onClick={handleBuyButtonClick}
+        onClick={buyButtonHandler}
       >
         Buy Now
       </button>
-
-      {!isPending && displayRazorpay && (
-        <RenderRazorpay
-          orderId={orderData.orderId}
-          productName={orderData.productName}
-          amount={orderData.amount}
-          currency={orderData.currency}
-          setDisplayRazorpay={setDisplayRazorpay}
-        />
-      )}
 
       <hr className="border-gray-800" />
 

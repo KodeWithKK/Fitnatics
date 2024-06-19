@@ -46,8 +46,8 @@ const PricingForm = ({ stepDescription }) => {
             >
               {membershipPlans.map((plan) => (
                 <PriceCard
-                  key={plan.planId}
-                  planId={plan.planId}
+                  key={plan._id}
+                  productId={plan._id}
                   type={plan.type}
                   duration={plan.duration}
                   orginalPrice={plan.orgPrice}

@@ -1,26 +1,26 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { resolveSchema } from "../utils/resolveSchema.js";
 import { transporter } from "../config/mailer.js";
 import { User } from "../models/user.model.js";
 import { Otp } from "../models/otp.model.js";
 import crypto from "crypto";
 
-const localLoginHandler = asyncHandler(async (req, res) => {
+import {
+  localLoginSchema,
+  signupOTPGenerationSchema,
+  signupOTPVerificationSchema,
+  stategyEmailOTPGenerationSchema,
+  stategyEmailOTPVerificationSchema,
+} from "./schemas/auth.schema.js";
+
+const localLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "All Fields Required!",
-            message: "Please provide both email and password",
-          },
-        }
-      )
-    );
+  const { error } = await resolveSchema(localLoginSchema, { email, password });
+
+  if (error) {
+    return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
   const user = await User.findOne({ email });
@@ -33,22 +33,7 @@ const localLoginHandler = asyncHandler(async (req, res) => {
         {
           error: {
             title: "User already exists!",
-            message: `An account with this email already created with ${user.provider}`,
-          },
-        }
-      )
-    );
-  }
-
-  if (!password) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "All Fields Required!",
-            message: "Please provide both email and password",
+            message: `An account with this email already created using ${user.provider}`,
           },
         }
       )
@@ -102,22 +87,16 @@ const localLoginHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "User Found"));
 });
 
-const userGenerateOTPHandler = asyncHandler(async (req, res) => {
+const singupOTPGeneration = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  if ([email, password].some((record) => record == undefined)) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "All fields are Required!",
-            message: "Please provide email and password to generate OTP!",
-          },
-        }
-      )
-    );
+  const { error } = await resolveSchema(signupOTPGenerationSchema, {
+    email,
+    password,
+  });
+
+  if (error) {
+    return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
   await Otp.deleteOne({ email, password });
@@ -170,52 +149,17 @@ const userGenerateOTPHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "OTP sent to your email"));
 });
 
-const verifyOTPHandler = asyncHandler(async (req, res) => {
+const singupOTPVerification = asyncHandler(async (req, res) => {
   const { email, password, otp } = req.body;
 
-  if ([email, password].some((record) => record == undefined)) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "Email and Password not found!",
-            message: "Please provide email and password to verify OTP!",
-          },
-        }
-      )
-    );
-  }
+  const { error } = await resolveSchema(signupOTPVerificationSchema, {
+    email,
+    password,
+    otp,
+  });
 
-  if (!otp) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "OTP not Found!",
-            message: "Kindly provide the OTP for verification",
-          },
-        }
-      )
-    );
-  }
-
-  if (otp.length !== 6) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "6 Digit OTP Required!",
-            message: "A 6 digit OTP is required for verification",
-          },
-        }
-      )
-    );
+  if (error) {
+    return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
   const otpDoc = await Otp.findOne({ email, password });
@@ -275,7 +219,7 @@ const verifyOTPHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(202, {}, "OTP is Valid"));
 });
 
-const logoutHandler = (req, res) => {
+const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
@@ -286,9 +230,9 @@ const logoutHandler = (req, res) => {
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged Out Successfully"));
-};
+});
 
-const strategyCallbackHandler = asyncHandler(async (req, res) => {
+const strategyCallback = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken, error } = req?.user;
 
   if (error) {
@@ -296,6 +240,11 @@ const strategyCallbackHandler = asyncHandler(async (req, res) => {
       .status(400)
       .redirect("http://localhost:5173/error/account-already-exists");
   }
+
+  const options = {
+    httpOnly: true, // cannot be accessed via client-side scripts
+    secure: true, // will only be sent over HTTPS
+  };
 
   if (!accessToken || !refreshToken) {
     return res
@@ -313,14 +262,9 @@ const strategyCallbackHandler = asyncHandler(async (req, res) => {
         )
       )
       .cookie("authStatus", "failed")
-      .clearCookie("connect.sid")
+      .clearCookie("connect.sid", options)
       .redirect("http://localhost:5173/");
   }
-
-  const options = {
-    httpOnly: true, // cannot be accessed via client-side scripts
-    secure: true, // will only be sent over HTTPS
-  };
 
   return res
     .cookie("accessToken", accessToken, options)
@@ -329,22 +273,15 @@ const strategyCallbackHandler = asyncHandler(async (req, res) => {
     .redirect("http://localhost:5173/");
 });
 
-const emailGenerateOTPHandler = asyncHandler(async (req, res) => {
+const stategyEmailOTPGeneration = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
-  if (!email) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "Email Required!",
-            message: "Please provide email generate OTP!",
-          },
-        }
-      )
-    );
+  const { error } = await resolveSchema(stategyEmailOTPGenerationSchema, {
+    email,
+  });
+
+  if (error) {
+    return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
   const user = await User.findOne({ email });
@@ -413,38 +350,17 @@ const emailGenerateOTPHandler = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "OTP sent to your email"));
 });
 
-const emailVerifyOTPHandler = asyncHandler(async (req, res) => {
+const stategyEmailOTPVerification = asyncHandler(async (req, res) => {
   const { email, otp } = req.query;
   const user = req.user;
 
-  if (!email) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "Email Required!",
-            message: "Email not found for OTP verification!",
-          },
-        }
-      )
-    );
-  }
+  const { error } = await resolveSchema(stategyEmailOTPVerificationSchema, {
+    email,
+    otp,
+  });
 
-  if (!otp) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "OTP Required!",
-            message: "OTP not found for OTP verification!",
-          },
-        }
-      )
-    );
+  if (error) {
+    return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
   const otpDoc = await Otp.findOne({ email });
@@ -486,42 +402,12 @@ const emailVerifyOTPHandler = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, {}));
 });
 
-const checkEmailAvailability = asyncHandler(async (req, res) => {
-  const { email } = req.query;
-
-  if (!email) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        { isEmailAvailable: false },
-        {
-          error: {
-            title: "Email Required!",
-            message: "Email is required to to check its availability",
-          },
-        }
-      )
-    );
-  }
-
-  const user = await User.findOne({ email });
-
-  if (user) {
-    return res
-      .status(200)
-      .json(new ApiResponse(200, { isEmailAvailable: false }));
-  }
-
-  return res.status(200).json(new ApiResponse(200, { isEmailAvailable: true }));
-});
-
 export {
-  localLoginHandler,
-  userGenerateOTPHandler,
-  verifyOTPHandler,
-  logoutHandler,
-  strategyCallbackHandler,
-  emailGenerateOTPHandler,
-  emailVerifyOTPHandler,
-  checkEmailAvailability,
+  localLogin,
+  singupOTPGeneration,
+  singupOTPVerification,
+  logoutUser,
+  strategyCallback,
+  stategyEmailOTPGeneration,
+  stategyEmailOTPVerification,
 };

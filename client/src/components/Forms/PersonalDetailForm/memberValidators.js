@@ -8,7 +8,7 @@ const fromStatus = { onChange: null, isSubmitting: false, verifiedFields: [] };
 async function checkEmailAvailability(email) {
   try {
     const data = await apiClient.get(
-      "http://localhost:8000/api/v1/auth/check-email-availability",
+      import.meta.env.VITE_BACKEND_API_BASE + "/user/check-email-availability",
       { email }
     );
     return data?.isEmailAvailable;
