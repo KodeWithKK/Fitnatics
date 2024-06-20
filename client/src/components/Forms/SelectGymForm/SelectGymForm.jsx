@@ -8,8 +8,8 @@ const SelectGymForm = () => {
   const { addToast } = useContext(GlobalContext);
   const {
     setStep,
-    memberSelectedGym: selectedGym,
-    setMemberSelectedGym: setSelectedGym,
+    memberGymOutlet: selectedGym,
+    setMemberGymOutlet: setSelectedGym,
   } = useContext(GettingStartedContext);
 
   return (

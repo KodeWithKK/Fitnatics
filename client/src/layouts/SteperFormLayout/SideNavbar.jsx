@@ -1,9 +1,10 @@
+import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import { useContext } from "react";
 
 function SideNavbar() {
+  const { addToast } = useContext(GlobalContext);
   const { step, setStep, navItems } = useContext(GettingStartedContext);
-  const currStep = step - 1;
 
   return (
     <aside className="px-4 w-[396px]">
@@ -19,7 +20,7 @@ function SideNavbar() {
       <div className="flex gap-4 mt-[22px] h-fit">
         <div className="relative bg-gray-800 rounded-full w-[3px]">
           <ActiveNavitemIndicator
-            currStep={currStep}
+            currStep={step}
             totalSteps={navItems.length}
           />
         </div>
@@ -31,12 +32,22 @@ function SideNavbar() {
               key={window.crypto.randomUUID()}
               type="button"
               className="relative py-[4px] text-[15px] text-left"
-              onClick={() => setStep(idx + 2)}
+              onClick={() => {
+                if (step >= idx + 1) {
+                  setStep(idx + 1);
+                } else {
+                  addToast(
+                    "warning",
+                    "Navigation Not Allowed!",
+                    "Only backward Sidebar navigation is allowed"
+                  );
+                }
+              }}
             >
               <span
-                className={`${currStep === idx + 1 && "text-brand"} ${
-                  currStep > idx + 1 && "text-brand opacity-60"
-                } ${currStep < idx + 1 && "text-gray-600 "}`}
+                className={`${step === idx + 1 && "text-brand"} ${
+                  step > idx + 1 && "text-brand opacity-60"
+                } ${step < idx + 1 && "text-gray-600 "}`}
               >
                 {title}
               </span>

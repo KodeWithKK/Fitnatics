@@ -64,6 +64,8 @@ const createOrder = asyncHandler(async (req, res) => {
     const notes = {
       productName,
       orderNumber: product.totalOrders,
+      productId,
+      productType,
       time: new Date().toLocaleString(),
     };
 
@@ -99,17 +101,10 @@ const createOrder = asyncHandler(async (req, res) => {
 });
 
 const verifyPayment = asyncHandler(async (req, res) => {
-  const {
-    productId,
-    productType,
-    razorpay_order_id,
-    razorpay_payment_id,
-    razorpay_signature,
-  } = req.body;
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+    req.body;
 
   const { error } = await resolveSchema(verifyPaymentSchema, {
-    productId,
-    productType,
     razorpay_order_id,
     razorpay_payment_id,
     razorpay_signature,
@@ -144,6 +139,9 @@ const verifyPayment = asyncHandler(async (req, res) => {
   razorpayInstance.orders
     .fetch(razorpay_order_id)
     .then(async (orderData) => {
+      const productId = orderData.notes?.productId;
+      const productType = orderData.notes?.productType;
+
       const payment = new Payment({
         userId: req.user._id,
         productId,
@@ -154,8 +152,27 @@ const verifyPayment = asyncHandler(async (req, res) => {
         razorpay_signature,
       });
 
-      await payment.save();
-      res.status(200).json(new ApiResponse());
+      if (productType === "Membership Plan") {
+        const res = await MembershipPlan.findByIdAndUpdate(productId, {
+          $inc: { totalPayments: 1 },
+        });
+
+        if (!res) {
+          res.status(
+            400,
+            {},
+            {
+              error: {
+                title: "Something went wrong!",
+                message: "Something went wrong while verifying payment",
+              },
+            }
+          );
+        } else {
+          await payment.save();
+          res.status(200).json(new ApiResponse());
+        }
+      }
     })
     .catch(() => {
       res.status(
@@ -169,6 +186,22 @@ const verifyPayment = asyncHandler(async (req, res) => {
         }
       );
     });
+});
+
+const checkPayment = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+
+  const paymentUser = await Payment.find({ userId }).sort({ updatedAt: -1 });
+
+  if (paymentUser?.length === 0) {
+    return res
+      .status(200)
+      .json(new ApiResponse(200, { isPaymentCompleted: false }));
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { isPaymentCompleted: true }));
 });
 
 const viewAllOrders = asyncHandler(async (req, res) => {
@@ -209,6 +242,7 @@ const viewAllPayments = asyncHandler(async (req, res) => {
 export {
   createOrder,
   verifyPayment,
+  checkPayment,
   viewAllOrders,
   viewOrder,
   viewAllPayments,

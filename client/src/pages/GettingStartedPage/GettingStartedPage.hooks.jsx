@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from "react";
 import { produce } from "immer";
 import { useQueryClient } from "@tanstack/react-query";
 import { useFetchData } from "./useFetchData";
+import { useSetupAccount } from "./useSetupAccount";
 
 const memberNavItems = [
   { title: "Personal Details", description: "Enter your personal details" },
@@ -11,12 +12,17 @@ const memberNavItems = [
 ];
 
 function useGettingStartedPageHooks() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [otpGeneratedAt, setOtpGeneratedAt] = useState(null);
   const [role, setRole] = useState("member");
-  const [data, setData] = useState({ member: {}, trainer: {} });
+  const [data, setData] = useState({ memberData: {}, trainerData: {} });
   const { isLoading, membershipPlans } = useFetchData();
+
+  const { isSetupAccountPending, setupAccountHandler } = useSetupAccount({
+    data,
+    role,
+  });
 
   const queryClient = useQueryClient();
 
@@ -48,27 +54,22 @@ function useGettingStartedPageHooks() {
   }, [fetchedUser]);
 
   /* GETTER SETTER FUNCTIONS */
-  const memberPersonalData = useMemo(
-    () => data.member?.personalDetails,
-    [data]
-  );
+  const memberData = useMemo(() => data.memberData, [data]);
 
-  const setMemberPersonalData = useCallback(
+  const setMemberData = useCallback(
     (formData) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.member.personalDetails = { ...formData };
-      });
+      const nextData = { ...data, memberData: { ...formData } };
       setData(nextData);
     },
     [data]
   );
 
-  const memberSelectedGym = useMemo(() => data.member?.gymLocation, [data]);
+  const memberGymOutlet = useMemo(() => data.memberData?.gymOutlet, [data]);
 
-  const setMemberSelectedGym = useCallback(
+  const setMemberGymOutlet = useCallback(
     (value) => {
       const nextData = produce(data, (draftState) => {
-        draftState.member.gymLocation = value;
+        draftState.memberData.gymOutlet = value;
       });
       setData(nextData);
     },
@@ -84,14 +85,16 @@ function useGettingStartedPageHooks() {
     isEmailVerifiedInitially,
     isEmailVerified,
     otpGeneratedAt,
-    memberPersonalData,
-    memberSelectedGym,
+    memberData,
+    memberGymOutlet,
+    isSetupAccountPending,
     setStep,
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setMemberPersonalData,
-    setMemberSelectedGym,
+    setMemberData,
+    setMemberGymOutlet,
+    setupAccountHandler,
   };
 }
 

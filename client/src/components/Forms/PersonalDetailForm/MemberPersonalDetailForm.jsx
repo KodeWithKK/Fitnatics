@@ -98,6 +98,7 @@ const MemberPersonalDetailForm = () => {
             type="number"
             {...register("phoneno")}
             Icon={PhoneIcon}
+            step="0"
             spellCheck="false"
             placeholder="Phone Number"
             className={"border-gray-900"}

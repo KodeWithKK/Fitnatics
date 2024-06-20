@@ -43,7 +43,7 @@ const UserIdentifierForm = () => {
       <button
         type="button"
         className="bg-brand/[.75] mt-2 py-3 rounded-md w-full"
-        onClick={() => setStep(2)}
+        onClick={() => setStep((prevStep) => ++prevStep)}
       >
         Continue
       </button>

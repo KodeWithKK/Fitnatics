@@ -101,13 +101,12 @@ function useVerifyEmailFormHooks() {
           onSuccess: () => {
             setIsEmailVerified(true);
             refetch.user();
-            addToast("success", "Email is Verified!", "Entered OTP is Correct");
           },
         }
       );
       setIsApiRequestPending(false);
     }
-  }, [addToast, email, otp, setIsEmailVerified, verifyOTP]);
+  }, [addToast, email, otp, setIsEmailVerified, refetch, verifyOTP]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

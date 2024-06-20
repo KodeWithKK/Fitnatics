@@ -1,5 +1,12 @@
 import axios from "axios";
-import MyError from "@utils/MyError";
+
+class MyError extends Error {
+  constructor(title, message) {
+    super(message);
+    this.title = title;
+    this.message = message;
+  }
+}
 
 // access through req.query
 async function makeGetRequest(url, formData = {}) {
@@ -29,28 +36,12 @@ async function makeGetRequest(url, formData = {}) {
   );
 }
 
-async function makePostRequest(
-  url,
-  formData = {},
-  contentType = "application/json"
-) {
+async function makePostRequest(url, formData = {}) {
   let data, error;
-  let postFormData = formData;
-
-  if (contentType === "multipart/form-data") {
-    postFormData = new FormData();
-
-    for (const key in formData) {
-      postFormData.append(key, formData[key]);
-    }
-  }
 
   await axios
-    .post(url, postFormData, {
+    .post(url, formData, {
       withCredentials: true,
-      headers: {
-        "Content-Type": contentType,
-      },
     })
     .then(
       (res) => {
@@ -69,9 +60,9 @@ async function makePostRequest(
   );
 }
 
-const apiClient = {
+const ApiClient = {
   get: makeGetRequest,
   post: makePostRequest,
 };
 
-export default apiClient;
+export default ApiClient;

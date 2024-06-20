@@ -37,38 +37,6 @@ const createOrderSchema = yup.object({
 });
 
 const verifyPaymentSchema = yup.object({
-  productId: yup
-    .string()
-    .typeError({
-      title: "Invalid data type Provided!",
-      message: "Product Id must be a string",
-    })
-    .required({
-      title: "Product Id Required!",
-      message: "Product Id is required to verify payment",
-    })
-    .test(
-      "IsValidObjectId",
-      {
-        title: "Invalid Product ID!",
-        message: "A valid product ID is required to verify payment",
-      },
-      (value) => mongoose.Types.ObjectId.isValid(value)
-    ),
-  productType: yup
-    .string()
-    .typeError({
-      title: "Invalid data type Provided!",
-      message: "Product type must be a string",
-    })
-    .oneOf(["Membership Plan"], {
-      title: "Incorrect Product Type!",
-      message: "Please provide a correct product type",
-    })
-    .required({
-      title: "Product Type Required!",
-      message: "Product Type is required to verify payment",
-    }),
   razorpay_order_id: yup
     .string()
     .typeError({

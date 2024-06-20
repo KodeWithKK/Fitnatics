@@ -37,7 +37,7 @@ const memberPersonalDetailSchema = yup
     name: yup
       .string()
       .matches(/^[a-zA-Z]+( [a-zA-Z]+)*$/, "Enter a valid name")
-      .required("OTP is Required for Authentication"),
+      .required("A valid name is required"),
 
     email: yup
       .string()

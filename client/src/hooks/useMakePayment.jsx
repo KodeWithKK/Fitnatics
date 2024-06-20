@@ -4,7 +4,7 @@ import apiClient from "@api/apiClient";
 import { useRef, useState, useCallback, useContext } from "react";
 import { loadScript } from "@utils/loadScript";
 
-function useMakePayment({ productId, productType }) {
+function useMakePayment({ productId, productType, callbackFn }) {
   const [isScriptLoading, setIsScriptLoading] = useState(false);
 
   const paymentId = useRef(null);
@@ -25,30 +25,6 @@ function useMakePayment({ productId, productType }) {
       addToast("error", error?.title, error?.message);
     },
   });
-
-  const { isPending: isPaymentVerificationPending, mutate: verifyPayment } =
-    useMutation({
-      mutationFn: async ({
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature,
-      }) => {
-        const data = await apiClient.post(
-          import.meta.env.VITE_BACKEND_API_BASE + "/payment/verify-payment",
-          {
-            productId,
-            productType,
-            razorpay_order_id,
-            razorpay_payment_id,
-            razorpay_signature,
-          }
-        );
-        return data;
-      },
-      onError: (error) => {
-        addToast("error", error?.title, error?.message);
-      },
-    });
 
   const buyButtonHandler = useCallback(async () => {
     await createOrder(
@@ -79,8 +55,7 @@ function useMakePayment({ productId, productType }) {
             description: "Test Mode",
             image: import.meta.env.VITE_LOGO_URL,
             handler: async (response) => {
-              console.log("onto verification");
-              await verifyPayment(
+              await callbackFn(
                 {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
@@ -124,12 +99,11 @@ function useMakePayment({ productId, productType }) {
     setIsRazorpayScriptLoaded,
     addToast,
     createOrder,
-    verifyPayment,
+    callbackFn,
   ]);
 
   return {
-    isPending:
-      isCreateOrderPending || isPaymentVerificationPending || isScriptLoading,
+    isPending: isCreateOrderPending || isScriptLoading,
     buyButtonHandler,
   };
 }

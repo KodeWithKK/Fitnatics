@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { CheckIcon } from "./Icons";
 import useMakePayment from "@hooks/useMakePayment";
+import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 
 function PriceCard({
   productId,
@@ -9,9 +11,11 @@ function PriceCard({
   dicountedPrice,
   features,
 }) {
+  const { setupAccountHandler } = useContext(GettingStartedContext);
   const { buyButtonHandler } = useMakePayment({
     productId,
     productType,
+    callbackFn: setupAccountHandler,
   });
 
   return (

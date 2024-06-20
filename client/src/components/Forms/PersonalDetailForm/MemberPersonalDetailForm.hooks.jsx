@@ -13,15 +13,13 @@ const useMemberPersonalDetailFormHooks = () => {
   const {
     setStep,
     isEmailVerified,
-    memberPersonalData,
-    setMemberPersonalData,
+    memberData,
+    setMemberData,
     setOtpGeneratedAt,
   } = useContext(GettingStartedContext);
 
   const { generateOTP } = useEmailVerification({ setOtpGeneratedAt });
-
   const { addToast } = useContext(GlobalContext);
-
   const queryClient = useQueryClient();
   const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
@@ -34,7 +32,7 @@ const useMemberPersonalDetailFormHooks = () => {
     resolver: yupResolver(memberPersonalDetailSchema),
     mode: "onChange",
     defaultValues: async () => {
-      const data = { ...memberPersonalData };
+      const data = { ...memberData };
       data.avatar = data?.avatar ?? (await getFileFromUrl(user?.avatar)) ?? "";
       data.name = data?.name ?? user?.name ?? "";
       data.email = data?.email ?? user?.email ?? "";
@@ -60,21 +58,20 @@ const useMemberPersonalDetailFormHooks = () => {
           { email: formData?.email },
           {
             onSuccess: () => {
-              setMemberPersonalData(formData);
+              setMemberData(formData);
               setStep((prevStep) => ++prevStep);
               fromStatus.verifiedFields.push("email");
             },
           }
         );
-        // setIsFormRequestPending(false);
         fromStatus.isSubmitting = false;
       } else {
-        // setIsFormRequestPending(false);
+        setMemberData(formData);
         fromStatus.isSubmitting = false;
         setStep((prevStep) => ++prevStep);
       }
     },
-    [isEmailVerified, setMemberPersonalData, setStep, generateOTP]
+    [isEmailVerified, setMemberData, setStep, generateOTP]
   );
 
   const onError = useCallback(

@@ -21,14 +21,16 @@ const GettingStartedPage = () => {
     isEmailVerified,
     otpGeneratedAt,
     isFormRequestPending,
-    memberPersonalData,
-    memberSelectedGym,
+    memberData,
+    memberGymOutlet,
+    isSetupAccountPending,
     setStep,
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setMemberPersonalData,
-    setMemberSelectedGym,
+    setMemberData,
+    setMemberGymOutlet,
+    setupAccountHandler,
   } = useGettingStartedPageHooks();
 
   const value = {
@@ -39,14 +41,16 @@ const GettingStartedPage = () => {
     isEmailVerified,
     otpGeneratedAt,
     isFormRequestPending,
-    memberPersonalData,
-    memberSelectedGym,
+    memberData,
+    memberGymOutlet,
+    isSetupAccountPending,
     setStep,
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setMemberPersonalData,
-    setMemberSelectedGym,
+    setMemberData,
+    setMemberGymOutlet,
+    setupAccountHandler,
   };
 
   if (isLoading) {
@@ -56,32 +60,32 @@ const GettingStartedPage = () => {
   return (
     <GettingStartedContext.Provider value={value}>
       <GettingStartedPageLayout>
-        {step === 1 && (
+        {step === 0 && (
           <div className="place-items-center grid -mt-8 h-full">
             <UserIdentifierForm />
           </div>
         )}
 
         {/* MEMBERS WHOSE WERE ARE VERIFIED */}
-        {step >= 2 && role === "member" && isEmailVerifiedInitially && (
+        {step >= 1 && role === "member" && isEmailVerifiedInitially && (
           <SteperLayout>
-            {step === 2 && <MemberPersonalDetailForm />}
+            {step === 1 && <MemberPersonalDetailForm />}
+            {step === 2 && <SelectGymForm />}
+            {step === 3 && <PricingForm />}
+          </SteperLayout>
+        )}
+
+        {step >= 1 && role === "member" && !isEmailVerifiedInitially && (
+          <SteperLayout>
+            {step === 1 && <MemberPersonalDetailForm />}
+            {step === 2 && <VerifyEmailForm />}
             {step === 3 && <SelectGymForm />}
             {step === 4 && <PricingForm />}
           </SteperLayout>
         )}
 
-        {step >= 2 && role === "member" && !isEmailVerifiedInitially && (
-          <SteperLayout>
-            {step === 2 && <MemberPersonalDetailForm />}
-            {step === 3 && <VerifyEmailForm />}
-            {step === 4 && <SelectGymForm />}
-            {step === 5 && <PricingForm />}
-          </SteperLayout>
-        )}
-
         {/* TRAINER */}
-        {step >= 2 && role === "trainer" && <SteperLayout></SteperLayout>}
+        {step >= 1 && role === "trainer" && <SteperLayout></SteperLayout>}
       </GettingStartedPageLayout>
     </GettingStartedContext.Provider>
   );
