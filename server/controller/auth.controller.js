@@ -238,7 +238,7 @@ const strategyCallback = asyncHandler(async (req, res) => {
   if (error) {
     return res
       .status(400)
-      .redirect("http://localhost:5173/error/account-already-exists");
+      .redirect(process.env.CLIENT_URL + "/error/account-already-exists");
   }
 
   const options = {
@@ -263,14 +263,14 @@ const strategyCallback = asyncHandler(async (req, res) => {
       )
       .cookie("authStatus", "failed")
       .clearCookie("connect.sid", options)
-      .redirect("http://localhost:5173/");
+      .redirect(process.env.CLIENT_URL);
   }
 
   return res
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .clearCookie("connect.sid")
-    .redirect("http://localhost:5173/");
+    .redirect(process.env.CLIENT_URL);
 });
 
 const stategyEmailOTPGeneration = asyncHandler(async (req, res) => {

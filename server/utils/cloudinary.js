@@ -1,5 +1,5 @@
-import {v2 as cloudinary} from 'cloudinary';
-import fs from 'fs';
+import { v2 as cloudinary } from "cloudinary";
+import fs from "fs";
 
 // ---- Our env is async is loaded that's why we are configuring on runtime ---- //
 // cloudinary.config({
@@ -15,12 +15,12 @@ const configureCloduinary = () => {
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET
+      api_secret: process.env.CLOUDINARY_API_SECRET,
     });
 
     isConfigured = true;
   }
-}
+};
 
 const uploadOnCloudinary = async (localFilePath) => {
   configureCloduinary();
@@ -30,20 +30,19 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     // upload the file on cloudinary
     const response = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: "auto"
+      resource_type: "auto",
     });
 
     // file has been uploaded successfully
-    // console.log("file is uploaded on cloduinary: ", response.url);
+    // console.log("file is uploaded on cloudinary: ", response.url);
     fs.unlinkSync(localFilePath);
     return response;
-  }
-  catch (error) {
+  } catch (error) {
     // remove the locally saved temporarily saved file as the operation get failed
     console.log(error);
     fs.unlinkSync(localFilePath);
     return null;
   }
-}
+};
 
-export {uploadOnCloudinary};
+export { uploadOnCloudinary };

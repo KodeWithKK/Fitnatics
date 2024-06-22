@@ -5,7 +5,6 @@ import ErrorMessage from "../_comman/ErrorMessage";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";
 import { Controller } from "react-hook-form";
-import { fromStatus } from "./memberValidators";
 
 import {
   MemberIcon,
@@ -29,8 +28,11 @@ const MemberPersonalDetailForm = () => {
     control,
     isEmailVerified,
     isSubmitting,
-    register,
+    addOnChangeField,
+    removeOnChangeField,
+    setIsSubmitBtnTriggered,
     handleSubmit,
+    register,
   } = useMemberPersonalDetailFormHooks();
 
   return (
@@ -38,7 +40,7 @@ const MemberPersonalDetailForm = () => {
       onSubmit={handleSubmit}
       isSubmitting={isSubmitting}
       onSubmitButtonClick={() => {
-        fromStatus.isSubmitting = true;
+        setIsSubmitBtnTriggered(true);
       }}
     >
       <div className="mx-auto p-6 pb-2 max-w-[516px]">
@@ -76,8 +78,8 @@ const MemberPersonalDetailForm = () => {
             type="email"
             {...register("email", {
               onBlur: () => {
-                fromStatus.onChange = null;
-                fromStatus.isSubmitting = false;
+                removeOnChangeField("email");
+                setIsSubmitBtnTriggered(false);
               },
             })}
             Icon={EmailIcon}
@@ -87,7 +89,7 @@ const MemberPersonalDetailForm = () => {
             hasError={errors?.email?.message}
             disabled={isEmailVerified}
             onInput={() => {
-              fromStatus.onChange = "email";
+              addOnChangeField("email");
             }}
             required={true}
           />

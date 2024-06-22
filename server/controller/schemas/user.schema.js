@@ -1,19 +1,5 @@
 import * as yup from "yup";
-import ApiClient from "../../utils/ApiClient.js";
 import { convertToDate, calculateAge } from "../../utils/dateUtils.js";
-
-async function checkEmailAvailability(email) {
-  try {
-    const data = await ApiClient.get(
-      process.env.SERVER_URL + "/api/v1/user/check-email-availability",
-      { email }
-    );
-    return data?.isEmailAvailable;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
 
 const checkEmailAvailabilitySchema = yup.object({
   email: yup
@@ -33,20 +19,6 @@ const checkEmailAvailabilitySchema = yup.object({
 });
 
 const memberDataSchema = yup.object({
-  avatar: yup
-    .string()
-    .typeError({
-      title: "Invalid data type!",
-      message: "Profile picture must be a string",
-    })
-    .url({
-      title: "Invalid URL!",
-      message: "A valid profile picture is required to setup account",
-    })
-    .required({
-      title: "Profile Picture field not Found!",
-      message: "Profile picture is required to setup account",
-    }),
   name: yup
     .string()
     .typeError({
@@ -61,33 +33,11 @@ const memberDataSchema = yup.object({
       title: "Name field not Found!",
       message: "Name is required to setup account",
     }),
-  email: yup
-    .string()
-    .typeError({
-      title: "Invalid data type!",
-      message: "Email must be a string",
-    })
-    .email({
-      title: "Invalid Email!",
-      message: "Enter a valid email to setup account",
-    })
-    .required({
-      title: "Email field not Found!",
-      message: "Email is required to setup account",
-    })
-    .test(
-      "EmailNotAvailable",
-      {
-        title: "Email already taken!",
-        message: "This email is already linked to an account",
-      },
-      async (value) => await checkEmailAvailability(value)
-    ),
   phoneno: yup
     .string()
     .typeError({
       title: "Invalid data type!",
-      message: "Phone no must be a string",
+      message: "Phone no must be a 10 digit string",
     })
     .matches(/^[0-9]{10}$/, {
       title: "Invalid Phone no!",
@@ -217,7 +167,7 @@ const memberDataSchema = yup.object({
       title: "Invalid data type!",
       message: "Gym Outlet must be a string",
     })
-    .oneOf(["male", "female"], {
+    .oneOf(["Noida", "Prayagraj"], {
       title: "Incorrect Gym Outlet!",
       message: "A valid gym outlet is required to setup acoount",
     })

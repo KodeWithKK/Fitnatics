@@ -11,7 +11,6 @@ function uploadMiddleware(req, res, next) {
         name: "avatar",
         maxCount: 1,
       },
-
       {
         name: "gymLogo",
         maxCount: 1,

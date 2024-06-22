@@ -21,11 +21,10 @@ const upload = multer({
   storage: imageStorage,
   limits: {
     fileSize: 1024 * 1024 * 1, // 1MB file size limit
-    files: 2, // Maximum of 3 files per request
+    files: 2, // files per request
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpg|jpeg|webp)$/)) {
-      // upload only png and jpg format
       return cb(new Error("Invalid Image Type"));
     }
     cb(undefined, true);

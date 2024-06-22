@@ -46,4 +46,4 @@ const useSetupAccount = ({ role, data }) => {
   return { isSetupAccountPending: isPending, setupAccountHandler };
 };
 
-export { useSetupAccount };
+export default useSetupAccount;

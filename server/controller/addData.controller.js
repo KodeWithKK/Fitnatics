@@ -15,17 +15,16 @@ const membershipPlan = asyncHandler(async (req, res) => {
   }
 
   for (const plan of data) {
-    if (!(typeof plan === "object" && !Array.isArray(plan))) {
-      return res.status(400).json(
-        new ApiResponse(
-          400,
-          {},
-          {
-            title: "Incorrect data type of plan",
-            message: "Plan must be an object",
-          }
-        )
-      );
+    const planRecord = await MembershipPlan.findOne({
+      duration: plan.duration,
+    });
+
+    if (planRecord) {
+      await MembershipPlan.findByIdAndUpdate(planRecord._id, {
+        set: {
+          isActive: false,
+        },
+      });
     }
   }
 

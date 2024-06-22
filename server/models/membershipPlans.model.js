@@ -14,6 +14,11 @@ const membershipPlanSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    isActive: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
     currency: {
       type: String,
       default: "INR",

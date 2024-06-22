@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from "react";
 import { produce } from "immer";
 import { useQueryClient } from "@tanstack/react-query";
 import { useFetchData } from "./useFetchData";
-import { useSetupAccount } from "./useSetupAccount";
+import useSetupAccount from "./useSetupAccount";
 
 const memberNavItems = [
   { title: "Personal Details", description: "Enter your personal details" },
@@ -33,8 +33,10 @@ function useGettingStartedPageHooks() {
   );
 
   const isEmailVerifiedInitially = useMemo(() => {
-    if (fetchedUser?.email) return true;
-    else return false;
+    if (fetchedUser?.email) {
+      setIsEmailVerified(true);
+      return true;
+    } else return false;
   }, []); // eslint-disable-line
 
   const navItems = useMemo(() => {
@@ -45,13 +47,7 @@ function useGettingStartedPageHooks() {
     } else {
       return [];
     }
-  }, [role]); // eslint-disable-line
-
-  useMemo(() => {
-    if (fetchedUser?.email) {
-      setIsEmailVerified(true);
-    }
-  }, [fetchedUser]);
+  }, [isEmailVerifiedInitially, role]);
 
   /* GETTER SETTER FUNCTIONS */
   const memberData = useMemo(() => data.memberData, [data]);

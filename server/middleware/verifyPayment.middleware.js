@@ -116,6 +116,7 @@ export const verifyPayment = asyncHandler(async (req, res, next) => {
         } else {
           await payment.save();
           req.paymentId = payment._id;
+          req.productId = productId;
           next();
         }
       }

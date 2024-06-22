@@ -1,13 +1,8 @@
-import { useContext, useMemo, useCallback, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { memberPersonalDetailSchema } from "./memberValidators";
-import { useQueryClient } from "@tanstack/react-query";
+import { useContext, useCallback } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
-import { getFileFromUrl } from "@utils/getFileFromUrl";
-import { fromStatus } from "./memberValidators";
 import useEmailVerification from "@hooks/useEmailVerification";
+import useMemberAsyncForm from "./useMemberAsyncForm";
 
 const useMemberPersonalDetailFormHooks = () => {
   const {
@@ -20,36 +15,17 @@ const useMemberPersonalDetailFormHooks = () => {
 
   const { generateOTP } = useEmailVerification({ setOtpGeneratedAt });
   const { addToast } = useContext(GlobalContext);
-  const queryClient = useQueryClient();
-  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
   const {
     register,
     handleSubmit,
+    addOnChangeField,
+    removeOnChangeField,
+    setIsSubmitBtnTriggered,
     control,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(memberPersonalDetailSchema),
-    mode: "onChange",
-    defaultValues: async () => {
-      const data = { ...memberData };
-      data.avatar = data?.avatar ?? (await getFileFromUrl(user?.avatar)) ?? "";
-      data.name = data?.name ?? user?.name ?? "";
-      data.email = data?.email ?? user?.email ?? "";
-
-      Object.keys(data).forEach((key) => {
-        data[key] ??= "";
-      });
-
-      return data;
-    },
-  });
-
-  // useEffect(() => {}, [isSubmitting, setIsFormRequestPending]);
-
-  useEffect(() => {
-    isEmailVerified && fromStatus.verifiedFields.push("email");
-  }, [isEmailVerified]);
+    errors,
+    isSubmitting,
+  } = useMemberAsyncForm({ memberData, isEmailVerified });
 
   const onSuccess = useCallback(
     async (formData) => {
@@ -60,23 +36,28 @@ const useMemberPersonalDetailFormHooks = () => {
             onSuccess: () => {
               setMemberData(formData);
               setStep((prevStep) => ++prevStep);
-              fromStatus.verifiedFields.push("email");
             },
           }
         );
-        fromStatus.isSubmitting = false;
+        setIsSubmitBtnTriggered(false);
       } else {
         setMemberData(formData);
-        fromStatus.isSubmitting = false;
+        setIsSubmitBtnTriggered(false);
         setStep((prevStep) => ++prevStep);
       }
     },
-    [isEmailVerified, setMemberData, setStep, generateOTP]
+    [
+      isEmailVerified,
+      setMemberData,
+      setStep,
+      generateOTP,
+      setIsSubmitBtnTriggered,
+    ]
   );
 
   const onError = useCallback(
     (error) => {
-      fromStatus.isSubmitting = false;
+      setIsSubmitBtnTriggered(false);
 
       const errorValues = Object.values(error);
       let hasOneOfError = false;
@@ -108,7 +89,7 @@ const useMemberPersonalDetailFormHooks = () => {
         );
       }
     },
-    [addToast]
+    [addToast, setIsSubmitBtnTriggered]
   );
 
   return {
@@ -116,6 +97,9 @@ const useMemberPersonalDetailFormHooks = () => {
     control,
     isEmailVerified,
     isSubmitting,
+    addOnChangeField,
+    removeOnChangeField,
+    setIsSubmitBtnTriggered,
     handleSubmit: handleSubmit(onSuccess, onError),
     register,
   };
