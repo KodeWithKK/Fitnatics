@@ -1,8 +1,10 @@
-import { User } from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { resolveSchema } from "../utils/resolveSchema.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { User } from "../models/user.model.js";
+import { DietChart } from "../models/dietChart.model.js";
+import { WorkoutChart } from "../models/workoutChart.model.js";
 
 import {
   checkEmailAvailabilitySchema,
@@ -120,6 +122,28 @@ const setupAccount = asyncHandler(async (req, res) => {
     );
   }
 
+  const heightInMeter = req.body.height / 100;
+  const weightInKg = req.body.weight;
+
+  const actualBmi = (weightInKg / Math.pow(heightInMeter, 2)).toFixed(1);
+  let searchBmi = actualBmi;
+
+  if (searchBmi < 16) {
+    searchBmi = 16;
+  } else if (searchBmi > 39.9) {
+    searchBmi = 39.9;
+  }
+
+  const userDietChart = await DietChart.findOne({
+    bmiStart: { $lte: searchBmi },
+    bmiEnd: { $gte: searchBmi },
+  });
+
+  const userWorkoutChart = await WorkoutChart.findOne({
+    bmiStart: { $lte: searchBmi },
+    bmiEnd: { $gte: searchBmi },
+  });
+
   await User.findByIdAndUpdate(
     user._id,
     {
@@ -135,6 +159,9 @@ const setupAccount = asyncHandler(async (req, res) => {
           height: req.body.height,
           weight: req.body.weight,
           workoutExperience: req.body.workoutExperience,
+          bmi: actualBmi,
+          dietChartId: userDietChart._id,
+          workoutChartId: userWorkoutChart._id,
         },
         membershipDetails: {
           membershipPlanId: req.productId,
@@ -147,7 +174,7 @@ const setupAccount = asyncHandler(async (req, res) => {
     { new: true }
   );
 
-  return res.status(200).redirect(process.env.CLIENT_URL + "/dashboard");
+  return res.status(200).json(new ApiResponse());
 });
 
 export { fetchUserData, checkEmailAvailability, setupAccount };

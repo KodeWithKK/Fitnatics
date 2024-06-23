@@ -1,0 +1,4009 @@
+{
+  "data": [
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "beginner",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Dosa with Sambar",
+            "calories": 450,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Rajma Chawal with Raita",
+            "calories": 600,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 110
+          },
+          "pre_workout": {
+            "name": "Chana Chaat",
+            "calories": 250,
+            "fat": 8,
+            "protein": 10,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Banana Lassi",
+            "calories": 300,
+            "fat": 5,
+            "protein": 10,
+            "carbs": 55
+          },
+          "dinner": {
+            "name": "Paneer Tikka with Roti and Vegetable Curry",
+            "calories": 550,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 70
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Dal Makhani with Jeera Rice and Cucumber Salad",
+            "calories": 650,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Sprouts Bhel",
+            "calories": 200,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Mango Smoothie with Chia Seeds",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 60
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 550,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 90
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Chole Bhature with Mixed Vegetable Sabzi",
+            "calories": 700,
+            "fat": 25,
+            "protein": 20,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Roasted Makhana",
+            "calories": 150,
+            "fat": 1,
+            "protein": 4,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Ragi Malt",
+            "calories": 250,
+            "fat": 2,
+            "protein": 8,
+            "carbs": 50
+          },
+          "dinner": {
+            "name": "Vegetable Korma with Naan",
+            "calories": 600,
+            "fat": 22,
+            "protein": 18,
+            "carbs": 85
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 400,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Palak Paneer with Jeera Rice and Papad",
+            "calories": 600,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Peanut Chikki",
+            "calories": 200,
+            "fat": 12,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Almond Milk with Dates",
+            "calories": 300,
+            "fat": 10,
+            "protein": 8,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Roti and Curd",
+            "calories": 550,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 75
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Poha with Peanuts and Curd",
+            "calories": 450,
+            "fat": 15,
+            "protein": 14,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Dal Tadka and Boondi Raita",
+            "calories": 650,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Moong Dal Cheela",
+            "calories": 250,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Chikoo Milkshake",
+            "calories": 300,
+            "fat": 8,
+            "protein": 10,
+            "carbs": 50
+          },
+          "dinner": {
+            "name": "Malai Kofta with Laccha Paratha",
+            "calories": 600,
+            "fat": 25,
+            "protein": 18,
+            "carbs": 75
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Kadai Paneer with Missi Roti and Cucumber Raita",
+            "calories": 600,
+            "fat": 22,
+            "protein": 25,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Paneer Tikka",
+            "calories": 250,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Mosambi Juice with Chia Seeds",
+            "calories": 200,
+            "fat": 3,
+            "protein": 5,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Chapati and Dal",
+            "calories": 550,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 80
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Aloo Paratha with Curd and Pickle",
+            "calories": 500,
+            "fat": 18,
+            "protein": 12,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Vegetable Thali (Dal, Sabzi, Rice, Roti, Raita)",
+            "calories": 700,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 110
+          },
+          "pre_workout": {
+            "name": "Fruit Chaat",
+            "calories": 200,
+            "fat": 2,
+            "protein": 4,
+            "carbs": 45
+          },
+          "post_workout": {
+            "name": "Thandai",
+            "calories": 300,
+            "fat": 10,
+            "protein": 8,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Mushroom Masala with Garlic Naan",
+            "calories": 550,
+            "fat": 20,
+            "protein": 18,
+            "carbs": 80
+          }
+        }
+      }
+    },
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "intermediate",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 450,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Rajma Chawal with Raita",
+            "calories": 600,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Paneer Tikka",
+            "calories": 250,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Peanut Butter Banana Smoothie",
+            "calories": 350,
+            "fat": 15,
+            "protein": 15,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Palak Paneer with Roti",
+            "calories": 550,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 70
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Moong Dal Dosa with Sambar",
+            "calories": 500,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 85
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Brown Rice",
+            "calories": 650,
+            "fat": 15,
+            "protein": 28,
+            "carbs": 110
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 200,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soy Milk and Chia Seed Pudding",
+            "calories": 300,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 600,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 95
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Masala Oats with Vegetables",
+            "calories": 400,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Dal Makhani with Jeera Rice",
+            "calories": 700,
+            "fat": 20,
+            "protein": 30,
+            "carbs": 105
+          },
+          "pre_workout": {
+            "name": "Sprouts Chaat",
+            "calories": 250,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Whey Protein with Almond Milk",
+            "calories": 300,
+            "fat": 8,
+            "protein": 30,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Roti",
+            "calories": 550,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 80
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Uttapam with Coconut Chutney",
+            "calories": 500,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 80
+          },
+          "lunch": {
+            "name": "Lentil and Spinach Khichdi",
+            "calories": 600,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Yogurt with Mixed Nuts",
+            "calories": 300,
+            "fat": 20,
+            "protein": 15,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Ragi Malt with Jaggery",
+            "calories": 250,
+            "fat": 5,
+            "protein": 10,
+            "carbs": 50
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Paratha",
+            "calories": 600,
+            "fat": 25,
+            "protein": 18,
+            "carbs": 75
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Paneer Bhurji with Whole Wheat Toast",
+            "calories": 550,
+            "fat": 25,
+            "protein": 30,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Soya Chunks",
+            "calories": 650,
+            "fat": 15,
+            "protein": 28,
+            "carbs": 105
+          },
+          "pre_workout": {
+            "name": "Banana and Peanut Butter",
+            "calories": 250,
+            "fat": 12,
+            "protein": 8,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Protein Bar",
+            "calories": 300,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Tofu Tikka Masala with Naan",
+            "calories": 600,
+            "fat": 22,
+            "protein": 25,
+            "carbs": 80
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 450,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Kadai Paneer with Jeera Rice",
+            "calories": 700,
+            "fat": 25,
+            "protein": 30,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Mixed Vegetable Cutlet",
+            "calories": 200,
+            "fat": 10,
+            "protein": 8,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Greek Yogurt with Honey and Almonds",
+            "calories": 300,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Mushroom Masala with Roti",
+            "calories": 550,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 75
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Chutney",
+            "calories": 450,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 85
+          },
+          "lunch": {
+            "name": "Mixed Dal with Brown Rice and Vegetable Salad",
+            "calories": 650,
+            "fat": 12,
+            "protein": 28,
+            "carbs": 115
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 150,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Mixed Berries",
+            "calories": 350,
+            "fat": 8,
+            "protein": 30,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Vegetable Kofta Curry with Roti",
+            "calories": 600,
+            "fat": 22,
+            "protein": 20,
+            "carbs": 80
+          }
+        }
+      }
+    },
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "advanced",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Paneer Paratha with Raita",
+            "calories": 550,
+            "fat": 22,
+            "protein": 25,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Rajma Chawal with Mixed Vegetable Salad",
+            "calories": 650,
+            "fat": 15,
+            "protein": 28,
+            "carbs": 105
+          },
+          "pre_workout": {
+            "name": "Chana Chaat",
+            "calories": 250,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Soy Milk and Banana Smoothie",
+            "calories": 350,
+            "fat": 7,
+            "protein": 20,
+            "carbs": 55
+          },
+          "dinner": {
+            "name": "Palak Paneer with Jeera Rice",
+            "calories": 600,
+            "fat": 25,
+            "protein": 30,
+            "carbs": 70
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Masala Dosa with Sambar",
+            "calories": 500,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Chole Bhature with Cucumber Raita",
+            "calories": 700,
+            "fat": 25,
+            "protein": 25,
+            "carbs": 95
+          },
+          "pre_workout": {
+            "name": "Roasted Makhana",
+            "calories": 200,
+            "fat": 6,
+            "protein": 10,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Peanut Butter Lassi",
+            "calories": 400,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Soya Chunks",
+            "calories": 550,
+            "fat": 20,
+            "protein": 28,
+            "carbs": 80
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 450,
+            "fat": 20,
+            "protein": 22,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Dal Makhani with Jeera Rice and Vegetable Kofta",
+            "calories": 700,
+            "fat": 25,
+            "protein": 30,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Sprouts Bhel",
+            "calories": 250,
+            "fat": 7,
+            "protein": 15,
+            "carbs": 40
+          },
+          "post_workout": {
+            "name": "Ragi Malt with Nuts",
+            "calories": 350,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 60
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Chapati",
+            "calories": 550,
+            "fat": 18,
+            "protein": 25,
+            "carbs": 85
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Upma with Mixed Vegetables and Coconut Chutney",
+            "calories": 500,
+            "fat": 18,
+            "protein": 18,
+            "carbs": 80
+          },
+          "lunch": {
+            "name": "Kadai Paneer with Naan and Cucumber Salad",
+            "calories": 650,
+            "fat": 28,
+            "protein": 30,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Murmura Chivda",
+            "calories": 200,
+            "fat": 8,
+            "protein": 8,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Chana Dal Smoothie",
+            "calories": 400,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 60
+          },
+          "dinner": {
+            "name": "Methi Thepla with Curd and Aloo Sabzi",
+            "calories": 600,
+            "fat": 22,
+            "protein": 25,
+            "carbs": 90
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Idli Sambar with Coconut Chutney",
+            "calories": 450,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Raita and Paneer Tikka",
+            "calories": 700,
+            "fat": 25,
+            "protein": 35,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Moong Dal Cheela",
+            "calories": 250,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Almond Milk and Oats Smoothie",
+            "calories": 350,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 50
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Chapati and Dal",
+            "calories": 550,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 80
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Poha with Peanuts and Curd",
+            "calories": 500,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Malai Kofta with Jeera Rice and Cucumber Raita",
+            "calories": 650,
+            "fat": 30,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Roasted Chickpeas",
+            "calories": 200,
+            "fat": 7,
+            "protein": 12,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Sattu Drink",
+            "calories": 400,
+            "fat": 8,
+            "protein": 22,
+            "carbs": 65
+          },
+          "dinner": {
+            "name": "Vegetable Daliya Khichdi with Curd",
+            "calories": 550,
+            "fat": 15,
+            "protein": 28,
+            "carbs": 90
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Rava Uttapam with Coconut Chutney",
+            "calories": 500,
+            "fat": 18,
+            "protein": 18,
+            "carbs": 80
+          },
+          "lunch": {
+            "name": "Lobia Masala with Chapati and Mixed Vegetable Raita",
+            "calories": 650,
+            "fat": 20,
+            "protein": 30,
+            "carbs": 95
+          },
+          "pre_workout": {
+            "name": "Paneer Tikka",
+            "calories": 250,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Mixed Nuts and Dried Fruits Smoothie",
+            "calories": 400,
+            "fat": 20,
+            "protein": 18,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Vegetable Korma with Brown Rice",
+            "calories": 600,
+            "fat": 25,
+            "protein": 25,
+            "carbs": 85
+          }
+        }
+      }
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "beginner",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Dosa with Sambar",
+            "calories": 450,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Rajma Chawal with Mixed Vegetable Salad",
+            "calories": 550,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Chana Chaat",
+            "calories": 200,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Paneer Protein Shake",
+            "calories": 300,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Palak Paneer with Roti",
+            "calories": 500,
+            "fat": 20,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Chana Masala with Brown Rice",
+            "calories": 550,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Sprouts Salad",
+            "calories": 180,
+            "fat": 3,
+            "protein": 10,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Soy Milk and Banana Smoothie",
+            "calories": 280,
+            "fat": 6,
+            "protein": 20,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Chapati",
+            "calories": 520,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 420,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Dal Tadka with Jeera Rice and Vegetable Raita",
+            "calories": 580,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Roasted Makhana (Foxnuts)",
+            "calories": 150,
+            "fat": 1,
+            "protein": 4,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Moong Dal Cheela",
+            "calories": 250,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Roti",
+            "calories": 480,
+            "fat": 20,
+            "protein": 18,
+            "carbs": 60
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 380,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 600,
+            "fat": 20,
+            "protein": 20,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Peanut Butter on Whole Wheat Toast",
+            "calories": 220,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Thandai (Protein-enriched)",
+            "calories": 280,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Kofta Curry with Jeera Rice",
+            "calories": 550,
+            "fat": 22,
+            "protein": 18,
+            "carbs": 75
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Poha with Peanuts and Vegetables",
+            "calories": 400,
+            "fat": 12,
+            "protein": 12,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Kadai Paneer with Naan",
+            "calories": 620,
+            "fat": 25,
+            "protein": 25,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Mixed Nuts and Dried Fruits",
+            "calories": 200,
+            "fat": 15,
+            "protein": 6,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Whey Protein with Almond Milk",
+            "calories": 250,
+            "fat": 5,
+            "protein": 30,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Vegetable Pulao with Dal",
+            "calories": 500,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 80
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 450,
+            "fat": 15,
+            "protein": 14,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Chole Bhature with Onion Salad",
+            "calories": 650,
+            "fat": 25,
+            "protein": 20,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Cucumber and Carrot Sticks with Hummus",
+            "calories": 150,
+            "fat": 8,
+            "protein": 5,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soya Chunk Curry",
+            "calories": 280,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Aloo Gobi with Chapati",
+            "calories": 480,
+            "fat": 15,
+            "protein": 15,
+            "carbs": 75
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Rava Upma with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Malai Kofta with Jeera Rice",
+            "calories": 600,
+            "fat": 25,
+            "protein": 18,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Fresh Fruits",
+            "calories": 200,
+            "fat": 5,
+            "protein": 15,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Vegetable Oats Porridge",
+            "calories": 250,
+            "fat": 6,
+            "protein": 12,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Paneer Bhurji with Multigrain Roti",
+            "calories": 500,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 55
+          }
+        }
+      }
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "intermediate",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Dosa with Sambar",
+            "calories": 450,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Rajma Chawal with Mixed Vegetable Salad",
+            "calories": 600,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 100
+          },
+          "pre_workout": {
+            "name": "Chana Chaat",
+            "calories": 250,
+            "fat": 8,
+            "protein": 10,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Paneer Protein Shake",
+            "calories": 300,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Palak Paneer with Roti",
+            "calories": 550,
+            "fat": 25,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Dal Tadka with Brown Rice and Cucumber Raita",
+            "calories": 550,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Sprouts Bhel",
+            "calories": 200,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Soy Milk and Banana Smoothie",
+            "calories": 300,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Mint Raita",
+            "calories": 600,
+            "fat": 20,
+            "protein": 18,
+            "carbs": 95
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Chole Bhature with Mixed Vegetable Sabzi",
+            "calories": 650,
+            "fat": 25,
+            "protein": 22,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Roasted Makhana",
+            "calories": 180,
+            "fat": 3,
+            "protein": 6,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Whey Protein with Almond Milk",
+            "calories": 250,
+            "fat": 5,
+            "protein": 30,
+            "carbs": 15
+          },
+          "dinner": {
+            "name": "Vegetable Korma with Jeera Rice",
+            "calories": 550,
+            "fat": 22,
+            "protein": 15,
+            "carbs": 80
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Poha with Peanuts and Curd",
+            "calories": 400,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Paneer Tikka with Mint Pulao and Raita",
+            "calories": 600,
+            "fat": 25,
+            "protein": 30,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Moong Dal Cheela",
+            "calories": 220,
+            "fat": 7,
+            "protein": 12,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Greek Yogurt with Mixed Berries",
+            "calories": 250,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Multigrain Roti",
+            "calories": 500,
+            "fat": 20,
+            "protein": 15,
+            "carbs": 70
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 450,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Kadai Paneer with Jeera Rice and Kachumber Salad",
+            "calories": 650,
+            "fat": 30,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Masala Peanuts",
+            "calories": 200,
+            "fat": 15,
+            "protein": 10,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Chickpea and Spinach Protein Shake",
+            "calories": 300,
+            "fat": 8,
+            "protein": 25,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Tawa Roti",
+            "calories": 500,
+            "fat": 18,
+            "protein": 15,
+            "carbs": 75
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Paratha with Curd",
+            "calories": 500,
+            "fat": 20,
+            "protein": 15,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Dal Makhani and Cucumber Salad",
+            "calories": 600,
+            "fat": 20,
+            "protein": 22,
+            "carbs": 95
+          },
+          "pre_workout": {
+            "name": "Paneer Tikka",
+            "calories": 250,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Soya Chunk Shake",
+            "calories": 280,
+            "fat": 5,
+            "protein": 30,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable Kofta Curry with Steamed Rice",
+            "calories": 550,
+            "fat": 25,
+            "protein": 15,
+            "carbs": 75
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Idli Sambar with Coconut Chutney",
+            "calories": 400,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Chana Masala with Bhatura and Onion Salad",
+            "calories": 650,
+            "fat": 25,
+            "protein": 22,
+            "carbs": 95
+          },
+          "pre_workout": {
+            "name": "Vegetable Cutlet",
+            "calories": 200,
+            "fat": 10,
+            "protein": 8,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Peanut Butter Banana Protein Shake",
+            "calories": 350,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Matar Paneer with Garlic Naan",
+            "calories": 600,
+            "fat": 25,
+            "protein": 20,
+            "carbs": 80
+          }
+        }
+      }
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "advanced",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Oats with Almonds and Raisins",
+            "calories": 400,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Brown Rice",
+            "calories": 550,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Paneer Cubes with Whole Wheat Crackers",
+            "calories": 200,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake with Banana",
+            "calories": 300,
+            "fat": 5,
+            "protein": 25,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Sabzi with Roti",
+            "calories": 600,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 75
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 420,
+            "fat": 15,
+            "protein": 12,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Lentil Dal with Jeera Rice and Salad",
+            "calories": 580,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 220,
+            "fat": 12,
+            "protein": 12,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Mixed Berries",
+            "calories": 280,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Palak Paneer with Multigrain Roti",
+            "calories": 620,
+            "fat": 25,
+            "protein": 28,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 380,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Raita",
+            "calories": 570,
+            "fat": 14,
+            "protein": 24,
+            "carbs": 88
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Flaxseeds",
+            "calories": 190,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Mango",
+            "calories": 310,
+            "fat": 4,
+            "protein": 28,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Soya Chunks",
+            "calories": 590,
+            "fat": 18,
+            "protein": 26,
+            "carbs": 80
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 410,
+            "fat": 8,
+            "protein": 14,
+            "carbs": 75
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Kadai with Roti",
+            "calories": 540,
+            "fat": 16,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Sprouts Salad with Lemon Dressing",
+            "calories": 180,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake with Dates",
+            "calories": 290,
+            "fat": 4,
+            "protein": 26,
+            "carbs": 42
+          },
+          "dinner": {
+            "name": "Tofu Bhurji with Multigrain Paratha",
+            "calories": 610,
+            "fat": 22,
+            "protein": 28,
+            "carbs": 72
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Peanuts",
+            "calories": 390,
+            "fat": 12,
+            "protein": 13,
+            "carbs": 62
+          },
+          "lunch": {
+            "name": "Paneer Tikka Masala with Jeera Rice",
+            "calories": 600,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 160,
+            "fat": 6,
+            "protein": 10,
+            "carbs": 18
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Pomegranate",
+            "calories": 270,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 32
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Roti and Salad",
+            "calories": 580,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 78
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 420,
+            "fat": 14,
+            "protein": 16,
+            "carbs": 58
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Raita",
+            "calories": 560,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Homemade Energy Bars",
+            "calories": 210,
+            "fat": 10,
+            "protein": 8,
+            "carbs": 28
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Pineapple",
+            "calories": 300,
+            "fat": 3,
+            "protein": 28,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Chana Masala with Kulcha",
+            "calories": 630,
+            "fat": 22,
+            "protein": 26,
+            "carbs": 85
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Ragi Dosa with Vegetable Sambar",
+            "calories": 400,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Matar Paneer with Brown Rice",
+            "calories": 590,
+            "fat": 18,
+            "protein": 24,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Multigrain Dhokla",
+            "calories": 180,
+            "fat": 5,
+            "protein": 10,
+            "carbs": 28
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake with Papaya",
+            "calories": 280,
+            "fat": 4,
+            "protein": 26,
+            "carbs": 38
+          },
+          "dinner": {
+            "name": "Vegetable Kofta Curry with Roti",
+            "calories": 620,
+            "fat": 24,
+            "protein": 23,
+            "carbs": 80
+          }
+        }
+      }
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "beginner",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Oats with Mixed Vegetables",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Dal Tadka with Brown Rice and Cucumber Raita",
+            "calories": 500,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 180,
+            "fat": 10,
+            "protein": 10,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Paneer Bhurji with Whole Wheat Roti",
+            "calories": 350,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Quinoa",
+            "calories": 450,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 70
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 300,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 40
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Mixed Vegetable Salad",
+            "calories": 550,
+            "fat": 12,
+            "protein": 22,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Apple with Almond Butter",
+            "calories": 200,
+            "fat": 12,
+            "protein": 5,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Moong Dal Cheela with Curd",
+            "calories": 320,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Palak Paneer with Multigrain Roti",
+            "calories": 480,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 50
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 380,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Chana Masala with Jeera Rice and Cucumber Salad",
+            "calories": 520,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 100,
+            "fat": 2,
+            "protein": 8,
+            "carbs": 12
+          },
+          "post_workout": {
+            "name": "Sprouts Salad with Lemon Dressing",
+            "calories": 250,
+            "fat": 5,
+            "protein": 15,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 500,
+            "fat": 15,
+            "protein": 15,
+            "carbs": 75
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 350,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Curry with Roti and Curd",
+            "calories": 480,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Banana with Peanut Butter",
+            "calories": 250,
+            "fat": 12,
+            "protein": 8,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Tofu Bhurji with Whole Wheat Toast",
+            "calories": 300,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Lentil Soup with Mixed Vegetable Pulao",
+            "calories": 450,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 75
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Multigrain Dosa with Sambar",
+            "calories": 380,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Matar Paneer with Brown Rice and Cucumber Raita",
+            "calories": 550,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Mixed Nuts and Dried Fruits",
+            "calories": 200,
+            "fat": 15,
+            "protein": 6,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soya Chunk Curry with Roti",
+            "calories": 350,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 45
+          },
+          "dinner": {
+            "name": "Vegetable Khichdi with Curd",
+            "calories": 420,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 75
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Poha with Peanuts and Mixed Vegetables",
+            "calories": 350,
+            "fat": 10,
+            "protein": 10,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Aloo Gobi with Roti and Dal",
+            "calories": 500,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Honey",
+            "calories": 180,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Vegetable Omelette with Whole Wheat Bread",
+            "calories": 320,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable Jalfrezi with Quinoa",
+            "calories": 450,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 65
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 400,
+            "fat": 12,
+            "protein": 12,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Baingan Bharta with Roti and Lentil Soup",
+            "calories": 500,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix (Nuts, Seeds, and Dried Fruits)",
+            "calories": 220,
+            "fat": 15,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Chickpea Salad with Lemon Dressing",
+            "calories": 300,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Vegetable Pulao with Raita",
+            "calories": 450,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 75
+          }
+        }
+      }
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "intermediate",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Masala Oats with Mixed Vegetables",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Raita",
+            "calories": 500,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Apple",
+            "calories": 200,
+            "fat": 6,
+            "protein": 10,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake",
+            "calories": 250,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Tandoori Paneer Tikka with Mixed Salad",
+            "calories": 450,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 40
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Moong Dal Cheela with Mint Chutney",
+            "calories": 400,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Brown Rice Pulao with Mixed Vegetable Curry",
+            "calories": 550,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix (Nuts and Dried Fruits)",
+            "calories": 250,
+            "fat": 15,
+            "protein": 8,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Paneer and Spinach Wrap",
+            "calories": 300,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Daliya (Broken Wheat) Khichdi",
+            "calories": 400,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 380,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Cucumber Raita",
+            "calories": 520,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Berries",
+            "calories": 180,
+            "fat": 5,
+            "protein": 15,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Banana",
+            "calories": 280,
+            "fat": 3,
+            "protein": 25,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Grilled Vegetable and Tofu Skewers with Quinoa",
+            "calories": 450,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 55
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Whole Wheat Roti and Salad",
+            "calories": 500,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Peanut Butter on Whole Wheat Toast",
+            "calories": 220,
+            "fat": 12,
+            "protein": 8,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Vegetable and Sprout Salad with Lemon Dressing",
+            "calories": 250,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Soup with Multigrain Bread",
+            "calories": 400,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 65
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Ragi Dosa with Sambar",
+            "calories": 400,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 70
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita and Roasted Papad",
+            "calories": 550,
+            "fat": 18,
+            "protein": 18,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Fruit and Nut Energy Bar",
+            "calories": 200,
+            "fat": 10,
+            "protein": 6,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Soya Chunks Curry with Brown Rice",
+            "calories": 350,
+            "fat": 8,
+            "protein": 25,
+            "carbs": 50
+          },
+          "dinner": {
+            "name": "Vegetable and Paneer Stir Fry with Quinoa",
+            "calories": 450,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Besan Chilla with Mint Chutney",
+            "calories": 380,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Mixed Dal Tadka with Brown Rice and Vegetable Sabzi",
+            "calories": 520,
+            "fat": 12,
+            "protein": 22,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Cucumber and Carrot Sticks with Hummus",
+            "calories": 180,
+            "fat": 10,
+            "protein": 6,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Buttermilk with Roasted Chana",
+            "calories": 250,
+            "fat": 5,
+            "protein": 18,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Palak Paneer with Multigrain Roti",
+            "calories": 450,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 45
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 350,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Whole Wheat Pasta in Tomato Sauce with Vegetables",
+            "calories": 500,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Mixed Nuts and Dried Fruits",
+            "calories": 220,
+            "fat": 15,
+            "protein": 7,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Cottage Cheese and Fruit Salad",
+            "calories": 280,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable and Lentil Soup with Multigrain Crackers",
+            "calories": 400,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 60
+          }
+        }
+      }
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "advanced",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Spinach",
+            "calories": 550,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 200,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Paneer and Vegetable Protein Shake",
+            "calories": 300,
+            "fat": 8,
+            "protein": 30,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable Dalia Upma with Raita",
+            "calories": 450,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 70
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Masala Oats with Mixed Vegetables",
+            "calories": 320,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Chickpea and Vegetable Biryani",
+            "calories": 580,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Multigrain Roti with Hummus",
+            "calories": 220,
+            "fat": 7,
+            "protein": 10,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Soy Milk and Chia Seed Pudding",
+            "calories": 280,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Quinoa",
+            "calories": 480,
+            "fat": 14,
+            "protein": 20,
+            "carbs": 75
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 330,
+            "fat": 9,
+            "protein": 18,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Palak Paneer with Millet Roti",
+            "calories": 520,
+            "fat": 20,
+            "protein": 25,
+            "carbs": 65
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Berries and Almonds",
+            "calories": 230,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Banana",
+            "calories": 290,
+            "fat": 5,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Lentil and Vegetable Soup with Multigrain Bread",
+            "calories": 420,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 65
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 340,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Mixed Dal Khichdi with Vegetable Raita",
+            "calories": 540,
+            "fat": 14,
+            "protein": 24,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Paneer Tikka (Grilled)",
+            "calories": 220,
+            "fat": 14,
+            "protein": 20,
+            "carbs": 5
+          },
+          "post_workout": {
+            "name": "Soya Chunks and Vegetable Stir-Fry",
+            "calories": 300,
+            "fat": 8,
+            "protein": 25,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Uttapam with Sambar",
+            "calories": 460,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 75
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Ragi Dosa with Coconut Chutney",
+            "calories": 310,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Tofu and Vegetable Curry with Brown Rice",
+            "calories": 560,
+            "fat": 18,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Sprouts and Vegetable Salad",
+            "calories": 180,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Peanut Butter and Banana Smoothie",
+            "calories": 320,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Vegetable and Paneer Tikka Masala with Jeera Rice",
+            "calories": 490,
+            "fat": 20,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Multigrain Idli with Sambar",
+            "calories": 300,
+            "fat": 6,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Raita and Roasted Papad",
+            "calories": 570,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 90
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 100,
+            "fat": 3,
+            "protein": 8,
+            "carbs": 12
+          },
+          "post_workout": {
+            "name": "Mixed Nut and Seed Energy Bars",
+            "calories": 280,
+            "fat": 18,
+            "protein": 12,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Whole Wheat Roti",
+            "calories": 440,
+            "fat": 15,
+            "protein": 18,
+            "carbs": 65
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 320,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Chole (Chickpea Curry) with Bhatura and Onion Salad",
+            "calories": 600,
+            "fat": 22,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Cottage Cheese and Vegetable Sandwich",
+            "calories": 250,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Moong Dal Cheela with Mint Chutney",
+            "calories": 280,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Vegetable Korma with Jeera Rice and Cucumber Raita",
+            "calories": 500,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 70
+          }
+        }
+      }
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "beginner",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Brown Rice with Dal and Mixed Vegetable Curry",
+            "calories": 500,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Apple with Peanut Butter",
+            "calories": 200,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Buttermilk with Chia Seeds",
+            "calories": 150,
+            "fat": 5,
+            "protein": 10,
+            "carbs": 15
+          },
+          "dinner": {
+            "name": "Chickpea Curry with Whole Wheat Roti",
+            "calories": 450,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 300,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Raita",
+            "calories": 450,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Roasted Chana",
+            "calories": 180,
+            "fat": 6,
+            "protein": 10,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Paneer Protein Shake",
+            "calories": 250,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Quinoa",
+            "calories": 400,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 55
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Oats Idli with Sambar",
+            "calories": 320,
+            "fat": 7,
+            "protein": 15,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Whole Wheat Vegetable Pulao with Raita",
+            "calories": 480,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Handful of Mixed Nuts",
+            "calories": 170,
+            "fat": 15,
+            "protein": 6,
+            "carbs": 5
+          },
+          "post_workout": {
+            "name": "Sprouts Salad",
+            "calories": 150,
+            "fat": 3,
+            "protein": 12,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Palak Paneer with Brown Rice",
+            "calories": 420,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 50
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 330,
+            "fat": 12,
+            "protein": 16,
+            "carbs": 40
+          },
+          "lunch": {
+            "name": "Rajma Curry with Jeera Rice",
+            "calories": 500,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Banana with Almond Butter",
+            "calories": 220,
+            "fat": 10,
+            "protein": 6,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Greek Yogurt with Berries",
+            "calories": 180,
+            "fat": 4,
+            "protein": 15,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Vegetable and Tofu Stir-Fry with Brown Rice",
+            "calories": 400,
+            "fat": 14,
+            "protein": 20,
+            "carbs": 55
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Ragi Dosa with Coconut Chutney",
+            "calories": 300,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Daliya",
+            "calories": 450,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Cucumber and Carrot Sticks with Hummus",
+            "calories": 150,
+            "fat": 8,
+            "protein": 5,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soya Milk with Chia Seeds",
+            "calories": 200,
+            "fat": 7,
+            "protein": 12,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Multigrain Roti",
+            "calories": 380,
+            "fat": 15,
+            "protein": 16,
+            "carbs": 50
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Paneer Bhurji with Whole Wheat Toast",
+            "calories": 350,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 35
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 480,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix",
+            "calories": 200,
+            "fat": 12,
+            "protein": 7,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Water",
+            "calories": 120,
+            "fat": 1,
+            "protein": 25,
+            "carbs": 2
+          },
+          "dinner": {
+            "name": "Matar Paneer with Quinoa",
+            "calories": 420,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 45
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Peanuts",
+            "calories": 320,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Spinach and Lentil Soup with Whole Grain Bread",
+            "calories": 400,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 65
+          },
+          "pre_workout": {
+            "name": "Vegetable Juice",
+            "calories": 100,
+            "fat": 1,
+            "protein": 3,
+            "carbs": 22
+          },
+          "post_workout": {
+            "name": "Tofu and Vegetable Scramble",
+            "calories": 250,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Brown Rice",
+            "calories": 420,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 70
+          }
+        }
+      }
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "intermediate",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Brown Rice with Rajma Curry and Mixed Vegetable Salad",
+            "calories": 500,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Apple with Peanut Butter",
+            "calories": 200,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake with Chia Seeds",
+            "calories": 250,
+            "fat": 7,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Paneer Bhurji with Whole Wheat Roti and Steamed Broccoli",
+            "calories": 450,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 55
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Roasted Chana",
+            "calories": 380,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Quinoa and Cucumber Raita",
+            "calories": 520,
+            "fat": 12,
+            "protein": 22,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Handful of Mixed Nuts and Dried Fruits",
+            "calories": 180,
+            "fat": 12,
+            "protein": 6,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Greek Yogurt with Honey and Flaxseeds",
+            "calories": 220,
+            "fat": 5,
+            "protein": 18,
+            "carbs": 28
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Brown Rice and Spinach",
+            "calories": 480,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Masala Oats with Vegetables and Almonds",
+            "calories": 340,
+            "fat": 9,
+            "protein": 16,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Low-fat Curd",
+            "calories": 490,
+            "fat": 8,
+            "protein": 22,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Banana with Peanut Butter",
+            "calories": 220,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Almond Milk",
+            "calories": 230,
+            "fat": 5,
+            "protein": 25,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Baked Vegetable Cutlets with Mint Chutney and Mixed Greens",
+            "calories": 420,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 60
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato and Onion Stuffing",
+            "calories": 360,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 52
+          },
+          "lunch": {
+            "name": "Whole Wheat Pasta with Vegetable Sauce and Tofu",
+            "calories": 510,
+            "fat": 12,
+            "protein": 24,
+            "carbs": 78
+          },
+          "pre_workout": {
+            "name": "Roasted Chickpeas",
+            "calories": 190,
+            "fat": 6,
+            "protein": 10,
+            "carbs": 22
+          },
+          "post_workout": {
+            "name": "Soy Milk Smoothie with Berries",
+            "calories": 240,
+            "fat": 6,
+            "protein": 18,
+            "carbs": 32
+          },
+          "dinner": {
+            "name": "Palak Paneer with Multigrain Roti and Cucumber Salad",
+            "calories": 460,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 58
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 330,
+            "fat": 7,
+            "protein": 14,
+            "carbs": 58
+          },
+          "lunch": {
+            "name": "Mixed Dal with Brown Rice and Vegetable Kofta",
+            "calories": 530,
+            "fat": 12,
+            "protein": 24,
+            "carbs": 82
+          },
+          "pre_workout": {
+            "name": "Multigrain Crackers with Hummus",
+            "calories": 210,
+            "fat": 9,
+            "protein": 8,
+            "carbs": 24
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Dates",
+            "calories": 260,
+            "fat": 4,
+            "protein": 22,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable and Tofu Stir-Fry with Quinoa",
+            "calories": 440,
+            "fat": 14,
+            "protein": 24,
+            "carbs": 62
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 370,
+            "fat": 9,
+            "protein": 15,
+            "carbs": 62
+          },
+          "lunch": {
+            "name": "Vegetable Biryani with Raita and Soya Chunks",
+            "calories": 540,
+            "fat": 14,
+            "protein": 22,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix (Nuts, Seeds, and Dried Fruits)",
+            "calories": 200,
+            "fat": 12,
+            "protein": 7,
+            "carbs": 18
+          },
+          "post_workout": {
+            "name": "Cottage Cheese with Fruit Salad",
+            "calories": 250,
+            "fat": 6,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Lentil Soup with Whole Grain Bread and Grilled Vegetables",
+            "calories": 430,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 65
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Multigrain Dosa with Sambar and Coconut Chutney",
+            "calories": 380,
+            "fat": 8,
+            "protein": 16,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Chana Masala and Mixed Vegetable Raita",
+            "calories": 520,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Whole Wheat Toast with Avocado",
+            "calories": 220,
+            "fat": 12,
+            "protein": 6,
+            "carbs": 22
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Banana",
+            "calories": 270,
+            "fat": 5,
+            "protein": 25,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable and Paneer Tikka with Mint Chutney and Salad",
+            "calories": 450,
+            "fat": 16,
+            "protein": 24,
+            "carbs": 55
+          }
+        }
+      }
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "advanced",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Brown Rice with Rajma Curry and Mixed Vegetable Salad",
+            "calories": 500,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 200,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Almond Milk",
+            "calories": 250,
+            "fat": 5,
+            "protein": 30,
+            "carbs": 20
+          },
+          "dinner": {
+            "name": "Palak Paneer with Whole Wheat Roti",
+            "calories": 450,
+            "fat": 18,
+            "protein": 25,
+            "carbs": 50
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 380,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Quinoa and Cucumber Raita",
+            "calories": 520,
+            "fat": 15,
+            "protein": 28,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Mixed Berries",
+            "calories": 180,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Banana",
+            "calories": 280,
+            "fat": 4,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Khichdi with Low-Fat Curd",
+            "calories": 400,
+            "fat": 10,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato-Onion Stuffing",
+            "calories": 340,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 40
+          },
+          "lunch": {
+            "name": "Whole Wheat Pasta with Vegetable Sauce and Paneer",
+            "calories": 480,
+            "fat": 14,
+            "protein": 25,
+            "carbs": 65
+          },
+          "pre_workout": {
+            "name": "Apple Slices with Peanut Butter",
+            "calories": 220,
+            "fat": 16,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Mixed Nuts",
+            "calories": 300,
+            "fat": 10,
+            "protein": 30,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Multigrain Roti",
+            "calories": 420,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 55
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Oats Idli with Sambar",
+            "calories": 330,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Lentil Soup with Brown Rice and Sautéed Vegetables",
+            "calories": 490,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix (Nuts and Dried Fruits)",
+            "calories": 240,
+            "fat": 18,
+            "protein": 10,
+            "carbs": 18
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Chia Seeds",
+            "calories": 270,
+            "fat": 6,
+            "protein": 32,
+            "carbs": 22
+          },
+          "dinner": {
+            "name": "Tofu Bhurji with Whole Wheat Paratha",
+            "calories": 430,
+            "fat": 16,
+            "protein": 25,
+            "carbs": 50
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 360,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Curry with Millet Roti and Cucumber Salad",
+            "calories": 510,
+            "fat": 14,
+            "protein": 22,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Low-Fat Paneer Cubes with Cherry Tomatoes",
+            "calories": 200,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 10
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Flaxseeds",
+            "calories": 290,
+            "fat": 8,
+            "protein": 32,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Raita",
+            "calories": 450,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 65
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Masala Dosa with Coconut Chutney",
+            "calories": 370,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Dal Makhani with Jeera Rice and Roasted Vegetables",
+            "calories": 530,
+            "fat": 18,
+            "protein": 25,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Vegetable Smoothie with Chia Seeds",
+            "calories": 180,
+            "fat": 6,
+            "protein": 8,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Coconut Water",
+            "calories": 260,
+            "fat": 4,
+            "protein": 30,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Mushroom Masala with Whole Wheat Naan",
+            "calories": 440,
+            "fat": 14,
+            "protein": 22,
+            "carbs": 60
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Tomato Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Paneer Tikka with Mint Chutney and Quinoa Pulao",
+            "calories": 520,
+            "fat": 20,
+            "protein": 30,
+            "carbs": 60
+          },
+          "pre_workout": {
+            "name": "Sprouts Chaat",
+            "calories": 190,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Dates",
+            "calories": 280,
+            "fat": 4,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Brown Rice",
+            "calories": 420,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 65
+          }
+        }
+      }
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "beginner",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Brown Rice with Dal and Mixed Vegetable Curry",
+            "calories": 500,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Apple with Peanut Butter",
+            "calories": 200,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Paneer and Vegetable Wrap",
+            "calories": 300,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Oats Upma with Raita",
+            "calories": 400,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 65
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 350,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Whole Wheat Roti with Chickpea Curry and Salad",
+            "calories": 500,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Mixed Nuts",
+            "calories": 200,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 18
+          },
+          "post_workout": {
+            "name": "Vegetable Soup with Whole Grain Crackers",
+            "calories": 250,
+            "fat": 5,
+            "protein": 12,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Masoor Dal Khichdi with Yogurt",
+            "calories": 450,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 350,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Quinoa Pulao with Mixed Vegetables and Raita",
+            "calories": 500,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Fruit Smoothie with Chia Seeds",
+            "calories": 220,
+            "fat": 6,
+            "protein": 8,
+            "carbs": 35
+          },
+          "post_workout": {
+            "name": "Sprouts and Vegetable Salad",
+            "calories": 250,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable Daliya with Cucumber Raita",
+            "calories": 400,
+            "fat": 8,
+            "protein": 18,
+            "carbs": 65
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Idli with Sambar and Coconut Chutney",
+            "calories": 350,
+            "fat": 7,
+            "protein": 15,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Thali (Roti, Sabzi, Dal, Rice, Salad)",
+            "calories": 550,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 150,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Paneer Tikka",
+            "calories": 300,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 15
+          },
+          "dinner": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 400,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 65
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Multigrain Paratha with Curd",
+            "calories": 400,
+            "fat": 15,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Papad",
+            "calories": 500,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Handful of Mixed Nuts and Raisins",
+            "calories": 200,
+            "fat": 15,
+            "protein": 7,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Tofu and Vegetable Stir-Fry",
+            "calories": 300,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Ragi Dosa with Tomato Chutney",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 60
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Salad",
+            "calories": 550,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Berries",
+            "calories": 180,
+            "fat": 5,
+            "protein": 15,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Vegetable Cutlet with Mint Chutney",
+            "calories": 250,
+            "fat": 10,
+            "protein": 10,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Palak Paneer with Whole Wheat Roti",
+            "calories": 450,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 50
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Vermicelli Upma",
+            "calories": 350,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Whole Wheat Pasta in Tomato Sauce with Vegetables",
+            "calories": 500,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Banana with Peanut Butter",
+            "calories": 220,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 30
+          },
+          "post_workout": {
+            "name": "Spinach and Corn Sandwich",
+            "calories": 280,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 40
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Jeera Rice",
+            "calories": 450,
+            "fat": 12,
+            "protein": 15,
+            "carbs": 70
+          }
+        }
+      }
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "intermediate",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Mint Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Brown Rice with Dal Tadka and Mixed Vegetable Curry",
+            "calories": 500,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Apple with Peanut Butter",
+            "calories": 200,
+            "fat": 8,
+            "protein": 7,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Banana",
+            "calories": 250,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Paneer Bhurji with Whole Wheat Roti and Spinach",
+            "calories": 450,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 55
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Oats Idli with Sambar",
+            "calories": 300,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Quinoa Pulao with Rajma and Raita",
+            "calories": 550,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Mixed Nuts",
+            "calories": 180,
+            "fat": 10,
+            "protein": 10,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Greek Yogurt with Berries and Chia Seeds",
+            "calories": 200,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Vegetable Daliya Khichdi with Low-Fat Curd",
+            "calories": 400,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 65
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 320,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 40
+          },
+          "lunch": {
+            "name": "Whole Wheat Pasta with Vegetable Sauce and Tofu",
+            "calories": 500,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Multigrain Cracker with Hummus",
+            "calories": 180,
+            "fat": 8,
+            "protein": 6,
+            "carbs": 22
+          },
+          "post_workout": {
+            "name": "Soy Milk Protein Shake with Dates",
+            "calories": 230,
+            "fat": 5,
+            "protein": 25,
+            "carbs": 28
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Millet Roti",
+            "calories": 420,
+            "fat": 12,
+            "protein": 18,
+            "carbs": 70
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Upma with Mixed Vegetables and Peanuts",
+            "calories": 330,
+            "fat": 10,
+            "protein": 12,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Cucumber Raita",
+            "calories": 480,
+            "fat": 12,
+            "protein": 22,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Flaxseeds",
+            "calories": 150,
+            "fat": 5,
+            "protein": 8,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Paneer and Vegetable Roll",
+            "calories": 280,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Soya Chunk Curry with Brown Rice",
+            "calories": 450,
+            "fat": 12,
+            "protein": 28,
+            "carbs": 65
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 300,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Multigrain Roti and Salad",
+            "calories": 520,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Pear with Almond Butter",
+            "calories": 190,
+            "fat": 9,
+            "protein": 5,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Cottage Cheese and Vegetable Sandwich",
+            "calories": 250,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable and Tofu Biryani with Mint Raita",
+            "calories": 480,
+            "fat": 14,
+            "protein": 22,
+            "carbs": 70
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Multigrain Dosa with Sambar and Coconut Chutney",
+            "calories": 350,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Mixed Bean Salad with Quinoa and Lemon Dressing",
+            "calories": 480,
+            "fat": 15,
+            "protein": 22,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Cucumber and Carrot Sticks with Peanut Chutney",
+            "calories": 160,
+            "fat": 8,
+            "protein": 6,
+            "carbs": 18
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Mixed Berries",
+            "calories": 220,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Palak Paneer with Jowar Roti",
+            "calories": 420,
+            "fat": 18,
+            "protein": 25,
+            "carbs": 45
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Ragi Uttapam with Tomato Chutney",
+            "calories": 320,
+            "fat": 8,
+            "protein": 12,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Soya Chunks and Raita",
+            "calories": 500,
+            "fat": 14,
+            "protein": 25,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Homemade Trail Mix (Nuts, Seeds, and Dried Fruits)",
+            "calories": 200,
+            "fat": 12,
+            "protein": 8,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Moong Dal Cheela with Mint Chutney",
+            "calories": 250,
+            "fat": 6,
+            "protein": 18,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Mixed Vegetable Curry with Quinoa",
+            "calories": 400,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 60
+          }
+        }
+      }
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "advanced",
+      "type": "vegetarian",
+      "diet": {
+        "monday": {
+          "breakfast": {
+            "name": "Moong Dal Chilla with Spinach and Mint Chutney",
+            "calories": 350,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Rajma Curry with Brown Rice and Vegetable Salad",
+            "calories": 500,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Roasted Chana with Peanuts",
+            "calories": 200,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Banana",
+            "calories": 250,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Paneer Bhurji with Whole Wheat Roti and Steamed Vegetables",
+            "calories": 450,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 55
+          }
+        },
+        "tuesday": {
+          "breakfast": {
+            "name": "Vegetable Upma with Coconut Chutney",
+            "calories": 320,
+            "fat": 7,
+            "protein": 15,
+            "carbs": 55
+          },
+          "lunch": {
+            "name": "Chickpea Curry with Quinoa and Cucumber Raita",
+            "calories": 480,
+            "fat": 12,
+            "protein": 22,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Greek Yogurt with Berries",
+            "calories": 180,
+            "fat": 5,
+            "protein": 20,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Almond Milk",
+            "calories": 220,
+            "fat": 5,
+            "protein": 25,
+            "carbs": 25
+          },
+          "dinner": {
+            "name": "Vegetable Biryani with Lentil Soup",
+            "calories": 420,
+            "fat": 10,
+            "protein": 20,
+            "carbs": 70
+          }
+        },
+        "wednesday": {
+          "breakfast": {
+            "name": "Oats Idli with Sambar",
+            "calories": 300,
+            "fat": 5,
+            "protein": 18,
+            "carbs": 50
+          },
+          "lunch": {
+            "name": "Lentil and Vegetable Khichdi with Yogurt",
+            "calories": 450,
+            "fat": 8,
+            "protein": 20,
+            "carbs": 80
+          },
+          "pre_workout": {
+            "name": "Multigrain Crackers with Hummus",
+            "calories": 220,
+            "fat": 12,
+            "protein": 10,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Dates",
+            "calories": 280,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Tofu Tikka Masala with Brown Rice and Sautéed Spinach",
+            "calories": 480,
+            "fat": 15,
+            "protein": 25,
+            "carbs": 65
+          }
+        },
+        "thursday": {
+          "breakfast": {
+            "name": "Vegetable Poha with Sprouts",
+            "calories": 330,
+            "fat": 7,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Mixed Vegetable Curry with Millet Roti and Dal",
+            "calories": 520,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Buttermilk with Roasted Cumin",
+            "calories": 100,
+            "fat": 2,
+            "protein": 8,
+            "carbs": 12
+          },
+          "post_workout": {
+            "name": "Rice Protein Shake with Mango",
+            "calories": 250,
+            "fat": 3,
+            "protein": 25,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Palak Paneer with Whole Wheat Naan and Cucumber Salad",
+            "calories": 450,
+            "fat": 18,
+            "protein": 22,
+            "carbs": 55
+          }
+        },
+        "friday": {
+          "breakfast": {
+            "name": "Masala Dosa with Coconut Chutney and Sambar",
+            "calories": 380,
+            "fat": 10,
+            "protein": 15,
+            "carbs": 65
+          },
+          "lunch": {
+            "name": "Bean and Vegetable Salad with Whole Wheat Pita",
+            "calories": 450,
+            "fat": 12,
+            "protein": 20,
+            "carbs": 70
+          },
+          "pre_workout": {
+            "name": "Handful of Mixed Nuts and Dried Fruits",
+            "calories": 200,
+            "fat": 15,
+            "protein": 8,
+            "carbs": 15
+          },
+          "post_workout": {
+            "name": "Soy Protein Shake with Pineapple",
+            "calories": 240,
+            "fat": 3,
+            "protein": 25,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Vegetable Kofta Curry with Jeera Rice and Raita",
+            "calories": 500,
+            "fat": 20,
+            "protein": 20,
+            "carbs": 70
+          }
+        },
+        "saturday": {
+          "breakfast": {
+            "name": "Besan Cheela with Tomato Chutney",
+            "calories": 320,
+            "fat": 10,
+            "protein": 18,
+            "carbs": 45
+          },
+          "lunch": {
+            "name": "Vegetable Pulao with Soya Chunks and Cucumber Raita",
+            "calories": 480,
+            "fat": 12,
+            "protein": 25,
+            "carbs": 75
+          },
+          "pre_workout": {
+            "name": "Homemade Energy Balls (dates, nuts, and seeds)",
+            "calories": 180,
+            "fat": 10,
+            "protein": 6,
+            "carbs": 20
+          },
+          "post_workout": {
+            "name": "Pea Protein Shake with Berries",
+            "calories": 230,
+            "fat": 3,
+            "protein": 25,
+            "carbs": 30
+          },
+          "dinner": {
+            "name": "Baingan Bharta with Multigrain Roti and Lentil Soup",
+            "calories": 420,
+            "fat": 15,
+            "protein": 20,
+            "carbs": 60
+          }
+        },
+        "sunday": {
+          "breakfast": {
+            "name": "Vegetable Uttapam with Coconut Chutney",
+            "calories": 350,
+            "fat": 8,
+            "protein": 15,
+            "carbs": 60
+          },
+          "lunch": {
+            "name": "Mixed Dal with Brown Rice and Vegetable Stir-Fry",
+            "calories": 500,
+            "fat": 10,
+            "protein": 25,
+            "carbs": 85
+          },
+          "pre_workout": {
+            "name": "Sprouts Chaat",
+            "calories": 150,
+            "fat": 3,
+            "protein": 10,
+            "carbs": 25
+          },
+          "post_workout": {
+            "name": "Whey Protein Shake with Banana and Spinach",
+            "calories": 270,
+            "fat": 3,
+            "protein": 30,
+            "carbs": 35
+          },
+          "dinner": {
+            "name": "Vegetable Korma with Millet Roti and Cucumber Salad",
+            "calories": 450,
+            "fat": 18,
+            "protein": 20,
+            "carbs": 60
+          }
+        }
+      }
+    }
+  ]
+}

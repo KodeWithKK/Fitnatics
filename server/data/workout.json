@@ -1,0 +1,3290 @@
+{
+  "data": [
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "beginner",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Push-ups (on knees if needed)",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 40
+            },
+            {
+              "name": "Assisted Pull-ups",
+              "sets": 3,
+              "reps": 8,
+              "rest": "60 seconds",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "20 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 20
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Rest & Light Cardio",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Dumbbell Lunges",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Dumbbell Bench Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Dumbbell Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 55
+            },
+            {
+              "name": "Bicycle Crunches",
+              "sets": 3,
+              "reps": 15,
+              "rest": "30 seconds",
+              "caloriesBurned": 30
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest & Light Cardio",
+          "exercises": [
+            {
+              "name": "Stationary Bike",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Goblet Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 65
+            },
+            {
+              "name": "Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 55
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 25
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Light Full Body & Cardio",
+          "exercises": [
+            {
+              "name": "Bodyweight Exercises Circuit",
+              "sets": 3,
+              "reps": "30 seconds each exercise",
+              "rest": "60 seconds between sets",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Elliptical",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "intermediate",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Dips",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Tricep Rope Pushdown",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Pull-ups",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Bent-over Barbell Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 170
+            },
+            {
+              "name": "Seated Cable Rows",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Barbell Bicep Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Abs",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 4,
+              "reps": 8,
+              "rest": "120 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": 12,
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Hanging Leg Raises",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Traps",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Barbell Shrugs",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": 6,
+              "rest": "120 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Dumbbell Bench Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Leg Extensions",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Rest & Recovery",
+          "exercises": []
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest & Recovery",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "16-18.4",
+      "category": "underweight",
+      "workoutExperience": "advanced",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Weighted Dips",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "T-Bar Rows",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 170
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Shoulders",
+          "exercises": [
+            {
+              "name": "Barbell Squats",
+              "sets": 5,
+              "reps": "5-7",
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest Day",
+          "exercises": []
+        },
+        {
+          "day": "friday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Incline Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 210
+            },
+            {
+              "name": "Dumbbell Flyes",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Close-Grip Bench Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Overhead Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 110
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": "5-7",
+              "rest": "120 seconds",
+              "caloriesBurned": 280
+            },
+            {
+              "name": "Weighted Chin-ups",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "One-Arm Dumbbell Rows",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "beginner",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Push-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Dumbbell Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Cardio",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Jumping Jacks",
+              "sets": 3,
+              "reps": "1 minute",
+              "rest": "30 seconds",
+              "caloriesBurned": 60
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Lunges",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 85
+            },
+            {
+              "name": "Bodyweight Dips",
+              "sets": 3,
+              "reps": 8,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Bicycle Crunches",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest Day",
+          "exercises": []
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Glute Bridges",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Incline Push-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Cardio",
+          "exercises": [
+            {
+              "name": "Stationary Bike",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 15,
+              "rest": "30 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "intermediate",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Dips",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Pull-ups",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Bent-over Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Abs",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "120 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Calf Raises",
+              "sets": 4,
+              "reps": "15-20",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Hanging Leg Raises",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Traps",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Shrugs",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 110
+            },
+            {
+              "name": "Upright Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & Core",
+          "exercises": [
+            {
+              "name": "Clean and Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 170
+            },
+            {
+              "name": "Bulgarian Split Squats",
+              "sets": 3,
+              "reps": "10-12 per leg",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Plank Variations",
+              "sets": 3,
+              "reps": "30-60 seconds",
+              "rest": "45 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": "20-30",
+              "rest": "45 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Light Jogging or Swimming",
+              "sets": 1,
+              "reps": "30-45 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Stretching",
+              "sets": 1,
+              "reps": "15-20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Foam Rolling",
+              "sets": 1,
+              "reps": "10-15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 30
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "18.5-24.9",
+      "category": "normal-weight",
+      "workoutExperience": "advanced",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 5,
+              "reps": "5-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Weighted Dips",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 5,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "T-Bar Rows",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 170
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 110
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Abs",
+          "exercises": [
+            {
+              "name": "Barbell Squats",
+              "sets": 5,
+              "reps": "5-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 3,
+              "reps": "12-15 per leg",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Hanging Leg Raises",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Cable Crunches",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "45 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Traps",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 5,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Dumbbell Lateral Raises",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Upright Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Barbell Shrugs",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Reverse Flyes",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & Core",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 5,
+              "reps": "5-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 280
+            },
+            {
+              "name": "Clean and Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Weighted Chin-ups",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Dips",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 seconds",
+              "rest": "45 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": "20-25 per side",
+              "rest": "45 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Light Jogging",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Foam Rolling",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Static Stretching",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 40
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "beginner",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Push-ups (or Knee Push-ups)",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Dumbbell Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 2,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Cardio & Core",
+          "exercises": [
+            {
+              "name": "Brisk Walking or Light Jogging",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 30
+            },
+            {
+              "name": "Bicycle Crunches",
+              "sets": 3,
+              "reps": 15,
+              "rest": "30 seconds",
+              "caloriesBurned": 40
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Rest Day",
+          "exercises": []
+        },
+        {
+          "day": "thursday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 85
+            },
+            {
+              "name": "Bodyweight Lunges",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 95
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Dumbbell Chest Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Cardio & Core",
+          "exercises": [
+            {
+              "name": "Stationary Bike or Elliptical",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Leg Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "30 seconds",
+              "caloriesBurned": 45
+            },
+            {
+              "name": "Side Planks",
+              "sets": 2,
+              "reps": "20 seconds each side",
+              "rest": "30 seconds",
+              "caloriesBurned": 30
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Glute Bridges",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Wall Push-ups",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Dumbbell Deadlifts",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 110
+            },
+            {
+              "name": "Seated Dumbbell Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 65
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "intermediate",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Tricep Rope Pushdowns",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": 6,
+              "rest": "120 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Pull-ups",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Seated Cable Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Barbell Bicep Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Core",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 4,
+              "reps": 8,
+              "rest": "120 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Calf Raises",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Planks",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "45 seconds",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "45 seconds",
+              "caloriesBurned": 60
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Arms",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "EZ Bar Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 110
+            },
+            {
+              "name": "Overhead Tricep Extensions",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & HIIT",
+          "exercises": [
+            {
+              "name": "Barbell Thrusters",
+              "sets": 4,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Kettlebell Swings",
+              "sets": 3,
+              "reps": 15,
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Burpees",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Battle Ropes",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Brisk Walking or Light Jogging",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Yoga or Stretching",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 150
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "25-29.9",
+      "category": "overweight",
+      "workoutExperience": "advanced",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 5,
+              "reps": "5-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Weighted Dips",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Close-Grip Bench Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Rope Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 5,
+              "reps": "3-5",
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Weighted Pull-Ups",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 170
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Preacher Curls",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Shoulders",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 5,
+              "reps": "5-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest & Recovery",
+          "exercises": [
+            {
+              "name": "Light Cardio (Swimming or Cycling)",
+              "sets": 1,
+              "reps": "30-45 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Stretching",
+              "sets": 1,
+              "reps": "15-20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Chest & Back",
+          "exercises": [
+            {
+              "name": "Incline Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Weighted Chin-Ups",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Dumbbell Flyes",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "T-Bar Rows",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Cable Pullovers",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Legs & Arms",
+          "exercises": [
+            {
+              "name": "Front Squats",
+              "sets": 4,
+              "reps": "6-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 3,
+              "reps": "12-15 per leg",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Leg Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 4,
+              "reps": "8-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 110
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest & Recovery",
+          "exercises": [
+            {
+              "name": "Light Cardio (Brisk Walking)",
+              "sets": 1,
+              "reps": "45-60 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Yoga or Foam Rolling",
+              "sets": 1,
+              "reps": "20-30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "beginner",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Wall Push-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Stationary Lunges",
+              "sets": 2,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Seated Rows with Resistance Band",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Cardio",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "As needed",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Stationary Bike",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "As needed",
+              "caloriesBurned": 150
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Bodyweight Glute Bridges",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Dumbbell Bicep Curls",
+              "sets": 2,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Plank Hold",
+              "sets": 3,
+              "reps": "20 seconds",
+              "rest": "60 seconds",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest Day",
+          "exercises": []
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Bodyweight Step-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Dumbbell Chest Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Resistance Band Pull-aparts",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Wall Sits",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Cardio",
+          "exercises": [
+            {
+              "name": "Swimming",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "As needed",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Elliptical Machine",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "As needed",
+              "caloriesBurned": 180
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "intermediate",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Tricep Dips",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": 6,
+              "rest": "120 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Bent-Over Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Lat Pulldowns",
+              "sets": 3,
+              "reps": 12,
+              "rest": "75 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Shoulders",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 4,
+              "reps": 8,
+              "rest": "120 seconds",
+              "caloriesBurned": 240
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": 12,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Military Press",
+              "sets": 3,
+              "reps": 8,
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest & Light Cardio",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Stretching",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Pull-Ups or Assisted Pull-Ups",
+              "sets": 3,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": 12,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "60 seconds",
+              "caloriesBurned": 60
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "HIIT & Core",
+          "exercises": [
+            {
+              "name": "Burpees",
+              "sets": 4,
+              "reps": "45 seconds",
+              "rest": "15 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 4,
+              "reps": "45 seconds",
+              "rest": "15 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Jumping Jacks",
+              "sets": 4,
+              "reps": "45 seconds",
+              "rest": "15 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Bicycle Crunches",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 70
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": [
+            {
+              "name": "Light Stretching",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bmi": "30-34.9",
+      "category": "obese",
+      "workoutExperience": "advanced",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Weighted Dips",
+              "sets": 3,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Tricep Rope Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": "5-6",
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Seated Cable Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Core",
+          "exercises": [
+            {
+              "name": "Barbell Squats",
+              "sets": 5,
+              "reps": "5-6",
+              "rest": "120 seconds",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 3,
+              "reps": "12-15 per leg",
+              "rest": "60 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Hanging Leg Raises",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 seconds",
+              "rest": "45 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Arms",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Dumbbell Lateral Raises",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "EZ Bar Preacher Curls",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Close-Grip Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Dumbbell Overhead Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 110
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & HIIT",
+          "exercises": [
+            {
+              "name": "Barbell Thrusters",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Kettlebell Swings",
+              "sets": 4,
+              "reps": "15-20",
+              "rest": "60 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Renegade Rows",
+              "sets": 3,
+              "reps": "10-12 per arm",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Burpees",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Battle Ropes",
+              "sets": 4,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "45 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Brisk Walking or Light Jogging",
+              "sets": 1,
+              "reps": "45-60 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Stretching Routine",
+              "sets": 1,
+              "reps": "20-30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Foam Rolling",
+              "sets": 1,
+              "reps": "15-20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "beginner",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Full Body & Cardio",
+          "exercises": [
+            {
+              "name": "Bodyweight Squats",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Wall Push-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Chair Dips",
+              "sets": 3,
+              "reps": 8,
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Walking (Treadmill)",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 150
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Rest & Light Activity",
+          "exercises": [
+            {
+              "name": "Gentle Stretching",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 200
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Full Body & Cardio",
+          "exercises": [
+            {
+              "name": "Knee Push-ups",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Lunges",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Seated Rows with Resistance Band",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Stationary Bike",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 160
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Rest & Light Activity",
+          "exercises": [
+            {
+              "name": "Yoga for Beginners",
+              "sets": 1,
+              "reps": "30 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Light Swimming",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 180
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & Cardio",
+          "exercises": [
+            {
+              "name": "Bodyweight Glute Bridges",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 80
+            },
+            {
+              "name": "Standing Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Wall Sit",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "60 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Elliptical Machine",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 180
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "45 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Light Stretching",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "intermediate",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Tricep Pushdowns",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Overhead Tricep Extensions",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Lat Pulldowns",
+              "sets": 4,
+              "reps": 10,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Seated Cable Rows",
+              "sets": 3,
+              "reps": 12,
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Dumbbell Rows",
+              "sets": 3,
+              "reps": 10,
+              "rest": "75 seconds",
+              "caloriesBurned": 140
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Core",
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": 10,
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Leg Extensions",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Leg Curls",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            },
+            {
+              "name": "Calf Raises",
+              "sets": 4,
+              "reps": 15,
+              "rest": "45 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Planks",
+              "sets": 3,
+              "reps": "30 seconds",
+              "rest": "30 seconds",
+              "caloriesBurned": 60
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Abs",
+          "exercises": [
+            {
+              "name": "Seated Dumbbell Press",
+              "sets": 4,
+              "reps": 8,
+              "rest": "90 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Lateral Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Front Raises",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Reverse Flyes",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 90
+            },
+            {
+              "name": "Crunches",
+              "sets": 3,
+              "reps": 20,
+              "rest": "30 seconds",
+              "caloriesBurned": 70
+            },
+            {
+              "name": "Leg Raises",
+              "sets": 3,
+              "reps": 15,
+              "rest": "30 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & Cardio",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 4,
+              "reps": 10,
+              "rest": "120 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": 8,
+              "rest": "120 seconds",
+              "caloriesBurned": 280
+            },
+            {
+              "name": "Push-ups",
+              "sets": 3,
+              "reps": 12,
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Dumbbell Lunges",
+              "sets": 3,
+              "reps": 10,
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Elliptical Machine",
+              "sets": 1,
+              "reps": "20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Rest",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "45 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Light Stretching",
+              "sets": 1,
+              "reps": "15 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "bmi": "35-39.9",
+      "category": "obese-class-2",
+      "workoutExperience": "advanced",
+      "workoutChart": [
+        {
+          "day": "monday",
+          "dayType": "Chest & Triceps",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "sets": 5,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Weighted Dips",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Cable Flyes",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Skull Crushers",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "dayType": "Back & Biceps",
+          "exercises": [
+            {
+              "name": "Deadlifts",
+              "sets": 5,
+              "reps": "5-6",
+              "rest": "120 seconds",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 200
+            },
+            {
+              "name": "Seated Cable Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Barbell Curls",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "dayType": "Legs & Abs",
+          "exercises": [
+            {
+              "name": "Squats",
+              "sets": 5,
+              "reps": "6-8",
+              "rest": "120 seconds",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "75 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Leg Extensions",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Hanging Leg Raises",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Weighted Crunches",
+              "sets": 3,
+              "reps": "15-20",
+              "rest": "45 seconds",
+              "caloriesBurned": 80
+            }
+          ]
+        },
+        {
+          "day": "thursday",
+          "dayType": "Shoulders & Traps",
+          "exercises": [
+            {
+              "name": "Military Press",
+              "sets": 5,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Dumbbell Lateral Raises",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "60 seconds",
+              "caloriesBurned": 150
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 4,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 130
+            },
+            {
+              "name": "Upright Rows",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 160
+            },
+            {
+              "name": "Barbell Shrugs",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Reverse Flyes",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seconds",
+              "caloriesBurned": 120
+            }
+          ]
+        },
+        {
+          "day": "friday",
+          "dayType": "Full Body & Core",
+          "exercises": [
+            {
+              "name": "Clean and Press",
+              "sets": 5,
+              "reps": "5-6",
+              "rest": "120 seconds",
+              "caloriesBurned": 280
+            },
+            {
+              "name": "Front Squats",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seconds",
+              "caloriesBurned": 250
+            },
+            {
+              "name": "Weighted Pull-ups",
+              "sets": 4,
+              "reps": "6-8",
+              "rest": "90 seconds",
+              "caloriesBurned": 220
+            },
+            {
+              "name": "Dips",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "75 seconds",
+              "caloriesBurned": 180
+            },
+            {
+              "name": "Plank with Weights",
+              "sets": 3,
+              "reps": "30-60 seconds",
+              "rest": "45 seconds",
+              "caloriesBurned": 100
+            },
+            {
+              "name": "Russian Twists",
+              "sets": 3,
+              "reps": "20-25 each side",
+              "rest": "45 seconds",
+              "caloriesBurned": 90
+            }
+          ]
+        },
+        {
+          "day": "saturday",
+          "dayType": "Active Recovery",
+          "exercises": [
+            {
+              "name": "Brisk Walking",
+              "sets": 1,
+              "reps": "45-60 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 300
+            },
+            {
+              "name": "Light Stretching",
+              "sets": 1,
+              "reps": "15-20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 50
+            },
+            {
+              "name": "Foam Rolling",
+              "sets": 1,
+              "reps": "15-20 minutes",
+              "rest": "N/A",
+              "caloriesBurned": 40
+            }
+          ]
+        },
+        {
+          "day": "sunday",
+          "dayType": "Rest Day",
+          "exercises": []
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,18 @@ const fitnessRecordsSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    bmi: {
+      type: Number,
+      required: true,
+    },
+    workoutChartId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workout Chart",
+    },
+    dietChartId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Diet Chart",
+    },
     workoutExperience: {
       type: String,
       enum: ["beginner", "intermediate", "advanced"],

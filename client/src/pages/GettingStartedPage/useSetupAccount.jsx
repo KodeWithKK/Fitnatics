@@ -38,6 +38,9 @@ const useSetupAccount = ({ role, data }) => {
         );
       }
     },
+    onSuccess: () => {
+      window.location.href = import.meta.env.VITE_FRONTEND_URL + "/dashboard";
+    },
     onError: (error) => {
       addToast("error", error?.title, error?.message);
     },

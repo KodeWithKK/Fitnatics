@@ -4,11 +4,11 @@ import AdminDashboard from "@components/Dashboard/Admin/Dashboard";
 import MainAppPageLayout from "@layouts/MainAppPageLayout";
 
 const MainAppPage = () => {
-  const [userRole, setUserRole] = React.useState("admin");
+  const [userRole, setUserRole] = React.useState("member");
 
   return (
     <MainAppPageLayout>
-      {userRole === "client" && <ClientDashboard />}
+      {userRole === "member" && <ClientDashboard />}
       {userRole === "admin" && <AdminDashboard />}
     </MainAppPageLayout>
   );

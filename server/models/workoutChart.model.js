@@ -1,24 +1,24 @@
 import mongoose from "mongoose";
 
-const dietSchema = new mongoose.Schema(
+const exerciseSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    calories: {
+    sets: {
       type: Number,
       required: true,
     },
-    fat: {
-      type: Number,
+    reps: {
+      type: String,
       required: true,
     },
-    protein: {
-      type: Number,
+    rest: {
+      type: String,
       required: true,
     },
-    carbs: {
+    caloriesBurned: {
       type: Number,
       required: true,
     },
@@ -26,18 +26,31 @@ const dietSchema = new mongoose.Schema(
   { _id: false }
 );
 
-const dietDaySchema = new mongoose.Schema(
+const exerciseDaySchema = new mongoose.Schema(
   {
-    breakfast: dietSchema,
-    lunch: dietSchema,
-    pre_workout: dietSchema,
-    post_workout: dietSchema,
-    dinner: dietSchema,
+    day: {
+      type: String,
+      enum: [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+      ],
+      required: true,
+    },
+    dayType: {
+      type: String,
+      required: true,
+    },
+    exercises: [exerciseSchema],
   },
   { _id: false }
 );
 
-const dietChartSchema = new mongoose.Schema(
+const workoutChartSchema = new mongoose.Schema(
   {
     bmiStart: {
       type: Number,
@@ -49,7 +62,6 @@ const dietChartSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
       enum: [
         "underweight",
         "normal-weight",
@@ -57,30 +69,18 @@ const dietChartSchema = new mongoose.Schema(
         "obese",
         "obese-class-2",
       ],
+      required: true,
     },
     workoutExperience: {
       type: String,
-      required: true,
       enum: ["beginner", "intermediate", "advanced"],
-    },
-    type: {
-      type: String,
       required: true,
-      enum: ["vegetarian", "non-vegetarian"],
     },
-    diet: {
-      monday: dietDaySchema,
-      tuesday: dietDaySchema,
-      wednesday: dietDaySchema,
-      thursday: dietDaySchema,
-      friday: dietDaySchema,
-      saturday: dietDaySchema,
-      sunday: dietDaySchema,
-    },
+    workoutChart: [exerciseDaySchema],
   },
   {
     timestamps: true,
   }
 );
 
-export const DietChart = mongoose.model("Diet Chart", dietChartSchema);
+export const WorkoutChart = mongoose.model("Workout Chart", workoutChartSchema);

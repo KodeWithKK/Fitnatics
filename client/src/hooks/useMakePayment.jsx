@@ -55,22 +55,11 @@ function useMakePayment({ productId, productType, callbackFn }) {
             description: "Test Mode",
             image: import.meta.env.VITE_LOGO_URL,
             handler: async (response) => {
-              await callbackFn(
-                {
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                },
-                {
-                  onSuccess: () => {
-                    addToast(
-                      "success",
-                      "Payment Successful!",
-                      `${productName} bought for ₹${Math.trunc(amount / 100)}`
-                    );
-                  },
-                }
-              );
+              await callbackFn({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              });
             },
             theme: {
               color: "#1271ed",
