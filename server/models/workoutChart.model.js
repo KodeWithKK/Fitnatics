@@ -11,11 +11,16 @@ const exerciseSchema = new mongoose.Schema(
       required: true,
     },
     reps: {
-      type: String,
+      type: Number,
       required: true,
     },
-    rest: {
+    repsUnit: {
       type: String,
+      required: true,
+      enum: ["number", "secs", "mins"],
+    },
+    rest: {
+      type: Number,
       required: true,
     },
     caloriesBurned: {
@@ -43,6 +48,10 @@ const exerciseDaySchema = new mongoose.Schema(
     },
     dayType: {
       type: String,
+      required: true,
+    },
+    timeRequired: {
+      type: Number,
       required: true,
     },
     exercises: [exerciseSchema],

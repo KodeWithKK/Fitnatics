@@ -1,11 +1,12 @@
+import { useRef, useState, useCallback, useContext, useMemo } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import useEmailVerification from "@hooks/useEmailVerification";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
-import { useRef, useState, useCallback, useContext, useMemo } from "react";
 import useInputHooks from "./useInputHooks";
 
 function useVerifyEmailFormHooks() {
-  const { addToast, refetch } = useContext(GlobalContext);
+  const { addToast } = useContext(GlobalContext);
   const {
     setStep,
     memberData,
@@ -18,6 +19,8 @@ function useVerifyEmailFormHooks() {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [isApiReqPending, setIsApiRequestPending] = useState(false);
   const inputRefs = useRef([]);
+
+  const queryClient = useQueryClient();
 
   const { generateOTP, verifyOTP } = useEmailVerification({
     setOtpGeneratedAt,
@@ -57,15 +60,18 @@ function useVerifyEmailFormHooks() {
       await verifyOTP(
         { email, otp: otpString },
         {
-          onSuccess: () => {
+          onSuccess: async () => {
             setIsEmailVerified(true);
-            refetch.user();
+            await queryClient.refetchQueries({
+              queryKey: ["user"],
+              exact: true,
+            });
           },
         }
       );
       setIsApiRequestPending(false);
     }
-  }, [addToast, email, otp, setIsEmailVerified, refetch, verifyOTP]);
+  }, [addToast, email, otp, setIsEmailVerified, queryClient, verifyOTP]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

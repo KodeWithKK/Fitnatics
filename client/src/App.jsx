@@ -12,6 +12,7 @@ import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
 import GettingStartedPage from "@pages/GettingStartedPage/GettingStartedPage";
 import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
+import LoadingScreen from "@components/LoadingScreen/LoadingScreen";
 
 function App() {
   const { toasts, removeToast } = React.useContext(GlobalContext);
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="bg-gray-975 font-normal font-sans text-base text-gray-100 leading-[1.6]">
       <ToastStackLayout toasts={toasts} removeToast={removeToast} />
+      <LoadingScreen />
 
       <Router>
         <Routes>
@@ -47,7 +49,10 @@ function App() {
               userData ? <GettingStartedPage /> : <Navigate to="/" replace />
             }
           />
-          <Route path="/:nav" element={<MainAppPage />} />
+          <Route
+            path="/:nav"
+            element={userData ? <MainAppPage /> : <Navigate to="/" replace />}
+          />
           <Route
             path="/error/account-already-exists"
             element={<ErrorRedirects />}

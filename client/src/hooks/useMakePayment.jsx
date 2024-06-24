@@ -10,8 +10,13 @@ function useMakePayment({ productId, productType, callbackFn }) {
   const paymentId = useRef(null);
   const paymentMethod = useRef(null);
 
-  const { addToast, isRazorpayScriptLoaded, setIsRazorpayScriptLoaded } =
-    useContext(GlobalContext);
+  const {
+    addToast,
+    hideLoader,
+    displayLoader,
+    isRazorpayScriptLoaded,
+    setIsRazorpayScriptLoaded,
+  } = useContext(GlobalContext);
 
   const { isPending: isCreateOrderPending, mutate: createOrder } = useMutation({
     mutationFn: async () => {
@@ -21,7 +26,11 @@ function useMakePayment({ productId, productType, callbackFn }) {
       );
       return data;
     },
+    onMutate: () => {
+      displayLoader("Redirecting you to Payment Gateway...");
+    },
     onError: (error) => {
+      hideLoader();
       addToast("error", error?.title, error?.message);
     },
   });
@@ -86,7 +95,6 @@ function useMakePayment({ productId, productType, callbackFn }) {
   }, [
     isRazorpayScriptLoaded,
     setIsRazorpayScriptLoaded,
-    addToast,
     createOrder,
     callbackFn,
   ]);

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 
 const useSetupAccount = ({ role, data }) => {
-  const { addToast } = useContext(GlobalContext);
+  const { addToast, hideLoader, displayLoader } = useContext(GlobalContext);
 
   const { isPending, mutate: setupAccountHandler } = useMutation({
     mutationFn: async ({
@@ -38,10 +38,14 @@ const useSetupAccount = ({ role, data }) => {
         );
       }
     },
+    onMutate: () => {
+      displayLoader("Redirecting to Dashboard...");
+    },
     onSuccess: () => {
       window.location.href = import.meta.env.VITE_FRONTEND_URL + "/dashboard";
     },
     onError: (error) => {
+      hideLoader();
       addToast("error", error?.title, error?.message);
     },
   });

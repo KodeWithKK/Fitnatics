@@ -4,12 +4,12 @@ export const GlobalContext = createContext();
 
 function GlobalContextProvider({ children }) {
   const [toasts, setToasts] = useState([]);
-  const [refetchFns, setRefetchFns] = useState({});
+  const [displayLoader, setDisplayLoader] = useState(false);
+  const [loaderText, setLoaderText] = useState("Loading...");
   const [isRazorpayScriptLoaded, setIsRazorpayScriptLoaded] = useState(false);
 
   const addToast = useCallback((type, title, message) => {
     setToasts((prevToasts) => {
-      // Access the current state with prevToasts
       return [
         ...prevToasts,
         { id: window.crypto.randomUUID(), type, title, message },
@@ -25,30 +25,37 @@ function GlobalContextProvider({ children }) {
     [toasts]
   );
 
-  const addRefetchFn = useCallback(({ name, fn }) => {
-    setRefetchFns((prevFns) => {
-      const nextFns = { ...prevFns, [name]: fn };
-      return nextFns;
-    });
+  const displayLoaderWithText = useCallback((text) => {
+    if (text) setLoaderText(text);
+    else setLoaderText("");
+    setDisplayLoader(true);
+  }, []);
+
+  const hideLoader = useCallback(() => {
+    setDisplayLoader(false);
   }, []);
 
   const value = useMemo(() => {
     return {
       toasts,
-      refetch: refetchFns,
+      loaderText,
+      displayLoaderState: displayLoader,
       isRazorpayScriptLoaded,
       addToast,
       removeToast,
-      addRefetchFn,
       setIsRazorpayScriptLoaded,
+      hideLoader,
+      displayLoader: displayLoaderWithText,
     };
   }, [
     toasts,
-    refetchFns,
+    loaderText,
+    displayLoader,
     isRazorpayScriptLoaded,
     addToast,
     removeToast,
-    addRefetchFn,
+    hideLoader,
+    displayLoaderWithText,
   ]);
 
   return (

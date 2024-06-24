@@ -70,8 +70,9 @@ const dietSchema = yup.array().of(
 const workoutSchema = yup.object({
   name: yup.string().required(),
   sets: yup.number().positive().required(),
-  reps: yup.string().required(),
-  rest: yup.string().required(),
+  reps: yup.number().positive().required(),
+  repsUnit: yup.string().oneOf(["number", "secs", "mins"]).required(),
+  rest: yup.number().required(),
   caloriesBurned: yup.number().positive().required(),
 });
 
@@ -107,6 +108,7 @@ const workoutChartSchema = yup.array().of(
           ])
           .required(),
         dayType: yup.string().required(),
+        timeRequired: yup.number().required(),
         exercises: yup.array().of(workoutSchema),
       })
     ),

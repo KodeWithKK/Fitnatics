@@ -1,16 +1,9 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useEffect, useContext } from "react";
-import { GlobalContext } from "@context/GlobalContextProvider";
 import apiClient from "@api/apiClient";
 
 const useFetchUserData = () => {
-  const { addRefetchFn } = useContext(GlobalContext);
-
-  const {
-    isLoading,
-    data: userData,
-    refetch: refetchUser,
-  } = useQuery({
+  const { isLoading, data: userData } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await apiClient.get(
@@ -23,10 +16,7 @@ const useFetchUserData = () => {
     placeholderData: keepPreviousData,
   });
 
-  useEffect(() => {
-    addRefetchFn({ name: "user", fn: refetchUser });
-  }, [addRefetchFn, refetchUser]);
-  return { isLoading, userData, refetchUser };
+  return { isLoading, userData };
 };
 
 export { useFetchUserData };

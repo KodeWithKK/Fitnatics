@@ -1,15 +1,21 @@
-import React from "react";
+import { useMemo } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import ClientDashboard from "@components/Dashboard/Client/Dashboard";
 import AdminDashboard from "@components/Dashboard/Admin/Dashboard";
 import MainAppPageLayout from "@layouts/MainAppPageLayout";
 
 const MainAppPage = () => {
-  const [userRole, setUserRole] = React.useState("member");
+  const queryClient = useQueryClient();
+  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
+
+  if (!user?.role) {
+    return null;
+  }
 
   return (
     <MainAppPageLayout>
-      {userRole === "member" && <ClientDashboard />}
-      {userRole === "admin" && <AdminDashboard />}
+      {user.role === "member" && <ClientDashboard />}
+      {user.role === "admin" && <AdminDashboard />}
     </MainAppPageLayout>
   );
 };
