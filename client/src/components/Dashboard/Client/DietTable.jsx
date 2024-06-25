@@ -1,24 +1,15 @@
-import React from "react";
-import {
-  CaloriesIcon,
-  ProteinIcon,
-  CarbsIcon,
-  FatIcon,
-} from "../../../icons/Icons";
-import { beginnerDietData } from "../../../data/diet";
+import { CaloriesIcon, ProteinIcon, CarbsIcon, FatIcon } from "@icons/Icons";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 
-const DietTable = () => {
-  const data = beginnerDietData[4];
-
+const DietTable = ({ todaysDiet }) => {
   return (
     <div className="space-y-2 w-[696px]">
-      <DietTableItem type="Breakfast" data={data.breakfast} />
-      <DietTableItem type="Lunch" data={data.lunch} />
-      <DietTableItem type="Pre-Workout" data={data.pre_workout} />
-      <DietTableItem type="Post-Workout" data={data.post_workout} />
-      <DietTableItem type="Dinner" data={data.dinner} />
+      <DietTableItem type="Breakfast" data={todaysDiet.breakfast} />
+      <DietTableItem type="Lunch" data={todaysDiet.lunch} />
+      <DietTableItem type="Pre-Workout" data={todaysDiet.pre_workout} />
+      <DietTableItem type="Post-Workout" data={todaysDiet.post_workout} />
+      <DietTableItem type="Dinner" data={todaysDiet.dinner} />
     </div>
   );
 };

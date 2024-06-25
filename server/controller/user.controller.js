@@ -13,7 +13,12 @@ import {
 
 const fetchUserData = asyncHandler(async (req, res) => {
   const user = req.user;
-  return res.status(200).json(new ApiResponse(200, user));
+
+  const fetchedUser = await User.findById(user._id)
+    .populate("fitnessRecords.workoutChartData", "workoutChart -_id")
+    .populate("fitnessRecords.dietChartData", "dietChart -_id");
+
+  return res.status(200).json(new ApiResponse(200, fetchedUser));
 });
 
 const checkEmailAvailability = asyncHandler(async (req, res) => {
@@ -160,8 +165,8 @@ const setupAccount = asyncHandler(async (req, res) => {
           weight: req.body.weight,
           workoutExperience: req.body.workoutExperience,
           bmi: actualBmi,
-          dietChartId: userDietChart._id,
-          workoutChartId: userWorkoutChart._id,
+          dietChartData: userDietChart._id,
+          workoutChartData: userWorkoutChart._id,
         },
         membershipDetails: {
           membershipPlanId: req.productId,

@@ -1,3 +1,4 @@
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import ClientDashboard from "@components/Dashboard/Client/Dashboard";
@@ -14,8 +15,18 @@ const MainAppPage = () => {
 
   return (
     <MainAppPageLayout>
-      {user.role === "member" && <ClientDashboard />}
-      {user.role === "admin" && <AdminDashboard />}
+      {user.role === "member" && (
+        <Routes>
+          <Route path="/dashboard" element={<ClientDashboard />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      )}
+      {user.role === "admin" && (
+        <Routes>
+          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      )}
     </MainAppPageLayout>
   );
 };

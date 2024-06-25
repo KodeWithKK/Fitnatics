@@ -1,46 +1,59 @@
-import React from "react";
 import NutritionCard from "./NutritionCard";
 import DietTable from "./DietTable";
 import MonthlyProgress from "./MonthlyProgress";
 import MyExercises from "./MyExercises";
-import { gymMotivationalQuotes } from "../../../data/quotes";
+import { useDashboardHooks } from "./Dashboard.hooks";
 
 const Dashboard = () => {
-  const quoteData = React.useMemo(
-    () => gymMotivationalQuotes[getRandomInt(0, gymMotivationalQuotes.length)],
-    []
-  );
+  const { quoteData, workoutChart, todaysDiet, todaysNutritionGoal } =
+    useDashboardHooks();
 
   return (
     <>
       {/* COLOUMN 1 */}
-      <div className="overflow-y-auto w-[768px] pt-8 px-8">
+      <div className="px-8 pt-8 w-[768px] overflow-y-auto">
         {/* NUTRITION GOAL */}
-        <h3 className="font-bold mb-3">Nutrition Goal</h3>
+        <h3 className="mb-3 font-bold">Nutrition Goal</h3>
         <div className="inline-flex gap-2">
-          <NutritionCard type="calories" goal="2200" goalAchived="78" />
-          <NutritionCard type="protein" goal="90" goalAchived="62" />
-          <NutritionCard type="carb" goal="320" goalAchived="88" />
-          <NutritionCard type="fat" goal="80" goalAchived="68" />
+          <NutritionCard
+            type="calories"
+            goal={todaysNutritionGoal.calories}
+            goalAchived="78"
+          />
+          <NutritionCard
+            type="protein"
+            goal={todaysNutritionGoal.protein}
+            goalAchived="62"
+          />
+          <NutritionCard
+            type="carb"
+            goal={todaysNutritionGoal.carbs}
+            goalAchived="88"
+          />
+          <NutritionCard
+            type="fat"
+            goal={todaysNutritionGoal.fat}
+            goalAchived="68"
+          />
         </div>
 
         {/* Today's Nutrition */}
-        <h3 className="font-bold mt-6 mb-3">Today&apos;s Diet</h3>
-        <DietTable />
+        <h3 className="mt-6 mb-3 font-bold">Today&apos;s Diet</h3>
+        <DietTable todaysDiet={todaysDiet} />
 
         {/* My Exercise */}
-        <h3 className="font-bold mt-6 mb-3">My Exercises</h3>
-        <MyExercises />
+        <h3 className="mt-6 mb-3 font-bold">My Exercises</h3>
+        <MyExercises workoutChart={workoutChart} />
       </div>
 
       {/* COLOUMN 2 */}
-      <div className="flex-1 border-l-[1px] border-gray-900">
+      <div className="flex-1 border-gray-900 border-l-[1px]">
         <MonthlyProgress />
 
-        <div className="h-[256px] mt-8 mx-6 py-4 px-8 bg-gray-900/[.8] text-center rounded-md">
+        <div className="bg-gray-900/[.8] mx-6 mt-8 px-8 py-4 rounded-md h-[256px] text-center">
           <h3 className="font-bold">Todays&apos; Quote</h3>
-          <div className="flex flex-col h-full justify-center -mt-3">
-            <h2 className="text-xl text-pretty">{quoteData.quote}</h2>
+          <div className="flex flex-col justify-center -mt-3 h-full">
+            <h2 className="text-pretty text-xl">{quoteData.quote}</h2>
             <p className="mt-4 text-gray-400">- {quoteData.author}</p>
           </div>
         </div>
@@ -48,11 +61,5 @@ const Dashboard = () => {
     </>
   );
 };
-
-function getRandomInt(min, max) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-}
 
 export default Dashboard;

@@ -16,11 +16,11 @@ const fitnessRecordsSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    workoutChartId: {
+    workoutChartData: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Workout Chart",
     },
-    dietChartId: {
+    dietChartData: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Diet Chart",
     },

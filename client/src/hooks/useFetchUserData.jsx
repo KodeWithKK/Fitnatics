@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import apiClient from "@api/apiClient";
 
 const useFetchUserData = () => {
-  const { isLoading, data: userData } = useQuery({
+  const { isLoading, data: user } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await apiClient.get(
@@ -16,7 +16,7 @@ const useFetchUserData = () => {
     placeholderData: keepPreviousData,
   });
 
-  return { isLoading, userData };
+  return { isLoading, user };
 };
 
 export { useFetchUserData };
