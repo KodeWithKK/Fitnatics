@@ -52,8 +52,8 @@ function DietTableItem({ type, data }) {
 
 function DietTableItemIcon({ Icon, title, data }) {
   return (
-    <div className="flex flex-col items-center">
-      <div className="bg-gray-800/[.6] mb-1 p-2 rounded-full" title={title}>
+    <div className="flex flex-col items-center cursor-default" title={title}>
+      <div className="bg-gray-800/[.6] mb-1 p-2 rounded-full">
         <Icon className="w-5 h-5" />
       </div>
       <span className="text-gray-500 text-xs">{data}</span>

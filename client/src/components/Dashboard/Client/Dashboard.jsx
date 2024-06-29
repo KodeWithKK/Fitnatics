@@ -1,7 +1,7 @@
 import NutritionCard from "./NutritionCard";
 import DietTable from "./DietTable";
 import MonthlyProgress from "./MonthlyProgress";
-import MyExercises from "./MyExercises";
+import WorkoutChart from "./WorkoutChart";
 import { useDashboardHooks } from "./Dashboard.hooks";
 
 const Dashboard = () => {
@@ -42,8 +42,8 @@ const Dashboard = () => {
         <DietTable todaysDiet={todaysDiet} />
 
         {/* My Exercise */}
-        <h3 className="mt-6 mb-3 font-bold">My Exercises</h3>
-        <MyExercises workoutChart={workoutChart} />
+        <h3 className="mt-6 mb-3 font-bold">Workout Chart</h3>
+        <WorkoutChart workoutChart={workoutChart} />
       </div>
 
       {/* COLOUMN 2 */}
