@@ -1,5 +1,5 @@
 async function getFileFromUrl(url) {
-  if (!url) return null;
+  if (!url) return url;
 
   try {
     const response = await fetch(url);

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { resolveSchema } from "../utils/resolveSchema.js";
@@ -5,6 +6,9 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { User } from "../models/user.model.js";
 import { DietChart } from "../models/dietChart.model.js";
 import { WorkoutChart } from "../models/workoutChart.model.js";
+import { MembershipPlan } from "../models/membershipPlans.model.js";
+import { WorkoutEntry } from "../models/workoutEntry.model.js";
+import { DietEntry } from "../models/dietEntry.model.js";
 
 import {
   checkEmailAvailabilitySchema,
@@ -14,9 +18,9 @@ import {
 const fetchUserData = asyncHandler(async (req, res) => {
   const user = req.user;
 
-  const fetchedUser = await User.findById(user._id)
-    .populate("fitnessRecords.workoutChartData", "workoutChart -_id")
-    .populate("fitnessRecords.dietChartData", "dietChart -_id");
+  const fetchedUser = await User.findById(user._id).select(
+    "email accountSetupRequired role personalDetails.name personalDetails.avatar"
+  );
 
   return res.status(200).json(new ApiResponse(200, fetchedUser));
 });
@@ -47,18 +51,9 @@ const setupAccount = asyncHandler(async (req, res) => {
   const { role } = req.body;
 
   if (!(typeof role == "string" && ["member"].includes(role))) {
-    return res.status(400).json(
-      new ApiResponse(
-        400,
-        {},
-        {
-          error: {
-            title: "Invalid Role!",
-            message: "A valid role is required to setup your account",
-          },
-        }
-      )
-    );
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, { error: { message: "Invalid Role" } }));
   }
 
   const user = req.user;
@@ -71,7 +66,7 @@ const setupAccount = asyncHandler(async (req, res) => {
         {
           error: {
             title: "Unauthorized Request!",
-            message: "Email Verification is required to purchase products",
+            message: "A verified email is required to setup account",
           },
         }
       )
@@ -149,30 +144,52 @@ const setupAccount = asyncHandler(async (req, res) => {
     bmiEnd: { $gte: searchBmi },
   });
 
+  const membershipPlan = await MembershipPlan.findById(req.productId);
+
+  if (!membershipPlan) {
+    return res
+      .status(401)
+      .json(
+        new ApiResponse(
+          401,
+          {},
+          { error: { message: "Unauthorized Request!" } }
+        )
+      );
+  }
+
+  const planEndsIn = dayjs(new Date())
+    .add(membershipPlan.duration, "month")
+    .toDate();
+
   await User.findByIdAndUpdate(
     user._id,
     {
       $set: {
         role: role,
-        avatar: avatar.url,
-        name: req.body.name,
-        phoneno: req.body.phone,
         accountSetupRequired: false,
-        gender: req.body.gender,
-        dob: req.body.dob,
-        fitnessRecords: {
-          height: req.body.height,
-          weight: req.body.weight,
-          workoutExperience: req.body.workoutExperience,
-          bmi: actualBmi,
-          dietChartData: userDietChart._id,
-          workoutChartData: userWorkoutChart._id,
+        personalDetails: {
+          name: req.body.name,
+          avatar: avatar.url,
+          phoneno: req.body.phone,
+          gender: req.body.gender,
+          dob: req.body.dob,
         },
-        membershipDetails: {
-          membershipPlanId: req.productId,
-          paymentId: req.paymentId,
-          gymOutlet: req.body.gymOutlet,
-          endsIn: new Date(),
+        memberDetails: {
+          fitness: {
+            height: req.body.height,
+            weight: req.body.weight,
+            bmi: actualBmi,
+            workoutExperience: req.body.workoutExperience,
+            dietChartId: userDietChart._id,
+            workoutChartId: userWorkoutChart._id,
+          },
+          membership: {
+            membershipPlanId: req.productId,
+            paymentId: req.paymentId,
+            gymOutlet: req.body.gymOutlet,
+            endsIn: planEndsIn,
+          },
         },
       },
     },
@@ -182,4 +199,106 @@ const setupAccount = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse());
 });
 
-export { fetchUserData, checkEmailAvailability, setupAccount };
+const getMemberTodaysDietEntry = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { dateString } = req.query;
+
+  if (!dayjs(dateString, "YYYY-MM-DD", true).isValid()) {
+    return res
+      .status(400)
+      .json(
+        new ApiResponse(400, {}, { error: { message: "Invalid date format" } })
+      );
+  }
+
+  if (user.role !== "member") {
+    return res
+      .status(401)
+      .json(
+        new ApiResponse(401, {}, { error: { message: "Unathorized Request" } })
+      );
+  }
+
+  let diet = await DietEntry.findOne({
+    userId: user._id,
+    date: dateString,
+  }).select("-userId -__v -date");
+
+  if (!diet) {
+    const dietChartId = user?.memberDetails?.fitness?.dietChartId;
+    const dietChartDoc = await DietChart.findById(dietChartId);
+
+    const dayMap = [
+      "sunday",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+    ];
+
+    const day = dayMap[dayjs(dateString, "YYYY-MM-DD").get("day")];
+    const requiredDiet = dietChartDoc.dietChart[day];
+
+    diet = await DietEntry.create({
+      userId: user._id,
+      date: dateString,
+      breakfast: requiredDiet.breakfast,
+      lunch: requiredDiet.lunch,
+      pre_workout: requiredDiet.pre_workout,
+      post_workout: requiredDiet.post_workout,
+      dinner: requiredDiet.dinner,
+    }).select("-userId -__v -date");
+  }
+
+  return res.status(200).json(new ApiResponse(200, diet));
+});
+
+const getMemberExerciseEntry = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { dateString } = req.query;
+
+  if (!dayjs(dateString, "YYYY-MM-DD", true).isValid()) {
+    return res
+      .status(400)
+      .json(
+        new ApiResponse(400, {}, { error: { message: "Invalid date format" } })
+      );
+  }
+
+  if (user.role !== "member") {
+    return res
+      .status(401)
+      .json(
+        new ApiResponse(401, {}, { error: { message: "Unathorized Request" } })
+      );
+  }
+
+  let workout = await WorkoutEntry.findOne({
+    userId: user._id,
+    date: dateString,
+  });
+
+  if (!workout) {
+    const workoutChartId = user?.memberDetails?.fitness?.workoutChartId;
+    const workoutChartDoc = await WorkoutChart.findById(workoutChartId);
+    const day = dayjs(dateString, "YYYY-MM-DD").get("day");
+    const requiredWorkout = workoutChartDoc.workoutChart[(day + 6) % 7];
+    workout = await WorkoutEntry.create({
+      userId: user._id,
+      date: dateString,
+      ...requiredWorkout,
+    });
+  }
+
+  return res.status(200).json(new ApiResponse(200, workout));
+});
+
+export {
+  fetchUserData,
+  checkEmailAvailability,
+  setupAccount,
+  getMemberTodaysDietEntry,
+  getMemberExerciseEntry,
+};

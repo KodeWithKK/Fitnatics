@@ -1,8 +1,7 @@
 import { useState } from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import * as Accordion from "@radix-ui/react-accordion";
-import { CheckIcon } from "@radix-ui/react-icons";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { capitalizeFirst } from "@utils/transformer";
 
 const MyExercises = ({ workoutChart }) => {

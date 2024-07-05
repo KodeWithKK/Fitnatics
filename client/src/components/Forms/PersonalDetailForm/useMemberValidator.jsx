@@ -1,6 +1,6 @@
 import * as yup from "yup";
+import dayjs from "dayjs";
 import { useMemo } from "react";
-import { convertToDate, calculateAge } from "@utils/dateUtils";
 import apiClient from "@api/apiClient";
 import debounce from "lodash.debounce";
 
@@ -54,7 +54,6 @@ function useMemberValidator({
               !verifiedFields.includes("email") &&
               (onChangeFields.includes("email") || isSubmitBtnTriggered)
             ) {
-              console.log("hello2");
               const emailSchema = yup.string().email().required();
               const isEmailValid = await emailSchema.isValid(value);
 
@@ -70,31 +69,34 @@ function useMemberValidator({
 
       phoneno: yup
         .string()
-        .matches(/^[0-9]{10}$/, "A valid 10 digit number is required")
+        .matches(/^\d{10}$/, "A valid 10 digit number is required")
         .required("Phone number is Required"),
 
       dob: yup
         .string()
-        .test("IsValidDOB", "Enter a valid DOB (DD/MM/YYYY)", (val) => {
-          const date = convertToDate(val);
-          if (!date) return false;
-
-          const age = calculateAge(date);
-          if (age <= 0 || age >= 150) return false;
-          return true;
+        .test("IsValidDOB", "Enter a valid DOB (DD/MM/YYYY)", (dateString) => {
+          const isValidDob = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+          const isPrevDate = dayjs(dateString, "DD/MM/YYYY").isBefore(dayjs());
+          return isValidDob && isPrevDate;
         })
-        .test("IsTooYoung", "You are too young for the Gym", (val) => {
-          const date = convertToDate(val);
-          if (!date) return false;
-
-          const age = calculateAge(date);
+        .test("IsTooYoung", "You are too young for the Gym", (dateString) => {
+          const isDateValid = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+          if (isDateValid === false) return false;
+          const age = dayjs().diff(
+            dayjs(dateString, "DD/MM/YYYY"),
+            "year",
+            true
+          );
           return age >= 12;
         })
-        .test("IsTooOld", "You are too old for the Gym", (val) => {
-          const date = convertToDate(val);
-          if (!date) return false;
-
-          const age = calculateAge(date);
+        .test("IsTooOld", "You are too old for the Gym", (dateString) => {
+          const isDateValid = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+          if (isDateValid === false) return false;
+          const age = dayjs().diff(
+            dayjs(dateString, "DD/MM/YYYY"),
+            "year",
+            true
+          );
           return age <= 100;
         })
         .required("DOB is Required"),

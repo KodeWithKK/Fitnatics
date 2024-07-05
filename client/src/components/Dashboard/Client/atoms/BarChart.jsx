@@ -18,7 +18,7 @@ ChartJs.register(
   Legend
 );
 
-const BarChart = ({}) => {
+const BarChart = () => {
   const options = {
     scales: {
       y: {

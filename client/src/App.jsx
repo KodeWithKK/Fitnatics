@@ -34,7 +34,7 @@ function App() {
     );
   }
 
-  if (user && user.accountSetupRequired) {
+  if (user?.accountSetupRequired) {
     return (
       <AppBaseLayout>
         <Router>

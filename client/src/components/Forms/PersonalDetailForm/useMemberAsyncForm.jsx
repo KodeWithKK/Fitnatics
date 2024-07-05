@@ -1,15 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useQueryClient } from "@tanstack/react-query";
 import { getFileFromUrl } from "@utils/getFileFromUrl";
 import useMemberValidator from "./useMemberValidator";
 
-function useMemberAsyncForm({ memberData, isEmailVerified }) {
+function useMemberAsyncForm({
+  memberData,
+  isEmailVerified,
+  isSubmitBtnTriggered,
+}) {
   const [onChangeFields, setOnChangeFields] = useState([]);
-  const [isSubmitBtnTriggered, setIsSubmitBtnTriggered] = useState(false);
-  const queryClient = useQueryClient();
-  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
   const verifiedFields = useMemo(() => {
     if (isEmailVerified) return ["email"];
@@ -45,9 +45,7 @@ function useMemberAsyncForm({ memberData, isEmailVerified }) {
     mode: "onChange",
     defaultValues: async () => {
       const data = { ...memberData };
-      data.avatar = data?.avatar ?? (await getFileFromUrl(user?.avatar)) ?? "";
-      data.name = data?.name ?? user?.name ?? "";
-      data.email = data?.email ?? user?.email ?? "";
+      data.avatar = await getFileFromUrl(data?.avatar);
 
       Object.keys(data).forEach((key) => {
         data[key] ??= "";
@@ -62,7 +60,6 @@ function useMemberAsyncForm({ memberData, isEmailVerified }) {
     handleSubmit,
     addOnChangeField,
     removeOnChangeField,
-    setIsSubmitBtnTriggered,
     control,
     errors,
     isSubmitBtnTriggered,

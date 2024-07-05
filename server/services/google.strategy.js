@@ -35,12 +35,12 @@ passport.use(
           googleUser = new User({
             provider: "google",
             googleId: profile.id,
-            name: profile.displayName,
             email: profile.emails?.at(0)?.value,
-            avatar: profile?.photos
-              ?.at(0)
-              ?.value.replace(/s[0-9]+-c/, "s400-c"),
             accountSetupRequired: true,
+            personalDetails: {
+              name: profile.displayName,
+              avatar: profile?.photos?.at(0)?.value.replace(/s\d+-c/, "s400-c"),
+            },
           });
 
           await googleUser.save();

@@ -17,9 +17,11 @@ passport.use(
           user = new User({
             provider: "twitter",
             twitterId: profile.id,
-            name: profile.displayName,
-            avatar: profile?.photos?.at(0)?.value.replace("_normal", ""),
             accountSetupRequired: true,
+            personalDetails: {
+              name: profile.displayName,
+              avatar: profile?.photos?.at(0)?.value.replace("_normal", ""),
+            },
           });
 
           await user.save();

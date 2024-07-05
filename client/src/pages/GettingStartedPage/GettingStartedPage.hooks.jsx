@@ -1,8 +1,6 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { produce } from "immer";
-import { useQueryClient } from "@tanstack/react-query";
-import { useFetchData } from "./useFetchData";
-import useSetupAccount from "./useSetupAccount";
+import useApiManager from "./useApiManager";
 
 const memberNavItems = [
   { title: "Personal Details", description: "Enter your personal details" },
@@ -17,26 +15,34 @@ function useGettingStartedPageHooks() {
   const [otpGeneratedAt, setOtpGeneratedAt] = useState(null);
   const [role, setRole] = useState("member");
   const [data, setData] = useState({ memberData: {}, trainerData: {} });
-  const { isLoading, membershipPlans } = useFetchData();
 
-  const { isSetupAccountPending, setupAccountHandler } = useSetupAccount({
-    data,
-    role,
-  });
+  const {
+    fetchedUserData,
+    isEmailVerifiedInitially,
+    isLoading,
+    membershipPlans,
+    isSetupAccountPending,
+    setupAccountHandler,
+  } = useApiManager({ role, data });
 
-  const queryClient = useQueryClient();
+  useEffect(() => {
+    if (role === "member") {
+      setData((prevData) => {
+        const nextData = produce(prevData, (draftState) => {
+          draftState.memberData = {
+            ...draftState.memberData,
+            ...fetchedUserData,
+          };
+        });
+        return nextData;
+      });
+    }
+  }, [role, fetchedUserData]);
 
-  /* INITIAL DATA TRANSFORM */
-  const fetchedUser = useMemo(
-    () => queryClient.getQueryData(["user"]),
-    [queryClient]
-  );
-
-  const isEmailVerifiedInitially = useMemo(() => {
-    if (fetchedUser?.email) {
+  useEffect(() => {
+    if (isEmailVerifiedInitially) {
       setIsEmailVerified(true);
-      return true;
-    } else return false;
+    }
   }, []); // eslint-disable-line
 
   const navItems = useMemo(() => {
@@ -44,9 +50,7 @@ function useGettingStartedPageHooks() {
       return memberNavItems.filter((navItem) =>
         isEmailVerifiedInitially ? navItem.title != "Verify Email" : true
       );
-    } else {
-      return [];
-    }
+    } else return [];
   }, [isEmailVerifiedInitially, role]);
 
   /* GETTER SETTER FUNCTIONS */
@@ -54,7 +58,9 @@ function useGettingStartedPageHooks() {
 
   const setMemberData = useCallback(
     (formData) => {
-      const nextData = { ...data, memberData: { ...formData } };
+      const nextData = produce(data, (draftState) => {
+        draftState.memberData = { ...draftState.memberData, ...formData };
+      });
       setData(nextData);
     },
     [data]

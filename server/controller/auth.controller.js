@@ -233,7 +233,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const strategyCallback = asyncHandler(async (req, res) => {
-  const { accessToken, refreshToken, error } = req?.user;
+  const { accessToken, refreshToken, error } = req.user;
 
   if (error) {
     return res

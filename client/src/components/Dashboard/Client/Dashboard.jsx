@@ -1,7 +1,7 @@
-import NutritionCard from "./NutritionCard";
-import DietTable from "./DietTable";
-import MonthlyProgress from "./MonthlyProgress";
-import WorkoutChart from "./WorkoutChart";
+import NutritionCard from "./atoms/NutritionCard";
+import DietTable from "./atoms/DietTable";
+import MonthlyProgress from "./atoms/MonthlyProgress";
+import WorkoutChart from "./atoms/WorkoutChart";
 import { useDashboardHooks } from "./Dashboard.hooks";
 
 const Dashboard = () => {

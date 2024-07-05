@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { convertToDate, calculateAge } from "../../utils/dateUtils.js";
+import dayjs from "dayjs";
 
 const checkEmailAvailabilitySchema = yup.object({
   email: yup
@@ -39,7 +39,7 @@ const memberDataSchema = yup.object({
       title: "Invalid data type!",
       message: "Phone no must be a 10 digit string",
     })
-    .matches(/^[0-9]{10}$/, {
+    .matches(/^\d{10}$/, {
       title: "Invalid Phone no!",
       message: "A valid 10 digit phone number is required to setup account",
     })
@@ -59,34 +59,29 @@ const memberDataSchema = yup.object({
         title: "Invalid DOB!",
         message: "Enter a valid DOB (DD/MM/YYYY)",
       },
-      (val) => {
-        const date = convertToDate(val);
-        if (!date) return false;
-
-        const age = calculateAge(date);
-        if (age <= 0 || age >= 150) return false;
-        return true;
+      (dateString) => {
+        const isValidDob = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+        const isPrevDate = dayjs(dateString, "DD/MM/YYYY").isBefore(dayjs());
+        return isValidDob && isPrevDate;
       }
     )
     .test(
       "IsTooYoung",
       { title: "Too Young!", message: "You are too young for the Gym" },
-      (val) => {
-        const date = convertToDate(val);
-        if (!date) return false;
-
-        const age = calculateAge(date);
+      (dateString) => {
+        const isValidDate = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+        if (isValidDate === false) return false;
+        const age = dayjs().diff(dayjs(dateString, "DD/MM/YYYY"), "year", true);
         return age >= 12;
       }
     )
     .test(
       "IsTooOld",
       { title: "Too Old!", message: "You are too old for the Gym" },
-      (val) => {
-        const date = convertToDate(val);
-        if (!date) return false;
-
-        const age = calculateAge(date);
+      (dateString) => {
+        const isValidDate = dayjs(dateString, "DD/MM/YYYY", true).isValid();
+        if (isValidDate === false) return false;
+        const age = dayjs().diff(dayjs(dateString, "DD/MM/YYYY"), "year", true);
         return age <= 100;
       }
     )

@@ -93,7 +93,7 @@ const signupOTPVerificationSchema = yup.object({
     }),
   otp: yup
     .string()
-    .matches(/^[0-9]{6}$/, {
+    .matches(/^\d{6}$/, {
       title: "6 Digit OTP Required!",
       message: "A 6 digit OTP is required for verification",
     })
@@ -137,7 +137,7 @@ const stategyEmailOTPVerificationSchema = yup.object({
     }),
   otp: yup
     .string()
-    .matches(/^[0-9]{6}$/, {
+    .matches(/^\d{6}$/, {
       title: "6 Digit OTP Required!",
       message: "A 6 digit OTP is required for verification",
     })

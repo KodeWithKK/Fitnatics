@@ -1,7 +1,7 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import apiClient from "@api/apiClient";
 
-const useFetchData = () => {
+const useApiFetch = () => {
   const { isLoading, data: membershipPlans } = useQuery({
     queryKey: ["membershipPlans"],
     queryFn: async () => {
@@ -18,4 +18,4 @@ const useFetchData = () => {
   return { isLoading, membershipPlans: membershipPlans?.data };
 };
 
-export { useFetchData };
+export default useApiFetch;

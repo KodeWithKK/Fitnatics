@@ -2,7 +2,32 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-const fitnessRecordsSchema = new mongoose.Schema(
+const personalDatailsSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    avatar: {
+      type: String,
+    },
+    phoneno: {
+      type: Number,
+      trim: true,
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female"],
+    },
+    dob: {
+      type: String,
+    },
+  },
+  { _id: false }
+);
+
+const memberFitnessDetailsSchema = new mongoose.Schema(
   {
     height: {
       type: Number,
@@ -16,18 +41,18 @@ const fitnessRecordsSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    workoutChartData: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Workout Chart",
-    },
-    dietChartData: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Diet Chart",
-    },
     workoutExperience: {
       type: String,
       enum: ["beginner", "intermediate", "advanced"],
       required: true,
+    },
+    dietChartId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Diet Chart",
+    },
+    workoutChartId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workout Chart",
     },
   },
   { _id: false }
@@ -86,20 +111,6 @@ const userSchema = new mongoose.Schema(
       unique: true,
       sparse: true,
     },
-    role: {
-      type: String,
-      lowercase: true,
-      enum: ["member", "trainer", "admin"],
-    },
-    name: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    avatar: {
-      type: String,
-      required: true,
-    },
     email: {
       type: String,
       trim: true,
@@ -110,32 +121,24 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
     },
-    phoneno: {
-      type: Number,
-      trim: true,
-    },
-    gender: {
+    role: {
       type: String,
-      enum: ["male", "female"],
-    },
-    dob: {
-      type: String,
+      lowercase: true,
+      enum: ["member", "trainer", "admin"],
     },
     accountSetupRequired: {
       type: Boolean,
-      required: true,
       default: true,
+      required: true,
     },
-    fitnessRecords: fitnessRecordsSchema,
-    membershipDetails: membershipDetails,
-
-    trainerDataId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "TrainerData",
+    timezone: {
+      type: String,
+      default: "Asia/Calcutta",
     },
-    adminDataId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AdminData",
+    personalDetails: personalDatailsSchema,
+    memberDetails: {
+      fitness: memberFitnessDetailsSchema,
+      membership: membershipDetails,
     },
   },
   { timestamps: true }
@@ -159,7 +162,6 @@ userSchema.methods.generateAccessToken = function () {
     {
       _id: this._id,
       email: this.email,
-      name: this.name,
     },
     process.env.ACCESS_TOKEN_SECRET,
     {

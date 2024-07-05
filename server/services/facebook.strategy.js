@@ -18,9 +18,11 @@ passport.use(
           user = new User({
             provider: "facebook",
             facebookId: profile.id,
-            name: profile.displayName,
-            avatar: profile.photos?.at(0)?.value,
             accountSetupRequired: true,
+            personalDetails: {
+              name: profile.displayName,
+              avatar: profile.photos?.at(0)?.value,
+            },
           });
 
           await user.save();

@@ -1,5 +1,3 @@
-const transformString = {};
-
 function capitalize(string, splitChar = " ") {
   const split = string.split(splitChar);
   let finalString = "";
@@ -28,7 +26,4 @@ function capitalizeFirst(string, splitChar = " ") {
   return finalString.trim();
 }
 
-transformString.capitalize = capitalize;
-transformString.capitalizeFirst = capitalizeFirst;
-
-export { transformString };
+export { capitalize, capitalizeFirst };

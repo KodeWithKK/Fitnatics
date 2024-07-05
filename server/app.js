@@ -78,6 +78,7 @@ app.use((err, req, res, next) => {
       {
         error: {
           title: "Internal Server Error!",
+          name: process.env.NODE_ENV == "dev" ? err?.name ?? null : null,
           message:
             process.env.NODE_ENV == "dev"
               ? err?.message ?? "Something went wrong"

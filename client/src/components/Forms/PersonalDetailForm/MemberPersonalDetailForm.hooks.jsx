@@ -1,10 +1,12 @@
-import { useContext, useCallback } from "react";
+import { useState, useContext, useCallback } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 import useEmailVerification from "@hooks/useEmailVerification";
 import useMemberAsyncForm from "./useMemberAsyncForm";
 
 const useMemberPersonalDetailFormHooks = () => {
+  const [isSubmitBtnTriggered, setIsSubmitBtnTriggered] = useState(false);
+
   const {
     setStep,
     isEmailVerified,
@@ -21,14 +23,15 @@ const useMemberPersonalDetailFormHooks = () => {
     handleSubmit,
     addOnChangeField,
     removeOnChangeField,
-    setIsSubmitBtnTriggered,
     control,
     errors,
     isSubmitting,
-  } = useMemberAsyncForm({ memberData, isEmailVerified });
+  } = useMemberAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered });
 
   const onSuccess = useCallback(
     async (formData) => {
+      setIsSubmitBtnTriggered(false);
+
       if (!isEmailVerified) {
         await generateOTP(
           { email: formData?.email },
@@ -39,10 +42,8 @@ const useMemberPersonalDetailFormHooks = () => {
             },
           }
         );
-        setIsSubmitBtnTriggered(false);
       } else {
         setMemberData(formData);
-        setIsSubmitBtnTriggered(false);
         setStep((prevStep) => ++prevStep);
       }
     },
@@ -71,7 +72,7 @@ const useMemberPersonalDetailFormHooks = () => {
 
       if (hasOneOfError) {
         addToast(
-          "error",
+          "warning",
           "All Fields are Required!",
           "All Fields are Required to proceed the next step"
         );

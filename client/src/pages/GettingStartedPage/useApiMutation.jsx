@@ -3,7 +3,7 @@ import apiClient from "@api/apiClient";
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 
-const useSetupAccount = ({ role, data }) => {
+const useApiMutation = ({ role, data }) => {
   const { addToast, hideLoader, displayLoader } = useContext(GlobalContext);
 
   const { isPending, mutate: setupAccountHandler } = useMutation({
@@ -53,4 +53,4 @@ const useSetupAccount = ({ role, data }) => {
   return { isSetupAccountPending: isPending, setupAccountHandler };
 };
 
-export default useSetupAccount;
+export default useApiMutation;
