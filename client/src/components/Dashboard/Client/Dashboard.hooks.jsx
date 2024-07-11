@@ -1,9 +1,50 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { gymMotivationalQuotes } from "@data/quotes";
-import { MainAppPageContext } from "@pages/MainAppPage/MainAppPage";
+import useApiManager from "./useApiManger";
 
 function useDashboardHooks() {
-  const { todaysDiet } = useContext(MainAppPageContext);
+  useApiManager();
+
+  const todaysDiet = useMemo(
+    () => ({
+      breakfast: {
+        name: "Vegetable Upma with Coconut Chutney",
+        calories: 450,
+        fat: 12,
+        protein: 15,
+        carbs: 75,
+      },
+      lunch: {
+        name: "Kadai Paneer with Jeera Rice",
+        calories: 700,
+        fat: 25,
+        protein: 30,
+        carbs: 90,
+      },
+      pre_workout: {
+        name: "Mixed Vegetable Cutlet",
+        calories: 200,
+        fat: 10,
+        protein: 8,
+        carbs: 25,
+      },
+      post_workout: {
+        name: "Greek Yogurt with Honey and Almonds",
+        calories: 300,
+        fat: 12,
+        protein: 20,
+        carbs: 30,
+      },
+      dinner: {
+        name: "Mushroom Masala with Roti",
+        calories: 550,
+        fat: 18,
+        protein: 22,
+        carbs: 75,
+      },
+    }),
+    []
+  );
 
   const quoteData = useMemo(
     () => gymMotivationalQuotes[getRandomInt(0, gymMotivationalQuotes.length)],
@@ -304,7 +345,6 @@ function useDashboardHooks() {
     };
 
     for (const key in todaysDiet) {
-      if (key === "_id") continue;
       goal.calories += todaysDiet[key].calories;
       goal.protein += todaysDiet[key].protein;
       goal.carbs += todaysDiet[key].carbs;

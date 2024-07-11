@@ -3,18 +3,14 @@ import { Payment } from "../models/payment.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { resolveSchema } from "../utils/resolveSchema.js";
-import Razorpay from "razorpay";
-import crypto from "crypto";
+import { getShortId } from "../utils/getShortId.js";
+import { Cashfree } from "cashfree-pg";
 
-import {
-  createOrderSchema,
-  verifyPaymentSchema,
-} from "./schemas/payment.schema.js";
+import { createOrderSchema } from "./schemas/payment.schema.js";
 
-const razorpayInstance = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+Cashfree.XClientId = process.env.CASHFREE_APP_ID;
+Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY;
+Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
 
 const createOrder = asyncHandler(async (req, res) => {
   const { productId, productType } = req.body;
@@ -28,169 +24,173 @@ const createOrder = asyncHandler(async (req, res) => {
     return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
+  let product = null;
+
   if (productType === "Membership Plan") {
-    const product = await MembershipPlan.findByIdAndUpdate(
+    product = await MembershipPlan.findByIdAndUpdate(
       productId,
       { $inc: { totalOrders: 1 } },
       { new: true }
     );
+  }
 
-    if (!product) {
-      return res.status(404).json(
-        new ApiResponse(
-          404,
-          {},
-          {
-            error: {
-              title: "Product not found!",
-              message: "Kindly provide valid product details",
-            },
-          }
-        )
-      );
-    }
-
-    const productName = `Membership plan (${product.duration} ${
-      product.duration === 1 ? "Month" : "Months"
-    })`;
-
-    const amount = product.currPrice * 100;
-    const currency = product.currency;
-
-    const receipt = `${product.type}-${product.duration
-      .toString()
-      .padStart(2, "0")}-#${product.totalOrders}`;
-
-    const notes = {
-      productName,
-      orderNumber: product.totalOrders,
-      productId,
-      productType,
-      time: new Date().toLocaleString(),
-    };
-
-    razorpayInstance.orders.create(
-      { amount, currency, receipt, notes },
-      (err, order) => {
-        if (!err) {
-          res.status(200).json(
-            new ApiResponse(200, {
-              productName,
-              orderId: order.id,
-              amount: order.amount,
-              currency: order.currency,
-            })
-          );
-        } else {
-          res.status(400).json(
-            new ApiResponse(
-              400,
-              {},
-              {
-                error: {
-                  title: "Something went wrong!",
-                  message: err?.message,
-                },
-              }
-            )
-          );
+  if (!product) {
+    return res.status(404).json(
+      new ApiResponse(
+        404,
+        {},
+        {
+          error: { message: "Product not found!" },
         }
-      }
+      )
     );
   }
+
+  const productName = `Membership plan (${product.duration} ${
+    product.duration === 1 ? "Month" : "Months"
+  })`;
+
+  const payment = await Payment.create({
+    userId: req.user._id,
+    orderId: getShortId(16),
+    productId,
+    productType,
+    buyPrice: product.currPrice,
+  });
+
+  let request = {
+    order_amount: product.currPrice,
+    order_currency: "INR",
+    order_id: payment.orderId,
+    customer_details: {
+      customer_id: req.user._id,
+      customer_phone: "8474090589",
+    },
+    order_meta: {
+      payment_methods: "cc,dc,upi,app,nb,ppc",
+    },
+    order_tags: {
+      productName,
+      productId,
+      productType,
+      createdAt: new Date(),
+    },
+  };
+
+  Cashfree.PGCreateOrder("2023-08-01", request)
+    .then((response) => {
+      res.status(200).json(
+        new ApiResponse(200, {
+          paymentSessionId: response.data.payment_session_id,
+          orderId: request.order_id,
+        })
+      );
+    })
+    .catch((err) => {
+      res
+        .status(400)
+        .json(
+          new ApiResponse(400, {}, { error: { message: JSON.stringify(err) } })
+        );
+    });
 });
 
 const verifyPayment = asyncHandler(async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-    req.body;
+  const { orderId } = req.body;
 
-  const { error } = await resolveSchema(verifyPaymentSchema, {
-    razorpay_order_id,
-    razorpay_payment_id,
-    razorpay_signature,
-  });
+  Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
+    .then(async (response) => {
+      const orderResponse = response.data;
+      let orderStatus;
 
-  if (error) {
-    return res.status(400).json(new ApiResponse(400, {}, { error }));
-  }
-
-  const sign = razorpay_order_id + "|" + razorpay_payment_id;
-
-  const expectedSign = crypto
-    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-    .update(sign.toString())
-    .digest("hex");
-
-  const isAuthentic = expectedSign === razorpay_signature;
-
-  if (!isAuthentic) {
-    return res.status(
-      400,
-      {},
-      {
-        error: {
-          title: "Invalid Credentials!",
-          message: "Kindly provide correct credentials to verify the payment",
-        },
+      if (
+        orderResponse.filter(
+          (transaction) => transaction.payment_status === "SUCCESS"
+        ).length > 0
+      ) {
+        orderStatus = "SUCCESS";
+      } else if (
+        orderResponse.filter(
+          (transaction) => transaction.payment_status === "PENDING"
+        ).length > 0
+      ) {
+        orderStatus = "PENDING";
+      } else {
+        orderStatus = "FAILED";
       }
-    );
-  }
 
-  razorpayInstance.orders
-    .fetch(razorpay_order_id)
-    .then(async (orderData) => {
-      const productId = orderData.notes?.productId;
-      const productType = orderData.notes?.productType;
+      const payment = await Payment.findOneAndUpdate(
+        {
+          userId: req.user._id,
+          orderId,
+        },
+        {
+          set: { status: orderStatus },
+        },
+        { new: true }
+      );
 
-      const payment = new Payment({
-        userId: req.user._id,
-        productId,
-        productType,
-        buyPrice: orderData.amount / 100,
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature,
-      });
+      if (!payment) {
+        return res
+          .status(401)
+          .json(
+            new ApiResponse(
+              401,
+              {},
+              { error: { message: "Unauthorized Request" } }
+            )
+          );
+      }
 
-      if (productType === "Membership Plan") {
-        const res = await MembershipPlan.findByIdAndUpdate(productId, {
-          $inc: { totalPayments: 1 },
-        });
+      if (orderStatus === "SUCCESS") {
+        res.status(200).json(new ApiResponse());
+      }
 
-        if (!res) {
-          res.status(
-            400,
+      if (orderStatus === "PENDING") {
+        res.status(401).json(
+          new ApiResponse(
+            401,
             {},
             {
               error: {
-                title: "Something went wrong!",
-                message: "Something went wrong while verifying payment",
+                title: "Payment is Pending!",
+                message: "Complete the payment to proceed",
               },
             }
-          );
-        } else {
-          await payment.save();
-          res.status(200).json(new ApiResponse());
-        }
+          )
+        );
+      }
+
+      if (orderStatus === "FAILED") {
+        res.status(401).json(
+          new ApiResponse(
+            401,
+            {},
+            {
+              error: {
+                title: "Payment Failed!",
+                message: "Payment is required to proceed",
+              },
+            }
+          )
+        );
       }
     })
-    .catch(() => {
-      res.status(
-        400,
-        {},
-        {
-          error: {
-            title: "Invalid Order ID Provided!",
-            message: "Kindly provide correct order ID to verify payment",
-          },
-        }
-      );
+    .catch((error) => {
+      res
+        .status(400)
+        .json(
+          new ApiResponse(
+            400,
+            {},
+            { error: { message: error.response.data.message } }
+          )
+        );
     });
 });
 
 const checkPayment = asyncHandler(async (req, res) => {
   const userId = req.user._id;
-
   const paymentUser = await Payment.find({ userId }).sort({ updatedAt: -1 });
 
   if (paymentUser?.length === 0) {
@@ -205,38 +205,37 @@ const checkPayment = asyncHandler(async (req, res) => {
 });
 
 const viewAllOrders = asyncHandler(async (req, res) => {
-  razorpayInstance.orders
-    .all()
-    .then((orders) => {
-      res.status(200).json(new ApiResponse(200, { orders }));
-    })
-    .catch((error) => {
-      res.status(400).json(new ApiResponse(400, {}, { error }));
-    });
+  // razorpayInstance.orders
+  //   .all()
+  //   .then((orders) => {
+  //     res.status(200).json(new ApiResponse(200, { orders }));
+  //   })
+  //   .catch((error) => {
+  //     res.status(400).json(new ApiResponse(400, {}, { error }));
+  //   });
 });
 
 const viewOrder = asyncHandler(async (req, res) => {
-  const { orderId } = req.body;
-
-  razorpayInstance.orders
-    .fetch(orderId)
-    .then((orderData) => {
-      res.status(200).json(new ApiResponse(200, { orderData }));
-    })
-    .catch((error) => {
-      res.status(400).json(new ApiResponse(400, {}, { error }));
-    });
+  //   const { orderId } = req.body;
+  //   razorpayInstance.orders
+  //     .fetch(orderId)
+  //     .then((orderData) => {
+  //       res.status(200).json(new ApiResponse(200, { orderData }));
+  //     })
+  //     .catch((error) => {
+  //       res.status(400).json(new ApiResponse(400, {}, { error }));
+  //     });
 });
 
 const viewAllPayments = asyncHandler(async (req, res) => {
-  razorpayInstance.payments
-    .all()
-    .then((orders) => {
-      res.status(200).json(new ApiResponse(200, { orders }));
-    })
-    .catch((error) => {
-      res.status(400).json(new ApiResponse(400, {}, { error }));
-    });
+  //   razorpayInstance.payments
+  //     .all()
+  //     .then((orders) => {
+  //       res.status(200).json(new ApiResponse(200, { orders }));
+  //     })
+  //     .catch((error) => {
+  //       res.status(400).json(new ApiResponse(400, {}, { error }));
+  // });
 });
 
 export {

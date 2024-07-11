@@ -24,7 +24,7 @@ async function makeGetRequest(url, formData = {}) {
 
   if (data) return data;
   throw new MyError(
-    error?.title ?? "Internal Server Error!",
+    error?.title ?? "",
     error?.message ?? "Something went wrong while making the API Request"
   );
 }

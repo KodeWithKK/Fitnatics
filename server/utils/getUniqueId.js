@@ -1,4 +1,4 @@
-import { generateShortId } from "./generateShortId.js";
+import { getShortId } from "./getShortId.js";
 
 async function getUniqueId(Model, field) {
   let shortId = generateShortId();
@@ -7,7 +7,7 @@ async function getUniqueId(Model, field) {
   while (!isShortIdUnique) {
     const doc = await Model.findOne({ [field]: shortId });
     if (!doc) isShortIdUnique = true;
-    else shortId = generateShortId();
+    else shortId = getShortId();
   }
 
   return shortId;

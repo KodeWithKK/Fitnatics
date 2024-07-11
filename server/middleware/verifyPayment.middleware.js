@@ -1,136 +1,148 @@
 import * as yup from "yup";
-import crypto from "crypto";
-import Razorpay from "razorpay";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { resolveSchema } from "../utils/resolveSchema.js";
-import { MembershipPlan } from "../models/membershipPlans.model.js";
+import { Cashfree } from "cashfree-pg";
 import { Payment } from "../models/payment.model.js";
+import { MembershipPlan } from "../models/membershipPlans.model.js";
 
-const razorpayInstance = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+Cashfree.XClientId = process.env.CASHFREE_APP_ID;
+Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY;
+Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
 
 const verifyPaymentSchema = yup.object({
-  razorpay_order_id: yup
+  orderId: yup
     .string()
     .typeError({
-      title: "Invalid data type Provided!",
       message: "Order Id must be a string",
     })
     .required({
-      title: "Order Id Required!",
       message: "Order Id is required to confirm the payment",
-    }),
-  razorpay_payment_id: yup
-    .string()
-    .typeError({
-      title: "Invalid data type Provided!",
-      message: "Payment Id must be a string",
-    })
-    .required({
-      title: "Payment Id Required!",
-      message: "Payment Id is required to confirm the payment",
-    }),
-  razorpay_signature: yup
-    .string()
-    .typeError({
-      title: "Invalid data type Provided!",
-      message: "Product Id must be a string",
-    })
-    .required({
-      title: "Payment Id Required!",
-      message: "Payment Id is required to confirm the payment",
     }),
 });
 
 export const verifyPayment = asyncHandler(async (req, res, next) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-    req.body;
+  const { orderId } = req.body;
 
-  const { error } = await resolveSchema(verifyPaymentSchema, {
-    razorpay_order_id,
-    razorpay_payment_id,
-    razorpay_signature,
-  });
+  const { error } = await resolveSchema(verifyPaymentSchema, { orderId });
 
   if (error) {
     return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
-  const sign = razorpay_order_id + "|" + razorpay_payment_id;
+  let customerId,
+    productId,
+    productType,
+    productBoughtAt,
+    isInvalidOrderId = false,
+    fetchOrderErrorMssg = null;
 
-  const expectedSign = crypto
-    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-    .update(sign.toString())
-    .digest("hex");
+  await new Promise((res) => {
+    Cashfree.PGFetchOrder("2023-08-01", orderId)
+      .then(async (response) => {
+        const orderData = response.data;
+        customerId = orderData.customer_details.customer_id;
+        productId = orderData.order_tags.productId;
+        productType = orderData.order_tags.productType;
+        productBoughtAt = orderData.order_tags.createdAt;
+        res();
+      })
+      .catch((error) => {
+        isInvalidOrderId = true;
+        fetchOrderErrorMssg = error?.response?.data?.message;
+        res();
+      });
+  });
 
-  const isAuthentic = expectedSign === razorpay_signature;
+  if (isInvalidOrderId) {
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: { message: fetchOrderErrorMssg ?? "Invalid Order ID" },
+        }
+      )
+    );
+  }
 
-  if (!isAuthentic) {
-    return res.status(
-      400,
+  if (customerId != req.user._id) {
+    return res.status(401).json(
+      401,
       {},
       {
-        error: {
-          title: "Invalid Credentials!",
-          message: "Kindly provide correct credentials to verify the payment",
-        },
+        error: { message: "Unauthorized payment verification request" },
       }
     );
   }
 
-  razorpayInstance.orders
-    .fetch(razorpay_order_id)
-    .then(async (orderData) => {
-      const productId = orderData.notes?.productId;
-      const productType = orderData.notes?.productType;
+  let paymentStatus,
+    fetchPaymentErrorMssg,
+    gotFetchPaymentError = false;
 
-      const payment = new Payment({
-        userId: req.user._id,
-        productId,
-        productType,
-        buyPrice: orderData.amount / 100,
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature,
+  await new Promise((res) => {
+    Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
+      .then((response) => {
+        const paymentData = response?.data?.[0];
+        paymentStatus = paymentData.payment_status;
+        res();
+      })
+      .catch((error) => {
+        gotFetchPaymentError = true;
+        fetchPaymentErrorMssg = error?.response?.data?.message;
+        res();
       });
+  });
 
-      if (productType === "Membership Plan") {
-        const res = await MembershipPlan.findByIdAndUpdate(productId, {
-          $inc: { totalPayments: 1 },
-        });
-
-        if (!res) {
-          res.status(
-            400,
-            {},
-            {
-              error: {
-                title: "Something went wrong!",
-                message: "Something went wrong while verifying payment",
-              },
-            }
-          );
-        } else {
-          await payment.save();
-          req.paymentId = payment._id;
-          req.productId = productId;
-          next();
+  if (gotFetchPaymentError) {
+    return res.status(401).json(
+      new ApiResponse(
+        401,
+        {},
+        {
+          error: {
+            message:
+              fetchPaymentErrorMssg ??
+              "Something went wrong while verifying payments",
+          },
         }
-      }
-    })
-    .catch(() => {
-      res.status(
+      )
+    );
+  }
+
+  const payment = await Payment.findOne({
+    userId: req.user._id,
+    orderId,
+  });
+
+  payment.status = paymentStatus;
+  await payment.save();
+
+  if (paymentStatus === "SUCCESS") {
+    if (productType === "Membership Plan") {
+      await MembershipPlan.findByIdAndUpdate(productId, {
+        $inc: {
+          totalPayments: 1,
+        },
+      });
+    }
+
+    req.productId = productId;
+    req.productType = productType;
+    req.productBoughtAt = productBoughtAt;
+    next();
+  } else {
+    return res.status(400).json(
+      new ApiResponse(
         400,
         {},
         {
           error: {
-            title: "Invalid Order ID Provided!",
-            message: "Kindly provide correct order ID to verify payment",
+            title: "Payment Required!",
+            message: "Complete the payment to proceed",
           },
         }
-      );
-    });
+      )
+    );
+  }
 });

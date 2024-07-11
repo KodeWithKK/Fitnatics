@@ -1,24 +1,20 @@
 import { useMemo, createContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import ClientDashboard from "@components/Dashboard/Client/Dashboard";
 import AdminDashboard from "@components/Dashboard/Admin/Dashboard";
 import MainAppPageLayout from "@layouts/MainAppPageLayout";
-import useApiManager from "./useApiManager";
 
 export const MainAppPageContext = createContext();
 
 const MainAppPage = () => {
-  const { user, isLoading, todaysDiet } = useApiManager();
+  const queryClient = useQueryClient();
+  const user = useMemo(() => queryClient.getQueryData(["user"]), [queryClient]);
 
   const value = useMemo(() => {
-    return {
-      todaysDiet,
-    };
-  }, [todaysDiet]);
+    return {};
+  }, []);
 
-  if (isLoading) {
-    return null;
-  }
   return (
     <MainAppPageContext.Provider value={value}>
       <MainAppPageLayout>

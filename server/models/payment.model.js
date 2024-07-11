@@ -6,10 +6,14 @@ const paymentSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  currency: {
+  orderId: {
     type: String,
     required: true,
+  },
+  currency: {
+    type: String,
     default: "INR",
+    required: true,
   },
   buyPrice: {
     type: Number,
@@ -25,16 +29,10 @@ const paymentSchema = new mongoose.Schema({
     enum: ["Membership Plan"],
     required: true,
   },
-  razorpay_order_id: {
+  status: {
     type: String,
-    required: true,
-  },
-  razorpay_payment_id: {
-    type: String,
-    required: true,
-  },
-  razorpay_signature: {
-    type: String,
+    enum: ["SUCCESS", "FAILED", "PENDING"],
+    default: "PENDING",
     required: true,
   },
   date: {

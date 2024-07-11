@@ -4,9 +4,8 @@ export const GlobalContext = createContext();
 
 function GlobalContextProvider({ children }) {
   const [toasts, setToasts] = useState([]);
-  const [displayLoader, setDisplayLoader] = useState(false);
+  const [displayLoaderState, setDisplayLoaderState] = useState(false);
   const [loaderText, setLoaderText] = useState("Loading...");
-  const [isRazorpayScriptLoaded, setIsRazorpayScriptLoaded] = useState(false);
 
   const addToast = useCallback((type, title, message) => {
     setToasts((prevToasts) => {
@@ -25,37 +24,34 @@ function GlobalContextProvider({ children }) {
     [toasts]
   );
 
-  const displayLoaderWithText = useCallback((text) => {
+  const displayLoader = useCallback((text) => {
     if (text) setLoaderText(text);
     else setLoaderText("");
-    setDisplayLoader(true);
+    setDisplayLoaderState(true);
   }, []);
 
   const hideLoader = useCallback(() => {
-    setDisplayLoader(false);
+    setDisplayLoaderState(false);
   }, []);
 
   const value = useMemo(() => {
     return {
       toasts,
       loaderText,
-      displayLoaderState: displayLoader,
-      isRazorpayScriptLoaded,
+      displayLoaderState,
       addToast,
       removeToast,
-      setIsRazorpayScriptLoaded,
+      displayLoader,
       hideLoader,
-      displayLoader: displayLoaderWithText,
     };
   }, [
     toasts,
     loaderText,
-    displayLoader,
-    isRazorpayScriptLoaded,
+    displayLoaderState,
     addToast,
     removeToast,
+    displayLoader,
     hideLoader,
-    displayLoaderWithText,
   ]);
 
   return (

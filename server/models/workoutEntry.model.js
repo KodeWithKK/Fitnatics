@@ -10,30 +10,25 @@ const workoutEntrySchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  name: {
-    type: String,
-    required: true,
-  },
   sets: {
-    type: Number,
+    type: Boolean,
     required: true,
+    default: false,
   },
   reps: {
-    type: Number,
+    type: Boolean,
     required: true,
-  },
-  repsUnit: {
-    type: String,
-    required: true,
-    enum: ["number", "secs", "mins"],
+    default: false,
   },
   rest: {
-    type: Number,
+    type: Boolean,
     required: true,
+    default: false,
   },
   caloriesBurned: {
-    type: Number,
+    type: Boolean,
     required: true,
+    default: false,
   },
 });
 

@@ -46,11 +46,11 @@ const memberFitnessDetailsSchema = new mongoose.Schema(
       enum: ["beginner", "intermediate", "advanced"],
       required: true,
     },
-    dietChartId: {
+    dietChart: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Diet Chart",
     },
-    workoutChartId: {
+    workoutChart: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Workout Chart",
     },

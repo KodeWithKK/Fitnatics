@@ -1,5 +1,4 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { useEffect, useContext } from "react";
 import apiClient from "@api/apiClient";
 
 const useFetchUserData = () => {

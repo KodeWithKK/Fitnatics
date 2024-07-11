@@ -1,31 +1,5 @@
 import mongoose from "mongoose";
 
-const dietSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    calories: {
-      type: Number,
-      required: true,
-    },
-    fat: {
-      type: Number,
-      required: true,
-    },
-    protein: {
-      type: Number,
-      required: true,
-    },
-    carbs: {
-      type: Number,
-      required: true,
-    },
-  },
-  { _id: false }
-);
-
 const dietEntrySchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -37,24 +11,29 @@ const dietEntrySchema = new mongoose.Schema({
     default: Date.now,
   },
   breakfast: {
-    type: dietSchema,
+    type: Boolean,
     required: true,
+    default: false,
   },
   lunch: {
-    type: dietSchema,
+    type: Boolean,
     required: true,
+    default: false,
   },
   pre_workout: {
-    type: dietSchema,
+    type: Boolean,
     required: true,
+    default: false,
   },
   post_workout: {
-    type: dietSchema,
+    type: Boolean,
     required: true,
+    default: false,
   },
   dinner: {
-    type: dietSchema,
+    type: Boolean,
     required: true,
+    default: false,
   },
 });
 

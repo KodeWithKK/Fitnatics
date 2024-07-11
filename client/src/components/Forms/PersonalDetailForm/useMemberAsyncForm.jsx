@@ -45,7 +45,10 @@ function useMemberAsyncForm({
     mode: "onChange",
     defaultValues: async () => {
       const data = { ...memberData };
-      data.avatar = await getFileFromUrl(data?.avatar);
+
+      if (typeof data.avatar === "string") {
+        data.avatar = await getFileFromUrl(data?.avatar);
+      }
 
       Object.keys(data).forEach((key) => {
         data[key] ??= "";

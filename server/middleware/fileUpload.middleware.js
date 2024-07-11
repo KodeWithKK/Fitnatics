@@ -21,7 +21,7 @@ function setupAccountImgUpload(req, res, next) {
           errObj.message = "Please upload a valid image";
         } else {
           errObj.title = err.message;
-          errObj.message = "Somethin went wrong while uploading the image";
+          errObj.message = "Something went wrong while uploading the image";
         }
 
         res.status(400).json(new ApiResponse(400, {}, errObj));

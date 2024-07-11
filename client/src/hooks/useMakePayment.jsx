@@ -1,106 +1,129 @@
+import { useContext, useCallback, useState } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useMutation } from "@tanstack/react-query";
+import { load } from "@cashfreepayments/cashfree-js";
 import apiClient from "@api/apiClient";
-import { useRef, useState, useCallback, useContext } from "react";
-import { loadScript } from "@utils/loadScript";
 
 function useMakePayment({ productId, productType, callbackFn }) {
-  const [isScriptLoading, setIsScriptLoading] = useState(false);
+  const [isCallbackFnPending, setIsCallbackFnPending] = useState(false);
+  const [isCFGatewayLoading, setIsCFGatewayLoading] = useState(false);
+  const { addToast, hideLoader, displayLoader } = useContext(GlobalContext);
 
-  const paymentId = useRef(null);
-  const paymentMethod = useRef(null);
+  const { isPending: isCreateOrderPending, mutateAsync: createOrder } =
+    useMutation({
+      mutationFn: async () => {
+        const res = await apiClient.post(
+          import.meta.env.VITE_BACKEND_API_BASE + "/payment/create-order",
+          { productId, productType }
+        );
+        return res;
+      },
+      onMutate: () => {
+        displayLoader("Redirecting you to Payment Gateway...");
+      },
+      onError: (error) => {
+        hideLoader();
+        addToast("error", error?.title, error?.message);
+      },
+    });
 
-  const {
-    addToast,
-    hideLoader,
-    displayLoader,
-    isRazorpayScriptLoaded,
-    setIsRazorpayScriptLoaded,
-  } = useContext(GlobalContext);
+  const loadCashfreeCheckout = useCallback(
+    async (paymentSessionId) => {
+      setIsCFGatewayLoading(true);
+      displayLoader();
 
-  const { isPending: isCreateOrderPending, mutate: createOrder } = useMutation({
-    mutationFn: async () => {
-      const data = await apiClient.post(
-        import.meta.env.VITE_BACKEND_API_BASE + "/payment/create-order",
-        { productId, productType }
-      );
-      return data;
+      let cashfree = await load({
+        mode: "sandbox",
+      });
+
+      setIsCFGatewayLoading(false);
+
+      let checkoutOptions = {
+        paymentSessionId: paymentSessionId,
+        redirectTarget: document.getElementById("cf_checkout"),
+        appearance: {
+          width: "425px",
+          height: "100vh",
+        },
+      };
+
+      let paymentStatus;
+
+      await new Promise((res) => {
+        cashfree.checkout(checkoutOptions).then((result) => {
+          if (result.error) {
+            console.log(
+              "User has closed the popup or there is some payment error, Check for Payment Status"
+            );
+            console.log(result.error);
+            paymentStatus = "PENDING";
+            res();
+          }
+          if (result.redirect) {
+            console.log("Payment will be redirected");
+            paymentStatus = "REDIRECTED";
+            res();
+          }
+          if (result.paymentDetails) {
+            // This will be called whenever the payment is completed irrespective of transaction status
+            console.log("Payment has been completed, Check for Payment Status");
+            console.log(result.paymentDetails.paymentMessage);
+            paymentStatus = "COMPLETED";
+            res();
+          }
+        });
+      });
+
+      return paymentStatus;
     },
-    onMutate: () => {
-      displayLoader("Redirecting you to Payment Gateway...");
-    },
-    onError: (error) => {
-      hideLoader();
-      addToast("error", error?.title, error?.message);
-    },
-  });
+    [displayLoader]
+  );
+
+  const { isPending: isVerifyPaymentPending, mutate: verifyPayment } =
+    useMutation({
+      mutationFn: async (orderId) => {
+        const res = await apiClient.post(
+          import.meta.env.VITE_BACKEND_API_BASE + "/payment/verify-payment",
+          { orderId }
+        );
+        return res;
+      },
+      onMutate: () => {
+        displayLoader("Verifying Payment...");
+      },
+      onError: (error) => {
+        hideLoader();
+        addToast("error", error?.title, error?.message);
+      },
+    });
 
   const buyButtonHandler = useCallback(async () => {
-    await createOrder(
-      {},
-      {
-        onSuccess: async (data) => {
-          const { productName, orderId, amount, currency } = data;
+    const orderData = await createOrder();
+    if (!orderData) return;
+    const { orderId, paymentSessionId } = orderData;
+    const paymentStatus = await loadCashfreeCheckout(paymentSessionId);
 
-          if (!isRazorpayScriptLoaded) {
-            setIsScriptLoading(true);
-            const res = await loadScript(
-              "https://checkout.razorpay.com/v1/checkout.js"
-            );
-            if (!res) {
-              console.log("Razorpay SDK failed to load. Are you online?");
-              return;
-            }
-            setIsRazorpayScriptLoaded(true);
-            setIsScriptLoading(false);
-          }
+    if (paymentStatus === "COMPLETED") {
+      verifyPayment(orderId, {
+        onSuccess: () => {
+          setIsCallbackFnPending(true);
 
-          const options = {
-            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-            amount,
-            currency,
-            order_id: orderId,
-            name: "Fitnatic",
-            description: "Test Mode",
-            image: import.meta.env.VITE_LOGO_URL,
-            handler: async (response) => {
-              await callbackFn({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-              });
+          callbackFn?.(orderId, {
+            onSettled: () => {
+              setIsCallbackFnPending(false);
             },
-            theme: {
-              color: "#1271ed",
-            },
-          };
-
-          const rzp1 = new window.Razorpay(options);
-
-          // retreive the chosen payment method.
-          rzp1.on("payment.submit", (response) => {
-            paymentMethod.current = response.method;
           });
-
-          // in case transaction failed.
-          rzp1.on("payment.failed", (response) => {
-            paymentId.current = response.error.metadata.payment_id;
-          });
-
-          // open razorpay checkout modal.
-          rzp1.open();
         },
-      }
-    );
-  }, [
-    isRazorpayScriptLoaded,
-    setIsRazorpayScriptLoaded,
-    createOrder,
-    callbackFn,
-  ]);
+      });
+    }
+  }, [callbackFn, createOrder, verifyPayment, loadCashfreeCheckout]);
 
   return {
-    isPending: isCreateOrderPending || isScriptLoading,
+    isPending:
+      isCreateOrderPending ||
+      isVerifyPaymentPending ||
+      isCFGatewayLoading ||
+      isCallbackFnPending,
     buyButtonHandler,
   };
 }

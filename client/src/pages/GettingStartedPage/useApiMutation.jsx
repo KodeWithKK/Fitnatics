@@ -6,21 +6,15 @@ import { GlobalContext } from "@context/GlobalContextProvider";
 const useApiMutation = ({ role, data }) => {
   const { addToast, hideLoader, displayLoader } = useContext(GlobalContext);
 
-  const { isPending, mutate: setupAccountHandler } = useMutation({
-    mutationFn: async ({
-      razorpay_order_id,
-      razorpay_payment_id,
-      razorpay_signature,
-    }) => {
+  const { mutateAsync: setupAccountHandler } = useMutation({
+    mutationFn: async (orderId) => {
       if (role === "member") {
         await apiClient.post(
           import.meta.env.VITE_BACKEND_API_BASE + "/user/setup-account",
           {
             role,
             ...data?.memberData,
-            razorpay_order_id,
-            razorpay_payment_id,
-            razorpay_signature,
+            orderId,
           },
           "multipart/form-data"
         );
@@ -30,9 +24,7 @@ const useApiMutation = ({ role, data }) => {
           {
             role,
             ...data?.trainerData,
-            razorpay_order_id,
-            razorpay_payment_id,
-            razorpay_signature,
+            orderId,
           },
           "multipart/form-data"
         );
@@ -50,7 +42,7 @@ const useApiMutation = ({ role, data }) => {
     },
   });
 
-  return { isSetupAccountPending: isPending, setupAccountHandler };
+  return { setupAccountHandler };
 };
 
 export default useApiMutation;

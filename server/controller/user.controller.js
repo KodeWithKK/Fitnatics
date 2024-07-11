@@ -18,9 +18,12 @@ import {
 const fetchUserData = asyncHandler(async (req, res) => {
   const user = req.user;
 
-  const fetchedUser = await User.findById(user._id).select(
-    "email accountSetupRequired role personalDetails.name personalDetails.avatar"
-  );
+  const fetchedUser = await User.findById(user._id)
+    .populate("memberDetails.fitness.dietChart")
+    .populate("memberDetails.fitness.workoutChart")
+    .select(
+      "email accountSetupRequired role personalDetails.name personalDetails.avatar memberDetails.fitness.dietChart memberDetails.fitness.workoutChart -_id"
+    );
 
   return res.status(200).json(new ApiResponse(200, fetchedUser));
 });
@@ -88,7 +91,7 @@ const setupAccount = asyncHandler(async (req, res) => {
     return res.status(400).json(new ApiResponse(400, {}, { error }));
   }
 
-  const avatarLocalPath = req?.files?.avatar[0]?.path;
+  const avatarLocalPath = req?.files?.avatar?.[0]?.path;
 
   if (!avatarLocalPath) {
     return res.status(400).json(
@@ -158,7 +161,7 @@ const setupAccount = asyncHandler(async (req, res) => {
       );
   }
 
-  const planEndsIn = dayjs(new Date())
+  const planEndsIn = dayjs(req.productBoughtAt)
     .add(membershipPlan.duration, "month")
     .toDate();
 
@@ -181,8 +184,8 @@ const setupAccount = asyncHandler(async (req, res) => {
             weight: req.body.weight,
             bmi: actualBmi,
             workoutExperience: req.body.workoutExperience,
-            dietChartId: userDietChart._id,
-            workoutChartId: userWorkoutChart._id,
+            dietChart: userDietChart._id,
+            workoutChart: userWorkoutChart._id,
           },
           membership: {
             membershipPlanId: req.productId,
