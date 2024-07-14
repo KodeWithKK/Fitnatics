@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { LeftMoveIcon } from "./Icons";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import PriceCard from "./PriceCard";
+import { LeftMoveIcon } from "./Icons";
 import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
 
 const totalDisplayedCards = 2;

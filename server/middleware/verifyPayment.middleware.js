@@ -33,26 +33,24 @@ export const verifyPayment = asyncHandler(async (req, res, next) => {
   let customerId,
     productId,
     productType,
+    productPrice,
     productBoughtAt,
     isInvalidOrderId = false,
     fetchOrderErrorMssg = null;
 
-  await new Promise((res) => {
-    Cashfree.PGFetchOrder("2023-08-01", orderId)
-      .then(async (response) => {
-        const orderData = response.data;
-        customerId = orderData.customer_details.customer_id;
-        productId = orderData.order_tags.productId;
-        productType = orderData.order_tags.productType;
-        productBoughtAt = orderData.order_tags.createdAt;
-        res();
-      })
-      .catch((error) => {
-        isInvalidOrderId = true;
-        fetchOrderErrorMssg = error?.response?.data?.message;
-        res();
-      });
-  });
+  await Cashfree.PGFetchOrder("2023-08-01", orderId)
+    .then(async (response) => {
+      const orderData = response.data;
+      customerId = orderData.customer_details.customer_id;
+      productId = orderData.order_tags.productId;
+      productPrice = orderData.order_amount;
+      productType = orderData.order_tags.productType;
+      productBoughtAt = orderData.order_tags.createdAt;
+    })
+    .catch((error) => {
+      isInvalidOrderId = true;
+      fetchOrderErrorMssg = error?.response?.data?.message;
+    });
 
   if (isInvalidOrderId) {
     return res.status(401).json(
@@ -80,19 +78,15 @@ export const verifyPayment = asyncHandler(async (req, res, next) => {
     fetchPaymentErrorMssg,
     gotFetchPaymentError = false;
 
-  await new Promise((res) => {
-    Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
-      .then((response) => {
-        const paymentData = response?.data?.[0];
-        paymentStatus = paymentData.payment_status;
-        res();
-      })
-      .catch((error) => {
-        gotFetchPaymentError = true;
-        fetchPaymentErrorMssg = error?.response?.data?.message;
-        res();
-      });
-  });
+  await Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
+    .then((response) => {
+      const paymentData = response?.data?.[0];
+      paymentStatus = paymentData.payment_status;
+    })
+    .catch((error) => {
+      gotFetchPaymentError = true;
+      fetchPaymentErrorMssg = error?.response?.data?.message;
+    });
 
   if (gotFetchPaymentError) {
     return res.status(401).json(
@@ -110,13 +104,14 @@ export const verifyPayment = asyncHandler(async (req, res, next) => {
     );
   }
 
-  const payment = await Payment.findOne({
+  await Payment.create({
     userId: req.user._id,
     orderId,
+    productId,
+    productType,
+    buyPrice: productPrice,
+    date: productBoughtAt,
   });
-
-  payment.status = paymentStatus;
-  await payment.save();
 
   if (paymentStatus === "SUCCESS") {
     if (productType === "Membership Plan") {

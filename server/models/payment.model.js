@@ -29,15 +29,9 @@ const paymentSchema = new mongoose.Schema({
     enum: ["Membership Plan"],
     required: true,
   },
-  status: {
-    type: String,
-    enum: ["SUCCESS", "FAILED", "PENDING"],
-    default: "PENDING",
-    required: true,
-  },
   date: {
     type: Date,
-    default: Date.now,
+    required: true,
   },
 });
 

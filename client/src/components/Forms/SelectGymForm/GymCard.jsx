@@ -1,5 +1,5 @@
 import { LocationIcon, ContactIcon } from "./Icons";
-import Image from "@components/_comman/Image/Image";
+import Image from "@components/_base/Image/Image";
 
 const GymCard = ({
   gymCity,

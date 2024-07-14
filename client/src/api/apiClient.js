@@ -1,5 +1,5 @@
 import axios from "axios";
-import MyError from "@utils/MyError";
+import ApiError from "@utils/ApiError";
 
 // access through req.query
 async function makeGetRequest(url, formData = {}) {
@@ -23,7 +23,7 @@ async function makeGetRequest(url, formData = {}) {
     );
 
   if (data) return data;
-  throw new MyError(
+  throw new ApiError(
     error?.title ?? "",
     error?.message ?? "Something went wrong while making the API Request"
   );
@@ -63,8 +63,8 @@ async function makePostRequest(
     );
 
   if (data) return data;
-  throw new MyError(
-    error?.title ?? "Internal Server Error!",
+  throw new ApiError(
+    error?.title ?? "",
     error?.message ?? "Something went wrong while making the API Request"
   );
 }

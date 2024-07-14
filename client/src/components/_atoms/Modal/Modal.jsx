@@ -1,4 +1,3 @@
-import React from "react";
 import { RemoveScroll } from "react-remove-scroll";
 import FocusLock from "react-focus-lock";
 

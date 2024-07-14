@@ -1,6 +1,6 @@
 import AvatarImage from "./AvatarImage";
-import Input from "@components/_comman/Input/Input";
-import Select from "@components/_comman/Select/Select";
+import Input from "@components/_base/Input/Input";
+import Select from "@components/_base/Select/Select";
 import ErrorMessage from "../_comman/ErrorMessage";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { useMemberPersonalDetailFormHooks } from "./MemberPersonalDetailForm.hooks";

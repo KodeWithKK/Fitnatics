@@ -1,4 +1,4 @@
-class MyError extends Error {
+class ApiError extends Error {
   constructor(title, message) {
     super(message);
     this.title = title;
@@ -6,4 +6,4 @@ class MyError extends Error {
   }
 }
 
-export default MyError;
+export default ApiError;

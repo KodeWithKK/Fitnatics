@@ -30,7 +30,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
   const loadCashfreeCheckout = useCallback(
     async (paymentSessionId) => {
       setIsCFGatewayLoading(true);
-      displayLoader();
+      displayLoader("Redirecting you to Payment Gateway...");
 
       let cashfree = await load({
         mode: "sandbox",
@@ -40,43 +40,34 @@ function useMakePayment({ productId, productType, callbackFn }) {
 
       let checkoutOptions = {
         paymentSessionId: paymentSessionId,
-        redirectTarget: document.getElementById("cf_checkout"),
-        appearance: {
-          width: "425px",
-          height: "100vh",
-        },
+        redirectTarget: "_modal",
       };
-
       let paymentStatus;
 
-      await new Promise((res) => {
-        cashfree.checkout(checkoutOptions).then((result) => {
-          if (result.error) {
-            console.log(
-              "User has closed the popup or there is some payment error, Check for Payment Status"
-            );
-            console.log(result.error);
-            paymentStatus = "PENDING";
-            res();
-          }
-          if (result.redirect) {
-            console.log("Payment will be redirected");
-            paymentStatus = "REDIRECTED";
-            res();
-          }
-          if (result.paymentDetails) {
-            // This will be called whenever the payment is completed irrespective of transaction status
-            console.log("Payment has been completed, Check for Payment Status");
-            console.log(result.paymentDetails.paymentMessage);
-            paymentStatus = "COMPLETED";
-            res();
-          }
-        });
+      await cashfree.checkout(checkoutOptions).then((result) => {
+        if (result.error) {
+          console.log(
+            "User has closed the popup or there is some payment error, Check for Payment Status"
+          );
+          console.log(result.error);
+          paymentStatus = "PENDING";
+          hideLoader();
+        }
+        if (result.redirect) {
+          console.log("Payment will be redirected");
+          paymentStatus = "REDIRECTED";
+        }
+        if (result.paymentDetails) {
+          // This will be called whenever the payment is completed irrespective of transaction status
+          console.log("Payment has been completed, Check for Payment Status");
+          console.log(result.paymentDetails.paymentMessage);
+          paymentStatus = "COMPLETED";
+        }
       });
 
       return paymentStatus;
     },
-    [displayLoader]
+    [displayLoader, hideLoader]
   );
 
   const { isPending: isVerifyPaymentPending, mutate: verifyPayment } =

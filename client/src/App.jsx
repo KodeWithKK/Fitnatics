@@ -8,11 +8,12 @@ import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useFetchUserData } from "@hooks/useFetchUserData";
 import ToastStackLayout from "@layouts/ToastStackLayout";
-import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
-import LoadingScreen from "@components/LoadingScreen/LoadingScreen";
+import LoadingScreen from "@components/_atoms/Loaders/LoadingScreen";
+import CashfreeSkelton from "@components/_atoms/CashfreeSkelton/CashfreeSkelton";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
 import GettingStartedPage from "@pages/GettingStartedPage/GettingStartedPage";
+import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
 
 function App() {
   const { isLoading, user } = useFetchUserData();
@@ -74,10 +75,7 @@ function AppBaseLayout({ children }) {
     <div className="bg-gray-975 font-normal font-sans text-base text-gray-100 leading-[1.6]">
       <ToastStackLayout toasts={toasts} removeToast={removeToast} />
       <LoadingScreen />
-
-      <div className="top-0 left-0 z-[10000000] fixed flex w-full">
-        <div id="cf_checkout" className="mx-auto"></div>
-      </div>
+      <CashfreeSkelton />
 
       {children}
     </div>

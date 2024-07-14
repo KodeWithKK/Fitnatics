@@ -50,24 +50,16 @@ const createOrder = asyncHandler(async (req, res) => {
     product.duration === 1 ? "Month" : "Months"
   })`;
 
-  const payment = await Payment.create({
-    userId: req.user._id,
-    orderId: getShortId(16),
-    productId,
-    productType,
-    buyPrice: product.currPrice,
-  });
-
   let request = {
     order_amount: product.currPrice,
     order_currency: "INR",
-    order_id: payment.orderId,
+    order_id: getShortId(16),
     customer_details: {
       customer_id: req.user._id,
       customer_phone: "8474090589",
     },
     order_meta: {
-      payment_methods: "cc,dc,upi,app,nb,ppc",
+      payment_methods: "cc,dc,upi,app,nb",
     },
     order_tags: {
       productName,
@@ -77,7 +69,7 @@ const createOrder = asyncHandler(async (req, res) => {
     },
   };
 
-  Cashfree.PGCreateOrder("2023-08-01", request)
+  await Cashfree.PGCreateOrder("2023-08-01", request)
     .then((response) => {
       res.status(200).json(
         new ApiResponse(200, {
@@ -86,11 +78,15 @@ const createOrder = asyncHandler(async (req, res) => {
         })
       );
     })
-    .catch((err) => {
+    .catch(() => {
       res
         .status(400)
         .json(
-          new ApiResponse(400, {}, { error: { message: JSON.stringify(err) } })
+          new ApiResponse(
+            400,
+            {},
+            { error: { message: "Something went wrong while creating order!" } }
+          )
         );
     });
 });
@@ -98,7 +94,7 @@ const createOrder = asyncHandler(async (req, res) => {
 const verifyPayment = asyncHandler(async (req, res) => {
   const { orderId } = req.body;
 
-  Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
+  await Cashfree.PGOrderFetchPayments("2023-08-01", orderId)
     .then(async (response) => {
       const orderResponse = response.data;
       let orderStatus;
@@ -117,29 +113,6 @@ const verifyPayment = asyncHandler(async (req, res) => {
         orderStatus = "PENDING";
       } else {
         orderStatus = "FAILED";
-      }
-
-      const payment = await Payment.findOneAndUpdate(
-        {
-          userId: req.user._id,
-          orderId,
-        },
-        {
-          set: { status: orderStatus },
-        },
-        { new: true }
-      );
-
-      if (!payment) {
-        return res
-          .status(401)
-          .json(
-            new ApiResponse(
-              401,
-              {},
-              { error: { message: "Unauthorized Request" } }
-            )
-          );
       }
 
       if (orderStatus === "SUCCESS") {

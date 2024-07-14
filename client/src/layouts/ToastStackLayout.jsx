@@ -1,4 +1,4 @@
-import Toast from "@/components/Toast/Toast";
+import Toast from "@components/_atoms/Toast/Toast";
 
 const demoToast = {
   id: "1001",

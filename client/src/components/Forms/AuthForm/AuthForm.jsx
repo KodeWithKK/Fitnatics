@@ -1,4 +1,4 @@
-import Input from "@components/_comman/Input/Input";
+import Input from "@components/_base/Input/Input";
 import ErrorMessage from "../_comman/ErrorMessage";
 import OtpTimer from "./OtpTimer";
 import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
