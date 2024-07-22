@@ -1,8 +1,8 @@
 import { useState, useContext, useCallback } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import useEmailVerification from "@hooks/useEmailVerification";
-import useMemberAsyncForm from "./useAsyncForm";
+import useAsyncForm from "./useAsyncForm";
 
 const usePersonalDetailFormHooks = () => {
   const [isSubmitBtnTriggered, setIsSubmitBtnTriggered] = useState(false);
@@ -13,7 +13,7 @@ const usePersonalDetailFormHooks = () => {
     memberData,
     setMemberData,
     setOtpGeneratedAt,
-  } = useContext(GettingStartedContext);
+  } = useContext(OnboardingContext);
 
   const { generateOTP } = useEmailVerification({ setOtpGeneratedAt });
   const { addToast } = useContext(GlobalContext);
@@ -26,7 +26,7 @@ const usePersonalDetailFormHooks = () => {
     control,
     errors,
     isSubmitting,
-  } = useMemberAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered });
+  } = useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered });
 
   const onSuccess = useCallback(
     async (formData) => {

@@ -1,5 +1,5 @@
-import Input from "@shared/Input/Input";
-import ErrorMessage from "../_comman/ErrorMessage";
+import Input from "@shared/Base/Input/Input";
+import ErrorMessage from "../../../shared/ErrorMessage/ErrorMessage";
 import OtpTimer from "./OtpTimer";
 import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
 import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";

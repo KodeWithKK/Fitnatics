@@ -2,7 +2,7 @@ import { useRef, useState, useCallback, useContext, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import useEmailVerification from "@hooks/useEmailVerification";
 import { GlobalContext } from "@context/GlobalContextProvider";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import useInputHooks from "./useInputHooks";
 
 function useVerifyEmailFormHooks() {
@@ -14,7 +14,7 @@ function useVerifyEmailFormHooks() {
     setIsEmailVerified,
     otpGeneratedAt,
     setOtpGeneratedAt,
-  } = useContext(GettingStartedContext);
+  } = useContext(OnboardingContext);
 
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [isApiReqPending, setIsApiRequestPending] = useState(false);

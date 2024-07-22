@@ -1,13 +1,13 @@
 import { useLogoutUser } from "@hooks/useLogoutUser";
 
-const GettingStartedPageLayout = ({ children }) => {
+const OnboardingPageLayout = ({ children }) => {
   const { logoutUser } = useLogoutUser();
 
   return (
     <div className="px-[6%] py-4 h-screen overflow-y-auto">
       {/* NAVBAR */}
       <nav className="flex justify-between items-center gap-4 border-gray-900 bg-gray-950 px-4 py-1.5 border rounded-md">
-        <h2 className="font-bold text-brand uppercase tracking-wide">
+        <h2 className="font-bold tracking-wide uppercase text-brand">
           Fitnatics
         </h2>
 
@@ -26,4 +26,4 @@ const GettingStartedPageLayout = ({ children }) => {
   );
 };
 
-export default GettingStartedPageLayout;
+export default OnboardingPageLayout;

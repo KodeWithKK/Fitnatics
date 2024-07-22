@@ -1,5 +1,5 @@
 import RootAuthLayout from "@layouts/RootAuthLayout/RootAuthLayout";
-import AuthForm from "@features/Forms/AuthForm/AuthForm";
+import AuthForm from "@features/Forms/Auth/AuthForm";
 
 const AuthHome = () => {
   return (

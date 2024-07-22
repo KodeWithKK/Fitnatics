@@ -1,21 +1,25 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@api/*": ["api/*"],
-      "@config/*": ["config/*"],
-      "@feature/*": ["components/feature/*"],
-      "@layout/*": ["components/layout/*"],
-      "@pages/*": ["components/pages/*"],
-      "@shared/*": ["components/shared/*"],
-      "@context/*": ["context/*"],
-      "@data/*": ["data/*"],
-      "@hooks/*": ["hooks/*"],
-      "@images/*": ["images/*"],
-      "@utils/*": ["utils/*"]
-    }
+      "@api/*": ["src/api/*"],
+      "@config/*": ["src/config/*"],
+      "@feature/*": ["src/components/feature/*"],
+      "@layouts/*": ["src/components/layouts/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@shared/*": ["src/components/shared/*"],
+      "@context/*": ["src/context/*"],
+      "@data/*": ["src/data/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@images/*": ["src/images/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["./src"]
-
-  /* for configuring it with VSCode intelliSense to recognize absolute import paths */
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

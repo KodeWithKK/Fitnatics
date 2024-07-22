@@ -2,14 +2,14 @@ import { useContext, useState } from "react";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import PriceCard from "./PriceCard";
 import { LeftMoveIcon } from "./Icons";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 
 const totalDisplayedCards = 2;
 const cardWidth = 306;
 
 const PricingForm = ({ stepDescription }) => {
   const [activeIndex, setActiveIndex] = useState(1);
-  const { membershipPlans } = useContext(GettingStartedContext);
+  const { membershipPlans } = useContext(OnboardingContext);
 
   return (
     <SteperLayout.Form
@@ -18,8 +18,8 @@ const PricingForm = ({ stepDescription }) => {
         e.preventDefault();
       }}
     >
-      <div className="place-items-center grid h-full">
-        <div className="inline-flex justify-center items-center gap-5">
+      <div className="grid h-full place-items-center">
+        <div className="inline-flex items-center justify-center gap-5">
           <button
             type="button"
             className={`${

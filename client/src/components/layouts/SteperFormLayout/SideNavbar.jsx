@@ -1,14 +1,14 @@
 import { GlobalContext } from "@context/GlobalContextProvider";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import { useContext } from "react";
 
 function SideNavbar() {
   const { addToast } = useContext(GlobalContext);
-  const { step, setStep, navItems } = useContext(GettingStartedContext);
+  const { step, setStep, navItems } = useContext(OnboardingContext);
 
   return (
     <aside className="px-4 w-[396px]">
-      <div className="mt-4 pb-2 text-center nb-1">
+      <div className="pb-2 mt-4 text-center nb-1">
         <h5 className="font-semibold text-[21px] text-gray-100">
           Let&apos;s Get you Started
         </h5>

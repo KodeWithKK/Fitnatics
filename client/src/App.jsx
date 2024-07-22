@@ -12,7 +12,7 @@ import LoadingScreen from "@shared/Loaders/LoadingScreen";
 import CashfreeSkelton from "@shared/CashfreeSkelton/CashfreeSkelton";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
-import GettingStartedPage from "@pages/GettingStartedPage/GettingStartedPage";
+import OnboardingPage from "@pages/OnboardingPage/OnboardingPage";
 import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
 
 function App() {
@@ -40,15 +40,12 @@ function App() {
       <AppBaseLayout>
         <Router>
           <Routes>
-            <Route path="/setup-account" element={<GettingStartedPage />} />
+            <Route path="/onboarding" element={<OnboardingPage />} />
             <Route
               path="/error/account-already-exists"
               element={<ErrorRedirects />}
             />
-            <Route
-              path="/*"
-              element={<Navigate to="/setup-account" replace />}
-            />
+            <Route path="/*" element={<Navigate to="/onboarding" replace />} />
           </Routes>
         </Router>
       </AppBaseLayout>

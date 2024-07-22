@@ -9,7 +9,7 @@ const memberNavItems = [
   { title: "Choose Plan", description: "Choose a membership plan" },
 ];
 
-function useGettingStartedPageHooks() {
+function useOnboardingPageHooks() {
   const [step, setStep] = useState(0);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [otpGeneratedAt, setOtpGeneratedAt] = useState(null);
@@ -100,4 +100,4 @@ function useGettingStartedPageHooks() {
   };
 }
 
-export default useGettingStartedPageHooks;
+export default useOnboardingPageHooks;

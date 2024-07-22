@@ -1,16 +1,11 @@
 import { useCallback, useContext, useMemo } from "react";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 
 const Form = ({ onSubmit, onSubmitButtonClick, isSubmitting, children }) => {
-  const { step, setStep, navItems } = useContext(GettingStartedContext);
+  const { step, setStep, navItems } = useContext(OnboardingContext);
 
   const backButtonHandler = useCallback(() => {
-    setStep((prevStep) => {
-      if (prevStep > 1) {
-        return --prevStep;
-      }
-      return prevStep;
-    });
+    setStep((prevStep) => --prevStep);
   }, [setStep]);
 
   const stepDescription = useMemo(() => {

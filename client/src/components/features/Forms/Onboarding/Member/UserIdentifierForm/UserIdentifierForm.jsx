@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { MemberIcon, TrainerIcon } from "./Icons";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 
 const UserIdentifierForm = () => {
-  const { role, setRole, setStep } = useContext(GettingStartedContext);
+  const { role, setRole, setStep } = useContext(OnboardingContext);
 
   return (
     <div className="border-gray-800 px-6 py-5 border border-dashed rounded-md w-[382px]">
@@ -35,7 +35,7 @@ const UserIdentifierForm = () => {
           }`}
           onClick={() => setRole("trainer")}
         >
-          <TrainerIcon className="p-1 w-10 h-10" />
+          <TrainerIcon className="w-10 h-10 p-1" />
           Trainer
         </button>
       </div>

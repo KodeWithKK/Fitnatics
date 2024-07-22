@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
-import { GettingStartedContext } from "@pages/GettingStartedPage/GettingStartedPage";
+import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import GymCard from "./GymCard";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 
@@ -10,7 +10,7 @@ const SelectGymForm = () => {
     setStep,
     memberGymOutlet: selectedGym,
     setMemberGymOutlet: setSelectedGym,
-  } = useContext(GettingStartedContext);
+  } = useContext(OnboardingContext);
 
   return (
     <SteperLayout.Form
@@ -28,7 +28,7 @@ const SelectGymForm = () => {
         }
       }}
     >
-      <div className="flex justify-center items-center gap-3 p-6 h-full">
+      <div className="flex items-center justify-center h-full gap-3 p-6">
         <GymCard
           gymCity="Noida"
           imgSrc="images/Noida Gym.jpeg"

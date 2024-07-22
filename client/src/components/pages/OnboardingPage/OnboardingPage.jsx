@@ -1,14 +1,14 @@
 import { createContext, useMemo } from "react";
-import GettingStartedPageLayout from "@layouts/GettingStartedPageLayout/GettingStartedPageLayout";
-import UserIdentifierForm from "@features/Forms/UserIdentifierForm/UserIdentifierForm";
+import OnboardingPageLayout from "@layouts/OnboardingPageLayout/OnboardingPageLayout";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
-import MemberPersonalDetailForm from "@features/Forms/PersonalDetailForm/Member/PersonalDetailForm";
-import VerifyEmailForm from "@features/Forms/VerifyEmailForm/VerifyEmailForm";
-import SelectGymForm from "@features/Forms/SelectGymForm/SelectGymForm";
-import PricingForm from "@features/Forms/PricingForm/PricingForm";
-import useGettingStartedPageHooks from "./GettingStartedPage.hooks";
+import UserIdentifierForm from "@features/Forms/Onboarding/Member/UserIdentifierForm/UserIdentifierForm";
+import MemberPersonalDetailForm from "@features/Forms/Onboarding/Member/PersonalDetailForm/PersonalDetailForm";
+import VerifyEmailForm from "@features/Forms/Onboarding/Member/VerifyEmailForm/VerifyEmailForm";
+import SelectGymForm from "@features/Forms/Onboarding/Member/SelectGymForm/SelectGymForm";
+import PricingForm from "@features/Forms/Onboarding/Member/PricingForm/PricingForm";
+import useOnboardingPageHooks from "./OnboardingPage.hooks";
 
-export const GettingStartedContext = createContext();
+export const OnboardingContext = createContext();
 
 const GettingStartedPage = () => {
   const {
@@ -31,7 +31,7 @@ const GettingStartedPage = () => {
     setMemberData,
     setMemberGymOutlet,
     setupAccountHandler,
-  } = useGettingStartedPageHooks();
+  } = useOnboardingPageHooks();
 
   const value = useMemo(
     () => ({
@@ -79,8 +79,8 @@ const GettingStartedPage = () => {
   }
 
   return (
-    <GettingStartedContext.Provider value={value}>
-      <GettingStartedPageLayout>
+    <OnboardingContext.Provider value={value}>
+      <OnboardingPageLayout>
         {step === 0 && (
           <div className="grid h-full -mt-8 place-items-center">
             <UserIdentifierForm />
@@ -107,8 +107,8 @@ const GettingStartedPage = () => {
 
         {/* TRAINER */}
         {step >= 1 && role === "trainer" && <SteperLayout></SteperLayout>}
-      </GettingStartedPageLayout>
-    </GettingStartedContext.Provider>
+      </OnboardingPageLayout>
+    </OnboardingContext.Provider>
   );
 };
 

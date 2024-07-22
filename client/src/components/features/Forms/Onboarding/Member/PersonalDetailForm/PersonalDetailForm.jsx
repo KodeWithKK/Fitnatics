@@ -1,7 +1,7 @@
-import Input from "@shared/Input/Input";
-import Select from "@shared/Select/Select";
-import AvatarImage from "../_comman/AvatarImage";
-import ErrorMessage from "../../_comman/ErrorMessage";
+import Input from "@shared/Base/Input/Input";
+import Select from "@shared/Base/Select/Select";
+import AvatarImage from "./atoms/AvatarImage";
+import ErrorMessage from "@shared/ErrorMessage/ErrorMessage";
 import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 import { usePersonalDetailFormHooks } from "./PersonalDetailForm.hooks";
 import { Controller } from "react-hook-form";
@@ -20,7 +20,7 @@ import {
   BeginnerIcon,
   IntermediateIcon,
   AdvancedIcon,
-} from "../_comman/Icons";
+} from "./atoms/Icons";
 
 const PersonalDetailForm = () => {
   const {

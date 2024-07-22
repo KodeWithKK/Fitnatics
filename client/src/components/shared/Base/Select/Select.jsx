@@ -21,7 +21,7 @@ const Select = ({
 
   const onClickHandler = useCallback(
     (value) => {
-      onChange && onChange(value);
+      onChange?.(value);
       setIsCollapsed(true);
     },
     [onChange]
