@@ -4,7 +4,7 @@
       "bmi": "16-18.4",
       "category": "underweight",
       "workoutExperience": "beginner",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Full Body",
@@ -218,7 +218,7 @@
       "bmi": "16-18.4",
       "category": "underweight",
       "workoutExperience": "intermediate",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -489,7 +489,7 @@
       "bmi": "16-18.4",
       "category": "underweight",
       "workoutExperience": "advanced",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -752,7 +752,7 @@
       "bmi": "18.5-24.9",
       "category": "normal-weight",
       "workoutExperience": "beginner",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -1000,7 +1000,7 @@
       "bmi": "18.5-24.9",
       "category": "normal-weight",
       "workoutExperience": "intermediate",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -1271,7 +1271,7 @@
       "bmi": "18.5-24.9",
       "category": "normal-weight",
       "workoutExperience": "advanced",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -1574,7 +1574,7 @@
       "bmi": "25-29.9",
       "category": "overweight",
       "workoutExperience": "beginner",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Cardio & Full Body",
@@ -1782,7 +1782,7 @@
       "bmi": "25-29.9",
       "category": "overweight",
       "workoutExperience": "intermediate",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -2054,7 +2054,7 @@
       "bmi": "25-29.9",
       "category": "overweight",
       "workoutExperience": "advanced",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -2357,7 +2357,7 @@
       "bmi": "30-34.9",
       "category": "obese",
       "workoutExperience": "beginner",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Cardiovascular & Core",
@@ -2564,7 +2564,7 @@
       "bmi": "30-34.9",
       "category": "obese",
       "workoutExperience": "intermediate",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -2851,7 +2851,7 @@
       "bmi": "30-34.9",
       "category": "obese",
       "workoutExperience": "advanced",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -3146,7 +3146,7 @@
       "bmi": "35-39.9",
       "category": "obese-class-2",
       "workoutExperience": "beginner",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Cardio & Full Body",
@@ -3362,7 +3362,7 @@
       "bmi": "35-39.9",
       "category": "obese-class-2",
       "workoutExperience": "intermediate",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",
@@ -3674,7 +3674,7 @@
       "bmi": "35-39.9",
       "category": "obese-class-2",
       "workoutExperience": "advanced",
-      "workoutChart": [
+      "chart": [
         {
           "day": "monday",
           "dayType": "Chest & Triceps",

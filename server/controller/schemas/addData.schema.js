@@ -55,7 +55,7 @@ const dietSchema = yup.array().of(
       .oneOf(["beginner", "intermediate", "advanced"])
       .required(),
     type: yup.string().oneOf(["vegetarian", "non-vegetarian"]),
-    dietChart: yup.object({
+    chart: yup.object({
       monday: dietDaySchema,
       tuesday: dietDaySchema,
       wednesday: dietDaySchema,
@@ -93,7 +93,7 @@ const workoutChartSchema = yup.array().of(
       .string()
       .oneOf(["beginner", "intermediate", "advanced"])
       .required(),
-    workoutChart: yup.array().of(
+    chart: yup.array().of(
       yup.object({
         day: yup
           .string()

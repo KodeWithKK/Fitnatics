@@ -78,7 +78,9 @@ const createOrder = asyncHandler(async (req, res) => {
         })
       );
     })
-    .catch(() => {
+    .catch((err) => {
+      // console.log({ err: err.response.data });
+
       res
         .status(400)
         .json(

@@ -7,9 +7,9 @@ import {
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useFetchUserData } from "@hooks/useFetchUserData";
-import ToastStackLayout from "@layouts/ToastStackLayout";
-import LoadingScreen from "@components/_atoms/Loaders/LoadingScreen";
-import CashfreeSkelton from "@components/_atoms/CashfreeSkelton/CashfreeSkelton";
+import ToastStackLayout from "@layouts/ToastStackLayout/ToastStackLayout";
+import LoadingScreen from "@shared/Loaders/LoadingScreen";
+import CashfreeSkelton from "@shared/CashfreeSkelton/CashfreeSkelton";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
 import GettingStartedPage from "@pages/GettingStartedPage/GettingStartedPage";

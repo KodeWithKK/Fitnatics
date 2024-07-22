@@ -68,7 +68,7 @@ const dietChartSchema = new mongoose.Schema(
       required: true,
       enum: ["vegetarian", "non-vegetarian"],
     },
-    dietChart: {
+    chart: {
       monday: dietDaySchema,
       tuesday: dietDaySchema,
       wednesday: dietDaySchema,

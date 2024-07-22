@@ -85,7 +85,7 @@ const workoutChartSchema = new mongoose.Schema(
       enum: ["beginner", "intermediate", "advanced"],
       required: true,
     },
-    workoutChart: [exerciseDaySchema],
+    chart: [exerciseDaySchema],
   },
   {
     timestamps: true,
