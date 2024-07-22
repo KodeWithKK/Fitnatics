@@ -1,13 +1,7 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { produce } from "immer";
 import useApiManager from "./useApiManager";
-
-const memberNavItems = [
-  { title: "Personal Details", description: "Enter your personal details" },
-  { title: "Verify Email", description: "Verify your Email" },
-  { title: "Select a Gym", description: "Select a Gym" },
-  { title: "Choose Plan", description: "Choose a membership plan" },
-];
+import useDataTransformer from "./useDataTransformer";
 
 function useOnboardingPageHooks() {
   const [step, setStep] = useState(0);
@@ -45,38 +39,18 @@ function useOnboardingPageHooks() {
     }
   }, []); // eslint-disable-line
 
-  const navItems = useMemo(() => {
-    if (role == "member") {
-      return memberNavItems.filter((navItem) =>
-        isEmailVerifiedInitially ? navItem.title != "Verify Email" : true
-      );
-    } else return [];
-  }, [isEmailVerifiedInitially, role]);
-
-  /* GETTER SETTER FUNCTIONS */
-  const memberData = useMemo(() => data.memberData, [data]);
-
-  const setMemberData = useCallback(
-    (formData) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.memberData = { ...draftState.memberData, ...formData };
-      });
-      setData(nextData);
-    },
-    [data]
-  );
-
-  const memberGymOutlet = useMemo(() => data.memberData?.gymOutlet, [data]);
-
-  const setMemberGymOutlet = useCallback(
-    (value) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.memberData.gymOutlet = value;
-      });
-      setData(nextData);
-    },
-    [data]
-  );
+  const {
+    navItems,
+    memberData,
+    memberGymOutlet,
+    setMemberData,
+    setMemberGymOutlet,
+  } = useDataTransformer({
+    role,
+    data,
+    setData,
+    isEmailVerifiedInitially,
+  });
 
   return {
     step,
