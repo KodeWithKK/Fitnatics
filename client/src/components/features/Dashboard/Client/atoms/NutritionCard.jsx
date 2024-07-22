@@ -3,7 +3,7 @@ import {
   ProteinIcon,
   CarbsIcon,
   FatIcon,
-} from "@shared/Icons/Icons";
+} from "@shared/icons/Icons";
 
 const NutritionCard = ({ type, goal, goalAchived }) => {
   const Icon = macro[type].Icon;

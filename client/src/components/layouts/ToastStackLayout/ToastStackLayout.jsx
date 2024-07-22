@@ -1,4 +1,4 @@
-import Toast from "@shared/Toast/Toast";
+import Toast from "@shared/core/Toast/Toast";
 
 const demoToast = {
   id: "1001",

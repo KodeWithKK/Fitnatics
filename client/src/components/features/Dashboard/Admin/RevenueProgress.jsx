@@ -1,4 +1,4 @@
-import { MothlyProgressIcon } from "@shared/Icons/Icons";
+import { MothlyProgressIcon } from "@shared/icons/Icons";
 
 const RevenueProgress = () => {
   return (

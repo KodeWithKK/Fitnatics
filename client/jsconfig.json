@@ -4,15 +4,16 @@
     "paths": {
       "@api/*": ["src/api/*"],
       "@config/*": ["src/config/*"],
-      "@feature/*": ["src/components/feature/*"],
-      "@layouts/*": ["src/components/layouts/*"],
-      "@pages/*": ["src/components/pages/*"],
-      "@shared/*": ["src/components/shared/*"],
       "@context/*": ["src/context/*"],
       "@data/*": ["src/data/*"],
       "@hooks/*": ["src/hooks/*"],
       "@images/*": ["src/images/*"],
-      "@utils/*": ["src/utils/*"]
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"],
+      "@feature/*": ["src/components/feature/*"],
+      "@layouts/*": ["src/components/layouts/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@shared/*": ["src/components/shared/*"]
     },
     "jsx": "react-jsx",
     "target": "ESNext",

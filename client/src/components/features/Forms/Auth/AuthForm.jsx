@@ -1,12 +1,11 @@
-import Input from "@shared/Base/Input/Input";
-import ErrorMessage from "../../../shared/ErrorMessage/ErrorMessage";
-import OtpTimer from "./OtpTimer";
+import Input from "@shared/base/Input/Input";
+import ErrorMessage from "@shared/lib/FormErrorMessage/ErrorMessage";
 import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
 import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";
 import TwitterAuthButton from "./AuthButtons/TwitterAuthButton";
-import { useAuthFormHooks } from "./AuthForm.hooks";
-
+import OtpTimer from "./OtpTimer";
 import { EmailIcon, PasswordIcon, OtpIcon } from "./Icons";
+import { useAuthFormHooks } from "./AuthForm.hooks";
 
 const AuthForm = () => {
   const {

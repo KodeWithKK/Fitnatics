@@ -3,7 +3,7 @@ import {
   RevenueIcon,
   AttendanceIcon,
   ExpenceIcon,
-} from "@shared/Icons/Icons";
+} from "@shared/icons/Icons";
 
 const SummaryCard = ({ type, children }) => {
   const Icon = data[type].Icon;

@@ -1,5 +1,5 @@
 import { LocationIcon, ContactIcon } from "./Icons";
-import Image from "@shared/Base/Image/Image";
+import Image from "@shared/base/Image/Image";
 
 const GymCard = ({
   gymCity,

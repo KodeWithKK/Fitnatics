@@ -1,72 +1,17 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { useFetchUserData } from "@hooks/useFetchUserData";
 import ToastStackLayout from "@layouts/ToastStackLayout/ToastStackLayout";
-import LoadingScreen from "@shared/Loaders/LoadingScreen";
-import CashfreeSkelton from "@shared/CashfreeSkelton/CashfreeSkelton";
-import AuthPage from "@pages/AuthPage/AuthPage";
-import MainAppPage from "@pages/MainAppPage/MainAppPage";
-import OnboardingPage from "@pages/OnboardingPage/OnboardingPage";
-import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
+import LoadingScreen from "@shared/core/Loaders/LoadingScreen";
+import AppRoutes from "@routes/AppRoutes";
 
 function App() {
   const { isLoading, user } = useFetchUserData();
+  const { toasts, removeToast } = useContext(GlobalContext);
 
   if (isLoading) {
     return null;
   }
-
-  if (!user) {
-    return (
-      <AppBaseLayout>
-        <Router>
-          <Routes>
-            <Route path="/" element={<AuthPage />} />
-            <Route path="/*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Router>
-      </AppBaseLayout>
-    );
-  }
-
-  if (user?.accountSetupRequired) {
-    return (
-      <AppBaseLayout>
-        <Router>
-          <Routes>
-            <Route path="/onboarding" element={<OnboardingPage />} />
-            <Route
-              path="/error/account-already-exists"
-              element={<ErrorRedirects />}
-            />
-            <Route path="/*" element={<Navigate to="/onboarding" replace />} />
-          </Routes>
-        </Router>
-      </AppBaseLayout>
-    );
-  }
-
-  if (user && !user.accountSetupRequired) {
-    return (
-      <AppBaseLayout>
-        <Router>
-          <Routes>
-            <Route path="*" element={<MainAppPage />} />
-          </Routes>
-        </Router>
-      </AppBaseLayout>
-    );
-  }
-}
-
-function AppBaseLayout({ children }) {
-  const { toasts, removeToast } = useContext(GlobalContext);
 
   return (
     <div className="bg-gray-975 font-normal font-sans text-base text-gray-100 leading-[1.6]">
@@ -74,7 +19,15 @@ function AppBaseLayout({ children }) {
       <LoadingScreen />
       <CashfreeSkelton />
 
-      {children}
+      <AppRoutes user={user} />
+    </div>
+  );
+}
+
+function CashfreeSkelton() {
+  return (
+    <div className="top-0 left-0 z-[10000000] fixed flex w-full">
+      <div id="cf_checkout" className="mx-auto"></div>
     </div>
   );
 }

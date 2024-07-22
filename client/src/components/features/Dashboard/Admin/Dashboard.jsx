@@ -1,4 +1,3 @@
-import React from "react";
 import SummaryCard from "./SummaryCard";
 import AttendanceChart from "./AttendanceChart";
 import RevenueProgress from "./RevenueProgress";
@@ -10,7 +9,7 @@ const Dashboard = () => {
       {/* COLOUMN - 1 */}
       <div className="overflow-y-auto w-[768px] pt-8 px-8 shrink-0">
         {/* Summary */}
-        <h3 className="font-bold mb-3">Summary</h3>
+        <h3 className="mb-3 font-bold">Summary</h3>
         <div className="flex gap-2">
           <SummaryCard type="total_members">48</SummaryCard>
           <SummaryCard type="revenue">&#8377; 18K</SummaryCard>
@@ -19,7 +18,7 @@ const Dashboard = () => {
         </div>
 
         {/* Attendance */}
-        <h3 className="font-bold mt-6 mb-3">Attendance</h3>
+        <h3 className="mt-6 mb-3 font-bold">Attendance</h3>
         <AttendanceChart />
       </div>
 

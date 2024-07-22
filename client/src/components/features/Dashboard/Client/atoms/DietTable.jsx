@@ -3,7 +3,7 @@ import {
   ProteinIcon,
   CarbsIcon,
   FatIcon,
-} from "@shared/Icons/Icons";
+} from "@shared/icons/Icons";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 
