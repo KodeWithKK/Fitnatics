@@ -1,15 +1,15 @@
 import Toast from "@shared/core/Toast/Toast";
 
-const demoToast = {
-  id: "1001",
-  type: "info",
-  title: "Something went wrong!",
-  message: "Something went wrong while generating the tokens",
-};
+// const demoToast = {
+//   id: "1001",
+//   type: "info",
+//   title: "Something went wrong!",
+//   message: "Something went wrong while generating the tokens",
+// };
 
 const ToastStackLayout = ({ toasts, removeToast }) => {
   return (
-    <div className="fixed bottom-4 right-4 z-10 space-y-3">
+    <div className="fixed bottom-4 right-4 z-[1000] space-y-3">
       {toasts?.map((toast) => (
         <Toast
           key={toast.id}

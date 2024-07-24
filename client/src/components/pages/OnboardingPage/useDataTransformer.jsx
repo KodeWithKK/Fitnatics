@@ -25,6 +25,14 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     return data.memberData.gymOutlet;
   }, [data]);
 
+  const tPersonalDetails = useMemo(() => {
+    return data.trainerData.personalDetails;
+  }, [data.trainerData.personalDetails]);
+
+  const tProfessionalDetails = useMemo(() => {
+    return data.trainerData.professionalDetails;
+  }, [data.trainerData.professionalDetails]);
+
   const setMPersonalDetails = useCallback(
     (value) => {
       const nextData = produce(data, (draftState) => {
@@ -48,13 +56,43 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     [data, setData],
   );
 
+  const setTPersonalDetails = useCallback(
+    (value) => {
+      const nextData = produce(data, (draftState) => {
+        draftState.trainerData.personalDetails = {
+          ...draftState.trainerData.personalDetails,
+          ...value,
+        };
+      });
+      setData(nextData);
+    },
+    [data, setData],
+  );
+
+  const setTProfessionalDetails = useCallback(
+    (value) => {
+      const nextData = produce(data, (draftState) => {
+        draftState.trainerData.professionalDetails = {
+          ...draftState.trainerData.professionalDetails,
+          ...value,
+        };
+      });
+      setData(nextData);
+    },
+    [data, setData],
+  );
+
   return {
     navItems,
     mData,
     mPersonalDetails,
     mGymOutlet,
+    tPersonalDetails,
+    tProfessionalDetails,
     setMPersonalDetails,
     setMGymOutlet,
+    setTPersonalDetails,
+    setTProfessionalDetails,
   };
 }
 

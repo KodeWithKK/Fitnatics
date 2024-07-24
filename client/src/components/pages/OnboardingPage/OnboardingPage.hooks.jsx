@@ -15,7 +15,7 @@ function useOnboardingPageHooks() {
     },
     trainerData: {
       personalDetails: {},
-      professionalDetials: {},
+      professionalDetails: {},
     },
   });
 
@@ -56,8 +56,12 @@ function useOnboardingPageHooks() {
     mData,
     mPersonalDetails,
     mGymOutlet,
+    tPersonalDetails,
+    tProfessionalDetails,
     setMPersonalDetails,
     setMGymOutlet,
+    setTPersonalDetails,
+    setTProfessionalDetails,
   } = useDataTransformer({
     role,
     data,
@@ -77,6 +81,8 @@ function useOnboardingPageHooks() {
     mData,
     mPersonalDetails,
     mGymOutlet,
+    tPersonalDetails,
+    tProfessionalDetails,
     isSetupAccountPending,
     setStep,
     setRole,
@@ -84,6 +90,8 @@ function useOnboardingPageHooks() {
     setOtpGeneratedAt,
     setMPersonalDetails,
     setMGymOutlet,
+    setTPersonalDetails,
+    setTProfessionalDetails,
     setupAccountHandler,
   };
 }

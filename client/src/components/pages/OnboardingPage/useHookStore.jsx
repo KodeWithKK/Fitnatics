@@ -15,6 +15,8 @@ function useHooksStore() {
     mData,
     mPersonalDetails,
     mGymOutlet,
+    tPersonalDetails,
+    tProfessionalDetails,
     isSetupAccountPending,
     setStep,
     setRole,
@@ -22,6 +24,8 @@ function useHooksStore() {
     setOtpGeneratedAt,
     setMPersonalDetails,
     setMGymOutlet,
+    setTPersonalDetails,
+    setTProfessionalDetails,
     setupAccountHandler,
   } = useOnboardingPageHooks();
 
@@ -37,6 +41,8 @@ function useHooksStore() {
       mData,
       mPersonalDetails,
       mGymOutlet,
+      tPersonalDetails,
+      tProfessionalDetails,
       isSetupAccountPending,
       setStep,
       setRole,
@@ -44,6 +50,8 @@ function useHooksStore() {
       setOtpGeneratedAt,
       setMPersonalDetails,
       setMGymOutlet,
+      setTPersonalDetails,
+      setTProfessionalDetails,
       setupAccountHandler,
     }),
     [
@@ -57,6 +65,8 @@ function useHooksStore() {
       mData,
       mPersonalDetails,
       mGymOutlet,
+      tPersonalDetails,
+      tProfessionalDetails,
       isSetupAccountPending,
       setStep,
       setRole,
@@ -64,6 +74,8 @@ function useHooksStore() {
       setOtpGeneratedAt,
       setMPersonalDetails,
       setMGymOutlet,
+      setTPersonalDetails,
+      setTProfessionalDetails,
       setupAccountHandler,
     ],
   );
