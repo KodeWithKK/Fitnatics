@@ -19,20 +19,20 @@ async function makeGetRequest(url, formData = {}) {
       (err) => {
         const res = err?.response?.data;
         error = res.message?.error;
-      }
+      },
     );
 
   if (data) return data;
   throw new ApiError(
     error?.title ?? "",
-    error?.message ?? "Something went wrong while making the API Request"
+    error?.message ?? "Something went wrong while making the API Request",
   );
 }
 
 async function makePostRequest(
   url,
   formData = {},
-  contentType = "application/json"
+  contentType = "application/json",
 ) {
   let data, error;
   let postFormData = formData;
@@ -59,13 +59,13 @@ async function makePostRequest(
       (err) => {
         const res = err?.response.data;
         error = res.message?.error;
-      }
+      },
     );
 
   if (data) return data;
   throw new ApiError(
     error?.title ?? "",
-    error?.message ?? "Something went wrong while making the API Request"
+    error?.message ?? "Something went wrong while making the API Request",
   );
 }
 

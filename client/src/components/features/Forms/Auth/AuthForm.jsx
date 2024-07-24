@@ -20,12 +20,12 @@ const AuthForm = () => {
 
   return (
     <form
-      className="w-full my-auto space-y-6 text-gray-200 h-fit"
+      className="my-auto h-fit w-full space-y-6 text-gray-200"
       onSubmit={handleSubmit}
     >
       <h2 className="mb-4 text-center">
         <a
-          className="font-bold text-[35px] text-brand uppercase tracking-wide"
+          className="text-[35px] font-bold uppercase tracking-wide text-brand"
           href="/"
         >
           Fitnatics
@@ -39,16 +39,16 @@ const AuthForm = () => {
         </p>
 
         {/* OTHER AUTH BUTTONS */}
-        <div className="flex w-full rounded-md select-none">
+        <div className="flex w-full select-none rounded-md">
           <GoogleAuthButton text="Google" />
           <FacebookAuthButton text="Facebook" />
           <TwitterAuthButton text="Twitter" />
         </div>
 
         <div className="relative my-8">
-          <hr className="border-gray-800/[0.8] w-full" />
-          <div className="absolute w-full text-center -top-3">
-            <span className="bg-gray-975 px-2.5 w-fu text-[15px] text-gray-500">
+          <hr className="w-full border-gray-800/[0.8]" />
+          <div className="absolute -top-3 w-full text-center">
+            <span className="w-fu bg-gray-975 px-2.5 text-[15px] text-gray-500">
               OR
             </span>
           </div>
@@ -120,12 +120,12 @@ const AuthForm = () => {
       <div>
         <button
           type="submit"
-          className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold"
+          className="w-full rounded-md bg-brand/[0.75] p-2.5 font-semibold"
           disabled={isRequestPending}
         >
           {getBtnText(displayType, isRequestPending)}
         </button>
-        <div className="mt-3 text-xs text-gray-500 text-pretty">
+        <div className="mt-3 text-pretty text-xs text-gray-500">
           By continuing, you agree to Fitnatics&apos;s{" "}
           <button type="button" className="underline">
             Terms of Service

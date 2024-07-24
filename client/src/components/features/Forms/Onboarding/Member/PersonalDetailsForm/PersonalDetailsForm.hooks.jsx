@@ -4,14 +4,14 @@ import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import useEmailVerification from "@hooks/useEmailVerification";
 import useAsyncForm from "./useAsyncForm";
 
-const usePersonalDetailFormHooks = () => {
+const usePersonalDetailsFormHooks = () => {
   const [isSubmitBtnTriggered, setIsSubmitBtnTriggered] = useState(false);
 
   const {
     setStep,
     isEmailVerified,
-    memberData,
-    setMemberData,
+    mPersonalDetails,
+    setMPersonalDetails,
     setOtpGeneratedAt,
   } = useContext(OnboardingContext);
 
@@ -26,7 +26,7 @@ const usePersonalDetailFormHooks = () => {
     control,
     errors,
     isSubmitting,
-  } = useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered });
+  } = useAsyncForm({ mPersonalDetails, isEmailVerified, isSubmitBtnTriggered });
 
   const onSuccess = useCallback(
     async (formData) => {
@@ -37,23 +37,23 @@ const usePersonalDetailFormHooks = () => {
           { email: formData?.email },
           {
             onSuccess: () => {
-              setMemberData(formData);
+              setMPersonalDetails(formData);
               setStep((prevStep) => ++prevStep);
             },
-          }
+          },
         );
       } else {
-        setMemberData(formData);
+        setMPersonalDetails(formData);
         setStep((prevStep) => ++prevStep);
       }
     },
     [
       isEmailVerified,
-      setMemberData,
+      setMPersonalDetails,
       setStep,
       generateOTP,
       setIsSubmitBtnTriggered,
-    ]
+    ],
   );
 
   const onError = useCallback(
@@ -74,23 +74,23 @@ const usePersonalDetailFormHooks = () => {
         addToast(
           "warning",
           "All Fields are Required!",
-          "All Fields are Required to proceed the next step"
+          "All Fields are Required to proceed the next step",
         );
       } else if (error?.avatar) {
         addToast(
           "warning",
           "Profile Picture Required!",
-          "Profile picture is required to proceed the next step"
+          "Profile picture is required to proceed the next step",
         );
       } else {
         addToast(
           "error",
           "Invalid Form Data!",
-          "Enter valid form data to proceed the next step"
+          "Enter valid form data to proceed the next step",
         );
       }
     },
-    [addToast, setIsSubmitBtnTriggered]
+    [addToast, setIsSubmitBtnTriggered],
   );
 
   return {
@@ -106,4 +106,4 @@ const usePersonalDetailFormHooks = () => {
   };
 };
 
-export { usePersonalDetailFormHooks };
+export default usePersonalDetailsFormHooks;

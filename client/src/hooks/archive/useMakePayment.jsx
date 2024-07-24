@@ -22,7 +22,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
     mutationFn: async () => {
       const data = await apiClient.post(
         import.meta.env.VITE_BACKEND_API_BASE + "/payment/create-order",
-        { productId, productType }
+        { productId, productType },
       );
       return data;
     },
@@ -45,7 +45,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
           if (!isRazorpayScriptLoaded) {
             setIsScriptLoading(true);
             const res = await loadScript(
-              "https://checkout.razorpay.com/v1/checkout.js"
+              "https://checkout.razorpay.com/v1/checkout.js",
             );
             if (!res) {
               console.log("Razorpay SDK failed to load. Are you online?");
@@ -90,7 +90,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
           // open razorpay checkout modal.
           rzp1.open();
         },
-      }
+      },
     );
   }, [
     isRazorpayScriptLoaded,

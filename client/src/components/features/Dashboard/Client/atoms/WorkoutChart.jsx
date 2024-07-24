@@ -13,7 +13,7 @@ const MyExercises = ({ workoutChart }) => {
         {workoutChart.map(({ day, dayType, exercises }, idx) => (
           <Accordion.Item key={idx} className="mb-2" value={`item-${idx}`}>
             <Accordion.Trigger
-              className="flex justify-between items-center bg-gray-900/[.8] p-4 rounded-md w-full"
+              className="flex w-full items-center justify-between rounded-md bg-gray-900/[.8] p-4"
               onClick={() => {
                 setIsTriggered((prevState) => {
                   const nextState = [...prevState];
@@ -23,7 +23,7 @@ const MyExercises = ({ workoutChart }) => {
               }}
             >
               <div className="text-left">
-                <p className="font-semibold text-gray-500 text-xs">
+                <p className="text-xs font-semibold text-gray-500">
                   {day.toUpperCase()}
                 </p>
                 <p>{dayType}</p>
@@ -39,15 +39,15 @@ const MyExercises = ({ workoutChart }) => {
               </div>
             </Accordion.Trigger>
             {exercises.length > 0 && (
-              <Accordion.Content className="border-[2px] border-gray-900 rounded-md">
+              <Accordion.Content className="rounded-md border-[2px] border-gray-900">
                 {exercises.map((exercise, i) => (
                   <div
                     key={`item-${idx}-content-${i}`}
-                    className="flex justify-between items-center border-gray-900 last:border-0 mx-4 py-2 border-b"
+                    className="mx-4 flex items-center justify-between border-b border-gray-900 py-2 last:border-0"
                   >
                     <div>
                       <div className="border-gray-700">{exercise.name}</div>
-                      <div className="text-gray-500 text-sm">{`${
+                      <div className="text-sm text-gray-500">{`${
                         exercise.sets
                       } x ${exercise.reps} ${
                         exercise.repsUnit === "number"
@@ -55,9 +55,9 @@ const MyExercises = ({ workoutChart }) => {
                           : capitalizeFirst(exercise.repsUnit)
                       } • ${exercise.rest}s Rest`}</div>
                     </div>
-                    <Checkbox.Root className="border-2 border-gray-700 rounded-md w-6 h-6">
+                    <Checkbox.Root className="h-6 w-6 rounded-md border-2 border-gray-700">
                       <Checkbox.Indicator className="text-gray-400">
-                        <CheckIcon className="p-[3px] w-full h-full" />
+                        <CheckIcon className="h-full w-full p-[3px]" />
                       </Checkbox.Indicator>
                     </Checkbox.Root>
                   </div>

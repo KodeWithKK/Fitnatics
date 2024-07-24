@@ -6,7 +6,7 @@ const useApiFetch = () => {
     queryKey: ["membershipPlans"],
     queryFn: async () => {
       return await apiClient.get(
-        import.meta.env.VITE_BACKEND_API_BASE + "/get-data/membership-plans"
+        import.meta.env.VITE_BACKEND_API_BASE + "/get-data/membership-plans",
       );
     },
     retry: 2,

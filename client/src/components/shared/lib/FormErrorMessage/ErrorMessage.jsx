@@ -1,6 +1,6 @@
 function ErrorMessage({ children }) {
   return (
-    <p className="mt-1 mb-3 text-[15px] text-red-400 text-sm">{children}</p>
+    <p className="mb-3 mt-1 text-[15px] text-sm text-red-400">{children}</p>
   );
 }
 

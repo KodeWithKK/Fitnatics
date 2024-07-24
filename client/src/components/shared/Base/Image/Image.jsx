@@ -21,7 +21,7 @@ function Image({
       <img
         src={src}
         onLoad={() => setIsLoading(false)}
-        className="w-full h-full object-cover"
+        className="h-full w-full object-cover"
         style={{ display: isLoading ? "none" : "block" }}
         {...restProps}
       />

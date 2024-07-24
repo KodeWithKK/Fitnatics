@@ -20,7 +20,7 @@ ChartJs.register(
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
 );
 
 const MemberAdditionChart = () => {
@@ -40,8 +40,8 @@ const MemberAdditionChart = () => {
   };
 
   return (
-    <div className="mt-8 mx-6 pt-4 pb-10 px-4 w-[304px] bg-gray-900/[.8] rounded-md">
-      <h3 className="font-bold text-center mb-8">New Members</h3>
+    <div className="mx-6 mt-8 w-[304px] rounded-md bg-gray-900/[.8] px-4 pb-10 pt-4">
+      <h3 className="mb-8 text-center font-bold">New Members</h3>
       <Line options={options} data={lineChartData} />
     </div>
   );

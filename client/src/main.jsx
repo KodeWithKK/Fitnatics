@@ -20,8 +20,8 @@ const ReactQueryDevtoolsProduction = React.lazy(() =>
   import("@tanstack/react-query-devtools/build/modern/production.js").then(
     (d) => ({
       default: d.ReactQueryDevtools,
-    })
-  )
+    }),
+  ),
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -38,5 +38,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         buttonPosition="bottom-left"
       />
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

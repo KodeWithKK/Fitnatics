@@ -21,7 +21,7 @@ function GlobalContextProvider({ children }) {
       const nextToast = toasts.filter((toast) => toast.id !== id);
       setToasts(nextToast);
     },
-    [toasts]
+    [toasts],
   );
 
   const displayLoader = useCallback((text) => {

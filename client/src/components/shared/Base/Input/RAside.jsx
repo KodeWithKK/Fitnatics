@@ -3,9 +3,9 @@
 function RAside({ children, variant = "solid", className }) {
   return (
     <div
-      className={`place-items-center grid px-2.5 rounded-l-[5px] rounded-r-[5px] h-full text-[15px] ${
+      className={`grid h-full place-items-center rounded-l-[5px] rounded-r-[5px] px-2.5 text-[15px] ${
         variant === "solid"
-          ? "bg-gray-950 border-gray-900 border-l"
+          ? "border-l border-gray-900 bg-gray-950"
           : "text-inherit"
       } ${className}`}
     >

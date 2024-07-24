@@ -15,7 +15,7 @@ const Input = (
     children,
     ...delegated
   },
-  ref
+  ref,
 ) => {
   const [inputType, setInputType] = useState(type);
   const [inputPaddingRight, setInputPaddingRight] = useState(null);
@@ -36,9 +36,9 @@ const Input = (
     <div className="relative">
       <input
         ref={ref}
-        className={`w-full text-[15px]  rounded-md bg-gray-950 border-gray-600/[.6] focus:border-brand focus:ring-brand placeholder:text-gray-700 disabled:cursor-not-allowed ${
+        className={`w-full rounded-md border-gray-600/[.6] bg-gray-950 text-[15px] placeholder:text-gray-700 focus:border-brand focus:ring-brand disabled:cursor-not-allowed ${
           hasError
-            ? "focus:border-red-400 focus:ring-red-400 border-red-400"
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
             : "focus:border-brand focus:ring-brand"
         } ${Icon && "pl-[38px]"} ${name === "password" && "pr-[42px]"} ${
           disabled && "opacity-35"
@@ -52,7 +52,7 @@ const Input = (
 
       {Icon && (
         <Icon
-          className={`top-[9px] left-2 absolute w-6 h-6 ${
+          className={`absolute left-2 top-[9px] h-6 w-6 ${
             hasError ? "text-red-400" : "text-gray-500"
           }`}
         />
@@ -61,7 +61,7 @@ const Input = (
       {name === "password" && (
         <button
           type="button"
-          className={`top-[5px] right-2 absolute p-1 rounded-full ${
+          className={`absolute right-2 top-[5px] rounded-full p-1 ${
             hasError
               ? "text-red-400 hover:bg-red-800/[.6]"
               : "text-gray-500 hover:bg-gray-800/[.7]"
@@ -75,14 +75,14 @@ const Input = (
           }}
           disabled={disabled}
         >
-          {inputType == "password" && <EyeIcon className="w-6 h-6" />}
-          {inputType == "text" && <EyeSlashIcon className="w-6 h-6" />}
+          {inputType == "password" && <EyeIcon className="h-6 w-6" />}
+          {inputType == "text" && <EyeSlashIcon className="h-6 w-6" />}
         </button>
       )}
 
       <div
         ref={childRef}
-        className={`top-px right-px absolute w-fit h-[40px] ${
+        className={`absolute right-px top-px h-[40px] w-fit ${
           hasError ? "text-red-400" : "text-gray-500"
         }`}
       >

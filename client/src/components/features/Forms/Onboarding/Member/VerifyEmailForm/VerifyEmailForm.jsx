@@ -1,4 +1,4 @@
-import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
+import OnboardingForm from "@layouts/OnboardingPageLayout/OnboardingForm";
 import useVerifyEmailFormHooks from "./VerifyEmailForm.hooks";
 import OtpTimer from "./OtpTimer";
 import { VerifiedEmailIcon } from "./Icons";
@@ -19,16 +19,18 @@ const VerifyEmailForm = () => {
   } = useVerifyEmailFormHooks();
 
   return (
-    <SteperLayout.Form onSubmit={handleSubmit}>
-      <div className="place-items-center grid h-full">
+    <OnboardingForm onSubmit={handleSubmit}>
+      <OnboardingForm.Headline className={"mx-auto mb-4 mt-6 w-[492px]"} />
+
+      <div className="grid h-full place-items-center">
         {!isEmailVerified && (
-          <div className="space-y-6 border-2 border-gray-800/[.5] px-[5%] py-8 border-dashed rounded-md max-w-[492px] h-fit text-gray-200">
-            <h1 className="font-bold text-2xl text-center text-gray-200">
+          <div className="h-fit max-w-[492px] space-y-6 rounded-md border-2 border-dashed border-gray-800/[.5] px-[5%] py-8 text-gray-200">
+            <h1 className="text-center text-2xl font-bold text-gray-200">
               Email Verification
             </h1>
 
             <div>
-              <p className="text-gray-500 text-pretty text-sm">
+              <p className="text-pretty text-sm text-gray-500">
                 Please enter the OTP (One Time Password) sent to your email
                 {" ("}
                 {getCodedEmail(email)}
@@ -47,12 +49,12 @@ const VerifyEmailForm = () => {
                   value={otp[i]}
                   onChange={(e) => handleChange(e, i)}
                   onKeyUp={(e) => handleBackspace(e, i)}
-                  className="border-2 border-gray-800/[.85] bg-transparent rounded-md w-[52px] h-[52px] text-2xl text-center focus:ring-offset-brand focus:ring-brand focus:border-brand"
+                  className="h-[52px] w-[52px] rounded-md border-2 border-gray-800/[.85] bg-transparent text-center text-2xl focus:border-brand focus:ring-brand focus:ring-offset-brand"
                 />
               ))}
             </div>
 
-            <div className="flex justify-between items-center text-gray-500 text-sm">
+            <div className="flex items-center justify-between text-sm text-gray-500">
               <OtpTimer otpGeneratedAt={otpGeneratedAt} />
               <div className="flex gap-4">
                 <button
@@ -64,7 +66,7 @@ const VerifyEmailForm = () => {
                 </button>
                 <button
                   type="button"
-                  className="bg-gray-800 px-4 py-2 rounded-md text-gray-200"
+                  className="rounded-md bg-gray-800 px-4 py-2 text-gray-200"
                   onClick={verifyOTPHandler}
                 >
                   Verify Email
@@ -74,13 +76,13 @@ const VerifyEmailForm = () => {
           </div>
         )}
         {isEmailVerified && (
-          <div className="flex flex-col items-center gap-4 text-gray-100">
+          <div className="flex w-[492px] flex-col items-center gap-4 rounded border-2 border-dashed border-gray-800/[.5] py-12 text-gray-100">
             <VerifiedEmailIcon className="w-[208px]" />
             <h2>Email Verified Successfully!</h2>
           </div>
         )}
       </div>
-    </SteperLayout.Form>
+    </OnboardingForm>
   );
 };
 

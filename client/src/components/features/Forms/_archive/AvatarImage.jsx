@@ -13,12 +13,12 @@ function AvatarImage({ className, handleAvatarInput }, ref) {
     <div className="flex justify-center">
       <div className="relative">
         <div
-          className={`w-[120px] h-[120px] overflow-hidden rounded-full bg-gray-600 cursor-pointer ${className}`}
+          className={`h-[120px] w-[120px] cursor-pointer overflow-hidden rounded-full bg-gray-600 ${className}`}
           onClick={handleAvatarInput}
         >
           <input
             ref={ref}
-            className="hidden w-full h-full"
+            className="hidden h-full w-full"
             type="file"
             accept=".png, .jpg, .jpeg"
             onChange={handleChange}
@@ -27,19 +27,19 @@ function AvatarImage({ className, handleAvatarInput }, ref) {
           {file && (
             <img
               src={file}
-              className="w-full h-full object-center object-cover"
+              className="h-full w-full object-cover object-center"
             />
           )}
           {!file && (
-            <AvatarIcon className="border w-full h-full scale-[1.05]" />
+            <AvatarIcon className="h-full w-full scale-[1.05] border" />
           )}
         </div>
 
         <div
-          className="top-[102px] -right-1.5 absolute bg-gray-800 p-2.5 rounded-full cursor-pointer"
+          className="absolute -right-1.5 top-[102px] cursor-pointer rounded-full bg-gray-800 p-2.5"
           onClick={handleAvatarInput}
         >
-          <PlusIcon className="w-5 h-5" />
+          <PlusIcon className="h-5 w-5" />
         </div>
       </div>
     </div>

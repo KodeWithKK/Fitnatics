@@ -5,7 +5,7 @@ function getTimeLeft(otpGeneratedAt) {
 
   const currTime = new Date();
   const otpExpiredAt = new Date(otpGeneratedAt).setMinutes(
-    otpGeneratedAt.getMinutes() + 15
+    otpGeneratedAt.getMinutes() + 15,
   );
   const timeLeft = otpExpiredAt - currTime;
 
@@ -25,7 +25,7 @@ function getTimeLeft(otpGeneratedAt) {
 
 const OtpTimer = ({ otpGeneratedAt, ...delegated }) => {
   const [validityTimeLeft, setValidityTimeLeft] = useState(
-    getTimeLeft(otpGeneratedAt)
+    getTimeLeft(otpGeneratedAt),
   );
 
   useMemo(() => {

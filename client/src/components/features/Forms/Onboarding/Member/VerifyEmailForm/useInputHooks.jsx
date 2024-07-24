@@ -29,7 +29,7 @@ function useInputHooks({ inputRefs, otp, setOtp }) {
         inputRefs.current[idx + 1].focus();
       }
     },
-    [inputRefs, otp, setOtp]
+    [inputRefs, otp, setOtp],
   );
 
   const handleBackspace = useCallback(
@@ -46,7 +46,7 @@ function useInputHooks({ inputRefs, otp, setOtp }) {
         setOtp(nextOtp);
       }
     },
-    [inputRefs, otp, setOtp]
+    [inputRefs, otp, setOtp],
   );
 
   return { handleChange, handleBackspace };

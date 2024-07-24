@@ -6,7 +6,7 @@ const TwitterAuthButton = ({ text }) => {
   return (
     <button
       type="button"
-      className="flex items-center border-2 border-gray-800 hover:bg-gray-800/[.3] px-3 py-2 rounded-r-md w-full"
+      className="flex w-full items-center rounded-r-md border-2 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3]"
       onClick={loginwithtwitter}
     >
       <TwitterIcon className="mr-2 h-6" />

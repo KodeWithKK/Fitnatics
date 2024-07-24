@@ -10,10 +10,10 @@ const LoadingScreen = () => {
   }
 
   return (
-    <div className="z-[1000] fixed place-items-center grid bg-gray-950/[.9] w-full h-screen">
+    <div className="fixed z-[1000] grid h-screen w-full place-items-center bg-gray-950/[.9]">
       <div className="flex flex-col items-center gap-3">
-        <LoadingSpinner className="drop-shadow-[0_0px_5px_#1472ff] w-12 h-12 text-brand animate-spin" />
-        <p className="text-center text-gray-100 text-pretty">{loaderText}</p>
+        <LoadingSpinner className="h-12 w-12 animate-spin text-brand drop-shadow-[0_0px_5px_#1472ff]" />
+        <p className="text-pretty text-center text-gray-100">{loaderText}</p>
       </div>
     </div>
   );

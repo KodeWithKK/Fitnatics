@@ -11,7 +11,7 @@ function useEmailVerification({ setOtpGeneratedAt }) {
       mutationFn: async ({ email }) => {
         await apiClient.post(
           import.meta.env.VITE_BACKEND_API_BASE + "/auth/strategy-verify-email",
-          { email }
+          { email },
         );
       },
       onMutate: () => {
@@ -33,7 +33,7 @@ function useEmailVerification({ setOtpGeneratedAt }) {
       mutationFn: async ({ email, otp }) => {
         return await apiClient.get(
           import.meta.env.VITE_BACKEND_API_BASE + "/auth/strategy-verify-email",
-          { email, otp }
+          { email, otp },
         );
       },
       onError: (error) => {

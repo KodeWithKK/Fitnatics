@@ -2,10 +2,10 @@ import NavItem from "./NavItem";
 
 const SideBar = () => {
   return (
-    <div className="bg-gray-900/[.75] w-[248px] h-screen">
+    <div className="h-screen w-[248px] bg-gray-900/[.75]">
       {/* LOGO */}
-      <div className="mt-[30px] mb-[30px] px-[10%] text-center">
-        <h1 className="font-bold text-[30px] text-brand uppercase tracking-wide">
+      <div className="mb-[30px] mt-[30px] px-[10%] text-center">
+        <h1 className="text-[30px] font-bold uppercase tracking-wide text-brand">
           Fitnatics
         </h1>
       </div>

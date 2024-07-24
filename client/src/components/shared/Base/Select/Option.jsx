@@ -15,14 +15,14 @@ const Option = ({ Icon, value, label }) => {
   return (
     <button
       type="button"
-      className={`relative last:border-0 hover:bg-gray-800/[.75] px-2 py-1.5 border-b first:rounded-t-md last:rounded-b-md w-full text-[15px] text-left "border-gray-600/[.6] ${
+      className={`"border-gray-600/[.6] relative w-full border-b px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-800/[.75] ${
         Icon && "pl-[38px]"
       } ${commonClass ?? ""} ${OptionClass ?? ""}`}
       onClick={() => onClickHandler(value)}
     >
       {Icon && (
         <Icon
-          className={`top-[7px] left-2 absolute w-[22px] h-[22px] text-gray-500`}
+          className={`absolute left-2 top-[7px] h-[22px] w-[22px] text-gray-500`}
         />
       )}
 

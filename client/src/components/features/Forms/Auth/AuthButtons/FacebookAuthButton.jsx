@@ -6,7 +6,7 @@ const FacebookAuthButton = ({ text }) => {
   return (
     <button
       type="button"
-      className="flex items-center border-2 border-gray-800 border-x-0 hover:bg-gray-800/[.3] px-3 py-2 w-full"
+      className="flex w-full items-center border-2 border-x-0 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3]"
       onClick={loginwithfacebook}
     >
       <FacebookIcon className="mr-2 h-6" />

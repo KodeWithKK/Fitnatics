@@ -9,7 +9,7 @@ const useLogoutUser = () => {
   const { mutate: logoutUser, isPending } = useMutation({
     mutationFn: async () => {
       return await apiClient.post(
-        import.meta.env.VITE_BACKEND_API_BASE + "/auth/logout"
+        import.meta.env.VITE_BACKEND_API_BASE + "/auth/logout",
       );
     },
     onSuccess: () => {

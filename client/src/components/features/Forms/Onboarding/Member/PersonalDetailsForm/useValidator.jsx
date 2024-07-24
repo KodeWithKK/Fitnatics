@@ -4,23 +4,6 @@ import { useMemo } from "react";
 import apiClient from "@api/apiClient";
 import debounce from "lodash.debounce";
 
-async function checkEmailAvailability(email) {
-  try {
-    const data = await apiClient.get(
-      import.meta.env.VITE_BACKEND_API_BASE + "/user/check-email-availability",
-      { email }
-    );
-    return data?.isEmailAvailable;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
-
-const debouncedCheckEmailAvailability = debounce((email, resolve, reject) => {
-  checkEmailAvailability(email).then(resolve).catch(reject);
-}, 300);
-
 function useValidator({
   onChangeFields,
   verifiedFields,
@@ -33,7 +16,7 @@ function useValidator({
         .test(
           "AvatarImageNotFound",
           "Profile Picture is Required",
-          (val) => !!val
+          (val) => !!val,
         )
         .required("Profile Picture is Required"),
 
@@ -64,7 +47,7 @@ function useValidator({
               }
             }
             return true;
-          }
+          },
         ),
 
       phoneno: yup
@@ -85,7 +68,7 @@ function useValidator({
           const age = dayjs().diff(
             dayjs(dateString, "DD/MM/YYYY"),
             "year",
-            true
+            true,
           );
           return age >= 12;
         })
@@ -95,7 +78,7 @@ function useValidator({
           const age = dayjs().diff(
             dayjs(dateString, "DD/MM/YYYY"),
             "year",
-            true
+            true,
           );
           return age <= 100;
         })
@@ -126,5 +109,22 @@ function useValidator({
 
   return { personalDetailSchema };
 }
+
+async function checkEmailAvailability(email) {
+  try {
+    const data = await apiClient.get(
+      import.meta.env.VITE_BACKEND_API_BASE + "/user/check-email-availability",
+      { email },
+    );
+    return data?.isEmailAvailable;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+const debouncedCheckEmailAvailability = debounce((email, resolve, reject) => {
+  checkEmailAvailability(email).then(resolve).catch(reject);
+}, 300);
 
 export default useValidator;

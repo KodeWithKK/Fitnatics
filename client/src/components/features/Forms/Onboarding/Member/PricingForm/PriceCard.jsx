@@ -19,7 +19,7 @@ function PriceCard({
   });
 
   return (
-    <div className="border-gray-900 bg-gray-950 p-4 border rounded-md w-[306px] select-none shrink-0">
+    <div className="w-[306px] shrink-0 select-none rounded-md border border-gray-900 bg-gray-950 p-4">
       <Header
         duration={duration}
         orginalPrice={orginalPrice}
@@ -28,7 +28,7 @@ function PriceCard({
 
       <button
         type="button"
-        className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full select-none"
+        className="my-3 w-full select-none rounded-md border border-gray-800 bg-gray-800/[.7] p-2"
         onClick={buyButtonHandler}
       >
         Buy Now
@@ -50,7 +50,7 @@ function Header({ duration, orginalPrice, dicountedPrice }) {
           {duration == 1 ? "Month" : "Months"}
         </p>
       </div>
-      <div className="font-medium text-right">
+      <div className="text-right font-medium">
         <p className="text-sm text-gray-400 line-through">
           ₹ {getFormatedPrice(orginalPrice)}
         </p>
@@ -73,13 +73,13 @@ function Features({ features }) {
     <div className="mt-2">
       <p className="font-semibold uppercase">Features</p>
 
-      <div className="space-y-1 mt-1 text-[15px]">
+      <div className="mt-1 space-y-1 text-[15px]">
         {features.map((feature) => (
           <p
             key={window.crypto.randomUUID()}
             className="flex items-center gap-1.5 text-[14px] text-gray-400"
           >
-            <span className="place-items-center border-gray-800 grid bg-gray-800/[.7] border rounded-full w-5 h-5">
+            <span className="grid h-5 w-5 place-items-center rounded-full border border-gray-800 bg-gray-800/[.7]">
               <CheckIcon className="h-2.5" />
             </span>
             {feature}

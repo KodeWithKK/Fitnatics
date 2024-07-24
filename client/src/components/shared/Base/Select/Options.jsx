@@ -1,14 +1,15 @@
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 import { SelectContext } from "./Select";
 
-const Options = ({ children }) => {
+const Options = ({ children }, ref) => {
   const { commonClass, OptionsClass, isCollapsed } = useContext(SelectContext);
 
   return (
     <div
+      ref={ref}
       className={`${
         isCollapsed && "hidden"
-      } z-10 absolute -mt-1 border rounded-md w-full bg-gray-950 border-gray-600/[.6] ${
+      } absolute z-10 -mt-1 w-full rounded-md border border-gray-600/[.6] bg-gray-950 ${
         commonClass ?? ""
       } ${OptionsClass ?? ""}`}
     >
@@ -17,4 +18,5 @@ const Options = ({ children }) => {
   );
 };
 
-export default Options;
+const ForwardedOptions = forwardRef(Options);
+export default ForwardedOptions;

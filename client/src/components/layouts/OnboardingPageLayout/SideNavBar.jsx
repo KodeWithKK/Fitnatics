@@ -2,23 +2,26 @@ import { GlobalContext } from "@context/GlobalContextProvider";
 import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import { useContext } from "react";
 
-function SideNavbar() {
+function SideNavBar() {
   const { addToast } = useContext(GlobalContext);
   const { step, setStep, navItems } = useContext(OnboardingContext);
 
   return (
-    <aside className="px-4 w-[396px]">
-      <div className="pb-2 mt-4 text-center nb-1">
-        <h5 className="font-semibold text-[21px] text-gray-100">
+    <aside className="fixed left-0 top-0 h-screen w-[326px] bg-gray-900/[.55] px-10 py-4">
+      <h2 className="text-left font-bold uppercase tracking-wide text-brand">
+        Fitnatics
+      </h2>
+      <div className="mt-6 text-left">
+        <h3 className="text-[21px] font-semibold text-gray-100">
           Let&apos;s Get you Started
-        </h5>
-        <p className="mt-0.5 text-gray-600 text-sm">
+        </h3>
+        <p className="mt-0.5 text-sm text-gray-600">
           Enter the details to get going
         </p>
       </div>
 
-      <div className="flex gap-4 mt-[22px] h-fit">
-        <div className="relative bg-gray-800 rounded-full w-[3px]">
+      <div className="mt-7 flex h-fit gap-4">
+        <div className="relative w-[3px] rounded-full bg-gray-800">
           <ActiveNavitemIndicator
             currStep={step}
             totalSteps={navItems.length}
@@ -31,7 +34,7 @@ function SideNavbar() {
             <button
               key={window.crypto.randomUUID()}
               type="button"
-              className="relative py-[4px] text-[15px] text-left"
+              className="relative py-[4px] text-left text-[15px]"
               onClick={() => {
                 if (step >= idx + 1) {
                   setStep(idx + 1);
@@ -39,7 +42,7 @@ function SideNavbar() {
                   addToast(
                     "warning",
                     "Navigation Not Allowed!",
-                    "Only backward Sidebar navigation is allowed"
+                    "Only backward Sidebar navigation is allowed",
                   );
                 }
               }}
@@ -47,7 +50,7 @@ function SideNavbar() {
               <span
                 className={`${step === idx + 1 && "text-brand"} ${
                   step > idx + 1 && "text-brand opacity-60"
-                } ${step < idx + 1 && "text-gray-600 "}`}
+                } ${step < idx + 1 && "text-gray-600"}`}
               >
                 {title}
               </span>
@@ -62,10 +65,10 @@ function SideNavbar() {
 function ActiveNavitemIndicator({ currStep, totalSteps }) {
   return (
     <div
-      className={`top-0 absolute w-full bg-blue-500 transition-all duration-700 rounded-full`}
+      className={`absolute top-0 w-full rounded-full bg-blue-500 transition-all duration-700`}
       style={{ height: `calc(100% / ${totalSteps} * ${currStep})` }}
     ></div>
   );
 }
 
-export default SideNavbar;
+export default SideNavBar;

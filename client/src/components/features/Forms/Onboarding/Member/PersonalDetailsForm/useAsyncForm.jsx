@@ -2,9 +2,13 @@ import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getFileFromUrl } from "@utils/getFileFromUrl";
-import useMemberValidator from "./useValidator";
+import useValidator from "./useValidator";
 
-function useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered }) {
+function useAsyncForm({
+  mPersonalDetails,
+  isEmailVerified,
+  isSubmitBtnTriggered,
+}) {
   const [onChangeFields, setOnChangeFields] = useState([]);
 
   const verifiedFields = useMemo(() => {
@@ -12,7 +16,7 @@ function useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered }) {
     else return [];
   }, [isEmailVerified]);
 
-  const { personalDetailSchema } = useMemberValidator({
+  const { personalDetailSchema } = useValidator({
     onChangeFields,
     verifiedFields,
     isSubmitBtnTriggered,
@@ -27,7 +31,7 @@ function useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered }) {
 
   const removeOnChangeField = useCallback((value) => {
     setOnChangeFields((prevFields) =>
-      prevFields.filter((field) => field != value)
+      prevFields.filter((field) => field != value),
     );
   }, []);
 
@@ -40,7 +44,7 @@ function useAsyncForm({ memberData, isEmailVerified, isSubmitBtnTriggered }) {
     resolver: yupResolver(personalDetailSchema),
     mode: "onChange",
     defaultValues: async () => {
-      const data = { ...memberData };
+      const data = { ...mPersonalDetails };
 
       if (typeof data.avatar === "string") {
         data.avatar = await getFileFromUrl(data?.avatar);

@@ -8,7 +8,16 @@ function useOnboardingPageHooks() {
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [otpGeneratedAt, setOtpGeneratedAt] = useState(null);
   const [role, setRole] = useState("member");
-  const [data, setData] = useState({ memberData: {}, trainerData: {} });
+  const [data, setData] = useState({
+    memberData: {
+      personalDetails: {},
+      gymOutlet: "",
+    },
+    trainerData: {
+      personalDetails: {},
+      professionalDetials: {},
+    },
+  });
 
   const {
     fetchedUserData,
@@ -20,18 +29,21 @@ function useOnboardingPageHooks() {
   } = useApiManager({ role, data });
 
   useEffect(() => {
-    if (role === "member") {
-      setData((prevData) => {
-        const nextData = produce(prevData, (draftState) => {
-          draftState.memberData = {
-            ...draftState.memberData,
-            ...fetchedUserData,
-          };
-        });
-        return nextData;
+    setData((prevData) => {
+      const nextData = produce(prevData, (draftState) => {
+        draftState.memberData.personalDetails = {
+          ...draftState.memberData.personalDetails,
+          ...fetchedUserData,
+        };
+
+        draftState.trainerData.personalDetails = {
+          ...draftState.trainerData.personalDetails,
+          ...fetchedUserData,
+        };
       });
-    }
-  }, [role, fetchedUserData]);
+      return nextData;
+    });
+  }, [fetchedUserData]);
 
   useEffect(() => {
     if (isEmailVerifiedInitially) {
@@ -41,10 +53,11 @@ function useOnboardingPageHooks() {
 
   const {
     navItems,
-    memberData,
-    memberGymOutlet,
-    setMemberData,
-    setMemberGymOutlet,
+    mData,
+    mPersonalDetails,
+    mGymOutlet,
+    setMPersonalDetails,
+    setMGymOutlet,
   } = useDataTransformer({
     role,
     data,
@@ -61,15 +74,16 @@ function useOnboardingPageHooks() {
     isEmailVerifiedInitially,
     isEmailVerified,
     otpGeneratedAt,
-    memberData,
-    memberGymOutlet,
+    mData,
+    mPersonalDetails,
+    mGymOutlet,
     isSetupAccountPending,
     setStep,
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setMemberData,
-    setMemberGymOutlet,
+    setMPersonalDetails,
+    setMGymOutlet,
     setupAccountHandler,
   };
 }

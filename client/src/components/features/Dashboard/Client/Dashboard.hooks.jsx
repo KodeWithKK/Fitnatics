@@ -7,7 +7,7 @@ function useDashboardHooks() {
 
   const quoteData = useMemo(
     () => gymMotivationalQuotes[getRandomInt(0, gymMotivationalQuotes.length)],
-    []
+    [],
   );
 
   const todaysNutritionGoal = useMemo(() => {

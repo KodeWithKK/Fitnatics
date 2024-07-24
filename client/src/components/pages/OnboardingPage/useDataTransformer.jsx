@@ -1,13 +1,6 @@
 import { useMemo, useCallback } from "react";
 import { produce } from "immer";
 
-const memberNavItems = [
-  { title: "Personal Details", description: "Enter your personal details" },
-  { title: "Verify Email", description: "Verify your Email" },
-  { title: "Select a Gym", description: "Select a Gym" },
-  { title: "Choose Plan", description: "Choose a membership plan" },
-];
-
 function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
   const navItems = useMemo(() => {
     if (role == "member") {
@@ -17,42 +10,69 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
           : true;
       });
     }
-    return [];
+    return trainerNavItems.filter((navItem) => {
+      return isEmailVerifiedInitially ? navItem.title != "Verify Email" : true;
+    });
   }, [isEmailVerifiedInitially, role]);
 
-  const memberData = useMemo(() => data.memberData, [data]);
+  const mData = useMemo(() => data.memberData, [data.memberData]);
 
-  const memberGymOutlet = useMemo(() => {
-    return data.memberData?.gymOutlet;
+  const mPersonalDetails = useMemo(() => {
+    return data.memberData.personalDetails;
+  }, [data.memberData.personalDetails]);
+
+  const mGymOutlet = useMemo(() => {
+    return data.memberData.gymOutlet;
   }, [data]);
 
-  const setMemberData = useCallback(
-    (formData) => {
+  const setMPersonalDetails = useCallback(
+    (value) => {
       const nextData = produce(data, (draftState) => {
-        draftState.memberData = { ...draftState.memberData, ...formData };
+        draftState.memberData.personalDetails = {
+          ...draftState.memberData.personalDetails,
+          ...value,
+        };
       });
       setData(nextData);
     },
-    [data, setData]
+    [data, setData],
   );
 
-  const setMemberGymOutlet = useCallback(
+  const setMGymOutlet = useCallback(
     (value) => {
       const nextData = produce(data, (draftState) => {
         draftState.memberData.gymOutlet = value;
       });
       setData(nextData);
     },
-    [data, setData]
+    [data, setData],
   );
 
   return {
     navItems,
-    memberData,
-    memberGymOutlet,
-    setMemberData,
-    setMemberGymOutlet,
+    mData,
+    mPersonalDetails,
+    mGymOutlet,
+    setMPersonalDetails,
+    setMGymOutlet,
   };
 }
+
+const memberNavItems = [
+  { title: "Personal Details", description: "Enter your personal details" },
+  { title: "Verify Email", description: "Verify Email" },
+  { title: "Select a Gym", description: "Select a Gym" },
+  { title: "Choose Plan", description: "Choose a membership plan" },
+];
+
+const trainerNavItems = [
+  { title: "Personal Details", description: "Enter your personal details" },
+  { title: "Verify Email", description: "Verify Email" },
+  {
+    title: "Professional Details",
+    description: "Enter your professional details",
+  },
+  { title: "Submit Form", description: "Submit form" },
+];
 
 export default useDataTransformer;

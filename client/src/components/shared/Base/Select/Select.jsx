@@ -1,4 +1,11 @@
-import { useMemo, createContext, useState, useCallback } from "react";
+import {
+  useRef,
+  useMemo,
+  useState,
+  useEffect,
+  useCallback,
+  createContext,
+} from "react";
 import Options from "./Options";
 import Option from "./Option";
 
@@ -14,20 +21,34 @@ const Select = ({
   value,
   Icon,
   onChange,
+  addBottomPadding,
   children,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [valueLabelMap, setValueLabelMap] = useState({});
+  const [optionsHeight, setOptionsHeight] = useState("0");
+  const optionsRef = useRef();
 
   const onClickHandler = useCallback(
     (value) => {
       onChange?.(value);
       setIsCollapsed(true);
     },
-    [onChange]
+    [onChange],
   );
 
-  const memoValue = useMemo(() => {
+  useEffect(() => {
+    const optionsRefElm = optionsRef.current;
+    const height = optionsRefElm.offsetHeight;
+
+    if (addBottomPadding && !isCollapsed) {
+      setOptionsHeight(height);
+    } else {
+      setOptionsHeight("0");
+    }
+  }, [addBottomPadding, isCollapsed]);
+
+  const contextValue = useMemo(() => {
     return {
       isCollapsed,
       commonClass,
@@ -39,23 +60,23 @@ const Select = ({
   }, [isCollapsed, commonClass, OptionsClass, OptionClass, onClickHandler]);
 
   return (
-    <SelectContext.Provider value={memoValue}>
-      <div className="relative">
+    <SelectContext.Provider value={contextValue}>
+      <div className="relative" style={{ paddingBottom: `${optionsHeight}px` }}>
         <button
           type="button"
           name={name}
-          className={`relative flex text-[15px] justify-between items-center p-2 mb-3 rounded-md border text-left w-full bg-gray-950 ${
+          className={`relative mb-3 flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px] ${
             Icon && "pl-[38px]"
           } ${
             !isCollapsed
-              ? "ring-[2px] ring-brand border-brand"
+              ? "border-brand ring-[2px] ring-brand"
               : "border-gray-600/[.6]"
           } ${commonClass ?? ""} ${selectClass ?? ""}`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {Icon && (
             <Icon
-              className={`top-[9px] left-2 absolute w-6 h-6 text-gray-500`}
+              className={`absolute left-2 top-[9px] h-6 w-6 text-gray-500`}
             />
           )}
 
@@ -64,15 +85,15 @@ const Select = ({
               {placeholder ?? "Select Option"}
             </span>
           ) : (
-            <span className={"text-gray-100 pr-2"}>{valueLabelMap[value]}</span>
+            <span className={"pr-2 text-gray-100"}>{valueLabelMap[value]}</span>
           )}
 
           <DownArrow
-            className={`w-[15px] h-[15px] ${!isCollapsed && "rotate-180"}`}
+            className={`h-[15px] w-[15px] ${!isCollapsed && "rotate-180"}`}
           />
         </button>
 
-        {<Options>{children}</Options>}
+        <Options ref={optionsRef}>{children}</Options>
       </div>
     </SelectContext.Provider>
   );

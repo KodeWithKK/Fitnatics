@@ -20,7 +20,7 @@ ChartJs.register(
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
 );
 
 const AttendanceChart = () => {

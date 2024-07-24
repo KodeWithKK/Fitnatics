@@ -16,7 +16,7 @@ const useApiMutation = ({ role, data }) => {
             ...data?.memberData,
             orderId,
           },
-          "multipart/form-data"
+          "multipart/form-data",
         );
       } else {
         await apiClient.post(
@@ -26,7 +26,7 @@ const useApiMutation = ({ role, data }) => {
             ...data?.trainerData,
             orderId,
           },
-          "multipart/form-data"
+          "multipart/form-data",
         );
       }
     },

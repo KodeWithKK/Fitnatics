@@ -11,10 +11,10 @@ function ImageSkeleton() {
       const widthNum = parseFloat(width.replace("px", ""));
       const heightNum = parseFloat(height.replace("px", ""));
       const childWidth = `${Math.sqrt(
-        Math.pow(widthNum, 2) + Math.pow(heightNum, 2)
+        Math.pow(widthNum, 2) + Math.pow(heightNum, 2),
       )}px`;
       const childHeight = `${Math.sqrt(
-        Math.pow(widthNum, 2) + Math.pow(heightNum, 2)
+        Math.pow(widthNum, 2) + Math.pow(heightNum, 2),
       )}px`;
       childRef.current.style.width = childWidth;
       childRef.current.style.height = childHeight;
@@ -27,10 +27,10 @@ function ImageSkeleton() {
   }, []);
 
   return (
-    <div ref={parentRef} className="bg-gray-800 w-full h-full overflow-hidden">
+    <div ref={parentRef} className="h-full w-full overflow-hidden bg-gray-800">
       <div
         ref={childRef}
-        className="bg-gray-900 origin-center animate-loadingImage"
+        className="origin-center animate-loadingImage bg-gray-900"
       ></div>
     </div>
   );

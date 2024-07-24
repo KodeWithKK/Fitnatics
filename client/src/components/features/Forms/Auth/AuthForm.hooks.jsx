@@ -30,7 +30,7 @@ function useAuthFormHooks() {
         {
           email: formData?.email,
           password: formData?.password,
-        }
+        },
       );
     },
     onMutate: () => {
@@ -55,7 +55,7 @@ function useAuthFormHooks() {
     addToast(
       "error",
       "Invalid form data!",
-      "Enter valid form data to continue with email"
+      "Enter valid form data to continue with email",
     );
   };
 
@@ -67,7 +67,7 @@ function useAuthFormHooks() {
           {
             email: formData?.email,
             password: formData?.password,
-          }
+          },
         );
       },
       onSuccess: () => {
@@ -87,7 +87,7 @@ function useAuthFormHooks() {
     addToast(
       "error",
       "6 Digit OTP Required!",
-      "A 6 digit OTP is required for authentication"
+      "A 6 digit OTP is required for authentication",
     );
   };
 
@@ -102,7 +102,7 @@ function useAuthFormHooks() {
           email: formData.email,
           password: formData.password,
           otp: formData.otp,
-        }
+        },
       );
     },
     onSuccess: () => {

@@ -14,7 +14,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
       mutationFn: async () => {
         const res = await apiClient.post(
           import.meta.env.VITE_BACKEND_API_BASE + "/payment/create-order",
-          { productId, productType }
+          { productId, productType },
         );
         return res;
       },
@@ -47,7 +47,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
       await cashfree.checkout(checkoutOptions).then((result) => {
         if (result.error) {
           console.log(
-            "User has closed the popup or there is some payment error, Check for Payment Status"
+            "User has closed the popup or there is some payment error, Check for Payment Status",
           );
           console.log(result.error);
           paymentStatus = "PENDING";
@@ -67,7 +67,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
 
       return paymentStatus;
     },
-    [displayLoader, hideLoader]
+    [displayLoader, hideLoader],
   );
 
   const { isPending: isVerifyPaymentPending, mutate: verifyPayment } =
@@ -75,7 +75,7 @@ function useMakePayment({ productId, productType, callbackFn }) {
       mutationFn: async (orderId) => {
         const res = await apiClient.post(
           import.meta.env.VITE_BACKEND_API_BASE + "/payment/verify-payment",
-          { orderId }
+          { orderId },
         );
         return res;
       },

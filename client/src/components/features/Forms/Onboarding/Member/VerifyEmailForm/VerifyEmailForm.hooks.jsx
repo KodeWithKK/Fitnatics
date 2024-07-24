@@ -9,7 +9,7 @@ function useVerifyEmailFormHooks() {
   const { addToast } = useContext(GlobalContext);
   const {
     setStep,
-    memberData,
+    mPersonalDetails,
     isEmailVerified,
     setIsEmailVerified,
     otpGeneratedAt,
@@ -17,7 +17,7 @@ function useVerifyEmailFormHooks() {
   } = useContext(OnboardingContext);
 
   const [otp, setOtp] = useState(Array(6).fill(""));
-  const [isApiReqPending, setIsApiRequestPending] = useState(false);
+  const [isApiReqPending, setIsApiReqPending] = useState(false);
   const inputRefs = useRef([]);
 
   const queryClient = useQueryClient();
@@ -26,7 +26,7 @@ function useVerifyEmailFormHooks() {
     setOtpGeneratedAt,
   });
 
-  const email = useMemo(() => memberData?.email, [memberData]);
+  const email = useMemo(() => mPersonalDetails?.email, [mPersonalDetails]);
 
   const { handleChange, handleBackspace } = useInputHooks({
     otp,
@@ -35,16 +35,16 @@ function useVerifyEmailFormHooks() {
   });
 
   const resendOTPHandler = useCallback(async () => {
-    setIsApiRequestPending(true);
+    setIsApiReqPending(true);
     await generateOTP(
       { email },
       {
         onSuccess: () => {
           addToast("info", "OTP Resended!", "An OTP is resended on your email");
         },
-      }
+      },
     );
-    setIsApiRequestPending(false);
+    setIsApiReqPending(false);
   }, [addToast, email, generateOTP]);
 
   const verifyOTPHandler = useCallback(async () => {
@@ -53,10 +53,10 @@ function useVerifyEmailFormHooks() {
       addToast(
         "error",
         "6 Digit OTP Required!",
-        "A 6 digit OTP is required for email verification"
+        "A 6 digit OTP is required for email verification",
       );
     } else {
-      setIsApiRequestPending(true);
+      setIsApiReqPending(true);
       await verifyOTP(
         { email, otp: otpString },
         {
@@ -67,9 +67,9 @@ function useVerifyEmailFormHooks() {
               exact: true,
             });
           },
-        }
+        },
       );
-      setIsApiRequestPending(false);
+      setIsApiReqPending(false);
     }
   }, [addToast, email, otp, setIsEmailVerified, queryClient, verifyOTP]);
 
@@ -82,7 +82,7 @@ function useVerifyEmailFormHooks() {
       addToast(
         "warning",
         "Email Verification Required!",
-        "Verify your email to proceed to the next step"
+        "Verify your email to proceed to the next step",
       );
     }
   };

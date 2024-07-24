@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <>
       {/* COLOUMN 1 */}
-      <div className="px-8 pt-8 w-[768px] overflow-y-auto">
+      <div className="w-[768px] overflow-y-auto px-8 pt-8">
         {/* NUTRITION GOAL */}
         <h3 className="mb-3 font-bold">Nutrition Goal</h3>
         <div className="inline-flex gap-2">
@@ -38,21 +38,21 @@ const Dashboard = () => {
         </div>
 
         {/* Today's Nutrition */}
-        <h3 className="mt-6 mb-3 font-bold">Today&apos;s Diet</h3>
+        <h3 className="mb-3 mt-6 font-bold">Today&apos;s Diet</h3>
         <DietTable todaysDiet={todaysDiet} />
 
         {/* My Exercise */}
-        <h3 className="mt-6 mb-3 font-bold">Workout Chart</h3>
+        <h3 className="mb-3 mt-6 font-bold">Workout Chart</h3>
         <WorkoutChart workoutChart={workoutChart} />
       </div>
 
       {/* COLOUMN 2 */}
-      <div className="flex-1 border-gray-900 border-l-[1px]">
+      <div className="flex-1 border-l-[1px] border-gray-900">
         <MonthlyProgress />
 
-        <div className="bg-gray-900/[.8] mx-6 mt-8 px-8 py-4 rounded-md h-[256px] text-center">
+        <div className="mx-6 mt-8 h-[256px] rounded-md bg-gray-900/[.8] px-8 py-4 text-center">
           <h3 className="font-bold">Todays&apos; Quote</h3>
-          <div className="flex flex-col justify-center -mt-3 h-full">
+          <div className="-mt-3 flex h-full flex-col justify-center">
             <h2 className="text-pretty text-xl">{quoteData.quote}</h2>
             <p className="mt-4 text-gray-400">- {quoteData.author}</p>
           </div>

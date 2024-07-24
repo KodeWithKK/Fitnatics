@@ -19,12 +19,12 @@ function NavItem({ isActive, type, children }) {
 
   return (
     <div
-      className={`flex h-[48px] items-center rounded-md cursor-pointer ${
+      className={`flex h-[48px] cursor-pointer items-center rounded-md ${
         isActive ? "bg-brand/[.2]" : "hover:bg-brand/[.2]"
       }`}
     >
       <Icon
-        className={`w-5 h-5 ml-[20px] mr-3 ${isActive ? "text-brand" : ""}`}
+        className={`ml-[20px] mr-3 h-5 w-5 ${isActive ? "text-brand" : ""}`}
       />
       <p>{children}</p>
     </div>

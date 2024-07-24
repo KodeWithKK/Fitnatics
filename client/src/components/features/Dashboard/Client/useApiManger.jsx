@@ -17,7 +17,7 @@ function useApiManager() {
 
   const fetchedUser = useMemo(
     () => queryClient.getQueryData(["user"]),
-    [queryClient]
+    [queryClient],
   );
 
   const todaysDiet = useMemo(() => {

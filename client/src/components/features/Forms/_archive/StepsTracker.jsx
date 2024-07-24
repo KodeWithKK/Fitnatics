@@ -2,13 +2,13 @@ import React from "react";
 
 function StepsTracker({ totalSteps, currentStep, className }) {
   return (
-    <div className={`flex justify-center items-center mb-8 ${className}`}>
+    <div className={`mb-8 flex items-center justify-center ${className}`}>
       {[...Array(totalSteps)].map((_, i) => (
         <React.Fragment key={`step-${i}`}>
           <div
-            className={`grid place-items-center w-6 h-6 ${
+            className={`grid h-6 w-6 place-items-center ${
               i < currentStep ? "bg-brand/[.9]" : "bg-gray-200/[.9]"
-            } font-semibold text-gray-950 rounded-full select-none`}
+            } select-none rounded-full font-semibold text-gray-950`}
           >
             {i + 1}
           </div>

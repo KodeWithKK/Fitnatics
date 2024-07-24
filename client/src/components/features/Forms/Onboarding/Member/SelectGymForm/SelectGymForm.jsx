@@ -1,19 +1,20 @@
 import { useContext } from "react";
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
+import OnboardingForm from "@layouts/OnboardingPageLayout/OnboardingForm";
 import GymCard from "./GymCard";
-import SteperLayout from "@layouts/SteperFormLayout/SteperLayout";
 
 const SelectGymForm = () => {
   const { addToast } = useContext(GlobalContext);
   const {
     setStep,
-    memberGymOutlet: selectedGym,
-    setMemberGymOutlet: setSelectedGym,
+    mGymOutlet: selectedGym,
+    setMGymOutlet: setSelectedGym,
   } = useContext(OnboardingContext);
 
   return (
-    <SteperLayout.Form
+    <OnboardingForm
+      className={"flex flex-col items-center justify-center"}
       onSubmit={(e) => {
         e.preventDefault();
 
@@ -21,14 +22,19 @@ const SelectGymForm = () => {
           addToast(
             "warning",
             "Select a Gym!",
-            "Select a gym to proceed to the next step"
+            "Select a gym to proceed to the next step",
           );
         } else {
           setStep((prevStep) => ++prevStep);
         }
       }}
     >
-      <div className="flex items-center justify-center h-full gap-3 p-6">
+      <OnboardingForm.Headline
+        className={"mb-4 mt-6"}
+        style={{ width: "calc(292px * 2 + 12px)" }}
+      />
+
+      <div className="flex h-full items-center justify-center gap-3 p-6 pt-0">
         <GymCard
           gymCity="Noida"
           imgSrc="images/Noida Gym.jpeg"
@@ -46,7 +52,7 @@ const SelectGymForm = () => {
           setSelectedGym={setSelectedGym}
         />
       </div>
-    </SteperLayout.Form>
+    </OnboardingForm>
   );
 };
 

@@ -14,11 +14,11 @@ function Toast({ type, title, message, removeToast }) {
 
   return (
     <div
-      className={`rounded-md bg-gray-975/[.9] border select-none animate-fadeLeftSlide ${colors.toastBorder}`}
+      className={`animate-fadeLeftSlide select-none rounded-md border bg-gray-975/[.9] ${colors.toastBorder}`}
     >
       {/* INNER CONTAINER */}
       <div
-        className={`${colors.toastBg} flex items-center gap-3 w-[333px] p-2 px-2.5`}
+        className={`${colors.toastBg} flex w-[333px] items-center gap-3 p-2 px-2.5`}
       >
         <ToastIcon bgColor={colors.toastIconBg} Icon={Icon} />
 
@@ -38,9 +38,9 @@ function Toast({ type, title, message, removeToast }) {
 function ToastIcon({ bgColor, Icon }) {
   return (
     <div
-      className={`grid place-items-center w-10 h-10 ${bgColor} rounded-full`}
+      className={`grid h-10 w-10 place-items-center ${bgColor} rounded-full`}
     >
-      <Icon className="w-6 h-6" />
+      <Icon className="h-6 w-6" />
     </div>
   );
 }
@@ -49,7 +49,7 @@ function ToastMainContent({ titleColor, title, mssgColor, message }) {
   return (
     <div className="flex-1 space-y-1">
       {title && (
-        <h2 className={`font-semibold text-[16px] ${titleColor}`}>{title}</h2>
+        <h2 className={`text-[16px] font-semibold ${titleColor}`}>{title}</h2>
       )}
       <p className={`${mssgColor} text-[15px] leading-[1.4]`}>{message}</p>
     </div>
@@ -59,10 +59,10 @@ function ToastMainContent({ titleColor, title, mssgColor, message }) {
 function ToastCloseButton({ onClickHandler }) {
   return (
     <button
-      className="place-items-center grid hover:bg-gray-100/[.07] rounded-md w-10 h-10 text-gray-50/[.25]"
+      className="grid h-10 w-10 place-items-center rounded-md text-gray-50/[.25] hover:bg-gray-100/[.07]"
       onClick={onClickHandler}
     >
-      <CloseIcon className="w-3.5 h-3.5" />
+      <CloseIcon className="h-3.5 w-3.5" />
     </button>
   );
 }

@@ -11,10 +11,10 @@ const GymCard = ({
 }) => {
   return (
     <div
-      className={`bg-gray-950 p-3 rounded-md outline oultine-2 border ${
+      className={`oultine-2 rounded-md border bg-gray-950 p-3 outline ${
         selected
-          ? "outline-brand  drop-shadow-[0_0px_2px_#1271ed] border-gray-900/[0]"
-          : "outline-brand/[0] border-gray-900"
+          ? "border-gray-900/[0] outline-brand drop-shadow-[0_0px_2px_#1271ed]"
+          : "border-gray-900 outline-brand/[0]"
       }`}
     >
       <Image
@@ -25,11 +25,11 @@ const GymCard = ({
         height={"266px"}
       />
 
-      <div className="flex items-center justify-between gap-2 mt-2">
+      <div className="mt-2 flex items-center justify-between gap-2">
         <h3 className="font-semibold">{gymCity}</h3>
         <button
           type="button"
-          className={`px-4 rounded-md h-[36px] ${
+          className={`h-[36px] rounded-md px-4 ${
             selected ? "bg-brand" : "bg-gray-800/[.5]"
           }`}
           onClick={() => {

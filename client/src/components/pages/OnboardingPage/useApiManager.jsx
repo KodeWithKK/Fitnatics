@@ -8,7 +8,7 @@ function useApiManager({ role, data }) {
 
   const fetchedUser = useMemo(
     () => queryClient.getQueryData(["user"]),
-    [queryClient]
+    [queryClient],
   );
 
   const fetchedUserData = useMemo(() => {

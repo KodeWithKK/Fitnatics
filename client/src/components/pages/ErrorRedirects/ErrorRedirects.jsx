@@ -12,7 +12,7 @@ function ErrorRedirects() {
     addToast(
       "error",
       "User already exists!",
-      "An account with this email already exists"
+      "An account with this email already exists",
     );
   }
 

@@ -12,15 +12,16 @@ function useHooksStore() {
     isEmailVerified,
     otpGeneratedAt,
     isFormRequestPending,
-    memberData,
-    memberGymOutlet,
+    mData,
+    mPersonalDetails,
+    mGymOutlet,
     isSetupAccountPending,
     setStep,
     setRole,
     setIsEmailVerified,
     setOtpGeneratedAt,
-    setMemberData,
-    setMemberGymOutlet,
+    setMPersonalDetails,
+    setMGymOutlet,
     setupAccountHandler,
   } = useOnboardingPageHooks();
 
@@ -33,15 +34,16 @@ function useHooksStore() {
       isEmailVerified,
       otpGeneratedAt,
       isFormRequestPending,
-      memberData,
-      memberGymOutlet,
+      mData,
+      mPersonalDetails,
+      mGymOutlet,
       isSetupAccountPending,
       setStep,
       setRole,
       setIsEmailVerified,
       setOtpGeneratedAt,
-      setMemberData,
-      setMemberGymOutlet,
+      setMPersonalDetails,
+      setMGymOutlet,
       setupAccountHandler,
     }),
     [
@@ -52,17 +54,18 @@ function useHooksStore() {
       isEmailVerified,
       otpGeneratedAt,
       isFormRequestPending,
-      memberData,
-      memberGymOutlet,
+      mData,
+      mPersonalDetails,
+      mGymOutlet,
       isSetupAccountPending,
       setStep,
       setRole,
       setIsEmailVerified,
       setOtpGeneratedAt,
-      setMemberData,
-      setMemberGymOutlet,
+      setMPersonalDetails,
+      setMGymOutlet,
       setupAccountHandler,
-    ]
+    ],
   );
 
   const essentialPageValues = useMemo(
@@ -72,7 +75,7 @@ function useHooksStore() {
       isLoading,
       isEmailVerifiedInitially,
     }),
-    [step, role, isLoading, isEmailVerifiedInitially]
+    [step, role, isLoading, isEmailVerifiedInitially],
   );
 
   return { onboardingContextValue, essentialPageValues };

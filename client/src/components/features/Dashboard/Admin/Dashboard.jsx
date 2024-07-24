@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <>
       {/* COLOUMN - 1 */}
-      <div className="overflow-y-auto w-[768px] pt-8 px-8 shrink-0">
+      <div className="w-[768px] shrink-0 overflow-y-auto px-8 pt-8">
         {/* Summary */}
         <h3 className="mb-3 font-bold">Summary</h3>
         <div className="flex gap-2">
@@ -18,7 +18,7 @@ const Dashboard = () => {
         </div>
 
         {/* Attendance */}
-        <h3 className="mt-6 mb-3 font-bold">Attendance</h3>
+        <h3 className="mb-3 mt-6 font-bold">Attendance</h3>
         <AttendanceChart />
       </div>
 

@@ -24,7 +24,7 @@ const OtpForm = ({
         addToast(
           "error",
           "6 Digit OTP Required!",
-          "A 6 digit OTP is required for authentication"
+          "A 6 digit OTP is required for authentication",
         );
       } else {
         try {
@@ -34,7 +34,7 @@ const OtpForm = ({
               email: formData?.email,
               password: formData?.password,
               otp: inputOtp,
-            }
+            },
           );
           window.location.href = "http://localhost:5173/";
         } catch (error) {
@@ -42,7 +42,7 @@ const OtpForm = ({
         }
       }
     },
-    [formData, otp, addToast]
+    [formData, otp, addToast],
   );
 
   const handleChange = React.useCallback(
@@ -73,7 +73,7 @@ const OtpForm = ({
         inputRefs.current[idx + 1].focus();
       }
     },
-    [otp]
+    [otp],
   );
 
   const handleBackspace = React.useCallback(
@@ -90,14 +90,14 @@ const OtpForm = ({
         setOtp(nextOtp);
       }
     },
-    [otp]
+    [otp],
   );
 
   return (
-    <div className="px-[6%] py-8 h-screen overflow-y-auto">
+    <div className="h-screen overflow-y-auto px-[6%] py-8">
       <div className="mb-6 text-center">
         <a
-          className="font-bold text-[35px] text-brand uppercase tracking-wide"
+          className="text-[35px] font-bold uppercase tracking-wide text-brand"
           href="/"
         >
           Fitnatics
@@ -105,15 +105,15 @@ const OtpForm = ({
       </div>
 
       <form
-        className="space-y-6 border-2 border-gray-800/[.5] mx-auto px-[6%] py-8 border-dashed rounded-md max-w-[586px] h-fit text-gray-200"
+        className="mx-auto h-fit max-w-[586px] space-y-6 rounded-md border-2 border-dashed border-gray-800/[.5] px-[6%] py-8 text-gray-200"
         onSubmit={formSubmitHandle}
       >
-        <h1 className="font-bold text-2xl text-center text-gray-200">
+        <h1 className="text-center text-2xl font-bold text-gray-200">
           Account Verification
         </h1>
 
         <div>
-          <p className="text-gray-500 text-pretty text-sm">
+          <p className="text-pretty text-sm text-gray-500">
             Please enter the OTP (One Time Password) sent to your email{" ("}
             {formData.email.split("@")[0].length > 2
               ? formData.email.split("@")[0].substring(0, 2) +
@@ -136,11 +136,11 @@ const OtpForm = ({
                 value={otp[i]}
                 onChange={(e) => handleChange(e, i)}
                 onKeyUp={(e) => handleBackspace(e, i)}
-                className="border-2 border-gray-800/[.85] bg-transparent rounded-md w-[52px] h-[52px] text-2xl text-center focus:ring-offset-brand focus:ring-brand focus:border-brand"
+                className="h-[52px] w-[52px] rounded-md border-2 border-gray-800/[.85] bg-transparent text-center text-2xl focus:border-brand focus:ring-brand focus:ring-offset-brand"
               />
             ))}
           </div>
-          <div className="flex justify-between mt-4 text-gray-500 text-sm">
+          <div className="mt-4 flex justify-between text-sm text-gray-500">
             <OtpTimer otpGeneratedAt={otpGeneratedAt} />
             <button
               type="button"
@@ -155,14 +155,14 @@ const OtpForm = ({
         <div className="flex gap-3">
           <button
             type="button"
-            className="bg-gray-800/[0.8] p-2.5 rounded-md w-full font-semibold"
+            className="w-full rounded-md bg-gray-800/[0.8] p-2.5 font-semibold"
             onClick={() => setDisplay("root")}
           >
             Go Back
           </button>
           <button
             type="submit"
-            className="bg-brand/[0.75] p-2.5 rounded-md w-full font-semibold"
+            className="w-full rounded-md bg-brand/[0.75] p-2.5 font-semibold"
           >
             Verify OTP
           </button>

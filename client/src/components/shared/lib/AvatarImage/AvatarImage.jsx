@@ -14,7 +14,7 @@ function AvatarImage({ height, width, file, onChange }) {
       const nextFile = e.target.files[0];
       onChange(nextFile);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleAvatarInput = useCallback(() => {
@@ -24,13 +24,13 @@ function AvatarImage({ height, width, file, onChange }) {
   return (
     <span className="relative inline-block">
       <div
-        className={`w-[180px] h-[180px] overflow-hidden rounded-full bg-gray-600 cursor-pointer`}
+        className={`h-[180px] w-[180px] cursor-pointer overflow-hidden rounded-full bg-gray-600`}
         style={{ height, width }}
         onClick={handleAvatarInput}
       >
         <input
           ref={avatarRef}
-          className="hidden w-full h-full"
+          className="hidden h-full w-full"
           type="file"
           accept=".png, .jpg, .jpeg"
           onChange={handleChange}
@@ -39,21 +39,21 @@ function AvatarImage({ height, width, file, onChange }) {
         {fileURL && (
           <img
             src={fileURL}
-            className="object-cover object-center w-full h-full"
+            className="h-full w-full object-cover object-center"
           />
         )}
         {!fileURL && (
-          <AvatarIcon className="border w-full h-full scale-[1.05]" />
+          <AvatarIcon className="h-full w-full scale-[1.05] border" />
         )}
       </div>
 
       <div
-        className="-right-[2.7%] bottom-[2%] absolute bg-gray-800 p-2.5 rounded-full cursor-pointer"
+        className="absolute -right-[2.7%] bottom-[2%] cursor-pointer rounded-full bg-gray-800 p-2.5"
         draggable="true"
         onClick={handleAvatarInput}
       >
         <PlusIcon
-          className="w-[calc(180px/6.5)] h-[calc(180px/6.5)]"
+          className="h-[calc(180px/6.5)] w-[calc(180px/6.5)]"
           style={
             width &&
             height && {

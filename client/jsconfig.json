@@ -10,7 +10,7 @@
       "@images/*": ["src/images/*"],
       "@routes/*": ["src/routes/*"],
       "@utils/*": ["src/utils/*"],
-      "@feature/*": ["src/components/feature/*"],
+      "@features/*": ["src/components/features/*"],
       "@layouts/*": ["src/components/layouts/*"],
       "@pages/*": ["src/components/pages/*"],
       "@shared/*": ["src/components/shared/*"]

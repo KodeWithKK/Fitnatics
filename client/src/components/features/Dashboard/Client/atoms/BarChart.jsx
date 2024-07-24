@@ -15,7 +15,7 @@ ChartJs.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const BarChart = () => {

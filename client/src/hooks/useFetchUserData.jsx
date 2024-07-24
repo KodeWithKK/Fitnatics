@@ -6,7 +6,7 @@ const useFetchUserData = () => {
     queryKey: ["user"],
     queryFn: async () => {
       const res = await apiClient.get(
-        import.meta.env.VITE_BACKEND_API_BASE + "/user/get-user-data"
+        import.meta.env.VITE_BACKEND_API_BASE + "/user/get-user-data",
       );
       return res;
     },

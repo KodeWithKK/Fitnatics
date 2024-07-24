@@ -21,15 +21,15 @@ const RootAuthLayout = ({ children }) => {
   return (
     <div className="flex h-screen overflow-hidden">
       <img
-        className={`rounded-r-lg w-[50%] object-cover ${
+        className={`w-[50%] rounded-r-lg object-cover ${
           !displayImage && "hidden"
         }`}
         src={HomePosterImg}
         alt="brand poster"
       />
       <div
-        className={`flex px-[6%] py-6 overflow-y-auto ${
-          !displayImage ? "max-w-[668px] w-full mx-auto" : "w-[50%]"
+        className={`flex overflow-y-auto px-[6%] py-6 ${
+          !displayImage ? "mx-auto w-full max-w-[668px]" : "w-[50%]"
         }`}
       >
         {children}

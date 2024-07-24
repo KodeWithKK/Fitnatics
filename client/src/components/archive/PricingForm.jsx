@@ -7,13 +7,13 @@ const PricingForm = ({ formData }) => {
   const [activeIndex, setActiveIndex] = React.useState(1);
 
   return (
-    <div className="bg-gray-950 px-[6%] py-8 h-screen overflow-y-auto">
+    <div className="h-screen overflow-y-auto bg-gray-950 px-[6%] py-8">
       {/* CARDS CONTAINER */}
-      <div className="flex justify-center items-center gap-5 pt-4">
+      <div className="flex items-center justify-center gap-5 pt-4">
         <button
           className={`${
             activeIndex <= 0 && "invisible"
-          } place-items-center hover:border-gray-800 grid hover:bg-gray-800/[.7] hover:border rounded-full w-[53px] h-[53px]`}
+          } grid h-[53px] w-[53px] place-items-center rounded-full hover:border hover:border-gray-800 hover:bg-gray-800/[.7]`}
           onClick={() => setActiveIndex(activeIndex - 1)}
           disabled={activeIndex <= 0}
         >
@@ -51,11 +51,11 @@ const PricingForm = ({ formData }) => {
         <button
           className={`${
             activeIndex >= 5 - totalDisplayedCards && "invisible"
-          } place-items-center hover:border-gray-800 grid hover:bg-gray-800/[.7] hover:border rounded-full w-[53px] h-[53px]`}
+          } grid h-[53px] w-[53px] place-items-center rounded-full hover:border hover:border-gray-800 hover:bg-gray-800/[.7]`}
           onClick={() => setActiveIndex(activeIndex + 1)}
           disabled={activeIndex >= 5 - totalDisplayedCards}
         >
-          <LeftArrowIcon className="-mr-1 h-6 text-gray-500/[.8] rotate-180" />
+          <LeftArrowIcon className="-mr-1 h-6 rotate-180 text-gray-500/[.8]" />
         </button>
       </div>
     </div>
@@ -64,28 +64,28 @@ const PricingForm = ({ formData }) => {
 
 function PriceCard({ duration, orginalPrice, dicountedPrice }) {
   return (
-    <div className="border-[3px] border-gray-600/[.8] p-4 rounded-md w-[306px] select-none shrink-0">
+    <div className="w-[306px] shrink-0 select-none rounded-md border-[3px] border-gray-600/[.8] p-4">
       {/* HEADER */}
       <div className="flex justify-between">
         <div className="text-center">
-          <h1 className="font-semibold text-5xl">{duration}</h1>
-          <h3 className="font-medium text-lg uppercase">
+          <h1 className="text-5xl font-semibold">{duration}</h1>
+          <h3 className="text-lg font-medium uppercase">
             {duration == 1 ? "Month" : "Months"}
           </h3>
         </div>
         <div className="text-right font-medium">
-          <h3 className="text-gray-400 text-sm line-through">
+          <h3 className="text-sm text-gray-400 line-through">
             ₹ {new Intl.NumberFormat("en-IN").format(orginalPrice)}
           </h3>
           <h2 className="text-2xl">
             ₹ {new Intl.NumberFormat("en-IN").format(dicountedPrice)}
           </h2>
-          <h3 className="text-gray-400 text-sm">
+          <h3 className="text-sm text-gray-400">
             {duration != 1 && (
               <>
                 ₹{" "}
                 {new Intl.NumberFormat("en-IN").format(
-                  Math.trunc(dicountedPrice / duration)
+                  Math.trunc(dicountedPrice / duration),
                 )}{" "}
                 per month
               </>
@@ -94,7 +94,7 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
         </div>
       </div>
 
-      <button className="border-gray-800 bg-gray-800/[.7] my-3 p-2 border rounded-md w-full">
+      <button className="my-3 w-full rounded-md border border-gray-800 bg-gray-800/[.7] p-2">
         Buy Now
       </button>
       <hr className="border-gray-800" />
@@ -103,10 +103,10 @@ function PriceCard({ duration, orginalPrice, dicountedPrice }) {
       <div className="mt-2">
         <h3 className="font-semibold uppercase">Features</h3>
 
-        <div className="space-y-1 mt-1 text-[15px]">
+        <div className="mt-1 space-y-1 text-[15px]">
           {features[duration].map((feature, i) => (
             <p key={i} className="flex items-center gap-1.5 text-gray-400">
-              <span className="place-items-center border-gray-800 grid bg-gray-800/[.7] border rounded-full w-5 h-5">
+              <span className="grid h-5 w-5 place-items-center rounded-full border border-gray-800 bg-gray-800/[.7]">
                 <CheckIcon className="h-2.5" />
               </span>
               {feature}

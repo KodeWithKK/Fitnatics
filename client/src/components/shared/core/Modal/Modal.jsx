@@ -5,20 +5,20 @@ const Modal = () => {
   return (
     <FocusLock returnFocus={true}>
       <RemoveScroll>
-        <div className="fixed place-items-center grid bg-gray-950/[.9] w-full h-screen">
-          <div className="border-gray-800 bg-gray-800/[.65] p-4 border rounded-md w-[408px]">
-            <h1 className="font-semibold text-gray-50 text-lg tracking-wide">
+        <div className="fixed grid h-screen w-full place-items-center bg-gray-950/[.9]">
+          <div className="w-[408px] rounded-md border border-gray-800 bg-gray-800/[.65] p-4">
+            <h1 className="text-lg font-semibold tracking-wide text-gray-50">
               Session Expired!
             </h1>
-            <p className="my-4 text-gray-400 text-pretty">
+            <p className="my-4 text-pretty text-gray-400">
               Your session for this account has been expired. Please sign in
               again.
             </p>
             <div className="flex gap-3">
-              <button className="bg-gray-700/[.4] px-4 py-2 rounded-md w-full">
+              <button className="w-full rounded-md bg-gray-700/[.4] px-4 py-2">
                 Sign out
               </button>
-              <button className="bg-brand/[.8] px-4 py-2 rounded-md w-full">
+              <button className="w-full rounded-md bg-brand/[.8] px-4 py-2">
                 Sign in
               </button>
             </div>
