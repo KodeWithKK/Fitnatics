@@ -1,6 +1,8 @@
 import multer from "multer";
 import path from "path";
 
+// ref: https://javascript.plainenglish.io/upload-files-from-multiple-fields-using-multer-ee9a28d0f57c
+
 // Set up storage for uploaded files
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
