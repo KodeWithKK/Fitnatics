@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import MainAppPage from "@pages/MainAppPage/MainAppPage";
 import OnboardingPage from "@pages/OnboardingPage/OnboardingPage";
+import TestingUIPage from "@pages/TestingUIPage/TestingUIPage";
 import ErrorRedirects from "@pages/ErrorRedirects/ErrorRedirects";
 
 function AppRoutes({ user }) {
@@ -22,6 +23,7 @@ function AppRoutes({ user }) {
     return (
       <Routes>
         <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/ui" element={<TestingUIPage />} />
         <Route path="/*" element={<Navigate to="/onboarding" replace />} />
       </Routes>
     );

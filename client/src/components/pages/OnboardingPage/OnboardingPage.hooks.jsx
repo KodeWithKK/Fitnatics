@@ -15,7 +15,11 @@ function useOnboardingPageHooks() {
     },
     trainerData: {
       personalDetails: {},
-      professionalDetails: {},
+      educationalDetails: {},
+      certificates: [],
+      workExperience: {},
+      specializationsAndSkills: {},
+      otherProfessionalDetails: {},
     },
   });
 
@@ -57,11 +61,11 @@ function useOnboardingPageHooks() {
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
-    tProfessionalDetails,
+    tEducationalDetails,
     setMPersonalDetails,
     setMGymOutlet,
     setTPersonalDetails,
-    setTProfessionalDetails,
+    setTEducationalDetails,
   } = useDataTransformer({
     role,
     data,
@@ -82,7 +86,7 @@ function useOnboardingPageHooks() {
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
-    tProfessionalDetails,
+    tEducationalDetails,
     isSetupAccountPending,
     setStep,
     setRole,
@@ -91,7 +95,7 @@ function useOnboardingPageHooks() {
     setMPersonalDetails,
     setMGymOutlet,
     setTPersonalDetails,
-    setTProfessionalDetails,
+    setTEducationalDetails,
     setupAccountHandler,
   };
 }

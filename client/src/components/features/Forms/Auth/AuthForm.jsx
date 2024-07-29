@@ -1,5 +1,4 @@
 import Input from "@shared/base/Input/Input";
-import ErrorMessage from "@shared/lib/FormErrorMessage/ErrorMessage";
 import GoogleAuthButton from "./AuthButtons/GoogleAuthButton";
 import FacebookAuthButton from "./AuthButtons/FacebookAuthButton";
 import TwitterAuthButton from "./AuthButtons/TwitterAuthButton";
@@ -63,11 +62,9 @@ const AuthForm = () => {
             placeholder="Email"
             spellCheck={false}
             required={true}
-            hasError={errors?.email?.message}
+            error={errors?.email?.message}
             disabled={isRequestPending || displayType === "signup"}
           />
-
-          <ErrorMessage>{errors?.email?.message}</ErrorMessage>
 
           <Input
             type="password"
@@ -76,11 +73,9 @@ const AuthForm = () => {
             placeholder="Password"
             spellCheck={false}
             required={true}
-            hasError={errors?.password?.message}
+            error={errors?.password?.message}
             disabled={isRequestPending || displayType === "signup"}
           />
-
-          <ErrorMessage>{errors?.password?.message}</ErrorMessage>
 
           {displayType === "signup" && (
             <Input
@@ -89,15 +84,13 @@ const AuthForm = () => {
               Icon={OtpIcon}
               placeholder="OTP"
               required={true}
-              hasError={errors?.otp?.message}
+              error={errors?.otp?.message}
             >
               <Input.RAside variant="transparent">
                 <OtpTimer otpGeneratedAt={otpGeneratedAt} />
               </Input.RAside>
             </Input>
           )}
-
-          <ErrorMessage>{errors?.otp?.message}</ErrorMessage>
 
           <div className="flex justify-between text-[14px] text-gray-500">
             <button type="button" className="underline underline-offset-[3px]">

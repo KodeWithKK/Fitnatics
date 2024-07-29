@@ -252,6 +252,106 @@ function AddressIcon(props) {
   );
 }
 
+function DegreeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.4}
+      >
+        <path d="M22 9L12 5 2 9l10 4zv6" />
+        <path d="M6 10.6V16a6 3 0 0012 0v-5.4" />
+      </g>
+    </svg>
+  );
+}
+
+function SpecializationIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <g fill="none" stroke="currentColor" strokeWidth={1.5}>
+        <path d="M12 16c-5.76 0-6.78-5.74-6.96-10.294-.051-1.266-.076-1.9.4-2.485.475-.586 1.044-.682 2.183-.874A26.374 26.374 0 0112 2c1.784 0 3.253.157 4.377.347 1.139.192 1.708.288 2.184.874.476.586.45 1.219.4 2.485-.18 4.553-1.2 10.294-6.96 10.294z" />
+        <path strokeLinecap="round" d="M12 16v3" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.5 22h-7l.34-1.696a1 1 0 01.98-.804h4.36a1 1 0 01.98.804z"
+        />
+        <path d="M19 5l.949.316c.99.33 1.485.495 1.768.888.283.393.283.915.283 1.958v.073c0 .86 0 1.291-.207 1.643-.207.352-.584.561-1.336.98L17.5 12.5M5 5l-.949.316c-.99.33-1.485.495-1.768.888C2 6.597 2 7.12 2 8.162v.073c0 .86 0 1.291.207 1.643.207.352.584.561 1.336.98L6.5 12.5m4.646-6.477C11.526 5.34 11.716 5 12 5c.284 0 .474.34.854 1.023l.098.176c.108.194.162.29.246.354.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532.088.283-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354-.032.104-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135-.104 0-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303-.23-.174-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438-.032-.103-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135.084-.064.138-.16.246-.354z" />
+        <path strokeLinecap="round" d="M18 22H6" />
+      </g>
+    </svg>
+  );
+}
+
+function TrainerIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path
+        fill="currentColor"
+        d="M3.76 3.7L2.14 4.88 4.43 8a8.2 8.2 0 011.92-.72M11 9v2h7v.29l-5 1.42v2.79A4.5 4.5 0 118.5 11H9V9h-.5a6.5 6.5 0 106.5 6.5v-1.59L22 12V9m-5.76-5.3L13.85 7h2.47l1.54-2.12M9 2v5h2V2z"
+      />
+    </svg>
+  );
+}
+
+function WorkplaceIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+      >
+        <path d="M5.978 3.212h6.938a2.775 2.775 0 012.775 2.775v14.8H3.203v-14.8a2.775 2.775 0 012.775-2.775M2.75 20.788h18.5" />
+        <path d="M8.531 14.313h1.85A1.388 1.388 0 0111.77 15.7v5.088H7.144V15.7a1.387 1.387 0 011.387-1.387m-1.859-7.4h5.55m-5.55 3.7h5.55m3.468-1.388h1.85A2.775 2.775 0 0120.317 12v8.788" />
+      </g>
+    </svg>
+  );
+}
+
+function LanguageIcon(props) {
+  return (
+    <svg viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={32}
+        d="M48 112h288M192 64v48m80 336l96-224 96 224m-162.5-64h133M281.3 112S257 206 199 277 80 384 80 384"
+      />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={32}
+        d="M256 336s-35-27-72-75-56-85-56-85"
+      />
+    </svg>
+  );
+}
+
+function ScheduleIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path
+        d="M12 8v4l3 3"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      <circle cx={12} cy={12} r={9} stroke="currentColor" strokeWidth={1.5} />
+    </svg>
+  );
+}
+
 export {
   MemberIcon,
   EmailIcon,
@@ -267,4 +367,10 @@ export {
   IntermediateIcon,
   AdvancedIcon,
   AddressIcon,
+  DegreeIcon,
+  SpecializationIcon,
+  TrainerIcon,
+  WorkplaceIcon,
+  LanguageIcon,
+  ScheduleIcon,
 };

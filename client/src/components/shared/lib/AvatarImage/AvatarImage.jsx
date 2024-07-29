@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
+import { AvatarIcon, PlusIcon } from "./Icons";
 
 function AvatarImage({ height, width, file, onChange }) {
   const [fileURL, setFileURL] = useState(null);
@@ -23,8 +24,9 @@ function AvatarImage({ height, width, file, onChange }) {
 
   return (
     <span className="relative inline-block">
-      <div
-        className={`h-[180px] w-[180px] cursor-pointer overflow-hidden rounded-full bg-gray-600`}
+      <button
+        type="button"
+        className={`h-[180px] w-[180px] overflow-hidden rounded-full bg-gray-600`}
         style={{ height, width }}
         onClick={handleAvatarInput}
       >
@@ -45,64 +47,36 @@ function AvatarImage({ height, width, file, onChange }) {
         {!fileURL && (
           <AvatarIcon className="h-full w-full scale-[1.05] border" />
         )}
-      </div>
+      </button>
 
-      <div
-        className="absolute -right-[2.7%] bottom-[2%] cursor-pointer rounded-full bg-gray-800 p-2.5"
-        draggable="true"
-        onClick={handleAvatarInput}
-      >
-        <PlusIcon
-          className="h-[calc(180px/6.5)] w-[calc(180px/6.5)]"
-          style={
-            width &&
-            height && {
-              width: `calc(${width} / 6.5)`,
-              height: `calc(${height} / 6.5`,
-            }
-          }
-        />
-      </div>
+      <PlusButton
+        handleAvatarInput={handleAvatarInput}
+        width={width}
+        height={height}
+      />
     </span>
   );
 }
 
-function AvatarIcon(props) {
+function PlusButton({ handleAvatarInput, width, height }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="297.844 160.844 52.313 52.313"
-      style={{
-        WebkitPrintColorAdjust: ":exact",
-      }}
-      fill="none"
-      {...props}
+    <button
+      type="button"
+      className="absolute -right-[2.7%] bottom-[2%] rounded-full bg-gray-800 p-2.5"
+      draggable="true"
+      onClick={handleAvatarInput}
     >
-      <path
-        d="M324 160.844c-14.449 0-26.156 11.707-26.156 26.156 0 14.449 11.707 26.156 26.156 26.156 14.449 0 26.156-11.707 26.156-26.156 0-14.449-11.707-26.156-26.156-26.156zm0 10.125a9.28 9.28 0 019.281 9.281 9.28 9.28 0 01-9.281 9.281 9.28 9.28 0 01-9.281-9.281 9.28 9.28 0 019.281-9.281zm0 36.281c-6.191 0-11.739-2.805-15.451-7.193 1.983-3.734 5.864-6.307 10.389-6.307.253 0 .506.042.748.116 1.371.443 2.806.728 4.314.728s2.953-.285 4.314-.728c.242-.074.495-.116.749-.116 4.524 0 8.405 2.573 10.388 6.307-3.712 4.388-9.26 7.193-15.451 7.193z"
-        fill="#0a0b0c"
-        className=""
+      <PlusIcon
+        className="h-[calc(180px/6.5)] w-[calc(180px/6.5)]"
+        style={
+          width &&
+          height && {
+            width: `calc(${width} / 6.5)`,
+            height: `calc(${height} / 6.5`,
+          }
+        }
       />
-    </svg>
-  );
-}
-
-function PlusIcon(props) {
-  return (
-    <svg
-      viewBox="379 322 10 10"
-      style={{
-        WebkitPrintColorAdjust: ":exact",
-      }}
-      fill="none"
-      {...props}
-    >
-      <path
-        d="M384.75 322.75a.75.75 0 00-1.5 0v3.5h-3.5a.75.75 0 000 1.5h3.5v3.5a.75.75 0 001.5 0v-3.5h3.5a.75.75 0 000-1.5h-3.5v-3.5z"
-        fill="currentColor"
-        className=""
-      />
-    </svg>
+    </button>
   );
 }
 

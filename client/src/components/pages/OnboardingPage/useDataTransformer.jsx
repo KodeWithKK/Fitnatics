@@ -29,57 +29,52 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     return data.trainerData.personalDetails;
   }, [data.trainerData.personalDetails]);
 
-  const tProfessionalDetails = useMemo(() => {
-    return data.trainerData.professionalDetails;
-  }, [data.trainerData.professionalDetails]);
+  const tEducationalDetails = useMemo(() => {
+    return data.trainerData.educationalDetails;
+  }, [data.trainerData.educationalDetails]);
 
   const setMPersonalDetails = useCallback(
     (value) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.memberData.personalDetails = {
-          ...draftState.memberData.personalDetails,
-          ...value,
-        };
-      });
-      setData(nextData);
+      setData(
+        produce((draftState) => {
+          draftState.memberData.personalDetails = value;
+        }),
+      );
     },
-    [data, setData],
+    [setData],
   );
 
   const setMGymOutlet = useCallback(
     (value) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.memberData.gymOutlet = value;
-      });
-      setData(nextData);
+      setData(
+        produce((draftState) => {
+          draftState.memberData.gymOutlet = value;
+        }),
+      );
     },
-    [data, setData],
+    [setData],
   );
 
   const setTPersonalDetails = useCallback(
     (value) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.trainerData.personalDetails = {
-          ...draftState.trainerData.personalDetails,
-          ...value,
-        };
-      });
-      setData(nextData);
+      setData(
+        produce((draftState) => {
+          draftState.trainerData.personalDetails = value;
+        }),
+      );
     },
-    [data, setData],
+    [setData],
   );
 
-  const setTProfessionalDetails = useCallback(
+  const setTEducationalDetails = useCallback(
     (value) => {
-      const nextData = produce(data, (draftState) => {
-        draftState.trainerData.professionalDetails = {
-          ...draftState.trainerData.professionalDetails,
-          ...value,
-        };
-      });
-      setData(nextData);
+      setData(
+        produce((draftState) => {
+          draftState.trainerData.educationalDetails = value;
+        }),
+      );
     },
-    [data, setData],
+    [setData],
   );
 
   return {
@@ -88,11 +83,11 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
-    tProfessionalDetails,
+    tEducationalDetails,
     setMPersonalDetails,
     setMGymOutlet,
     setTPersonalDetails,
-    setTProfessionalDetails,
+    setTEducationalDetails,
   };
 }
 
@@ -107,10 +102,22 @@ const trainerNavItems = [
   { title: "Personal Details", description: "Enter your personal details" },
   { title: "Verify Email", description: "Verify Email" },
   {
-    title: "Professional Details",
-    description: "Enter your professional details",
+    title: "Educational Details",
+    description: "Enter your educational details",
   },
-  { title: "Submit Form", description: "Submit form" },
+  { title: "Upload Certifcates", description: "Upload Essential Certifcates" },
+  {
+    title: "Work Experience",
+    description: "Enter your work experience details",
+  },
+  {
+    title: "Specializations & Skills",
+    description: "Enter specializations and skills details",
+  },
+  {
+    title: "Other Professional Details",
+    description: "Enter other professional details",
+  },
 ];
 
 export default useDataTransformer;

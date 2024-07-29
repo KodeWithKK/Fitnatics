@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, Fragment } from "react";
 import OnboardingPageLayout from "@layouts/OnboardingPageLayout/OnboardingPageLayout";
 import UserIdentifierForm from "@features/Forms/Onboarding/Member/UserIdentifierForm/UserIdentifierForm";
 import MPersonalDetailForm from "@features/Forms/Onboarding/Member/PersonalDetailsForm/PersonalDetailsForm";
@@ -6,9 +6,12 @@ import MVerifyEmailForm from "@features/Forms/Onboarding/Member/VerifyEmailForm/
 import MSelectGymForm from "@features/Forms/Onboarding/Member/SelectGymForm/SelectGymForm";
 import MPricingForm from "@features/Forms/Onboarding/Member/PricingForm/PricingForm";
 import TPersonalDetailsForm from "@features/Forms/Onboarding/Trainer/PersonalDetailsForm/PersonalDetailsForm";
-import TProfessionalDetailsForm from "@features/Forms/Onboarding/Trainer/ProfessionalDetailsForm/ProfessionalDetailsForm";
 import TVerifyEmailForm from "@features/Forms/Onboarding/Trainer/VerifyEmailForm/VerifyEmailForm";
-import TSubmitForm from "@features/Forms/Onboarding/Trainer/SubmitForm/SubmitForm";
+import TEducationDetailsForm from "@features/Forms/Onboarding/Trainer/EducationDetailsForm/EducationDetailsForm";
+import TUploadCertificatesForm from "@features/Forms/Onboarding/Trainer/UploadCertificatesForm/UploadCertificatesForm";
+import TWorkExperienceForm from "@features/Forms/Onboarding/Trainer/WorkExperienceForm/WorkExperienceForm";
+import TSpecializationNSkillsForm from "@features/Forms/Onboarding/Trainer/SpecializationNSkillsForm/SpecializationNSkillsForm";
+import TOtherDetailsForm from "@features/Forms/Onboarding/Trainer/OtherDetailsForm/OtherDetailsForm";
 import useHookStore from "./useHookStore";
 
 export const OnboardingContext = createContext();
@@ -31,44 +34,43 @@ const GettingStartedPage = () => {
           </div>
         )}
 
-        {/* MEMBERS WHOSE WERE ARE VERIFIED */}
-        {step >= 1 && role === "member" && isEmailVerifiedInitially && (
-          <>
-            {step === 1 && <MPersonalDetailForm />}
-            {step === 2 && <MSelectGymForm />}
-            {step === 3 && <MPricingForm />}
-          </>
-        )}
-
-        {step >= 1 && role === "member" && !isEmailVerifiedInitially && (
-          <>
-            {step === 1 && <MPersonalDetailForm />}
-            {step === 2 && <MVerifyEmailForm />}
-            {step === 3 && <MSelectGymForm />}
-            {step === 4 && <MPricingForm />}
-          </>
-        )}
+        {/* MEMBERS */}
+        {step >= 1 &&
+          role === "member" &&
+          memberForms
+            .filter((_, idx) => !(isEmailVerifiedInitially && idx === 1))
+            .map(({ id, Form }, idx) => (
+              <Fragment key={id}>{step === idx + 1 && <Form />}</Fragment>
+            ))}
 
         {/* TRAINER */}
-        {step >= 1 && role === "trainer" && isEmailVerifiedInitially && (
-          <>
-            {step == 1 && <TPersonalDetailsForm />}
-            {step == 2 && <TProfessionalDetailsForm />}
-            {step == 3 && <TSubmitForm />}
-          </>
-        )}
-
-        {step >= 1 && role === "trainer" && !isEmailVerifiedInitially && (
-          <>
-            {step == 1 && <TPersonalDetailsForm />}
-            {step == 2 && <TProfessionalDetailsForm />}
-            {step == 3 && <TVerifyEmailForm />}
-            {step == 4 && <TSubmitForm />}
-          </>
-        )}
+        {step >= 1 &&
+          role === "trainer" &&
+          trainerForms
+            .filter((_, idx) => !(isEmailVerifiedInitially && idx === 1))
+            .map(({ id, Form }, idx) => (
+              <Fragment key={id}>{step === idx + 1 && <Form />}</Fragment>
+            ))}
       </OnboardingPageLayout>
     </OnboardingContext.Provider>
   );
 };
+
+const memberForms = [
+  { id: window.crypto.randomUUID(), Form: MPersonalDetailForm },
+  { id: window.crypto.randomUUID(), Form: MVerifyEmailForm },
+  { id: window.crypto.randomUUID(), Form: MSelectGymForm },
+  { id: window.crypto.randomUUID(), Form: MPricingForm },
+];
+
+const trainerForms = [
+  { id: window.crypto.randomUUID(), Form: TPersonalDetailsForm },
+  { id: window.crypto.randomUUID(), Form: TVerifyEmailForm },
+  { id: window.crypto.randomUUID(), Form: TEducationDetailsForm },
+  { id: window.crypto.randomUUID(), Form: TUploadCertificatesForm },
+  { id: window.crypto.randomUUID(), Form: TWorkExperienceForm },
+  { id: window.crypto.randomUUID(), Form: TSpecializationNSkillsForm },
+  { id: window.crypto.randomUUID(), Form: TOtherDetailsForm },
+];
 
 export default GettingStartedPage;

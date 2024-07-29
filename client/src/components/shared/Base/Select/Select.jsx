@@ -1,4 +1,5 @@
 import {
+  useId,
   useRef,
   useMemo,
   useState,
@@ -13,6 +14,7 @@ export const SelectContext = createContext();
 
 const Select = ({
   name,
+  label,
   placeholder,
   commonClass,
   selectClass,
@@ -28,8 +30,9 @@ const Select = ({
   const [valueLabelMap, setValueLabelMap] = useState({});
   const [optionsHeight, setOptionsHeight] = useState("0");
   const optionsRef = useRef();
+  const selectId = useId();
 
-  const onClickHandler = useCallback(
+  const handleClick = useCallback(
     (value) => {
       onChange?.(value);
       setIsCollapsed(true);
@@ -55,14 +58,21 @@ const Select = ({
       OptionsClass,
       OptionClass,
       setValueLabelMap,
-      onClickHandler,
+      handleClick,
     };
-  }, [isCollapsed, commonClass, OptionsClass, OptionClass, onClickHandler]);
+  }, [isCollapsed, commonClass, OptionsClass, OptionClass, handleClick]);
 
   return (
     <SelectContext.Provider value={contextValue}>
       <div className="relative" style={{ paddingBottom: `${optionsHeight}px` }}>
+        <label
+          htmlFor={selectId}
+          className={`block text-sm text-gray-300 ${label ? "mb-1" : ""}`}
+        >
+          {label}
+        </label>
         <button
+          id={selectId}
           type="button"
           name={name}
           className={`relative mb-3 flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px] ${

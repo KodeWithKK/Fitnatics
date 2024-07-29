@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { SelectContext } from "./Select";
 
 const Option = ({ Icon, value, label }) => {
-  const { commonClass, OptionClass, setValueLabelMap, onClickHandler } =
+  const { commonClass, OptionClass, setValueLabelMap, handleClick } =
     useContext(SelectContext);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const Option = ({ Icon, value, label }) => {
   return (
     <button
       type="button"
-      className={`"border-gray-600/[.6] relative w-full border-b px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-800/[.75] ${
+      className={`"border-gray-600/[.6] relative w-full border-b px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-900 ${
         Icon && "pl-[38px]"
       } ${commonClass ?? ""} ${OptionClass ?? ""}`}
-      onClick={() => onClickHandler(value)}
+      onClick={() => handleClick(value)}
     >
       {Icon && (
         <Icon
