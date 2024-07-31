@@ -1,7 +1,7 @@
 import Input from "@shared/base/Input/Input";
 import OnboardingForm from "@layouts/OnboardingPageLayout/OnboardingForm";
 import useEducationalDetailsHooks from "./EducationDetailsForm.hooks";
-import FileUpload from "@shared/base/Input/FileUpload";
+import FileUpload from "@shared/base/FileUpload/FileUpload";
 import { Controller } from "react-hook-form";
 
 function EducationDetailsForm() {

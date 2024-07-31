@@ -28,6 +28,14 @@ function useEducationalDetailsHooks() {
           "Upload marksheet to continue to the next step",
         );
       }
+
+      if (Object.keys(error).length > 1) {
+        addToast(
+          "error",
+          "Invalid Form Data!",
+          "Enter valid form data to proceed the next step",
+        );
+      }
     },
     [addToast],
   );

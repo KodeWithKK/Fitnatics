@@ -21,6 +21,7 @@ function FileUpload({ value, onChange, label, accept }) {
   );
 
   const handleRemove = useCallback(() => {
+    fileRef.current.value = null;
     setFile(null);
     onChange?.(null);
   }, [onChange]);

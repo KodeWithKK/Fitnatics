@@ -16,8 +16,24 @@ function useOnboardingPageHooks() {
     trainerData: {
       personalDetails: {},
       educationalDetails: {},
-      certificates: [],
-      workExperience: {},
+      certificates: [
+        {
+          nameOfCertification: "",
+          certifyingBody: "",
+          certifiationDate: "",
+          expirationDate: "",
+          certificate: null,
+        },
+      ],
+      workExperience: [
+        {
+          jobTitle: "",
+          gymOrStudioName: "",
+          employedFrom: "",
+          employedTo: "",
+          breifJobDescription: "",
+        },
+      ],
       specializationsAndSkills: {},
       otherProfessionalDetails: {},
     },
@@ -57,15 +73,18 @@ function useOnboardingPageHooks() {
 
   const {
     navItems,
-    mData,
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
     tEducationalDetails,
+    tCertificates,
+    tWorkExperiences,
     setMPersonalDetails,
     setMGymOutlet,
     setTPersonalDetails,
     setTEducationalDetails,
+    setTCertificates,
+    setTWorkExperiences,
   } = useDataTransformer({
     role,
     data,
@@ -82,11 +101,12 @@ function useOnboardingPageHooks() {
     isEmailVerifiedInitially,
     isEmailVerified,
     otpGeneratedAt,
-    mData,
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
     tEducationalDetails,
+    tCertificates,
+    tWorkExperiences,
     isSetupAccountPending,
     setStep,
     setRole,
@@ -96,6 +116,8 @@ function useOnboardingPageHooks() {
     setMGymOutlet,
     setTPersonalDetails,
     setTEducationalDetails,
+    setTCertificates,
+    setTWorkExperiences,
     setupAccountHandler,
   };
 }

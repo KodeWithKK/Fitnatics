@@ -15,8 +15,6 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     });
   }, [isEmailVerifiedInitially, role]);
 
-  const mData = useMemo(() => data.memberData, [data.memberData]);
-
   const mPersonalDetails = useMemo(() => {
     return data.memberData.personalDetails;
   }, [data.memberData.personalDetails]);
@@ -32,6 +30,14 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
   const tEducationalDetails = useMemo(() => {
     return data.trainerData.educationalDetails;
   }, [data.trainerData.educationalDetails]);
+
+  const tCertificates = useMemo(() => {
+    return data.trainerData.certificates;
+  }, [data.trainerData.certificates]);
+
+  const tWorkExperiences = useMemo(() => {
+    return data.trainerData.workExperience;
+  }, [data.trainerData.workExperience]);
 
   const setMPersonalDetails = useCallback(
     (value) => {
@@ -77,17 +83,42 @@ function useDataTransformer({ role, data, setData, isEmailVerifiedInitially }) {
     [setData],
   );
 
+  const setTCertificates = useCallback(
+    (value) => {
+      setData(
+        produce((draftState) => {
+          draftState.trainerData.certificates = value;
+        }),
+      );
+    },
+    [setData],
+  );
+
+  const setTWorkExperiences = useCallback(
+    (value) => {
+      setData(
+        produce((draftState) => {
+          draftState.trainerData.workExperience = value;
+        }),
+      );
+    },
+    [setData],
+  );
+
   return {
     navItems,
-    mData,
     mPersonalDetails,
     mGymOutlet,
     tPersonalDetails,
     tEducationalDetails,
+    tCertificates,
+    tWorkExperiences,
     setMPersonalDetails,
     setMGymOutlet,
     setTPersonalDetails,
     setTEducationalDetails,
+    setTCertificates,
+    setTWorkExperiences,
   };
 }
 
@@ -105,10 +136,10 @@ const trainerNavItems = [
     title: "Educational Details",
     description: "Enter your educational details",
   },
-  { title: "Upload Certifcates", description: "Upload Essential Certifcates" },
+  { title: "Upload Certifcates", description: "Upload Essential Certificates" },
   {
     title: "Work Experience",
-    description: "Enter your work experience details",
+    description: "Enter your work experiences",
   },
   {
     title: "Specializations & Skills",

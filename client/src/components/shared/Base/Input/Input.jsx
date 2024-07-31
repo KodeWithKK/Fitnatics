@@ -35,7 +35,7 @@ const Input = (
   }, []);
 
   return (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={inputId}
         className={`block text-sm text-gray-300 ${label ? "mb-1" : ""}`}
@@ -53,7 +53,7 @@ const Input = (
               : "focus:border-brand focus:ring-brand"
           } ${Icon ? "pl-[38px]" : ""} ${name === "password" ? "pr-[42px]" : ""} ${
             disabled ? "opacity-35" : ""
-          } ${className}`}
+          } ${className ?? ""}`}
           name={name}
           type={inputType}
           disabled={disabled}
