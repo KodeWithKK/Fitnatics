@@ -5,6 +5,8 @@ import ToastStackLayout from "@layouts/ToastStackLayout/ToastStackLayout";
 import LoadingScreen from "@shared/core/Loaders/LoadingScreen";
 import AppRoutes from "@routes/AppRoutes";
 
+// insperation - https://mywowfit.com/
+
 function App() {
   const { isLoading, user } = useFetchUserData();
   const { toasts, removeToast } = useContext(GlobalContext);

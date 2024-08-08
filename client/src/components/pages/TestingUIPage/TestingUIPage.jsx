@@ -27,8 +27,8 @@ function TestingUIPage() {
               type="text"
               {...register(`workExperiences.${idx}.jobTitle`)}
               spellCheck="false"
-              label="Job Title"
-              placeholder="Enter Job Title"
+              label="Area of Expertise"
+              placeholder="Enter Area of Expertise"
               className={"border-gray-900/[.8]"}
               error={errors?.workExperiences?.[idx]?.jobTitle?.message}
               required={true}
@@ -37,52 +37,11 @@ function TestingUIPage() {
               type="text"
               {...register(`workExperiences.${idx}.gymOrStudioName`)}
               spellCheck="false"
-              label="Gym/Studio Name"
-              placeholder="Enter Gym/Studio Name"
+              label="Specialized Equipment Proficency"
+              placeholder="Enter Specialized Equipment Proficency"
               className={"border-gray-900/[.8]"}
               error={errors?.workExperiences?.[idx]?.gymOrStudioName?.message}
               required={true}
-            />
-            <div className="flex items-start gap-2">
-              <Input
-                type="text"
-                {...register(`workExperiences.${idx}.employedFrom`)}
-                spellCheck="false"
-                label="Employment Period"
-                placeholder="From (DD/MM/YYYY)"
-                className={"border-gray-900/[.8]"}
-                error={errors?.workExperiences?.[idx]?.employedFrom?.message}
-                required={true}
-              />
-
-              <div className="mt-6 grid h-[42px] place-items-center">
-                <UpArrowIcon className="h-6 w-6 rotate-90" />
-              </div>
-
-              <div className={`w-full pt-6`}>
-                <Input
-                  type="text"
-                  {...register(`workExperiences.${idx}.employedTo`)}
-                  spellCheck="false"
-                  placeholder="To (DD/MM/YYYY)"
-                  className={"border-gray-900/[.8]"}
-                  error={errors?.workExperiences?.[idx]?.employedTo?.message}
-                  required={true}
-                />
-              </div>
-            </div>
-
-            <p className="mb-3 text-[15px] text-gray-500">
-              NOTE: Leave the To field empty if you are currently working there
-            </p>
-
-            <TextArea
-              {...register(`workExperiences.${idx}.breifJobDescription`)}
-              label="Breif Job Description"
-              placeholder="Enter a Brief Job Description"
-              error={
-                errors?.workExperiences?.[idx]?.breifJobDescription?.message
-              }
             />
           </div>
         ))}
