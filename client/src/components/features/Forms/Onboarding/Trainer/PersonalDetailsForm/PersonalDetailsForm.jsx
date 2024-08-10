@@ -52,7 +52,6 @@ const PersonalDetailsForm = () => {
           spellCheck="false"
           label="Name"
           placeholder="John Doe"
-          className={"border-gray-900/[.8]"}
           error={errors?.name?.message}
           required={true}
         />
@@ -68,7 +67,6 @@ const PersonalDetailsForm = () => {
           spellCheck="false"
           label="Email"
           placeholder="abc@email.com"
-          className={"border-gray-900/[.8]"}
           error={errors?.email?.message}
           disabled={isEmailVerified}
           onInput={() => {
@@ -84,7 +82,6 @@ const PersonalDetailsForm = () => {
           spellCheck="false"
           label="Phone Number"
           placeholder="Phone Number"
-          className={"border-gray-900/[.8]"}
           error={errors?.phoneno?.message}
           required={true}
         />
@@ -97,7 +94,6 @@ const PersonalDetailsForm = () => {
             <Select
               value={field.value}
               onChange={field.onChange}
-              commonClass="border-gray-900/[.8]"
               label="Gender"
               placeholder={"Select Gender"}
             >
@@ -113,7 +109,6 @@ const PersonalDetailsForm = () => {
           spellCheck="false"
           label={"DOB"}
           placeholder="DOB (DD/MM/YYYY)"
-          className={"border-gray-900/[.8]"}
           error={errors?.dob?.message}
           required={true}
         />
@@ -124,7 +119,6 @@ const PersonalDetailsForm = () => {
           spellCheck="false"
           label={"Address"}
           placeholder="Address"
-          className={"border-gray-900/[.8]"}
           error={errors?.address?.message}
           required={true}
         />

@@ -34,7 +34,6 @@ function WorkExperienceForm() {
             spellCheck="false"
             label="Job Title"
             placeholder="Enter Job Title"
-            className={"border-gray-900/[.8]"}
             error={errors?.workExperiences?.[idx]?.jobTitle?.message}
             required={true}
           />
@@ -44,7 +43,6 @@ function WorkExperienceForm() {
             spellCheck="false"
             label="Gym/Studio Name"
             placeholder="Enter Gym/Studio Name"
-            className={"border-gray-900/[.8]"}
             error={errors?.workExperiences?.[idx]?.gymOrStudioName?.message}
             required={true}
           />
@@ -55,7 +53,6 @@ function WorkExperienceForm() {
               spellCheck="false"
               label="Employment Period"
               placeholder="From (DD/MM/YYYY)"
-              className={"border-gray-900/[.8]"}
               error={errors?.workExperiences?.[idx]?.employedFrom?.message}
               required={true}
             />
@@ -70,7 +67,6 @@ function WorkExperienceForm() {
                 {...register(`workExperiences.${idx}.employedTo`)}
                 spellCheck="false"
                 placeholder="To (DD/MM/YYYY)"
-                className={"border-gray-900/[.8]"}
                 error={errors?.workExperiences?.[idx]?.employedTo?.message}
                 required={false}
               />

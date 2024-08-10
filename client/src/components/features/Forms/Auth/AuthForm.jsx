@@ -63,6 +63,7 @@ const AuthForm = () => {
             spellCheck={false}
             required={true}
             error={errors?.email?.message}
+            borderColor="border-gray-600/[.3]"
             disabled={isRequestPending || displayType === "signup"}
           />
 
@@ -74,6 +75,7 @@ const AuthForm = () => {
             spellCheck={false}
             required={true}
             error={errors?.password?.message}
+            borderColor="border-gray-600/[.3]"
             disabled={isRequestPending || displayType === "signup"}
           />
 

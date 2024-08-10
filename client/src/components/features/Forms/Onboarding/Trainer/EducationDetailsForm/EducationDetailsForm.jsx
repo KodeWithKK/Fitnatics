@@ -21,7 +21,6 @@ function EducationDetailsForm() {
         spellCheck="false"
         label="Highest Qualification"
         placeholder="Enter Highest Qualification"
-        className={"border-gray-900/[.8]"}
         error={errors?.highestQualification?.message}
         required={true}
       />
@@ -32,7 +31,6 @@ function EducationDetailsForm() {
         spellCheck="false"
         label="Institution Name"
         placeholder="Enter Institution Name"
-        className={"border-gray-900/[.8]"}
         error={errors?.institutionName?.message}
         required={true}
       />
@@ -43,7 +41,6 @@ function EducationDetailsForm() {
         spellCheck="false"
         label="Year of Completion"
         placeholder="Enter Year of Completion"
-        className={"border-gray-900/[.8]"}
         error={errors?.yearOfCompletion?.message}
         required={true}
       />

@@ -9,23 +9,25 @@ import {
 } from "react";
 import Options from "./Options";
 import Option from "./Option";
+import { DownArrow } from "./Icons";
 
 export const SelectContext = createContext();
 
 const Select = ({
   name,
   label,
-  placeholder,
-  commonClass,
-  selectClass,
-  OptionsClass,
-  OptionClass,
   value,
-  Icon,
   onChange,
+  Icon,
+  type = "text",
+  placeholder,
   addBottomPadding,
   children,
 }) => {
+  const [selectedValue, setSelectedValue] = useState(() => {
+    if (value) return value;
+    return type === "checkbox" ? [] : "";
+  });
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [valueLabelMap, setValueLabelMap] = useState({});
   const [optionsHeight, setOptionsHeight] = useState("0");
@@ -34,10 +36,26 @@ const Select = ({
 
   const handleClick = useCallback(
     (value) => {
-      onChange?.(value);
-      setIsCollapsed(true);
+      if (type !== "checkbox") {
+        setIsCollapsed(true);
+      }
+
+      setSelectedValue((prev) => {
+        let nextValue = value;
+
+        if (type === "checkbox") {
+          if (prev.includes(value)) {
+            nextValue = prev.filter((val) => val !== value);
+          } else {
+            nextValue = [...prev, value];
+          }
+        }
+
+        onChange?.(nextValue);
+        return nextValue;
+      });
     },
-    [onChange],
+    [type, onChange],
   );
 
   useEffect(() => {
@@ -51,16 +69,24 @@ const Select = ({
     }
   }, [addBottomPadding, isCollapsed]);
 
+  useEffect(() => {
+    function hideOptions() {
+      setIsCollapsed(true);
+    }
+
+    document.addEventListener("click", hideOptions);
+    return () => document.removeEventListener("click", hideOptions);
+  }, []);
+
   const contextValue = useMemo(() => {
     return {
+      type,
+      selectedValue,
       isCollapsed,
-      commonClass,
-      OptionsClass,
-      OptionClass,
       setValueLabelMap,
       handleClick,
     };
-  }, [isCollapsed, commonClass, OptionsClass, OptionClass, handleClick]);
+  }, [type, isCollapsed, selectedValue, handleClick]);
 
   return (
     <SelectContext.Provider value={contextValue}>
@@ -71,6 +97,7 @@ const Select = ({
         >
           {label}
         </label>
+
         <button
           id={selectId}
           type="button"
@@ -80,9 +107,12 @@ const Select = ({
           } ${
             !isCollapsed
               ? "border-brand ring-[2px] ring-brand"
-              : "border-gray-600/[.6]"
-          } ${commonClass ?? ""} ${selectClass ?? ""}`}
-          onClick={() => setIsCollapsed(!isCollapsed)}
+              : "border-gray-900/[.8]"
+          }`}
+          onClick={(event) => {
+            event.stopPropagation();
+            setIsCollapsed(!isCollapsed);
+          }}
         >
           {Icon && (
             <Icon
@@ -90,12 +120,16 @@ const Select = ({
             />
           )}
 
-          {!value ? (
+          {selectedValue.length > 0 ? (
+            <span className={"pr-2 text-gray-100"}>
+              {type == "text" && valueLabelMap[selectedValue]}
+              {type == "checkbox" &&
+                `${selectedValue.length} of ${Object.keys(valueLabelMap).length} Selected`}
+            </span>
+          ) : (
             <span className={"text-gray-700"}>
               {placeholder ?? "Select Option"}
             </span>
-          ) : (
-            <span className={"pr-2 text-gray-100"}>{valueLabelMap[value]}</span>
           )}
 
           <DownArrow
@@ -110,16 +144,5 @@ const Select = ({
 };
 
 Select.Option = Option;
-
-function DownArrow(props) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
-      <path
-        fill="currentColor"
-        d="M104.704 338.752a64 64 0 0190.496 0l316.8 316.8 316.8-316.8a64 64 0 0190.496 90.496L557.248 791.296a64 64 0 01-90.496 0L104.704 429.248a64 64 0 010-90.496"
-      />
-    </svg>
-  );
-}
 
 export default Select;

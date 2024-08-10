@@ -18,7 +18,7 @@ const FacebookAuthButton = ({ text }) => {
 function FacebookIcon(props) {
   return (
     <svg
-      viewBox="38.657999999999994 12.828 207.085 207.085"
+      viewBox="38.658 12.828 207.085 207.085"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

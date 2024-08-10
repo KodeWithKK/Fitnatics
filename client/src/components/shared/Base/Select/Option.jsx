@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react";
 import { SelectContext } from "./Select";
+import { CheckIcon } from "./Icons";
 
 const Option = ({ Icon, value, label }) => {
-  const { commonClass, OptionClass, setValueLabelMap, handleClick } =
+  const { type, selectedValue, setValueLabelMap, handleClick } =
     useContext(SelectContext);
 
   useEffect(() => {
@@ -15,10 +16,13 @@ const Option = ({ Icon, value, label }) => {
   return (
     <button
       type="button"
-      className={`"border-gray-600/[.6] relative w-full border-b px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-900 ${
+      className={`group relative flex w-full items-center border-b border-gray-900/[.8] px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-900 ${
         Icon && "pl-[38px]"
-      } ${commonClass ?? ""} ${OptionClass ?? ""}`}
-      onClick={() => handleClick(value)}
+      }`}
+      onClick={(event) => {
+        event.stopPropagation();
+        handleClick(value);
+      }}
     >
       {Icon && (
         <Icon
@@ -26,6 +30,14 @@ const Option = ({ Icon, value, label }) => {
         />
       )}
 
+      {type === "checkbox" && (
+        <button
+          type="button"
+          className="mr-2 inline-grid h-6 w-6 place-items-center rounded bg-gray-975 group-hover:border-2 group-hover:border-gray-600"
+        >
+          {selectedValue.includes(value) && <CheckIcon className="h-4 w-4" />}
+        </button>
+      )}
       <span>{label}</span>
     </button>
   );

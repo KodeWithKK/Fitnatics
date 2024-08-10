@@ -43,7 +43,6 @@ function UploadCertificatesForm() {
             spellCheck="false"
             label="Name of Certification"
             placeholder="Enter Name of Certification"
-            className={"border-gray-900/[.8]"}
             required={true}
             error={errors?.certificates?.[idx]?.nameOfCertification?.message}
           />
@@ -54,7 +53,6 @@ function UploadCertificatesForm() {
             spellCheck="false"
             label="Certifying Body"
             placeholder="Enter Certifying Body"
-            className={"border-gray-900/[.8]"}
             required={true}
             error={errors?.certificates?.[idx]?.certifyingBody?.message}
           />
@@ -65,7 +63,6 @@ function UploadCertificatesForm() {
             spellCheck="false"
             label="Certification Date"
             placeholder="Enter Date of Certification (DD/MM/YYYY)"
-            className={"border-gray-900/[.8]"}
             required={true}
             error={errors?.certificates?.[idx]?.certifiationDate?.message}
           />
@@ -76,7 +73,6 @@ function UploadCertificatesForm() {
             spellCheck="false"
             label="Expiration Date (if applicable)"
             placeholder="Enter Expiration Date (DD/MM/YYYY)"
-            className={"border-gray-900/[.8]"}
             required={false}
             error={errors?.certificates?.[idx]?.expirationDate?.message}
           />

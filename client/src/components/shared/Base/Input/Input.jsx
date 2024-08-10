@@ -9,6 +9,7 @@ const Input = (
     type,
     name,
     className,
+    borderColor,
     disabled,
     Icon,
     error = "",
@@ -47,17 +48,17 @@ const Input = (
         <input
           id={inputId}
           ref={ref}
-          className={`w-full rounded-md border-gray-600/[.6] bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed ${
+          className={`w-full rounded-md bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed ${
             error
               ? "border-red-400 focus:border-red-400 focus:ring-red-400"
               : "focus:border-brand focus:ring-brand"
           } ${Icon ? "pl-[38px]" : ""} ${name === "password" ? "pr-[42px]" : ""} ${
             disabled ? "opacity-35" : ""
-          } ${className ?? ""}`}
+          } ${borderColor ?? "border-gray-900/[.8]"} ${className ?? ""}`}
           name={name}
           type={inputType}
           disabled={disabled}
-          style={{ paddingRight: inputPaddingRight || "12px" }}
+          style={{ paddingRight: inputPaddingRight }}
           {...delegated}
         />
 
