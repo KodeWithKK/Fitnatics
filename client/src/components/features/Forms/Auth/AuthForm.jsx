@@ -54,7 +54,7 @@ const AuthForm = () => {
         </div>
 
         {/* FORM INPUTS */}
-        <div>
+        <div className="space-y-3">
           <Input
             type="email"
             {...register("email")}

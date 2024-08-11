@@ -17,7 +17,7 @@ function WorkExperienceForm() {
       <OnboardingForm.Headline className={"mb-4"} />
 
       {fields.map((field, idx) => (
-        <div key={field.id}>
+        <div key={field.id} className="space-y-3">
           <div className="mb-3 flex items-center justify-between gap-3">
             <h4 className="text-[18px]">Work Experience 0{idx + 1}</h4>
             <button
@@ -46,36 +46,39 @@ function WorkExperienceForm() {
             error={errors?.workExperiences?.[idx]?.gymOrStudioName?.message}
             required={true}
           />
-          <div className="flex items-start gap-2">
-            <Input
-              type="text"
-              {...register(`workExperiences.${idx}.employedFrom`)}
-              spellCheck="false"
-              label="Employment Period"
-              placeholder="From (DD/MM/YYYY)"
-              error={errors?.workExperiences?.[idx]?.employedFrom?.message}
-              required={true}
-            />
 
-            <div className="mt-6 grid h-[42px] place-items-center">
-              <UpArrowIcon className="h-6 w-6 rotate-90" />
-            </div>
-
-            <div className={`w-full pt-6`}>
+          <div>
+            <div className="flex items-start gap-2">
               <Input
                 type="text"
-                {...register(`workExperiences.${idx}.employedTo`)}
+                {...register(`workExperiences.${idx}.employedFrom`)}
                 spellCheck="false"
-                placeholder="To (DD/MM/YYYY)"
-                error={errors?.workExperiences?.[idx]?.employedTo?.message}
-                required={false}
+                label="Employment Period"
+                placeholder="From (DD/MM/YYYY)"
+                error={errors?.workExperiences?.[idx]?.employedFrom?.message}
+                required={true}
               />
-            </div>
-          </div>
 
-          <p className="mb-3 text-[15px] text-gray-500">
-            NOTE: Leave the To field empty if you are currently working there
-          </p>
+              <div className="mt-6 grid h-[42px] place-items-center">
+                <UpArrowIcon className="h-6 w-6 rotate-90" />
+              </div>
+
+              <div className={`w-full pt-6`}>
+                <Input
+                  type="text"
+                  {...register(`workExperiences.${idx}.employedTo`)}
+                  spellCheck="false"
+                  placeholder="To (DD/MM/YYYY)"
+                  error={errors?.workExperiences?.[idx]?.employedTo?.message}
+                  required={false}
+                />
+              </div>
+            </div>
+
+            <p className="mb-3 mt-1 text-[15px] text-gray-500">
+              NOTE: Leave the To field empty if you are currently working there
+            </p>
+          </div>
 
           <TextArea
             {...register(`workExperiences.${idx}.breifJobDescription`)}

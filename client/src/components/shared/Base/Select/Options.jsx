@@ -9,7 +9,7 @@ const Options = ({ children }, ref) => {
       ref={ref}
       className={`${
         isCollapsed && "hidden"
-      } absolute z-10 -mt-1 w-full rounded-md border border-gray-900/[.8] bg-gray-950`}
+      } absolute left-0 top-[54px] z-10 -mt-1 max-h-[205px] w-full overflow-y-auto rounded-md border border-gray-900/[.8] bg-gray-950`}
     >
       {children}
     </div>

@@ -1,6 +1,6 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import workExperienceFormSchema from "./validator";
+import otherProfessionalDetailsSchema from "./validator";
 import { useCallback } from "react";
 
 function useHookForm() {
@@ -10,48 +10,39 @@ function useHookForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(workExperienceFormSchema),
+    resolver: yupResolver(otherProfessionalDetailsSchema),
     mode: "onChange",
     defaultValues: {
-      workExperiences: [
-        {
-          jobTitle: "",
-          gymOrStudioName: "",
-          employedFrom: "",
-          employedTo: "",
-          breifJobDescription: "",
-        },
-      ],
+      languageSpoken: [{ type: "select", name: "", fluency: "" }],
     },
   });
 
   const {
-    fields,
-    append,
-    remove: removeField,
+    fields: languageSpokenFields,
+    append: appendLanguage,
+    remove: removeLanguage,
   } = useFieldArray({
     control,
-    name: "workExperiences",
+    name: "languageSpoken",
   });
 
-  const appendField = useCallback(() => {
-    append({
-      jobTitle: "",
-      gymOrStudioName: "",
-      employedFrom: "",
-      employedTo: "",
-      breifJobDescription: "",
-    });
-  }, [append]);
+  const appendSelectLanguage = useCallback(() => {
+    appendLanguage({ type: "select", name: "", fluency: "" });
+  }, [appendLanguage]);
+
+  const appendOtherLanguage = useCallback(() => {
+    appendLanguage({ type: "text", name: "", fluency: "" });
+  }, [appendLanguage]);
 
   return {
     control,
     errors,
-    fields,
+    languageSpokenFields,
     register,
     handleSubmit,
-    appendField,
-    removeField,
+    appendSelectLanguage,
+    appendOtherLanguage,
+    removeLanguage,
   };
 }
 

@@ -25,7 +25,7 @@ function UploadCertificatesForm() {
       <OnboardingForm.Headline className={"mb-4"} />
 
       {fields.map((field, idx) => (
-        <div key={field.id} className="mb-6">
+        <div key={field.id} className="mb-6 space-y-3">
           <div className="mb-3 flex items-center justify-between gap-3">
             <h4 className="text-[18px]">Certificate 0{idx + 1}</h4>
             <button

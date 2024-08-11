@@ -45,7 +45,7 @@ const PersonalDetailsForm = () => {
         />
       </div>
 
-      <div>
+      <div className="mb-3 space-y-3">
         <Input
           type="text"
           {...register("name")}

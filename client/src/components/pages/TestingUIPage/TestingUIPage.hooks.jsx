@@ -5,11 +5,12 @@ function useTestingUIPageHooks() {
   const {
     control,
     errors,
-    fields,
+    languageSpokenFields,
     register,
     handleSubmit,
-    appendField,
-    removeField,
+    appendSelectLanguage,
+    appendOtherLanguage,
+    removeLanguage,
   } = useHookForm();
 
   const onSuccess = useCallback((formData) => {
@@ -22,11 +23,12 @@ function useTestingUIPageHooks() {
   return {
     control,
     errors,
-    fields,
+    languageSpokenFields,
     register,
     handleSubmit: handleSubmit(onSuccess, onError),
-    appendField,
-    removeField,
+    appendSelectLanguage,
+    appendOtherLanguage,
+    removeLanguage,
   };
 }
 

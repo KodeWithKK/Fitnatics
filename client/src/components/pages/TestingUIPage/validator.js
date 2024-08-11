@@ -1,63 +1,52 @@
 import * as yup from "yup";
 
-const workExperienceFormSchema = yup.object({
+const otherProfessionalDetailsSchema = yup.object({
   areaOfExpertice: yup
     .array()
     .of(
       yup
         .string()
         .oneOf([
-          "nutrition training",
-          "yoga",
-          "zumba",
-          "calisthenics",
-          "cardio training",
-          "functional training",
-          "strength training",
-          "hiit",
-          "pre-and-post-natal training",
-          "injury rehab",
+          "Nutrition Training",
+          "Yoga",
+          "Zumba",
+          "Calesthenics",
+          "Cardio Training",
+          "Functional Training",
+          "Strength Training",
+          "High-intensity interval training (HIIT)",
+          "Pre and Post-natal Training",
+          "Injury Rehab",
         ])
-        .required(),
+        .required("Area of Expertise is Required!"),
     ),
-  languageSpoken: yup
-    .array()
-    .of(
-      yup
+  languageSpoken: yup.array().of(
+    yup.object({
+      type: yup.string().oneOf(["text", "select"]).required(),
+      name: yup.string().required("Language Spoken Required!"),
+      fluency: yup
         .string()
-        .oneOf([
-          "hindi",
-          "english",
-          "bengali",
-          "telugu",
-          "marathi",
-          "tamil",
-          "urdu",
-          "gujarati",
-          "kannada",
-          "odia",
-          "malayalam",
-          "punjabi",
-        ])
-        .required(),
-    ),
+        .required("Fluency Required!")
+        .oneOf(["Basic", "Intermediate", "Fluent"]),
+    }),
+  ),
   preferedWorkShedule: yup
     .array()
     .of(
       yup
         .string()
+        .required("Prefered Work Schedule is Required!")
         .oneOf([
-          "full-time",
-          "part-time",
-          "weekends only",
-          "early mornings (5am-9am)",
-          "daytime (9am-5pm)",
-          "evenings (5pm-10pm)",
-          "flexible/variable",
-        ])
-        .required(),
+          "Full-Time",
+          "Part-Time",
+          "Weekends Only",
+          "Early Mornings (5am - 9am)",
+          "Daytime (9am - 5pm)",
+          "Evenings (5pm - 10pm)",
+          "Flexible/Variable",
+        ]),
     ),
-  whyFitnatics: yup.string().required(),
+  whyFitnatics: yup.string().required("Why Fitnatics is required!"),
 });
 
-export default workExperienceFormSchema;
+export default otherProfessionalDetailsSchema;

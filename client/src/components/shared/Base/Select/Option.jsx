@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { SelectContext } from "./Select";
 import { CheckIcon } from "./Icons";
 
-const Option = ({ Icon, value, label }) => {
+const Option = ({ Icon, label, value = label }) => {
   const { type, selectedValue, setValueLabelMap, handleClick } =
     useContext(SelectContext);
 
@@ -31,12 +31,12 @@ const Option = ({ Icon, value, label }) => {
       )}
 
       {type === "checkbox" && (
-        <button
+        <div
           type="button"
           className="mr-2 inline-grid h-6 w-6 place-items-center rounded bg-gray-975 group-hover:border-2 group-hover:border-gray-600"
         >
           {selectedValue.includes(value) && <CheckIcon className="h-4 w-4" />}
-        </button>
+        </div>
       )}
       <span>{label}</span>
     </button>

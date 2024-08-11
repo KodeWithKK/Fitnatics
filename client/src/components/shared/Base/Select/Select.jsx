@@ -9,6 +9,8 @@ import {
 } from "react";
 import Options from "./Options";
 import Option from "./Option";
+import cn from "@utils/cn";
+
 import { DownArrow } from "./Icons";
 
 export const SelectContext = createContext();
@@ -36,26 +38,21 @@ const Select = ({
 
   const handleClick = useCallback(
     (value) => {
-      if (type !== "checkbox") {
-        setIsCollapsed(true);
+      let nextValue = value;
+
+      if (type === "checkbox") {
+        if (selectedValue.includes(value)) {
+          nextValue = selectedValue.filter((val) => val !== value);
+        } else {
+          nextValue = [...selectedValue, value];
+        }
       }
 
-      setSelectedValue((prev) => {
-        let nextValue = value;
-
-        if (type === "checkbox") {
-          if (prev.includes(value)) {
-            nextValue = prev.filter((val) => val !== value);
-          } else {
-            nextValue = [...prev, value];
-          }
-        }
-
-        onChange?.(nextValue);
-        return nextValue;
-      });
+      setSelectedValue(nextValue);
+      if (type !== "checkbox") setIsCollapsed(true);
+      onChange?.(nextValue);
     },
-    [type, onChange],
+    [selectedValue, type, onChange],
   );
 
   useEffect(() => {
@@ -90,54 +87,59 @@ const Select = ({
 
   return (
     <SelectContext.Provider value={contextValue}>
-      <div className="relative" style={{ paddingBottom: `${optionsHeight}px` }}>
+      <div className="" style={{ paddingBottom: `${optionsHeight}px` }}>
         <label
           htmlFor={selectId}
-          className={`block text-sm text-gray-300 ${label ? "mb-1" : ""}`}
+          className={cn("block text-sm text-gray-300", {
+            "mb-1": label,
+          })}
         >
           {label}
         </label>
 
-        <button
-          id={selectId}
-          type="button"
-          name={name}
-          className={`relative mb-3 flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px] ${
-            Icon && "pl-[38px]"
-          } ${
-            !isCollapsed
-              ? "border-brand ring-[2px] ring-brand"
-              : "border-gray-900/[.8]"
-          }`}
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsCollapsed(!isCollapsed);
-          }}
-        >
-          {Icon && (
-            <Icon
-              className={`absolute left-2 top-[9px] h-6 w-6 text-gray-500`}
+        <div className="relative">
+          <button
+            id={selectId}
+            type="button"
+            name={name}
+            className={cn(
+              "flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px]",
+              Icon && "pl-[38px]",
+              {
+                "border-brand ring-[2px] ring-brand": !isCollapsed,
+                "border-gray-900/[.8]": isCollapsed,
+              },
+            )}
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsCollapsed(!isCollapsed);
+            }}
+          >
+            {Icon && (
+              <Icon
+                className={`absolute left-2 top-[9px] h-6 w-6 text-gray-500`}
+              />
+            )}
+
+            {selectedValue.length > 0 ? (
+              <span className={"pr-2 text-gray-100"}>
+                {type == "text" && valueLabelMap[selectedValue]}
+                {type == "checkbox" &&
+                  `${selectedValue.length} of ${Object.keys(valueLabelMap).length} Selected`}
+              </span>
+            ) : (
+              <span className={"text-gray-700"}>
+                {placeholder ?? "Select Option"}
+              </span>
+            )}
+
+            <DownArrow
+              className={cn("h-[15px] w-[15px]", !isCollapsed && "rotate-180")}
             />
-          )}
+          </button>
 
-          {selectedValue.length > 0 ? (
-            <span className={"pr-2 text-gray-100"}>
-              {type == "text" && valueLabelMap[selectedValue]}
-              {type == "checkbox" &&
-                `${selectedValue.length} of ${Object.keys(valueLabelMap).length} Selected`}
-            </span>
-          ) : (
-            <span className={"text-gray-700"}>
-              {placeholder ?? "Select Option"}
-            </span>
-          )}
-
-          <DownArrow
-            className={`h-[15px] w-[15px] ${!isCollapsed && "rotate-180"}`}
-          />
-        </button>
-
-        <Options ref={optionsRef}>{children}</Options>
+          <Options ref={optionsRef}>{children}</Options>
+        </div>
       </div>
     </SelectContext.Provider>
   );

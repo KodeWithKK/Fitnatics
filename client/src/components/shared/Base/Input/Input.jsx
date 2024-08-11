@@ -95,9 +95,11 @@ const Input = (
 };
 
 function ErrorMessage({ children }) {
-  return (
-    <p className={`mb-3 mt-1 text-[15px] text-sm text-red-400`}>{children}</p>
-  );
+  if (!children) {
+    return null;
+  }
+
+  return <p className={`mt-1 text-[15px] text-sm text-red-400`}>{children}</p>;
 }
 
 function PasswordToggleBtn({ error, disabled, inputType, setInputType }) {
