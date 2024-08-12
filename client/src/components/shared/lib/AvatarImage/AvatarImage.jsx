@@ -42,6 +42,7 @@ function AvatarImage({ height, width, file, onChange }) {
           <img
             src={fileURL}
             className="h-full w-full object-cover object-center"
+            alt="avtar-logo"
           />
         )}
         {!fileURL && (

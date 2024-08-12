@@ -1,4 +1,5 @@
 import { useId, useRef, useState, useEffect, forwardRef } from "react";
+import cn from "@utils/cn";
 import Select from "../Select/Select";
 import RAside from "./RAside";
 
@@ -39,7 +40,7 @@ const Input = (
     <div className="w-full">
       <label
         htmlFor={inputId}
-        className={`block text-sm text-gray-300 ${label ? "mb-1" : ""}`}
+        className={cn("block text-sm text-gray-300", label && "mb-1")}
       >
         {label}
       </label>
@@ -48,13 +49,16 @@ const Input = (
         <input
           id={inputId}
           ref={ref}
-          className={`w-full rounded-md bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed ${
-            error
-              ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-              : "focus:border-brand focus:ring-brand"
-          } ${Icon ? "pl-[38px]" : ""} ${name === "password" ? "pr-[42px]" : ""} ${
-            disabled ? "opacity-35" : ""
-          } ${borderColor ?? "border-gray-900/[.8]"} ${className ?? ""}`}
+          className={cn(
+            "w-full rounded-md bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed",
+            disabled && "opacity-35",
+            name === "password" && "pr-[42px]",
+            borderColor ?? "border-gray-900/[.8]",
+            Icon && "pl-[38px]",
+            error && "border-red-400 focus:border-red-400 focus:ring-red-400",
+            !error && "focus:border-brand focus:ring-brand",
+            className,
+          )}
           name={name}
           type={inputType}
           disabled={disabled}
@@ -64,9 +68,11 @@ const Input = (
 
         {Icon && (
           <Icon
-            className={`absolute left-2 top-[9px] h-6 w-6 ${
-              error ? "text-red-400" : "text-gray-500"
-            }`}
+            className={cn(
+              "absolute left-2 top-[9px] h-6 w-6",
+              error && "text-red-400",
+              !error && "text-gray-500",
+            )}
           />
         )}
 
@@ -81,9 +87,11 @@ const Input = (
 
         <div
           ref={childRef}
-          className={`absolute right-px top-px h-[40px] w-fit ${
-            error ? "text-red-400" : "text-gray-500"
-          }`}
+          className={cn(
+            "absolute right-px top-px h-[40px] w-fit",
+            error && "text-red-400",
+            !error && "text-gray-500",
+          )}
         >
           {children}
         </div>
@@ -106,11 +114,12 @@ function PasswordToggleBtn({ error, disabled, inputType, setInputType }) {
   return (
     <button
       type="button"
-      className={`absolute right-2 top-[5px] rounded-full p-1 ${
-        error
-          ? "text-red-400 hover:bg-red-800/[.6]"
-          : "text-gray-500 hover:bg-gray-800/[.7]"
-      } disabled:cursor-not-allowed ${disabled && "hover:bg-gray-950"}`}
+      className={cn(
+        "absolute right-2 top-[5px] rounded-full p-1 disabled:cursor-not-allowed",
+        error && "text-red-400 hover:bg-red-800/[.6]",
+        !error && "text-gray-500 hover:bg-gray-800/[.7]",
+        disabled && "hover:bg-gray-950",
+      )}
       onClick={() => {
         if (inputType === "password") {
           setInputType("text");

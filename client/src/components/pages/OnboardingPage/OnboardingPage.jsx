@@ -10,7 +10,6 @@ import TVerifyEmailForm from "@features/Forms/Onboarding/Trainer/VerifyEmailForm
 import TEducationDetailsForm from "@features/Forms/Onboarding/Trainer/EducationDetailsForm/EducationDetailsForm";
 import TUploadCertificatesForm from "@features/Forms/Onboarding/Trainer/UploadCertificatesForm/UploadCertificatesForm";
 import TWorkExperienceForm from "@features/Forms/Onboarding/Trainer/WorkExperienceForm/WorkExperienceForm";
-import TSpecializationNSkillsForm from "@features/Forms/Onboarding/Trainer/SpecializationNSkillsForm/SpecializationNSkillsForm";
 import TOtherDetailsForm from "@features/Forms/Onboarding/Trainer/OtherDetailsForm/OtherDetailsForm";
 import useHookStore from "./useHookStore";
 
@@ -69,7 +68,6 @@ const trainerForms = [
   { id: window.crypto.randomUUID(), Form: TEducationDetailsForm },
   { id: window.crypto.randomUUID(), Form: TUploadCertificatesForm },
   { id: window.crypto.randomUUID(), Form: TWorkExperienceForm },
-  { id: window.crypto.randomUUID(), Form: TSpecializationNSkillsForm },
   { id: window.crypto.randomUUID(), Form: TOtherDetailsForm },
 ];
 

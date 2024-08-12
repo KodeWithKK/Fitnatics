@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
+import cn from "@utils/cn";
 import { SelectContext } from "./Select";
 import { CheckIcon } from "./Icons";
 
 const Option = ({ Icon, label, value = label }) => {
-  const { type, selectedValue, setValueLabelMap, handleClick } =
+  const { type, selectedValue, setValueLabelMap, handleOptionClick } =
     useContext(SelectContext);
 
   useEffect(() => {
@@ -16,12 +17,13 @@ const Option = ({ Icon, label, value = label }) => {
   return (
     <button
       type="button"
-      className={`group relative flex w-full items-center border-b border-gray-900/[.8] px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md last:border-0 hover:bg-gray-900 ${
-        Icon && "pl-[38px]"
-      }`}
+      className={cn(
+        "group relative flex w-full items-center px-2 py-1.5 text-left text-[15px] first:rounded-t-md last:rounded-b-md hover:bg-gray-900",
+        Icon && "pl-[38px]",
+      )}
       onClick={(event) => {
         event.stopPropagation();
-        handleClick(value);
+        handleOptionClick(value);
       }}
     >
       {Icon && (

@@ -149,7 +149,6 @@ const PersonalDetailsForm = () => {
               onChange={field.onChange}
               label="Workout Experience"
               placeholder={"Select Workout Experience"}
-              addBottomPadding={true}
             >
               <Select.Option value="beginner" label="Beginner" />
               <Select.Option value="intermediate" label="Intermediate" />

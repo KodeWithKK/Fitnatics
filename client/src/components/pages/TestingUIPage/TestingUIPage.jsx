@@ -58,10 +58,10 @@ function TestingUIPage() {
           <div className="mb-1 flex gap-2 text-sm text-gray-300">
             <span className="flex-1">Language Spoken</span>
             <span
-              className={cn({
-                "w-[169px]": languageSpokenFields.length == 1,
-                "w-[205px]": languageSpokenFields.length != 1,
-              })}
+              className={cn(
+                languageSpokenFields.length == 1 && "w-[169px]",
+                languageSpokenFields.length != 1 && "w-[205px]",
+              )}
             >
               Fluency
             </span>

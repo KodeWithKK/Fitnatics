@@ -1,4 +1,5 @@
 import { useId, forwardRef } from "react";
+import cn from "@utils/cn";
 
 function TextArea({ label, error, disabled, className, ...restProps }, ref) {
   const taId = useId();
@@ -14,11 +15,13 @@ function TextArea({ label, error, disabled, className, ...restProps }, ref) {
       <div className="relative">
         <textarea
           ref={ref}
-          className={`block w-full rounded-md border-gray-900/[.8] bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed ${
-            error
-              ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-              : "focus:border-brand focus:ring-brand"
-          } ${disabled ? "opacity-35" : ""} ${className ?? ""}`}
+          className={cn(
+            "block w-full rounded-md border-gray-900/[.8] bg-gray-950 text-[15px] placeholder:text-gray-700 disabled:cursor-not-allowed",
+            error && "border-red-400 focus:border-red-400 focus:ring-red-400",
+            !error && "focus:border-brand focus:ring-brand",
+            disabled && "opacity-35",
+            className,
+          )}
           disabled={disabled}
           {...restProps}
           id={taId}

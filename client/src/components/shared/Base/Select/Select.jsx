@@ -23,7 +23,6 @@ const Select = ({
   Icon,
   type = "text",
   placeholder,
-  addBottomPadding,
   children,
 }) => {
   const [selectedValue, setSelectedValue] = useState(() => {
@@ -32,11 +31,31 @@ const Select = ({
   });
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [valueLabelMap, setValueLabelMap] = useState({});
-  const [optionsHeight, setOptionsHeight] = useState("0");
+  const [optionsPos, setOptionsPos] = useState("bottom");
+  const wrapperRef = useRef();
   const optionsRef = useRef();
   const selectId = useId();
 
-  const handleClick = useCallback(
+  const handleSelectClick = useCallback(
+    (event) => {
+      event.stopPropagation();
+      setIsCollapsed(!isCollapsed);
+      const wrapperRect = wrapperRef.current.getBoundingClientRect();
+      const totalOption = Object.keys(valueLabelMap).length;
+      if (isNearBottom(wrapperRect, totalOption)) {
+        setOptionsPos("top");
+        optionsRef.current.scrollIntoView({
+          block: "nearest",
+          inline: "start",
+        });
+      } else {
+        setOptionsPos("bottom");
+      }
+    },
+    [valueLabelMap, isCollapsed],
+  );
+
+  const handleOptionClick = useCallback(
     (value) => {
       let nextValue = value;
 
@@ -56,17 +75,6 @@ const Select = ({
   );
 
   useEffect(() => {
-    const optionsRefElm = optionsRef.current;
-    const height = optionsRefElm.offsetHeight;
-
-    if (addBottomPadding && !isCollapsed) {
-      setOptionsHeight(height);
-    } else {
-      setOptionsHeight("0");
-    }
-  }, [addBottomPadding, isCollapsed]);
-
-  useEffect(() => {
     function hideOptions() {
       setIsCollapsed(true);
     }
@@ -81,18 +89,16 @@ const Select = ({
       selectedValue,
       isCollapsed,
       setValueLabelMap,
-      handleClick,
+      handleOptionClick,
     };
-  }, [type, isCollapsed, selectedValue, handleClick]);
+  }, [type, isCollapsed, selectedValue, handleOptionClick]);
 
   return (
     <SelectContext.Provider value={contextValue}>
-      <div className="" style={{ paddingBottom: `${optionsHeight}px` }}>
+      <div ref={wrapperRef}>
         <label
           htmlFor={selectId}
-          className={cn("block text-sm text-gray-300", {
-            "mb-1": label,
-          })}
+          className={cn("block text-sm text-gray-300", label && "mb-1")}
         >
           {label}
         </label>
@@ -104,16 +110,11 @@ const Select = ({
             name={name}
             className={cn(
               "flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px]",
+              isCollapsed && "border-gray-900/[.8]",
+              !isCollapsed && "border-brand ring-[2px] ring-brand",
               Icon && "pl-[38px]",
-              {
-                "border-brand ring-[2px] ring-brand": !isCollapsed,
-                "border-gray-900/[.8]": isCollapsed,
-              },
             )}
-            onClick={(event) => {
-              event.stopPropagation();
-              setIsCollapsed(!isCollapsed);
-            }}
+            onClick={handleSelectClick}
           >
             {Icon && (
               <Icon
@@ -138,12 +139,22 @@ const Select = ({
             />
           </button>
 
-          <Options ref={optionsRef}>{children}</Options>
+          <Options ref={optionsRef} optionsPos={optionsPos}>
+            {children}
+          </Options>
         </div>
       </div>
     </SelectContext.Provider>
   );
 };
+
+function isNearBottom(wrapperRect, totalOption) {
+  const windowHeight = window.innerHeight;
+  let optionsPanelHeight = 37 * totalOption;
+  if (optionsPanelHeight > 205) optionsPanelHeight = 205;
+  const wrapperFullHeight = wrapperRect.height + optionsPanelHeight + 12;
+  return wrapperRect.top + wrapperFullHeight + 20 > windowHeight;
+}
 
 Select.Option = Option;
 

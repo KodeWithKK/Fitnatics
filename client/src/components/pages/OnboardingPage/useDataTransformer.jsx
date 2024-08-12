@@ -142,10 +142,6 @@ const trainerNavItems = [
     description: "Enter your work experiences",
   },
   {
-    title: "Specializations & Skills",
-    description: "Enter specializations and skills details",
-  },
-  {
     title: "Other Professional Details",
     description: "Enter other professional details",
   },
