@@ -1,5 +1,6 @@
 import { useCallback, useContext, useMemo } from "react";
 import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
+import cn from "@utils/cn";
 
 const OnboardingForm = ({
   onSubmit,
@@ -21,9 +22,11 @@ const OnboardingForm = ({
       </main>
 
       <footer
-        className={`fixed bottom-0 z-[100] flex w-full select-none gap-2.5 rounded-t-md border-t border-gray-900 bg-gray-900 px-6 py-2 ${
-          step == navItems.length ? "justify-start" : "justify-between"
-        }`}
+        className={cn(
+          "fixed bottom-0 z-[100] flex w-full select-none gap-2.5 rounded-t-md border-t border-gray-900 bg-gray-900 px-6 py-2",
+          step == navItems.length && "justify-start",
+          step != navItems.length && "justify-between",
+        )}
         style={{ width: "calc(100% - 326px)" }}
       >
         <button

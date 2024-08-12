@@ -36,7 +36,7 @@ function FileUpload({ value, onChange, label, accept }) {
       )}
 
       {file && (
-        <div className="mb-3 flex items-center gap-2 rounded border border-gray-900/[.8] bg-gray-950 p-2 text-[15px] text-gray-100">
+        <div className="flex items-center gap-2 rounded border border-gray-900/[.8] bg-gray-950 p-2 text-[15px] text-gray-100">
           <div>
             <PDFIcon className={"text-[32px]"} />
           </div>

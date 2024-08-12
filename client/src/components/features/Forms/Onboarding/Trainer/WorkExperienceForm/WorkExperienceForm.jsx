@@ -1,9 +1,11 @@
 import OnboardingForm from "@layouts/OnboardingPageLayout/OnboardingForm";
 import Input from "@shared/base/Input/Input";
 import TextArea from "@shared/base/TextArea/TextArea";
+import Button from "@shared/base/Button/Button";
+import useWorkExperienceFormHooks from "./WorkExperienceForm.hooks";
+import cn from "@utils/cn";
 
 import { CircledCrossIcon, UpArrowIcon } from "@shared/icons/FormIcons";
-import useWorkExperienceFormHooks from "./WorkExperienceForm.hooks";
 
 function WorkExperienceForm() {
   const { errors, fields, register, handleSubmit, appendField, removeField } =
@@ -11,15 +13,19 @@ function WorkExperienceForm() {
 
   return (
     <OnboardingForm
-      className="mx-auto max-w-[564px] p-6 pb-2"
+      className="mx-auto max-w-[564px] p-6 pb-5"
       onSubmit={handleSubmit}
     >
       <OnboardingForm.Headline className={"mb-4"} />
 
       {fields.map((field, idx) => (
-        <div key={field.id} className="space-y-3">
+        <div
+          key={field.id}
+          className={cn("mb-6 space-y-3", idx + 1 === fields.length && "mb-4")}
+        >
           <div className="mb-3 flex items-center justify-between gap-3">
             <h4 className="text-[18px]">Work Experience 0{idx + 1}</h4>
+
             <button
               type="button"
               className="text-gray-500 hover:text-gray-100"
@@ -28,6 +34,7 @@ function WorkExperienceForm() {
               <CircledCrossIcon className="h-7 w-7" />
             </button>
           </div>
+
           <Input
             type="text"
             {...register(`workExperiences.${idx}.jobTitle`)}
@@ -37,6 +44,7 @@ function WorkExperienceForm() {
             error={errors?.workExperiences?.[idx]?.jobTitle?.message}
             required={true}
           />
+
           <Input
             type="text"
             {...register(`workExperiences.${idx}.gymOrStudioName`)}
@@ -89,16 +97,9 @@ function WorkExperienceForm() {
         </div>
       ))}
 
-      <h4 className="my-3 mt-6 text-[18px]">
-        Work Experience 0{fields.length + 1}
-      </h4>
-      <button
-        type="button"
-        className="mb-3 rounded bg-gray-800/[.8] px-2 py-1 text-gray-200"
-        onClick={appendField}
-      >
-        Add Work Experience
-      </button>
+      <Button variant="text" onClick={appendField}>
+        Add {fields.length > 0 && "Another"} Work Experience
+      </Button>
     </OnboardingForm>
   );
 }

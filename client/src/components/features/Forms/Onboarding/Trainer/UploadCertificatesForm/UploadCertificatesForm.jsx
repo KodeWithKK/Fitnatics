@@ -1,8 +1,10 @@
 import OnboardingForm from "@layouts/OnboardingPageLayout/OnboardingForm";
 import Input from "@shared/base/Input/Input";
+import Button from "@shared/base/Button/Button";
 import FileUpload from "@shared/base/FileUpload/FileUpload";
 import useUploadCertificatesFormHooks from "./UploadCertificatesForm.hooks";
 import { Controller } from "react-hook-form";
+import cn from "@utils/cn";
 
 import { CircledCrossIcon } from "@shared/icons/FormIcons";
 
@@ -19,13 +21,16 @@ function UploadCertificatesForm() {
 
   return (
     <OnboardingForm
-      className="mx-auto max-w-[564px] p-6 pb-2"
+      className="mx-auto max-w-[564px] p-6 pb-5"
       onSubmit={handleSubmit}
     >
       <OnboardingForm.Headline className={"mb-4"} />
 
       {fields.map((field, idx) => (
-        <div key={field.id} className="mb-6 space-y-3">
+        <div
+          key={field.id}
+          className={cn("mb-6 space-y-3", idx + 1 === fields.length && "mb-4")}
+        >
           <div className="mb-3 flex items-center justify-between gap-3">
             <h4 className="text-[18px]">Certificate 0{idx + 1}</h4>
             <button
@@ -93,15 +98,9 @@ function UploadCertificatesForm() {
         </div>
       ))}
 
-      <h4 className="mb-3 text-[18px]">Certificate 0{fields.length + 1}</h4>
-
-      <button
-        type="button"
-        className="mb-3 rounded bg-gray-800/[.8] px-2 py-1 text-gray-200"
-        onClick={appendField}
-      >
-        Add Certificate
-      </button>
+      <Button variant="text" onClick={appendField}>
+        Add {fields.length > 0 && "Another"} Certificate
+      </Button>
     </OnboardingForm>
   );
 }

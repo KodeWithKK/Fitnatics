@@ -23,6 +23,7 @@ function Image({
         onLoad={() => setIsLoading(false)}
         className="h-full w-full object-cover"
         style={{ display: isLoading ? "none" : "block" }}
+        alt="img"
         {...restProps}
       />
     </div>

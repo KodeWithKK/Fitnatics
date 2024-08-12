@@ -1,6 +1,7 @@
 import { GlobalContext } from "@context/GlobalContextProvider";
 import { OnboardingContext } from "@pages/OnboardingPage/OnboardingPage";
 import { useContext } from "react";
+import cn from "@utils/cn";
 
 function SideNavBar() {
   const { addToast } = useContext(GlobalContext);
@@ -48,9 +49,11 @@ function SideNavBar() {
               }}
             >
               <span
-                className={`${step === idx + 1 && "text-brand"} ${
-                  step > idx + 1 && "text-brand opacity-60"
-                } ${step < idx + 1 && "text-gray-600"}`}
+                className={cn(
+                  step === idx + 1 && "text-brand",
+                  step > idx + 1 && "text-brand opacity-60",
+                  step < idx + 1 && "text-gray-600",
+                )}
               >
                 {title}
               </span>

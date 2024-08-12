@@ -1,5 +1,6 @@
 import Input from "@shared/base/Input/Input";
 import Select from "@shared/base/Select/Select";
+import Button from "@shared/base/Button/Button";
 import TextArea from "@shared/base/TextArea/TextArea";
 import { Controller } from "react-hook-form";
 import useTestingUIPageHooks from "./TestingUIPage.hooks";
