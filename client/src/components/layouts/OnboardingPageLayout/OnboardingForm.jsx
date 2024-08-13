@@ -9,7 +9,7 @@ const OnboardingForm = ({
   className,
   children,
 }) => {
-  const { step, setStep, navItems } = useContext(OnboardingContext);
+  const { step, setStep, role, navItems } = useContext(OnboardingContext);
 
   const backButtonHandler = useCallback(() => {
     setStep((prevStep) => --prevStep);
@@ -22,11 +22,7 @@ const OnboardingForm = ({
       </main>
 
       <footer
-        className={cn(
-          "fixed bottom-0 z-[100] flex w-full select-none gap-2.5 rounded-t-md border-t border-gray-900 bg-gray-900 px-6 py-2",
-          step == navItems.length && "justify-start",
-          step != navItems.length && "justify-between",
-        )}
+        className="fixed bottom-0 z-[100] flex w-full select-none justify-between gap-2.5 rounded-t-md border-t border-gray-900 bg-gray-900 px-6 py-2"
         style={{ width: "calc(100% - 326px)" }}
       >
         <button
@@ -37,16 +33,19 @@ const OnboardingForm = ({
           Back
         </button>
 
-        {step < navItems.length && (
-          <button
-            type="submit"
-            className="w-[70.58px] rounded-md bg-brand px-4 py-2"
-            onClick={onSubmitButtonClick}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "..." : "Next"}
-          </button>
-        )}
+        <button
+          type="submit"
+          className={cn(
+            "w-[70.58px] rounded-md bg-brand px-4 py-2",
+            step === navItems.length && "w-fit",
+            role === "member" && step === navItems.length && "hidden",
+          )}
+          onClick={onSubmitButtonClick}
+          disabled={isSubmitting}
+        >
+          {isSubmitting && "..."}
+          {!isSubmitting && step === navItems.length ? "Submit" : "Next"}
+        </button>
       </footer>
     </form>
   );

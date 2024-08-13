@@ -1,17 +1,12 @@
 const TwitterAuthButton = ({ text }) => {
-  const loginwithtwitter = async () => {
-    window.location.href = "http://localhost:8000/api/v1/auth/login-twitter";
-  };
-
   return (
-    <button
-      type="button"
-      className="flex w-full items-center rounded-r-md border-2 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3]"
-      onClick={loginwithtwitter}
+    <a
+      className="flex w-full items-center rounded-r-md border-2 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3] max-sm:justify-center"
+      href={"http://localhost:8000/api/v1/auth/login-twitter"}
     >
       <TwitterIcon className="mr-2 h-6" />
-      <span>{text}</span>
-    </button>
+      <span className="max-sm:hidden">{text}</span>
+    </a>
   );
 };
 

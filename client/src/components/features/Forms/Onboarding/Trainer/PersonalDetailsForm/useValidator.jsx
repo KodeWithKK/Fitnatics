@@ -82,9 +82,12 @@ function useValidator({
           );
           return age <= 100;
         })
-        .required("DOB is Required"),
+        .required("DOB is required"),
 
-      gender: yup.string().oneOf(["male", "female"]).required(),
+      gender: yup
+        .string()
+        .required("Gender is required")
+        .oneOf(["male", "female"], "Gender is required"),
 
       address: yup
         .string()

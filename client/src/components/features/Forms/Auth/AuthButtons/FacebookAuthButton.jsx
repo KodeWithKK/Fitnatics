@@ -1,17 +1,12 @@
 const FacebookAuthButton = ({ text }) => {
-  const loginwithfacebook = async () => {
-    window.location.href = "http://localhost:8000/api/v1/auth/login-facebook";
-  };
-
   return (
-    <button
-      type="button"
-      className="flex w-full items-center border-2 border-x-0 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3]"
-      onClick={loginwithfacebook}
+    <a
+      href="http://localhost:8000/api/v1/auth/login-facebook"
+      className="flex w-full items-center border-2 border-x-0 border-gray-800 px-3 py-2 hover:bg-gray-800/[.3] max-sm:justify-center"
     >
       <FacebookIcon className="mr-2 h-6" />
-      <span>{text}</span>
-    </button>
+      <span className="max-sm:hidden">{text}</span>
+    </a>
   );
 };
 

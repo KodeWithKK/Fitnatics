@@ -106,6 +106,7 @@ const PersonalDetailsForm = () => {
               onChange={field.onChange}
               label="Gender"
               placeholder={"Select Gender"}
+              error={errors?.gender?.message}
             >
               <Select.Option value="male" label="Male" />
               <Select.Option value="female" label="Female" />
@@ -149,6 +150,7 @@ const PersonalDetailsForm = () => {
               onChange={field.onChange}
               label="Workout Experience"
               placeholder={"Select Workout Experience"}
+              error={errors?.workoutExperience?.message}
             >
               <Select.Option value="beginner" label="Beginner" />
               <Select.Option value="intermediate" label="Intermediate" />

@@ -54,6 +54,9 @@ export default {
         loadingIcon: "spin 1s linear infinite",
         loadingImage: "loadingImage 1.4s infinite ease",
       },
+      screens: {
+        sm: "480px",
+      },
       colors: {
         brand: "#1271ED",
         gray: {

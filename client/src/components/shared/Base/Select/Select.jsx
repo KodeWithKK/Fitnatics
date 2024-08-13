@@ -1,14 +1,7 @@
-import {
-  useId,
-  useRef,
-  useMemo,
-  useState,
-  useEffect,
-  useCallback,
-  createContext,
-} from "react";
+import { useId, useRef, createContext } from "react";
 import Options from "./Options";
 import Option from "./Option";
+import useSelectHooks from "./Select.hooks";
 import cn from "@utils/cn";
 
 import { DownArrow } from "./Icons";
@@ -22,80 +15,27 @@ const Select = ({
   onChange,
   Icon,
   type = "text",
+  error = "",
   placeholder,
+  className,
   children,
 }) => {
-  const [selectedValue, setSelectedValue] = useState(() => {
-    if (value) return value;
-    return type === "checkbox" ? [] : "";
-  });
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const [valueLabelMap, setValueLabelMap] = useState({});
-  const [optionsPos, setOptionsPos] = useState("bottom");
+  const selectId = useId();
   const wrapperRef = useRef();
   const optionsRef = useRef();
-  const selectId = useId();
 
-  const handleSelectClick = useCallback(
-    (event) => {
-      event.stopPropagation();
-      setIsCollapsed(!isCollapsed);
-      const wrapperRect = wrapperRef.current.getBoundingClientRect();
-      const totalOption = Object.keys(valueLabelMap).length;
-      if (isNearBottom(wrapperRect, totalOption)) {
-        setOptionsPos("top");
-        optionsRef.current.scrollIntoView({
-          block: "nearest",
-          inline: "start",
-        });
-      } else {
-        setOptionsPos("bottom");
-      }
-    },
-    [valueLabelMap, isCollapsed],
-  );
-
-  const handleOptionClick = useCallback(
-    (value) => {
-      let nextValue = value;
-
-      if (type === "checkbox") {
-        if (selectedValue.includes(value)) {
-          nextValue = selectedValue.filter((val) => val !== value);
-        } else {
-          nextValue = [...selectedValue, value];
-        }
-      }
-
-      setSelectedValue(nextValue);
-      if (type !== "checkbox") setIsCollapsed(true);
-      onChange?.(nextValue);
-    },
-    [selectedValue, type, onChange],
-  );
-
-  useEffect(() => {
-    function hideOptions() {
-      setIsCollapsed(true);
-    }
-
-    document.addEventListener("click", hideOptions);
-    return () => document.removeEventListener("click", hideOptions);
-  }, []);
-
-  const contextValue = useMemo(() => {
-    return {
-      type,
-      selectedValue,
-      isCollapsed,
-      setValueLabelMap,
-      handleOptionClick,
-    };
-  }, [type, isCollapsed, selectedValue, handleOptionClick]);
+  const {
+    contextValue,
+    isCollapsed,
+    selectedValue,
+    valueLabelMap,
+    optionsPos,
+    handleSelectClick,
+  } = useSelectHooks({ value, type, onChange, optionsRef, wrapperRef });
 
   return (
     <SelectContext.Provider value={contextValue}>
-      <div ref={wrapperRef}>
+      <div ref={wrapperRef} className={cn("w-full", className)}>
         <label
           htmlFor={selectId}
           className={cn("block text-sm text-gray-300", label && "mb-1")}
@@ -111,7 +51,9 @@ const Select = ({
             className={cn(
               "flex w-full items-center justify-between rounded-md border bg-gray-950 p-2 text-left text-[15px]",
               isCollapsed && "border-gray-900/[.8]",
-              !isCollapsed && "border-brand ring-[2px] ring-brand",
+              !isCollapsed && "border-brand ring-1 ring-brand",
+              error && "border-red-400",
+              error && !isCollapsed && "ring-1 ring-red-400",
               Icon && "pl-[38px]",
             )}
             onClick={handleSelectClick}
@@ -139,6 +81,8 @@ const Select = ({
             />
           </button>
 
+          <ErrorMessage>{error}</ErrorMessage>
+
           <Options ref={optionsRef} optionsPos={optionsPos}>
             {children}
           </Options>
@@ -148,12 +92,9 @@ const Select = ({
   );
 };
 
-function isNearBottom(wrapperRect, totalOption) {
-  const windowHeight = window.innerHeight;
-  let optionsPanelHeight = 37 * totalOption;
-  if (optionsPanelHeight > 205) optionsPanelHeight = 205;
-  const wrapperFullHeight = wrapperRect.height + optionsPanelHeight + 12;
-  return wrapperRect.top + wrapperFullHeight + 20 > windowHeight;
+function ErrorMessage({ children }) {
+  if (!children) return null;
+  return <p className={`mt-1 text-[15px] text-sm text-red-400`}>{children}</p>;
 }
 
 Select.Option = Option;

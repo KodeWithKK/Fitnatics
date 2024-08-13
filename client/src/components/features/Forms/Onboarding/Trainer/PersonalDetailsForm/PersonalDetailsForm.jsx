@@ -96,6 +96,7 @@ const PersonalDetailsForm = () => {
               onChange={field.onChange}
               label="Gender"
               placeholder={"Select Gender"}
+              error={errors?.gender?.message}
             >
               <Select.Option value="male" label="Male" />
               <Select.Option value="female" label="Female" />

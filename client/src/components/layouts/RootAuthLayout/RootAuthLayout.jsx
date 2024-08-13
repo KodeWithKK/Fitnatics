@@ -1,36 +1,15 @@
-import { useState, useEffect } from "react";
-import HomePosterImg from "@images/Home Poster.jpg";
+import HomePosterImg from "@assets/images/Home Poster.jpg";
 
 const RootAuthLayout = ({ children }) => {
-  const [displayImage, setDisplayImage] = useState(() => {
-    return window.innerWidth >= 986;
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth >= 986) {
-        setDisplayImage(true);
-      } else setDisplayImage(false);
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div className="flex h-screen overflow-hidden">
       <img
-        className={`w-[50%] rounded-r-lg object-cover ${
-          !displayImage && "hidden"
-        }`}
+        className={`w-[50%] rounded-r-lg object-cover max-[986px]:hidden`}
         src={HomePosterImg}
         alt="brand poster"
       />
       <div
-        className={`flex overflow-y-auto px-[6%] py-6 ${
-          !displayImage ? "mx-auto w-full max-w-[668px]" : "w-[50%]"
-        }`}
+        className={`mx-auto flex w-full max-w-[668px] overflow-y-auto px-[6%] py-6 min-[986px]:w-[50%]`}
       >
         {children}
       </div>

@@ -55,20 +55,19 @@ function OtherDetailsForm() {
 
       <div>
         <div className="mb-1 flex gap-2 text-sm text-gray-300">
-          <span className="flex-1">Language Spoken</span>
+          <span className="w-full">Language Spoken</span>
+          <span className={"w-full"}>Fluency</span>
           <span
             className={cn(
-              languageSpokenFields.length == 1 && "w-[169px]",
-              languageSpokenFields.length != 1 && "w-[205px]",
+              "w-[62px]",
+              languageSpokenFields.length === 1 && "hidden",
             )}
-          >
-            Fluency
-          </span>
+          ></span>
         </div>
 
         {languageSpokenFields.map((field, idx) => (
           <div key={field.id} className="mb-2 flex items-start gap-2">
-            <div className="flex-1">
+            <div className="w-full">
               {field.type === "select" && (
                 <Controller
                   name={`languageSpoken.${idx}.name`}
@@ -79,6 +78,7 @@ function OtherDetailsForm() {
                       value={field.value}
                       onChange={field.onChange}
                       placeholder={"Select Language"}
+                      error={errors?.languageSpoken?.[idx]?.name?.message}
                     >
                       <Select.Option label="Hindi" />
                       <Select.Option label="English" />
@@ -110,24 +110,23 @@ function OtherDetailsForm() {
               )}
             </div>
 
-            <div className="w-[169px]">
-              <Controller
-                name={`languageSpoken.${idx}.fluency`}
-                control={control}
-                defaultValue={""}
-                render={({ field }) => (
-                  <Select
-                    value={field.value}
-                    onChange={field.onChange}
-                    placeholder={"Select Fluency"}
-                  >
-                    <Select.Option label="Basic" />
-                    <Select.Option label="Intermediate" />
-                    <Select.Option label="Fluent" />
-                  </Select>
-                )}
-              />
-            </div>
+            <Controller
+              name={`languageSpoken.${idx}.fluency`}
+              control={control}
+              defaultValue={""}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder={"Select Fluency"}
+                  error={errors?.languageSpoken?.[idx]?.fluency?.message}
+                >
+                  <Select.Option label="Basic" />
+                  <Select.Option label="Intermediate" />
+                  <Select.Option label="Fluent" />
+                </Select>
+              )}
+            />
 
             {languageSpokenFields.length > 1 && (
               <button
@@ -150,7 +149,7 @@ function OtherDetailsForm() {
       </div>
 
       <Controller
-        name={`preferredSchedule`}
+        name={`preferedWorkShedule`}
         control={control}
         defaultValue={""}
         render={({ field }) => (
@@ -158,7 +157,8 @@ function OtherDetailsForm() {
             value={field.value}
             onChange={field.onChange}
             label="Preferred Schedule"
-            placeholder={"Select Fluency"}
+            placeholder={"Select Prefered Schedule"}
+            error={errors?.preferedWorkShedule?.message}
           >
             <Select.Option label="Full-Time"></Select.Option>
             <Select.Option label="Weekends Only"></Select.Option>

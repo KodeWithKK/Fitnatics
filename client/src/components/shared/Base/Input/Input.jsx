@@ -103,10 +103,7 @@ const Input = (
 };
 
 function ErrorMessage({ children }) {
-  if (!children) {
-    return null;
-  }
-
+  if (!children) return null;
   return <p className={`mt-1 text-[15px] text-sm text-red-400`}>{children}</p>;
 }
 
@@ -121,11 +118,8 @@ function PasswordToggleBtn({ error, disabled, inputType, setInputType }) {
         disabled && "hover:bg-gray-950",
       )}
       onClick={() => {
-        if (inputType === "password") {
-          setInputType("text");
-        } else {
-          setInputType("password");
-        }
+        if (inputType === "password") setInputType("text");
+        else setInputType("password");
       }}
       disabled={disabled}
     >

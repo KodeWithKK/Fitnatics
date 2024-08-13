@@ -13,7 +13,7 @@ export default defineConfig({
       { find: "@data", replacement: "/src/data" },
       { find: "@hooks", replacement: "/src/hooks" },
       { find: "@icons", replacement: "/src/icons" },
-      { find: "@images", replacement: "/src/images" },
+      { find: "@assets", replacement: "/src/assets" },
       { find: "@routes", replacement: "/src/routes" },
       { find: "@utils", replacement: "/src/utils" },
       { find: "@features", replacement: "/src/components/features" },
